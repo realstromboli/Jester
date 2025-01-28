@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 159359076}
   - component: {fileID: 159359075}
   - component: {fileID: 159359078}
+  - component: {fileID: 159359079}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -793,17 +794,17 @@ MonoBehaviour:
   moveSpeed: 8
   runSpeed: 12
   walkSpeed: 8
-  maxYSpeed: 10
-  groundDrag: 5
-  jumpForce: 12
+  maxYSpeed: 90
+  groundDrag: 1
+  jumpForce: 20
   jumpCooldown: 0.25
-  airMultiplier: 1
+  airMultiplier: 0
   jumpKey: 32
   runKey: 304
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   maxSlopeAngle: 45
   orientation: {fileID: 1763606875}
   state: 0
@@ -853,6 +854,38 @@ MonoBehaviour:
   readyToPress: 0
   pmScript: {fileID: 0}
   maskIndicator: {fileID: 1390098406}
+--- !u!114 &159359079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159359073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388b3e0e5d02af41b9a46c5d1e5498f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  runSpeed: 12
+  walkSpeed: 8
+  maxYSpeed: 90
+  groundDrag: 5
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
+  jumpKey: 32
+  runKey: 304
+  playerHeight: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  maxSlopeAngle: 45
+  orientation: {fileID: 1763606875}
+  state: 0
+  powerupDuration: 0
+  freeze: 0
+  exitingSlope: 0
 --- !u!1 &279510107
 GameObject:
   m_ObjectHideFlags: 0
