@@ -438,8 +438,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1713470066}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: BackToMainMenu
+        m_TargetAssemblyTypeName: StartManager, Assembly-CSharp
+        m_MethodName: BackToStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1899,8 +1899,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1713470066}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: BackToMainMenu
+        m_TargetAssemblyTypeName: StartManager, Assembly-CSharp
+        m_MethodName: BackToStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2429,9 +2429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea2054a4483e8545886e46eab03f8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startScreen: {fileID: 762112512}
   settingsScreen: {fileID: 1136616872}
   controlsScreen: {fileID: 210323663}
-  pauseScreen: {fileID: 0}
   isGameActive: 0
   playerRb: {fileID: 0}
   pmScript: {fileID: 0}
