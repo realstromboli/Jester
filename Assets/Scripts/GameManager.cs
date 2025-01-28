@@ -37,7 +37,7 @@ public class GameManager: MonoBehaviour
 
     public void PauseGame()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameActive == true)
         {
             pauseScreen.gameObject.SetActive(true);
             settingsScreen.gameObject.SetActive(false);

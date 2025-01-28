@@ -19,12 +19,13 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    //bool readyToJump;
-    //bool doubleJump;
+    bool readyToJump;
+    bool doubleJump;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode runKey = KeyCode.LeftShift;
+
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -36,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
 
     public Transform orientation;
-    private AudioSource playerAudio;
+    //private AudioSource playerAudio;
+    //public Animator playerAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -46,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     public MovementState state;
-
-    public float powerupDuration;
 
     public enum MovementState
     {
@@ -63,9 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        //readyToJump = true;
+        readyToJump = true;
         isRunning = false;
-        //doubleJump = false;
     }
 
     
@@ -76,16 +75,22 @@ public class PlayerMovement : MonoBehaviour
         Run();
         StateHandler();
 
-        RaycastHit hit;
+        //RaycastHit hit;
         //ground check
-        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
+        //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
+
 
         //handles drag per ground check
-        
-        rb.drag = groundDrag;
-        
+        if (grounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = 0;
+        }
 
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
@@ -95,14 +100,16 @@ public class PlayerMovement : MonoBehaviour
         //    playerAnimation.SetTrigger("test_trigger");
         //    //PlayAnimation();
         //}
-        
+
 
     }
 
-    public void PlayAnimation()
-    {
-        
-    }
+    //public void PlayAnimation()
+    //{
+
+    //    playerAnimation.Play("test anim");
+
+    //}
 
     private void FixedUpdate()
     {
@@ -115,14 +122,14 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //jumping
-        //if (Input.GetKey(jumpKey) && readyToJump && grounded)
-        //{
-        //    readyToJump = false;
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
 
-        //    Jump();
+            Jump();
 
-        //    Invoke(nameof(ResetJump), jumpCooldown);
-        //}
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private float desiredMoveSpeed;
@@ -135,9 +142,7 @@ public class PlayerMovement : MonoBehaviour
         // Mode - Freeze
         if (freeze)
         {
-            //state = MovementState.freeze;
-            //desiredMoveSpeed = 0;
-            //rb.velocity = Vector3.zero;
+            state = MovementState.freeze;
         }
         
         // Mode - Running
@@ -155,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
         
         else
         {
-            state = MovementState.walking;
+            state = MovementState.air;
 
             if (desiredMoveSpeed < runSpeed)
             {
@@ -166,14 +171,10 @@ public class PlayerMovement : MonoBehaviour
                 desiredMoveSpeed = runSpeed;
             }
         }
-
-        lastDesiredMoveSpeed = desiredMoveSpeed;
-        lastState = state;
     }
 
     private void MovePlayer()
     {
-        
         // calculates movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -201,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SpeedControl()
     {
-        
         // limits speed on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -240,13 +240,11 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-
-        //playerAnimation.SetTrigger("jump_trigger");
     }
 
     private void ResetJump()
     {
-        //readyToJump = true;
+        readyToJump = true;
 
         exitingSlope = false;
     }
@@ -272,11 +270,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     private bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
@@ -293,11 +286,6 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        
-    }
-
     public void FreezePlayer()
     {
         freeze = true;
@@ -309,7 +297,5 @@ public class PlayerMovement : MonoBehaviour
         freeze = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        state = MovementState.walking;
     }
-
 }

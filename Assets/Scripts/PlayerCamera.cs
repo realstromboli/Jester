@@ -20,12 +20,8 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
 
-        if (gmScript.isGameActive == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        
+        gmScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
     }
 
     
@@ -47,7 +43,15 @@ public class PlayerCamera : MonoBehaviour
             camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
             playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
+
+            //locks mouse and hides it
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
-        
+        else if (gmScript.isGameActive == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 }
