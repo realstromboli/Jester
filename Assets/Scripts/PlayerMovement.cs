@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public Transform orientation;
     //private AudioSource playerAudio;
-    //public Animator playerAnimation;
+    public Animator playerAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimation = GetComponent<Animator>();
         rb.freezeRotation = true;
         readyToJump = true;
         isRunning = false;
@@ -95,13 +96,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    playerAnimation.SetTrigger("test_trigger");
-        //    //PlayAnimation();
-        //}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerAnimation.SetTrigger("Test Trigger");
+        }
 
-
+        playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
     }
 
     //public void PlayAnimation()
@@ -240,6 +240,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        playerAnimation.SetTrigger("Jump Trigger");
     }
 
     private void ResetJump()
