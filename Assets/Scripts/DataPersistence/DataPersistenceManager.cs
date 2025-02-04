@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
+using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
     
     private GameData gameData;
+
+    private List<IDataPersistence> dataPersistenceObjects;
+    private FileDataHandler fdhScript;
 
     public static DataPersistenceManager instance
     {
@@ -15,13 +22,22 @@ public class DataPersistenceManager : MonoBehaviour
 
     void Start()
     {
-        
+        this.fdhScript = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
     }
 
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            SaveGame();
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            LoadGame();
+        }
     }
 
     private void Awake()
@@ -40,20 +56,43 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        // TODO - Load any saved data from a raw file using data handler
+        // Load any saved data from a raw file using data handler
+        this.gameData = fdhScript.Load();
+
         // if no data loads, initialize new game
         if (this.gameData == null)
         {
             Debug.Log("No data was found. Initializing data to defaults");
             NewGame();
         }
-        // TODO - push the loaded data to all other scripts that need it
+        // push the loaded data to all other scripts that need it
+        foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
+        {
+            dataPersistenceObject.LoadData(gameData);
+        }
+
+        Debug.Log("Loaded button count = " + gameData.maskCount);
+
     }
 
     public void SaveGame()
     {
-        // TODO - pass data to other scripts for updates
-        // TODO - save data to a file using data handler
+        // pass data to other scripts for updates
+        foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
+        {
+            dataPersistenceObject.SaveData(ref gameData);
+        }
+
+        Debug.Log("Saved button count = " + gameData.maskCount);
+
+        // save data to a file using data handler
+        fdhScript.Save(gameData);
     }
 
+
+    private List<IDataPersistence> FindAllDataPersistenceObjects()
+    {
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        return new List<IDataPersistence>(dataPersistenceObjects);
+    }
 }

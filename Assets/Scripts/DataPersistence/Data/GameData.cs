@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GameData : MonoBehaviour
+public class GameData
 {
 
-    public int deathCount;
+    public int maskCount;
+
+    public Vector3 playerPosition;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class GameData : MonoBehaviour
 
     public GameData()
     {
-        this.deathCount = 0;
+        this.maskCount = 0;
+        playerPosition = Vector3.zero;
     }
 }
