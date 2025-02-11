@@ -20,11 +20,21 @@ public class DataPersistenceManager : MonoBehaviour
         get; private set;
     }
 
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         this.fdhScript = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
     }
 
     
@@ -38,15 +48,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             LoadGame();
         }
-    }
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("More than one DataPersistenceManager in scene");
-        }
-        instance = this;
     }
 
     public void NewGame()

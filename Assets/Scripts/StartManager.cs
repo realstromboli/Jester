@@ -18,6 +18,22 @@ public class StartManager : MonoBehaviour
     public DataPersistenceManager dpmScript;
     public GameManager gmScript;
 
+    public static StartManager instance
+    {
+        get; private set;
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         //isGameActive = true;

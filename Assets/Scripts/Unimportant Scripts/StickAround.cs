@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class StickAround : MonoBehaviour
 {
 
-    public Transform cameraPosition;
-    public Vector3 offset;
-
-    public static MoveCamera instance
+    public static StickAround instance
     {
         get; private set;
     }
@@ -32,6 +29,6 @@ public class MoveCamera : MonoBehaviour
     
     void Update()
     {
-        transform.position = cameraPosition.position + offset;
+        
     }
 }
