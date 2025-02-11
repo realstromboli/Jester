@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -103,8 +104,7 @@ public class GameManager: MonoBehaviour
     {
 
         SceneManager.LoadScene(1);
-        isGameActive = true;
-        dpmScript.NewGame();
+        Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
 
@@ -112,23 +112,24 @@ public class GameManager: MonoBehaviour
     {
         SceneManager.LoadScene(1);
         
-        settingsScreen.gameObject.SetActive(false);
-        controlsScreen.gameObject.SetActive(false);
-
         StartCoroutine(LoadDelay());
     }
 
     public IEnumerator NewDelay()
     {
         yield return new WaitForSeconds(0.2f);
-        isGameActive = true;
+        
         dpmScript.NewGame();
+
+        isGameActive = true;
     }
 
     public IEnumerator LoadDelay()
     {
         yield return new WaitForSeconds(0.2f);
-        isGameActive = true;
+        
         dpmScript.LoadGame();
+
+        isGameActive = true;
     }
 }
