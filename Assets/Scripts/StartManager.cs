@@ -12,15 +12,16 @@ public class StartManager : MonoBehaviour
     //public GameObject gameOverScreen;
     //public GameObject gameHUD;
 
-    public bool isGameActive = false;
-    public Rigidbody playerRb;
+    
     public PlayerMovement pmScript;
+    public DataPersistenceManager dpmScript;
 
     void Start()
     {
         //isGameActive = true;
         settingsScreen.gameObject.SetActive(false);
         controlsScreen.gameObject.SetActive(false);
+        dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
     }
 
     void Update()
@@ -28,14 +29,7 @@ public class StartManager : MonoBehaviour
         
     }
 
-    public void StartGame()
-    {
-
-        SceneManager.LoadScene(1);
-        settingsScreen.gameObject.SetActive(false);
-        controlsScreen.gameObject.SetActive(false);
-        isGameActive = true;
-    }
+    
 
     public void OpenSettings()
     {
@@ -58,20 +52,7 @@ public class StartManager : MonoBehaviour
         controlsScreen.gameObject.SetActive(false);
     }
 
-    public void FreezePlayer()
-    {
-        if (isGameActive == false)
-        {
-            playerRb.constraints = RigidbodyConstraints.FreezePosition;
-            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-        if (isGameActive == true)
-        {
-            playerRb.constraints = RigidbodyConstraints.None;
-            playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
-
-        }
-    }
+    
 
     public void QuitGame()
     {

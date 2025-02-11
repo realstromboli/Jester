@@ -9,22 +9,78 @@ public class GameManager: MonoBehaviour
     public GameObject settingsScreen;
     public GameObject controlsScreen;
     public GameObject pauseScreen;
+    public GameObject HUD;
+    public GameObject player;
 
     public bool isGameActive;
+    public Rigidbody playerRb;
 
     public PlayerMovement pmScript;
+    public DataPersistenceManager dpmScript;
+
+    public static GameManager instance
+    {
+        get; private set;
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("More than one GameManager in scene");
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // Ensure only one HUD instance
+        GameObject existingHUD = GameObject.Find("Pause&HUDCanvas");
+        if (existingHUD != null && existingHUD != HUD)
+        {
+            Destroy(existingHUD);
+        }
+        DontDestroyOnLoad(HUD);
+    }
 
     void Start()
     {
-        isGameActive = true;
+        isGameActive = false;
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        HUD.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
     }
+
+    
 
     
 
     void Update()
     {
         PauseGame();
+        FreezePlayer();
+    }
+
+    public void NewGame()
+    {
+
+        SceneManager.LoadScene(1);
+        settingsScreen.gameObject.SetActive(false);
+        controlsScreen.gameObject.SetActive(false);
+        isGameActive = true;
+        HUD.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+        settingsScreen.gameObject.SetActive(false);
+        controlsScreen.gameObject.SetActive(false);
+        isGameActive = true;
+        HUD.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);
+        StartCoroutine(LoadDelay());
     }
 
     public void BackToMainMenu()
@@ -33,6 +89,10 @@ public class GameManager: MonoBehaviour
         settingsScreen.gameObject.SetActive(false);
         controlsScreen.gameObject.SetActive(false);
         isGameActive = false;
+        HUD.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
+        pauseScreen.gameObject.SetActive(false);
+        StartCoroutine(NewDelay());
     }
 
     public void PauseGame()
@@ -84,4 +144,35 @@ public class GameManager: MonoBehaviour
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
+
+    public void FreezePlayer()
+    {
+        if (isGameActive == false)
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezePosition;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        if (isGameActive == true)
+        {
+            playerRb.constraints = RigidbodyConstraints.None;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        }
+    }
+
+    public IEnumerator NewDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        dpmScript.NewGame();
+    }
+
+    public IEnumerator LoadDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        dpmScript.LoadGame();
+
+    }
+
 }

@@ -12,7 +12,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public DataPersistenceManager dpmScript;
     public GameObject maskIndicator;
 
-    public int maskCount = 0;
+    public int maskCount;
     public TextMeshProUGUI maskCountText;
 
     void Start()
@@ -75,11 +75,11 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.maskCount = data.maskCount;
+        maskCount = data.maskCount;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.maskCount = this.maskCount;
+        data.maskCount = maskCount;
     }
 }
