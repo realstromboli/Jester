@@ -53,6 +53,10 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
+        {
+            dataPersistenceObject.LoadData(gameData); // Update all components with new game data
+        }
     }
 
     public void LoadGame()
