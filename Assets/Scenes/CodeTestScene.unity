@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 738651198}
   - component: {fileID: 738651199}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,9 @@ MonoBehaviour:
   controlsScreen: {fileID: 418086910}
   pauseScreen: {fileID: 35935640}
   isGameActive: 0
-  pmScript: {fileID: 0}
+  playerRb: {fileID: 7813931629131860180}
+  pmScript: {fileID: 7813931629131860179}
+  dpmScript: {fileID: 694017786}
 --- !u!1 &891987460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1694,22 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 75065830}
   m_SourcePrefab: {fileID: 100100000, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+--- !u!114 &7813931629131860179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+  m_PrefabInstance: {fileID: 7813931629131860178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75065828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef257019ab4f374da6e25fc838ff9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7813931629131860180 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+  m_PrefabInstance: {fileID: 7813931629131860178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7858103593473469454
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -73,6 +73,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         Debug.Log("Loaded button count = " + gameData.maskCount);
 
+
     }
 
     public void SaveGame()
@@ -87,6 +88,8 @@ public class DataPersistenceManager : MonoBehaviour
 
         // save data to a file using data handler
         fdhScript.Save(gameData);
+
+
     }
 
 

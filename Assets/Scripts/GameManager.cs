@@ -11,20 +11,20 @@ public class GameManager: MonoBehaviour
     public GameObject pauseScreen;
 
     public bool isGameActive;
-
+    public Rigidbody playerRb;
     public PlayerMovement pmScript;
+    public DataPersistenceManager dpmScript;
 
     void Start()
     {
-        isGameActive = true;
+        isGameActive = false;
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
-
-    
 
     void Update()
     {
         PauseGame();
+        FreezePlayer();
     }
 
     public void BackToMainMenu()
@@ -46,7 +46,6 @@ public class GameManager: MonoBehaviour
             pmScript.FreezePlayer();
         }
     }
-
 
     public void backToPause()
     {
@@ -83,5 +82,53 @@ public class GameManager: MonoBehaviour
     {
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void FreezePlayer()
+    {
+        if (isGameActive == false)
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezePosition;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        if (isGameActive == true)
+        {
+            playerRb.constraints = RigidbodyConstraints.None;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
+
+        }
+    }
+
+    public void NewGame()
+    {
+
+        SceneManager.LoadScene(1);
+        isGameActive = true;
+        dpmScript.NewGame();
+        StartCoroutine(NewDelay());
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+        
+        settingsScreen.gameObject.SetActive(false);
+        controlsScreen.gameObject.SetActive(false);
+
+        StartCoroutine(LoadDelay());
+    }
+
+    public IEnumerator NewDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isGameActive = true;
+        dpmScript.NewGame();
+    }
+
+    public IEnumerator LoadDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isGameActive = true;
+        dpmScript.LoadGame();
     }
 }
