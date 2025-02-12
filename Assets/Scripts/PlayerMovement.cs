@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -59,13 +60,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public bool freeze;
 
-    public static PlayerMovement instance { get; private set; }
-
-    private void Awake()
+    public static PlayerMovement instance
     {
-        if (instance != null)
+        get; private set;
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
         {
-            Debug.LogError("More than one DataPersistenceManager in scene");
             Destroy(gameObject);
             return;
         }
@@ -82,7 +85,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         isRunning = false;
     }
 
-    
     void Update()
     {
         PlayerInput();
@@ -158,9 +160,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             state = MovementState.freeze;
         }
-        
+
         // Mode - Running
-        else if(grounded && Input.GetKey(runKey))
+        else if (grounded && Input.GetKey(runKey))
         {
             state = MovementState.running;
             desiredMoveSpeed = runSpeed;
@@ -171,7 +173,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
-        
+
         else
         {
             state = MovementState.air;
@@ -224,7 +226,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
         }
-        
+
         else
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -249,7 +251,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     private void Jump()
     {
         exitingSlope = true;
-        
+
         //resets y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -288,7 +290,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -324,4 +326,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         data.playerPosition = this.transform.position;
     }
+
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Placeholder")
+        {
+            Destroy(collider.gameObject);
+            Debug.Log("XDDDDDDD");
+        }
+    }
+
 }

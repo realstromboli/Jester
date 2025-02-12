@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager: MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-
     public GameObject settingsScreen;
     public GameObject controlsScreen;
     public GameObject pauseScreen;
+    public GameObject pauseCanvas;
     public GameObject HUD;
-    public GameObject player;
+    public GameObject startScreen;
 
     public bool isGameActive;
     public Rigidbody playerRb;
-
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
 
@@ -23,64 +23,36 @@ public class GameManager: MonoBehaviour
         get; private set;
     }
 
-    private void Awake()
+    void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            Debug.LogError("More than one GameManager in scene");
             Destroy(gameObject);
             return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
-
-        // Ensure only one HUD instance
-        GameObject existingHUD = GameObject.Find("Pause&HUDCanvas");
-        if (existingHUD != null && existingHUD != HUD)
-        {
-            Destroy(existingHUD);
-        }
-        DontDestroyOnLoad(HUD);
     }
 
     void Start()
     {
         isGameActive = false;
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        HUD.gameObject.SetActive(false);
-        player.gameObject.SetActive(false);
+        HUD = GameObject.Find("HUD");
     }
-
-    
-
-    
 
     void Update()
     {
         PauseGame();
         FreezePlayer();
-    }
-
-    public void NewGame()
-    {
-
-        SceneManager.LoadScene(1);
-        settingsScreen.gameObject.SetActive(false);
-        controlsScreen.gameObject.SetActive(false);
-        isGameActive = true;
-        HUD.gameObject.SetActive(true);
-        player.gameObject.SetActive(true);
-    }
-
-    public void LoadGame()
-    {
-        SceneManager.LoadScene(1);
-        settingsScreen.gameObject.SetActive(false);
-        controlsScreen.gameObject.SetActive(false);
-        isGameActive = true;
-        HUD.gameObject.SetActive(true);
-        player.gameObject.SetActive(true);
-        StartCoroutine(LoadDelay());
+        if (isGameActive == false)
+        {
+            HUD.gameObject.SetActive(false);
+        }
+        if (isGameActive == true)
+        {
+            HUD.gameObject.SetActive(true);
+        }
     }
 
     public void BackToMainMenu()
@@ -88,11 +60,9 @@ public class GameManager: MonoBehaviour
         SceneManager.LoadScene(0);
         settingsScreen.gameObject.SetActive(false);
         controlsScreen.gameObject.SetActive(false);
-        isGameActive = false;
-        HUD.gameObject.SetActive(false);
-        player.gameObject.SetActive(false);
         pauseScreen.gameObject.SetActive(false);
-        StartCoroutine(NewDelay());
+        HUD.gameObject.SetActive(false);
+        StartCoroutine(IDKDelay());
     }
 
     public void PauseGame()
@@ -103,10 +73,9 @@ public class GameManager: MonoBehaviour
             settingsScreen.gameObject.SetActive(false);
             controlsScreen.gameObject.SetActive(false);
             isGameActive = false;
-            pmScript.FreezePlayer();
+            //pmScript.FreezePlayer();
         }
     }
-
 
     public void backToPause()
     {
@@ -122,7 +91,7 @@ public class GameManager: MonoBehaviour
         controlsScreen.gameObject.SetActive(false);
 
         isGameActive = true;
-        pmScript.UnfreezePlayer();
+        //pmScript.UnfreezePlayer();
     }
 
     public void OpenSettings()
@@ -155,24 +124,44 @@ public class GameManager: MonoBehaviour
         if (isGameActive == true)
         {
             playerRb.constraints = RigidbodyConstraints.None;
-            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
-
+            playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
         }
+    }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene(1);
+        Debug.Log("Starting Game");
+        StartCoroutine(NewDelay());
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+        StartCoroutine(LoadDelay());
     }
 
     public IEnumerator NewDelay()
     {
         yield return new WaitForSeconds(0.1f);
-
+        startScreen.gameObject.SetActive(false);
         dpmScript.NewGame();
+        isGameActive = true;
     }
 
     public IEnumerator LoadDelay()
     {
         yield return new WaitForSeconds(0.1f);
-
+        startScreen.gameObject.SetActive(false);
         dpmScript.LoadGame();
-
+        isGameActive = true;
     }
 
+    public IEnumerator IDKDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        HUD.gameObject.SetActive(false);
+        startScreen.gameObject.SetActive(true);
+        isGameActive = false;
+    }
 }

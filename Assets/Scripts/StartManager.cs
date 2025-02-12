@@ -12,24 +12,39 @@ public class StartManager : MonoBehaviour
     //public GameObject gameOverScreen;
     //public GameObject gameHUD;
 
+    public bool isGameActive = false;
     
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
+    public GameManager gmScript;
+
+    public static StartManager instance
+    {
+        get; private set;
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         //isGameActive = true;
         settingsScreen.gameObject.SetActive(false);
         controlsScreen.gameObject.SetActive(false);
-        dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
     }
 
     void Update()
     {
         
     }
-
-    
 
     public void OpenSettings()
     {
@@ -52,12 +67,9 @@ public class StartManager : MonoBehaviour
         controlsScreen.gameObject.SetActive(false);
     }
 
-    
-
     public void QuitGame()
     {
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false;
     }
-
 }

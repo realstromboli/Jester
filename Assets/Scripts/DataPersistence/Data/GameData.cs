@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameData
 {
 
-    public int maskCount;
+    public int maskCount = 0;
 
-    public Vector3 playerPosition;
+    public Vector3 playerPosition = Vector3.zero;
 
     void Start()
     {
