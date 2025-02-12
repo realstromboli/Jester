@@ -19,9 +19,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
-
-        gmScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     

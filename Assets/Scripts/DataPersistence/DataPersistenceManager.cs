@@ -6,28 +6,33 @@ using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
-    
-    private GameData gameData;
 
+    private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler fdhScript;
 
-    public static DataPersistenceManager instance
+    public static DataPersistenceManager instance { get; private set; }
+
+    private void Awake()
     {
-        get; private set;
+        if (instance != null && instance != this)
+        {
+            Debug.LogError("More than one DataPersistenceManager in scene. Destroying the new one.");
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
         this.fdhScript = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
     }
 
-    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.PageUp))
@@ -38,15 +43,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             LoadGame();
         }
-    }
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("More than one DataPersistenceManager in scene");
-        }
-        instance = this;
     }
 
     public void NewGame()
@@ -71,8 +67,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObject.LoadData(gameData);
         }
 
-        Debug.Log("Loaded button count = " + gameData.maskCount);
-
+        Debug.Log("Loaded mask count = " + gameData.maskCount);
     }
 
     public void SaveGame()
@@ -83,16 +78,17 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObject.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved button count = " + gameData.maskCount);
+        Debug.Log("Saved mask count = " + gameData.maskCount);
 
         // save data to a file using data handler
         fdhScript.Save(gameData);
     }
-
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
+
+    
 }
