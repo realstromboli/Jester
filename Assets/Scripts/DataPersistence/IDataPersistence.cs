@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IDataPersistence : MonoBehaviour
+public interface IDataPersistence
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void LoadData(GameData data);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void SaveData(ref GameData data);
 }

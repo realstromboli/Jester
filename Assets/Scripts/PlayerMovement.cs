@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
 
     [Header("Movement")]
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
     //private AudioSource playerAudio;
-    //public Animator playerAnimation;
+    public Animator playerAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimation = GetComponent<Animator>();
         rb.freezeRotation = true;
         readyToJump = true;
         isRunning = false;
@@ -95,13 +96,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    playerAnimation.SetTrigger("test_trigger");
-        //    //PlayAnimation();
-        //}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerAnimation.SetTrigger("Test Trigger");
+        }
 
-
+        playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
     }
 
     //public void PlayAnimation()
@@ -240,6 +240,8 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        playerAnimation.SetTrigger("Jump Trigger");
     }
 
     private void ResetJump()
@@ -297,5 +299,15 @@ public class PlayerMovement : MonoBehaviour
         freeze = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
     }
 }
