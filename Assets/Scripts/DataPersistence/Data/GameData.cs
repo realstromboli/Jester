@@ -10,6 +10,12 @@ public class GameData
 
     public Vector3 playerPosition = Vector3.zero;
 
+    public string itemName;
+    public int itemQuantity;
+    public Sprite itemSprite;
+
+    public Dictionary<string, bool> collectedItems;
+
     void Start()
     {
         
@@ -28,5 +34,9 @@ public class GameData
     {
         this.maskCount = 0;
         playerPosition = Vector3.zero;
+        this.itemQuantity = 0;
+        this.itemName = "";
+        this.itemSprite = null;
+        collectedItems = new Dictionary<string, bool>();
     }
 }

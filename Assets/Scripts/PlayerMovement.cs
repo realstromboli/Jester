@@ -6,7 +6,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
-
     [Header("Movement")]
     public float moveSpeed;
     public float runSpeed;
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode runKey = KeyCode.LeftShift;
 
-
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -47,6 +45,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Vector3 moveDirection;
 
     Rigidbody rb;
+    private GameManager gmScript;
+
+    [Header("Item Stuff")]
+
+    [SerializeField]
+    private string itemName; // Changed to string
+
+    [SerializeField]
+    private int itemQuantity; // Changed to int
+
+    [SerializeField]
+    private Sprite itemSprite;
 
     public MovementState state;
 
@@ -83,6 +93,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.freezeRotation = true;
         readyToJump = true;
         isRunning = false;
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -97,7 +108,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
-
 
         //handles drag per ground check
         if (grounded)
@@ -331,9 +341,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (collider.tag == "Placeholder")
         {
+            itemName = "Placeholder";
+            itemQuantity = 1;
+            itemSprite = gmScript.placeholderSprite;
+            gmScript.AddItem(itemName, itemQuantity, itemSprite);
             Destroy(collider.gameObject);
             Debug.Log("XDDDDDDD");
         }
     }
-
 }

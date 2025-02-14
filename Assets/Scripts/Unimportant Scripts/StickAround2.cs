@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickAround : MonoBehaviour
+public class StickAround2 : MonoBehaviour
 {
-
+    
     // MAKE A COPY FOR EACH ITEM THAT NEEDS TO PERSIST BETWEEN SCENES
     // THIS SCRIPT IS FOR ITEMS THAT NEED TO PERSIST BUT DON'T HAVE OTHER CODE REALLY
 
-    public static StickAround instance
+    public static StickAround2 instance
     {
         get; private set;
     }
@@ -26,12 +26,12 @@ public class StickAround : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        
+
     }
 }
