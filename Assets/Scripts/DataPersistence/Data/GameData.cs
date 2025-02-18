@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GameData : MonoBehaviour
+public class GameData
 {
 
-    public int deathCount;
+    public int maskCount = 0;
+
+    public Vector3 playerPosition = Vector3.zero;
+
+    public string itemName;
+    public int itemQuantity;
+    public Sprite itemSprite;
+
+    public SerializableDictionary<string, bool> collectedItems;
 
     void Start()
     {
@@ -24,6 +32,11 @@ public class GameData : MonoBehaviour
 
     public GameData()
     {
-        this.deathCount = 0;
+        this.maskCount = 0;
+        playerPosition = Vector3.zero;
+        this.itemQuantity = 0;
+        this.itemName = "";
+        this.itemSprite = null;
+        collectedItems = new SerializableDictionary<string, bool>();
     }
 }
