@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
-
     [Header("Movement")]
     public float moveSpeed;
     public float runSpeed;
@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    //bool readyToJump;
-    //bool doubleJump;
+    bool readyToJump;
+    bool doubleJump;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -36,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
 
     public Transform orientation;
-    private AudioSource playerAudio;
+    //private AudioSource playerAudio;
+    public Animator playerAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -44,10 +45,20 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    private GameManager gmScript;
+
+    [Header("Item Stuff")]
+
+    [SerializeField]
+    private string itemName; // Changed to string
+
+    [SerializeField]
+    private int itemQuantity; // Changed to int
+
+    [SerializeField]
+    private Sprite itemSprite;
 
     public MovementState state;
-
-    public float powerupDuration;
 
     public enum MovementState
     {
@@ -59,16 +70,32 @@ public class PlayerMovement : MonoBehaviour
 
     public bool freeze;
 
+    public static PlayerMovement instance
+    {
+        get; private set;
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimation = GetComponent<Animator>();
         rb.freezeRotation = true;
-        //readyToJump = true;
+        readyToJump = true;
         isRunning = false;
-        //doubleJump = false;
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    
     void Update()
     {
         PlayerInput();
@@ -76,33 +103,39 @@ public class PlayerMovement : MonoBehaviour
         Run();
         StateHandler();
 
-        RaycastHit hit;
+        //RaycastHit hit;
         //ground check
-        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
+        //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
 
         //handles drag per ground check
-        
-        rb.drag = groundDrag;
-        
+        if (grounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = 0;
+        }
 
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    playerAnimation.SetTrigger("test_trigger");
-        //    //PlayAnimation();
-        //}
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerAnimation.SetTrigger("Test Trigger");
+        }
 
+        playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
     }
 
-    public void PlayAnimation()
-    {
-        
-    }
+    //public void PlayAnimation()
+    //{
+
+    //    playerAnimation.Play("test anim");
+
+    //}
 
     private void FixedUpdate()
     {
@@ -115,14 +148,14 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //jumping
-        //if (Input.GetKey(jumpKey) && readyToJump && grounded)
-        //{
-        //    readyToJump = false;
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
 
-        //    Jump();
+            Jump();
 
-        //    Invoke(nameof(ResetJump), jumpCooldown);
-        //}
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private float desiredMoveSpeed;
@@ -135,13 +168,11 @@ public class PlayerMovement : MonoBehaviour
         // Mode - Freeze
         if (freeze)
         {
-            //state = MovementState.freeze;
-            //desiredMoveSpeed = 0;
-            //rb.velocity = Vector3.zero;
+            state = MovementState.freeze;
         }
-        
+
         // Mode - Running
-        else if(grounded && Input.GetKey(runKey))
+        else if (grounded && Input.GetKey(runKey))
         {
             state = MovementState.running;
             desiredMoveSpeed = runSpeed;
@@ -152,10 +183,10 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
-        
+
         else
         {
-            state = MovementState.walking;
+            state = MovementState.air;
 
             if (desiredMoveSpeed < runSpeed)
             {
@@ -166,14 +197,10 @@ public class PlayerMovement : MonoBehaviour
                 desiredMoveSpeed = runSpeed;
             }
         }
-
-        lastDesiredMoveSpeed = desiredMoveSpeed;
-        lastState = state;
     }
 
     private void MovePlayer()
     {
-        
         // calculates movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -201,7 +228,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void SpeedControl()
     {
-        
         // limits speed on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -210,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
         }
-        
+
         else
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -235,18 +261,18 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         exitingSlope = true;
-        
+
         //resets y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 
-        //playerAnimation.SetTrigger("jump_trigger");
+        playerAnimation.SetTrigger("Jump Trigger");
     }
 
     private void ResetJump()
     {
-        //readyToJump = true;
+        readyToJump = true;
 
         exitingSlope = false;
     }
@@ -272,14 +298,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -293,11 +314,6 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        
-    }
-
     public void FreezePlayer()
     {
         freeze = true;
@@ -309,7 +325,27 @@ public class PlayerMovement : MonoBehaviour
         freeze = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        state = MovementState.walking;
     }
 
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
+
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Placeholder")
+        {
+            itemName = "Placeholder";
+            itemQuantity = 1;
+            itemSprite = gmScript.placeholderSprite;
+            gmScript.AddItem(itemName, itemQuantity, itemSprite);
+            Debug.Log("XDDDDDDD");
+        }
+    }
 }

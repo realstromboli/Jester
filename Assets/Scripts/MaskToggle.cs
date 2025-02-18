@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class MaskToggle : MonoBehaviour
+public class MaskToggle : MonoBehaviour, IDataPersistence
 {
 
     public bool maskStatus;
     public bool readyToPress;
     public PlayerMovement pmScript;
+    public DataPersistenceManager dpmScript;
     public GameObject maskIndicator;
+
+    public int maskCount;
+    public TextMeshProUGUI maskCountText;
 
     void Start()
     {
         maskStatus = false;
         maskIndicator.gameObject.SetActive(false);
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
+
         readyToPress = true;
     }
 
@@ -27,6 +34,11 @@ public class MaskToggle : MonoBehaviour
             readyToPress = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            maskCount = maskCount + 1;
+        }
+
         if (maskStatus == false)
         {
             maskIndicator.gameObject.SetActive(false);
@@ -36,6 +48,8 @@ public class MaskToggle : MonoBehaviour
         {
             maskIndicator.gameObject.SetActive(true);
         }
+
+        maskCountText.text = "" + maskCount;
     }
 
     public void maskToggle()
@@ -57,5 +71,15 @@ public class MaskToggle : MonoBehaviour
         yield return new WaitForSeconds(3);
         readyToPress = true;
         Debug.Log("Mask Ready!");
+    }
+
+    public void LoadData(GameData data)
+    {
+        maskCount = data.maskCount;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.maskCount = maskCount;
     }
 }
