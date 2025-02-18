@@ -345,7 +345,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             itemQuantity = 1;
             itemSprite = gmScript.placeholderSprite;
             gmScript.AddItem(itemName, itemQuantity, itemSprite);
-            Destroy(collider.gameObject);
             Debug.Log("XDDDDDDD");
         }
     }

@@ -211,6 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae585da705b888741b5bd7a25341fdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &217325554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+  m_PrefabInstance: {fileID: 405320779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &220069340
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5195942993850854870, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -382,10 +391,14 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1553579440}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4854194307207063737, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2028923293}
   m_SourcePrefab: {fileID: 100100000, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
 --- !u!114 &577592829 stripped
 MonoBehaviour:
@@ -907,7 +920,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 217325554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef257019ab4f374da6e25fc838ff9cb, type: 3}
@@ -918,6 +931,29 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &2028923293
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217325554}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2068482387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3064247510934379709, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
@@ -1351,6 +1387,10 @@ PrefabInstance:
     - target: {fileID: 1225427743105261640, guid: 86af59beab048f54981c032269179794, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588158667815587810, guid: 86af59beab048f54981c032269179794, type: 3}
+      propertyPath: fileName
+      value: jesterSaveData.json
       objectReference: {fileID: 0}
     - target: {fileID: 8748149879284463199, guid: 86af59beab048f54981c032269179794, type: 3}
       propertyPath: m_Name

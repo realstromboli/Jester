@@ -14,7 +14,7 @@ public class GameData
     public int itemQuantity;
     public Sprite itemSprite;
 
-    public Dictionary<string, bool> collectedItems;
+    public SerializableDictionary<string, bool> collectedItems;
 
     void Start()
     {
@@ -37,6 +37,6 @@ public class GameData
         this.itemQuantity = 0;
         this.itemName = "";
         this.itemSprite = null;
-        collectedItems = new Dictionary<string, bool>();
+        collectedItems = new SerializableDictionary<string, bool>();
     }
 }

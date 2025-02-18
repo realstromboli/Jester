@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(1);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
