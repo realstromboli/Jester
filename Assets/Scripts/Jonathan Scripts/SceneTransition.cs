@@ -83,6 +83,7 @@ public class SceneTransition : MonoBehaviour
 
         fadeObject.color = endColor; // Ensure the final color is set
         isFading = false;
+        //Destroy object
     }
 
     private void LoadWantedScene()
