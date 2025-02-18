@@ -26,10 +26,10 @@ public class MoveCamera : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
         transform.position = cameraPosition.position + offset;
