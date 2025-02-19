@@ -28,6 +28,7 @@ public class SceneTransition : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            DontDestroyOnLoad(gameObject);
             StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
         }
     }
@@ -70,6 +71,8 @@ public class SceneTransition : MonoBehaviour
     public IEnumerator FadeInToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
         //isFading = true;
+
+
         Color startColor = fadeColor;
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
@@ -83,12 +86,31 @@ public class SceneTransition : MonoBehaviour
 
         fadeObject.color = endColor; // Ensure the final color is set
         isFading = false;
-        //Destroy object
+        Destroy(gameObject);
     }
 
     private void LoadWantedScene()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneToGoTo);
-        StartCoroutine(FadeInToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        Debug.Log("Scene detected");
+
+        // Find the new fadeUI object in the new scene
+        fadeUI = GameObject.Find("FadeObject");
+
+        if (fadeUI != null)
+        {
+            StartCoroutine(FadeInToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+        }
+        else
+        {
+            Debug.LogError("FadeObject not found in the new scene.");
+        }
     }
 }
