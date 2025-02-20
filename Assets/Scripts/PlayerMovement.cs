@@ -43,9 +43,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     float verticalInput;
 
     Vector3 moveDirection;
-
     Rigidbody rb;
     private GameManager gmScript;
+    public Camera pcScript;
+    public float raycastDistance = 3;
 
     [Header("Item Stuff")]
 
@@ -102,6 +103,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         SpeedControl();
         Run();
         StateHandler();
+        ItemInteraction();
 
         //RaycastHit hit;
         //ground check
@@ -337,15 +339,57 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.playerPosition = this.transform.position;
     }
 
-    public void OnTriggerEnter(Collider collider)
+    //public void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.tag == "Placeholder")
+    //    {
+    //        Debug.Log("XDDDDDDD");
+    //        gmScript.slot1Full = true;
+            
+    //    }
+
+    //    if (collider.tag == "Placeholder2")
+    //    {
+    //        Debug.Log("XDDDDDDD");
+    //        gmScript.slot2Full = true;
+    //    }
+
+    //    if (collider.tag == "Placeholder3")
+    //    {
+    //        Debug.Log("XDDDDDDD");
+    //        gmScript.slot3Full = true;
+    //    }
+    //}
+
+    public void ItemInteraction()
     {
-        if (collider.tag == "Placeholder")
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            itemName = "Placeholder";
-            itemQuantity = 1;
-            itemSprite = gmScript.placeholderSprite;
-            gmScript.AddItem(itemName, itemQuantity, itemSprite);
-            Debug.Log("XDDDDDDD");
+            RaycastHit hit;
+
+            if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
+            {
+                if (hit.collider.CompareTag("Placeholder"))
+                {
+                    gmScript.slot1Full = true;
+                    Debug.Log("Slot 1 Filled");
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
+
+                if (hit.collider.CompareTag("Placeholder2"))
+                {
+                    gmScript.slot2Full = true;
+                    Debug.Log("Slot 2 Filled");
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
+
+                if (hit.collider.CompareTag("Placeholder3"))
+                {
+                    gmScript.slot3Full = true;
+                    Debug.Log("Slot 3 Filled");
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
+            }
         }
     }
 }
