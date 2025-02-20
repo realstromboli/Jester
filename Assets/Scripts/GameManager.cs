@@ -166,7 +166,11 @@ public class GameManager : MonoBehaviour, IDataPersistence, IPointerClickHandler
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        //scene 6 is outdoors
+        //scene 2 is circus tent
+        //scene 7 is inside trailer
+        
+        SceneManager.LoadScene(7);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
