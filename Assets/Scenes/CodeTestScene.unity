@@ -135,9 +135,8 @@ GameObject:
   - component: {fileID: 142962347}
   - component: {fileID: 142962346}
   - component: {fileID: 142962350}
-  - component: {fileID: 142962351}
   m_Layer: 0
-  m_Name: PlaceholderItem
+  m_Name: PlaceholderItem1
   m_TagString: Placeholder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,20 +255,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &142962351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142962345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8844c2492b7a84ab7622190c2a476c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 8fd6f074-adef-4818-bde3-aa6d6d39797e
-  isCollected: 0
 --- !u!1 &279510107
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,28 +379,13 @@ GameObject:
   - component: {fileID: 381716277}
   - component: {fileID: 381716276}
   - component: {fileID: 381716275}
-  - component: {fileID: 381716274}
   m_Layer: 0
-  m_Name: PlaceholderItem (2)
-  m_TagString: Placeholder
+  m_Name: PlaceholderItem3
+  m_TagString: Placeholder3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &381716274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381716273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8844c2492b7a84ab7622190c2a476c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 852c490a-7a1d-47ec-84b0-2ce50cb74fe2
-  isCollected: 0
 --- !u!54 &381716275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -542,28 +512,13 @@ GameObject:
   - component: {fileID: 436075145}
   - component: {fileID: 436075144}
   - component: {fileID: 436075143}
-  - component: {fileID: 436075142}
   m_Layer: 0
-  m_Name: PlaceholderItem (1)
-  m_TagString: Placeholder
+  m_Name: PlaceholderItem2
+  m_TagString: Placeholder2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &436075142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436075141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8844c2492b7a84ab7622190c2a476c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: f1133ee5-6ef6-4bed-bd9e-ba6be34d06c5
-  isCollected: 0
 --- !u!54 &436075143
 Rigidbody:
   m_ObjectHideFlags: 0
