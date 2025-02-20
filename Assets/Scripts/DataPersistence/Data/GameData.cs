@@ -33,7 +33,11 @@ public class GameData
     public GameData()
     {
         this.maskCount = 0;
-        playerPosition = Vector3.zero;
+
+        // (255, 1, 110) for outdoor scene
+        // (250, 25, -275) for indoor circus
+        // (90, 0, 1510) for inside trailer
+        playerPosition = new Vector3(90, 0, 1510);
         this.itemQuantity = 0;
         this.itemName = "";
         this.itemSprite = null;
