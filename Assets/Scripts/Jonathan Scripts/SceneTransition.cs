@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class SceneTransition : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SceneTransition : MonoBehaviour
     public GameObject fadeUI;
     public Color fadeUIColor;
     public string sceneToGoTo;
+    public Vector3 playerTransferPosition;
+    public Quaternion playerTransferRotation;
 
     // Start is called before the first frame update
     void Awake()
@@ -72,10 +75,15 @@ public class SceneTransition : MonoBehaviour
     {
         //isFading = true;
 
-
         Color startColor = fadeColor;
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerCam = GameObject.Find("CameraHolder");
+
+        playerObj.transform.position = playerTransferPosition;
+        playerCam.transform.rotation = new Quaternion(playerTransferRotation.x, playerTransferRotation.y, playerCam.transform.rotation.z, playerCam.transform.rotation.w);
 
         while (elapsedTime < fadeSpeed)
         {
