@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0.19215687}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -517,6 +517,8 @@ MonoBehaviour:
   speakerSprite: {fileID: 4833397730146040851}
   dialogueTypeSpeed: 0.02
   dialogueDelay: 2
+  dialogueViewedSave: 0
+  makingDescision: 0
   buttonPrefab: {fileID: 8931985735094623756, guid: ae770ec0004a38c4dac148af90dae641, type: 3}
   buttonContainer: {fileID: 662005101049259827}
 --- !u!95 &7681042773389662724
