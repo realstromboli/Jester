@@ -4,6 +4,8 @@ using UnityEngine;
 public class DialogueLine
 {
     public DialogueSpeaker speaker;
+    public AudioClip dialogueAudio;
     [TextArea]
     public string dialogue;
+    public string[] dialogueOptions;
 }

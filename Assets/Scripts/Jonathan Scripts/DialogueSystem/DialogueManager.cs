@@ -10,13 +10,22 @@ public class DialogueManager : MonoBehaviour
     public float dialogueTypeSpeed = 0.02f;
     public float dialogueDelay = 3.0f;
 
+    public GameObject buttonPrefab;
+    public Transform buttonContainer;
+
     private int currentIndex;
     private DialogueConversation currentConvo;
     private static DialogueManager instance;
     private Animator anim;
     private Coroutine typing;
+    private Image dialogueBox;
 
     private GameManager gameManager;
+
+    private Vector2 originalAnchorMin;
+    private Vector2 originalAnchorMax;
+    private Vector2 originalOffsetMin;
+    private Vector2 originalOffsetMax;
 
     private void Awake()
     {
@@ -24,7 +33,13 @@ public class DialogueManager : MonoBehaviour
         {
             instance = this;
             anim = GetComponent<Animator>();
+            dialogueBox = GetComponent<Image>();
             gameManager = FindObjectOfType<GameManager>();
+
+            originalAnchorMin = dialogueBox.rectTransform.anchorMin;
+            originalAnchorMax = dialogueBox.rectTransform.anchorMax;
+            originalOffsetMin = dialogueBox.rectTransform.offsetMin;
+            originalOffsetMax = dialogueBox.rectTransform.offsetMax;
         }
         else
         {
@@ -51,11 +66,45 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        speakerName.text = currentConvo.GetLineByIndex(currentIndex).speaker.GetName();
+        var speaker = currentConvo.GetLineByIndex(currentIndex).speaker;
+        //speakerName.text = currentConvo.GetLineByIndex(currentIndex).speaker.GetName();
+
+        // Check the speaker sprite
+        if (speaker != null)
+        {
+            speakerName.text = speaker.GetName();
+
+            if (currentConvo.GetLineByIndex(currentIndex).speaker.isSpriteless)
+            {
+                speakerSprite.gameObject.SetActive(false);
+                // Adjust the width of the dialogue box
+                dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+                dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
+            }
+            else
+            {
+                speakerSprite.gameObject.SetActive(true);
+                speakerSprite.sprite = speaker.GetSprite();
+                // Restore dialogueBox to its original size
+                dialogueBox.rectTransform.offsetMin = originalOffsetMin;
+                dialogueBox.rectTransform.offsetMax = originalOffsetMax;
+            }
+        }
+        else
+        {
+            speakerName.text = "";
+            speakerSprite.gameObject.SetActive(false);
+            // Adjust the width of the dialogue box
+            dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+            dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
+        }
 
         if (typing == null)
         {
-            //dialogue.text = currentConvo.GetLineByIndex(currentIndex).dialogue;
+            foreach (Transform child in buttonContainer)
+            {
+                Destroy(child.gameObject);
+            }
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
         else
@@ -64,8 +113,7 @@ public class DialogueManager : MonoBehaviour
             typing = null;
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
-        
-        speakerSprite.sprite = currentConvo.GetLineByIndex(currentIndex).speaker.GetSprite();
+
         currentIndex++;
     }
 
@@ -109,8 +157,93 @@ public class DialogueManager : MonoBehaviour
 
         typing = null;
 
-        StartCoroutine(WaitAndReadNext(text));
+        DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
+
+        if (currentLine.dialogueOptions != null && currentLine.dialogueOptions.Length > 0)
+        {
+            DisplayOptions(currentLine.dialogueOptions);
+        }
+        else
+        {
+            StartCoroutine(WaitAndReadNext(text));
+        }
     }
+
+    private void DisplayOptions(string[] options)
+    {
+        Cursor.visible = true;
+
+        foreach (Transform child in buttonContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        VerticalLayoutGroup layoutGroup = buttonContainer.GetComponent<VerticalLayoutGroup>();
+        if (layoutGroup == null)
+        {
+            layoutGroup = buttonContainer.gameObject.AddComponent<VerticalLayoutGroup>();
+        }
+
+        layoutGroup.childAlignment = TextAnchor.MiddleCenter;
+        layoutGroup.spacing = 10; // Adjust the spacing as needed
+        layoutGroup.childForceExpandHeight = false;
+        layoutGroup.childForceExpandWidth = true;
+        layoutGroup.childControlHeight = true;
+        layoutGroup.childControlWidth = true;
+
+        foreach (string option in options)
+        {
+            GameObject button = Instantiate(buttonPrefab, buttonContainer);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = option;
+            button.GetComponent<Button>().onClick.AddListener(() => OnOptionSelected(option));
+
+            // Ensure the button has a LayoutElement component to control its size
+            LayoutElement layoutElement = button.GetComponent<LayoutElement>();
+            if (layoutElement == null)
+            {
+                layoutElement = button.AddComponent<LayoutElement>();
+            }
+            layoutElement.minWidth = buttonContainer.GetComponent<RectTransform>().rect.width;
+            layoutElement.preferredHeight = 40; // Adjust the height as needed
+        }
+    }
+
+    private void OnOptionSelected(string option)
+    {
+        Cursor.visible = false;
+
+        // Handle the option selected logic here
+        // For now, just continue the conversation
+        foreach (Transform child in buttonContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        ReadNext();
+    }
+
+    /*
+    private IEnumerator TypeText(string text)
+    {
+        dialogue.text = "";
+        int index = 0;
+
+        while (index < text.Length)
+        {
+            // Pause if the game is not active
+            while (!gameManager.isGameActive)
+            {
+                yield return null;
+            }
+
+            dialogue.text += text[index];
+            index++;
+            yield return new WaitForSeconds(dialogueTypeSpeed);
+        }
+
+        typing = null;
+
+        StartCoroutine(WaitAndReadNext(text));
+    }*/
 
     /*
     private IEnumerator WaitAndReadNext(string text)

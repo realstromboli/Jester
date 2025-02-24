@@ -6,6 +6,7 @@ public class DialogueSpeaker : ScriptableObject
 {
     [SerializeField] private string speakerName;
     [SerializeField] private Sprite speakerSprite;
+    public bool isSpriteless;
 
     public string GetName()
     {
