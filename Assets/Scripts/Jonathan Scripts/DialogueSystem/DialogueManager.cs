@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public Image speakerSprite;
     public float dialogueTypeSpeed = 0.02f;
     public float dialogueDelay = 3.0f;
+    public int dialogueViewedSave;
+    public bool makingDescision;
 
     public GameObject buttonPrefab;
     public Transform buttonContainer;
@@ -40,6 +42,8 @@ public class DialogueManager : MonoBehaviour
             originalAnchorMax = dialogueBox.rectTransform.anchorMax;
             originalOffsetMin = dialogueBox.rectTransform.offsetMin;
             originalOffsetMax = dialogueBox.rectTransform.offsetMax;
+
+            // dialogueViewedSave set to the saved number
         }
         else
         {
@@ -54,6 +58,7 @@ public class DialogueManager : MonoBehaviour
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
+        instance.dialogueViewedSave++;
 
         instance.ReadNext();
     }
@@ -171,7 +176,7 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayOptions(string[] options)
     {
-        Cursor.visible = true;
+        makingDescision = true;
 
         foreach (Transform child in buttonContainer)
         {
@@ -210,7 +215,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnOptionSelected(string option)
     {
-        Cursor.visible = false;
+        makingDescision = false;
 
         // Handle the option selected logic here
         // For now, just continue the conversation
