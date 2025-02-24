@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerCamera : MonoBehaviour
     float yRotation;
 
     public GameManager gmScript;
+    private DialogueManager dialogueManager;
 
     void Start()
     {
@@ -24,10 +26,10 @@ public class PlayerCamera : MonoBehaviour
 
     }
 
-    
+
     void Update()
     {
-        if (gmScript.isGameActive == true)
+        if (gmScript.isGameActive == true && !dialogueManager.makingDescision)
         {
             //mouse input
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
@@ -48,10 +50,15 @@ public class PlayerCamera : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else if (gmScript.isGameActive == false)
+        else if (gmScript.isGameActive == false || dialogueManager.makingDescision)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        if (dialogueManager == null)
+        {
+            dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         }
     }
 }
