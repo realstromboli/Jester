@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour, IDataPersistence, IPointerClickHandler
             pauseScreen.SetActive(true);
             settingsScreen.SetActive(false);
             controlsScreen.SetActive(false);
+            pauseCanvas.GetComponent<Canvas>().sortingOrder = 2;
             isGameActive = false;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !isGameActive && !inventoryOpen)
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour, IDataPersistence, IPointerClickHandler
             pauseScreen.SetActive(false);
             settingsScreen.SetActive(false);
             controlsScreen.SetActive(false);
+            pauseCanvas.GetComponent<Canvas>().sortingOrder = 0;
             isGameActive = true;
         }
     }
@@ -166,7 +168,7 @@ public class GameManager : MonoBehaviour, IDataPersistence, IPointerClickHandler
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
