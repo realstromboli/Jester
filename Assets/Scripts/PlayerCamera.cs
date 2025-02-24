@@ -29,7 +29,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (gmScript.isGameActive == true && !dialogueManager.makingDescision)
+        if (gmScript.isGameActive == true/* && !dialogueManager.makingDescision*/)
         {
             //mouse input
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
