@@ -20,6 +20,8 @@ public class GameData
     public bool slot8Full;
     public bool slot9Full;
 
+    public int dialogueViewedSave;
+
     void Start()
     {
         
@@ -48,6 +50,7 @@ public class GameData
         slot7Full = false;
         slot8Full = false;
         slot9Full = false;
+        dialogueViewedSave = 0;
 
     }
 }
