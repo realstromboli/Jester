@@ -29,7 +29,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (gmScript.isGameActive == true && !dialogueManager.makingDescision)
+        if (gmScript.isGameActive == true/* && !dialogueManager.makingDescision*/)  //UNCOMMENT LATER
         {
             //mouse input
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
@@ -50,7 +50,7 @@ public class PlayerCamera : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else if (gmScript.isGameActive == false || dialogueManager.makingDescision)
+        else if (gmScript.isGameActive == false/* || dialogueManager.makingDescision*/)  //UNCOMMENT LATER
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

@@ -20,6 +20,8 @@ public class GameData
     public bool slot8Full;
     public bool slot9Full;
 
+    public int thing;
+
     void Start()
     {
         
@@ -37,7 +39,11 @@ public class GameData
     public GameData()
     {
         this.maskCount = 0;
-        playerPosition = Vector3.zero;
+
+        // (255, 1, 110) for outdoor scene
+        // (250, 25, -275) for indoor circus
+        // (77, 0, 1485) for inside trailer
+        playerPosition = new Vector3(77, 0, 1485);
 
         slot1Full = false;
         slot2Full = false;
@@ -48,6 +54,7 @@ public class GameData
         slot7Full = false;
         slot8Full = false;
         slot9Full = false;
+        thing = 0;
 
     }
 }
