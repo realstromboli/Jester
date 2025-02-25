@@ -15,16 +15,21 @@ public class SceneTransition : MonoBehaviour
     public Vector3 playerTransferPosition;
     public Quaternion playerTransferRotation;
 
+    public GameObject playerObj;
+    public GameObject playerCam;
+
     // Start is called before the first frame update
     void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        playerObj = GameObject.Find("Player");
+        playerCam = GameObject.Find("CameraHolder");
+        fadeUI = GameObject.Find("FadeObject");
     }
 
     private void OnCollisionEnter(Collision other)
@@ -79,11 +84,8 @@ public class SceneTransition : MonoBehaviour
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
-
-        playerObj.transform.position = playerTransferPosition;
-        playerCam.transform.rotation = new Quaternion(playerTransferRotation.x, playerTransferRotation.y, playerCam.transform.rotation.z, playerCam.transform.rotation.w);
 
         while (elapsedTime < fadeSpeed)
         {
@@ -101,6 +103,7 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneToGoTo);
+        StartCoroutine(SceneLoadDelay());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -120,5 +123,17 @@ public class SceneTransition : MonoBehaviour
         {
             Debug.LogError("FadeObject not found in the new scene.");
         }
+    }
+
+    public IEnumerator SceneLoadDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("Scene Loaded and Player Position Set");
+
+        // Set the player's position
+        playerObj.transform.position = playerTransferPosition;
+
+        // Set the player's rotation to -90 degrees on the Y-axis
+        playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation.eulerAngles.x, playerTransferRotation.eulerAngles.y, playerTransferRotation.eulerAngles.z);
     }
 }

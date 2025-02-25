@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
             settingsScreen.SetActive(false);
             controlsScreen.SetActive(false);
             isGameActive = false;
+            pauseCanvas.GetComponent<Canvas>().sortingOrder = 2;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 1;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !isGameActive && !inventoryOpen && !startScreenOpen)
         {
@@ -116,6 +118,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
             settingsScreen.SetActive(false);
             controlsScreen.SetActive(false);
             isGameActive = true;
+            pauseCanvas.GetComponent<Canvas>().sortingOrder = 1;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 2;
         }
     }
 
@@ -171,11 +175,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void NewGame()
     {
-        //scene 3 is outdoors
-        //scene 4 is circus tent
-        //scene 2 is inside trailer
+        //scene 6 is outdoors
+        //scene 7 is circus tent
+        //scene 5 is inside trailer
         
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(8);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
@@ -211,6 +215,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         item8.GetComponent<Collider>().enabled = true;
         item9.GetComponent<Renderer>().enabled = true;
         item9.GetComponent<Collider>().enabled = true;
+        startScreen.GetComponent<Canvas>().sortingOrder = 0;
     }
 
     public IEnumerator LoadDelay()
@@ -229,6 +234,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         startScreen.SetActive(true);
         isGameActive = false;
         startScreenOpen = true;
+        startScreen.GetComponentInChildren<Canvas>().sortingOrder = 3;
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
