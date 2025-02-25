@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
         //scene 2 is circus tent
         //scene 7 is inside trailer
         
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(6);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
