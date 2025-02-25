@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI speakerName, dialogue;
     public Image speakerSprite;
@@ -280,4 +280,15 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(WaitAndReadNext(text));
     }
     */
+
+    public void LoadData(GameData data)
+    {
+        dialogueViewedSave = data.dialogueViewedSave;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.dialogueViewedSave = dialogueViewedSave;
+        
+    }
 }
