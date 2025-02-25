@@ -171,11 +171,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void NewGame()
     {
-        //scene 6 is outdoors
-        //scene 2 is circus tent
-        //scene 7 is inside trailer
+        //scene 3 is outdoors
+        //scene 4 is circus tent
+        //scene 2 is inside trailer
         
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
