@@ -42,8 +42,9 @@ public class GameData
 
         // (255, 1, 110) for outdoor scene
         // (250, 25, -275) for indoor circus
-        // (78, 0, 1485) for inside trailer
-        playerPosition = new Vector3(78, 0, 1485);
+        // (591, 170, 256) for inside trailer
+        // 78, 0, 1485 for ztest inside trailer
+        playerPosition = new Vector3(591, 170, 256);
 
         slot1Full = false;
         slot2Full = false;
