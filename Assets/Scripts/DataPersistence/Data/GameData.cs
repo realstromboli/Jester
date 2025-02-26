@@ -10,11 +10,17 @@ public class GameData
 
     public Vector3 playerPosition = Vector3.zero;
 
-    public string itemName;
-    public int itemQuantity;
-    public Sprite itemSprite;
+    public bool slot1Full;
+    public bool slot2Full;
+    public bool slot3Full;
+    public bool slot4Full;
+    public bool slot5Full;
+    public bool slot6Full;
+    public bool slot7Full;
+    public bool slot8Full;
+    public bool slot9Full;
 
-    public SerializableDictionary<string, bool> collectedItems;
+    public int dialogueViewedSave;
 
     void Start()
     {
@@ -36,11 +42,19 @@ public class GameData
 
         // (255, 1, 110) for outdoor scene
         // (250, 25, -275) for indoor circus
-        // (90, 0, 1510) for inside trailer
-        playerPosition = new Vector3(260, 3, 120);
-        this.itemQuantity = 0;
-        this.itemName = "";
-        this.itemSprite = null;
-        collectedItems = new SerializableDictionary<string, bool>();
+        // (78, 0, 1485) for inside trailer
+        playerPosition = new Vector3(78, 0, 1485);
+
+        slot1Full = false;
+        slot2Full = false;
+        slot3Full = false;
+        slot4Full = false;
+        slot5Full = false;
+        slot6Full = false;
+        slot7Full = false;
+        slot8Full = false;
+        slot9Full = false;
+        dialogueViewedSave = 0;
+
     }
 }
