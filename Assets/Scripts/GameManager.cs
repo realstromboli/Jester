@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Rigidbody playerRb;
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
+    public MaskToggle maskScript;
+
+    public string currentSceneName;
 
     [Header("Sprites")]
     public Sprite placeholderSprite;
@@ -49,6 +52,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         inventoryOpen = false;
         startScreenOpen = true;
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
+        maskScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         HUD = GameObject.Find("HUD");
         HUD.SetActive(false); // Ensure HUD is hidden initially
         pauseScreen.SetActive(false); // Ensure pause screen is hidden initially
@@ -73,12 +78,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
             inventoryScreen.SetActive(true);
             isGameActive = false;
             inventoryOpen = true;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 3;
         }
         else if (Input.GetKeyDown(KeyCode.I) && !isGameActive && inventoryOpen)
         {
             inventoryScreen.SetActive(false);
             isGameActive = true;
             inventoryOpen = false;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 1;
         }
 
         //if (!isGameActive)
@@ -178,21 +185,24 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 6 is outdoors
         //scene 7 is circus tent
         //scene 5 is inside trailer
+        //scene 1 is test scene
         
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(1);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
+        maskScript.maskStatus = false;
     }
 
     public void LoadGame()
     {
         SceneManager.LoadScene(1);
         StartCoroutine(LoadDelay());
+        maskScript.maskStatus = false;
     }
 
     public IEnumerator NewDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         startScreen.SetActive(false);
         dpmScript.NewGame();
         isGameActive = true;
@@ -220,7 +230,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator LoadDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         startScreen.SetActive(false);
         dpmScript.LoadGame();
         isGameActive = true;
@@ -229,7 +239,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator IDKDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         HUD.SetActive(false);
         startScreen.SetActive(true);
         isGameActive = false;
@@ -512,6 +522,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot7Full = data.slot7Full;
         this.slot8Full = data.slot8Full;
         this.slot9Full = data.slot9Full;
+
+        StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
 
     public void SaveData(ref GameData data)
@@ -525,6 +537,19 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.slot7Full = this.slot7Full;
         data.slot8Full = this.slot8Full;
         data.slot9Full = this.slot9Full;
+
+        data.currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("Current scene name: " + data.currentSceneName);
     }
 
+    private IEnumerator LoadSceneAndData(string sceneName, GameData data)
+    {
+        // Load the saved scene
+        SceneManager.LoadScene(sceneName);
+
+        // Wait for the scene to load
+        yield return new WaitForSeconds(0.1f);
+
+        Debug.Log("Saved scene loaded: " + sceneName);
+    }
 }

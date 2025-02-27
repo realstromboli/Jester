@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Camera pcScript;
     public float raycastDistance = 3;
 
+    public bool activeGrapple;
+
     [Header("Item Stuff")]
 
     [SerializeField]
@@ -112,7 +114,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
 
         //handles drag per ground check
-        if (grounded)
+        if (grounded && !activeGrapple)
         {
             rb.drag = groundDrag;
         }
@@ -124,10 +126,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerAnimation.SetTrigger("Test Trigger");
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    playerAnimation.SetTrigger("Test Trigger");
+        //}
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
     }
@@ -331,12 +333,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPosition;
+        StartCoroutine(PosSetDelay(data.playerPosition));
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = this.transform.position;
+    }
+
+    private IEnumerator PosSetDelay(Vector3 position)
+    {
+        yield return new WaitForSeconds(0.15f);
+
+        this.transform.position = position;
     }
 
     //public void OnTriggerEnter(Collider collider)
@@ -345,7 +354,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    {
     //        Debug.Log("XDDDDDDD");
     //        gmScript.slot1Full = true;
-            
+
     //    }
 
     //    if (collider.tag == "Placeholder2")
@@ -390,6 +399,53 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
             }
+        }
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity) / 3);
+
+        return velocityXZ + velocityY;
+    }
+
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryheight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryheight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestrictions), 3f);
+    }
+
+    private bool enableMovementOnNextTouch;
+    private Vector3 velocityToSet;
+
+    private void SetVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.velocity = velocityToSet;
+    }
+
+    public void ResetRestrictions()
+    {
+        activeGrapple = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+
+            GetComponent<Grappling>().StopGrapple();
         }
     }
 }
