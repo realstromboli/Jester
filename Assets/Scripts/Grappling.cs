@@ -28,7 +28,7 @@ public class Grappling : MonoBehaviour
 
     private bool grappling;
 
-    public ParticleSystem grappleFailParticles;
+    //public ParticleSystem grappleFailParticles;
 
     void Start()
     {
@@ -81,7 +81,7 @@ public class Grappling : MonoBehaviour
 
             Invoke(nameof(StopGrapple), grappleDelayTime);
 
-            grappleFailParticles.Play();
+            //grappleFailParticles.Play();
         }
 
         lineRenderer.enabled = true;

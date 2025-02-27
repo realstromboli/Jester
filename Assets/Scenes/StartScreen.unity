@@ -551,6 +551,10 @@ PrefabInstance:
       propertyPath: raycastDistance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_Name
       value: Player
@@ -639,6 +643,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       insertIndex: 2
       addedObject: {fileID: 2028923293}
+    - targetCorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2028923294}
   m_SourcePrefab: {fileID: 100100000, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
 --- !u!114 &532473940 stripped
 MonoBehaviour:
@@ -889,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079474828}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Gun Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,6 +1409,29 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2028923294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217325554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2026571e07a712498d09fdea9bee105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1553579443}
+  gunTip: {fileID: 1079474828}
+  whatIsGrappleable:
+    serializedVersion: 2
+    m_Bits: 192
+  lineRenderer: {fileID: 34544978}
+  maxGrappleDistance: 50
+  grappleDelayTime: 0.25
+  overshootYAxis: 5
+  grappleCooldown: 1
+  grappleKey: 324
 --- !u!4 &2068482387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3064247510934379709, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}

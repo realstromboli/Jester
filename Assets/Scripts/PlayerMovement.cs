@@ -173,6 +173,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (freeze)
         {
             state = MovementState.freeze;
+            desiredMoveSpeed = 0;
+            rb.velocity = Vector3.zero;
         }
 
         // Mode - Running
