@@ -177,6 +177,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void DisplayOptions(string[] options)
     {
         makingDescision = true;
+        //pauseCanvas.GetComponent<Canvas>().sortingOrder = 3;
 
         foreach (Transform child in buttonContainer)
         {
@@ -216,6 +217,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void OnOptionSelected(string option)
     {
         makingDescision = false;
+        //pauseCanvas.GetComponent<Canvas>().sortingOrder = 0;
 
         // Handle the option selected logic here
         // For now, just continue the conversation
