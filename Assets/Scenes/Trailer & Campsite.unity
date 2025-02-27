@@ -308,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1257,9 +1257,9 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 4066bb2d5a7f3ac4883d0c154e5a6301, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 1252
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeBillboardDistance: 2000
+  m_TreeCrossFadeLength: 200
+  m_TreeMaximumFullLODCount: 10000
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -3003,7 +3003,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6319,7 +6319,7 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: b51391d8d2c70544ebb9a69f006f6f26, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 1535
+  m_TreeBillboardDistance: 2000
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -6803,9 +6803,9 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 0c7e94be22061b64ca42429dfd965eb0, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 1535
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeBillboardDistance: 2000
+  m_TreeCrossFadeLength: 200
+  m_TreeMaximumFullLODCount: 10000
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
