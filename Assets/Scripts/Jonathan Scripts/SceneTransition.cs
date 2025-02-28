@@ -14,23 +14,34 @@ public class SceneTransition : MonoBehaviour
     public Color fadeUIColor;
     public string sceneToGoTo;
     public Vector3 playerTransferPosition;
-    public Quaternion playerTransferRotation;
+    public Vector3 playerTransferRotation; // Change to Vector3 to store Euler angles
 
     public GameObject playerObj;
     public GameObject playerCam;
 
-    // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        // Ensure playerObj and playerCam are assigned in Awake or Start
         playerObj = GameObject.Find("Player");
         playerCam = GameObject.Find("CameraHolder");
         fadeUI = GameObject.Find("FadeObject");
+    }
+
+    void Update()
+    {
+        // Optionally, you can keep these assignments in Update if the objects might change
+        if (playerObj == null)
+        {
+            playerObj = GameObject.Find("Player");
+        }
+        if (playerCam == null)
+        {
+            playerCam = GameObject.Find("CameraHolder");
+        }
+        if (fadeUI == null)
+        {
+            fadeUI = GameObject.Find("FadeObject");
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -41,22 +52,6 @@ public class SceneTransition : MonoBehaviour
             StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
         }
     }
-
-    /*public void FadeOutToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
-    {
-        isFading = true;
-        Debug.Log($"Fade to {fadeColor}");
-        //fadeObject.color = fadeColor;
-
-        //fadeObject.CrossFadeAlpha(1.0f, fadeSpeed, false);
-
-        //while (fadeObject.color.a < 1.0f)
-        //{
-        fadeObject.color = Color.Lerp(fadeObject.color, fadeColor, fadeSpeed * Time.deltaTime);
-            //Debug.Log("fading");
-        //}
-        isFading = false;
-    }*/
 
     public IEnumerator FadeOutToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
@@ -74,13 +69,10 @@ public class SceneTransition : MonoBehaviour
         fadeObject.color = fadeColor;
 
         LoadWantedScene();
-        //isFading = false;
     }
 
     public IEnumerator FadeInToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
-        //isFading = true;
-
         Color startColor = fadeColor;
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
@@ -131,10 +123,23 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Debug.Log("Scene Loaded and Player Position Set");
 
-        // Set the player's position
-        playerObj.transform.position = playerTransferPosition;
+        // Ensure playerObj and playerCam are correctly referenced
+        playerObj = GameObject.Find("Player");
+        playerCam = GameObject.Find("CameraHolder");
 
-        // Set the player's rotation to -90 degrees on the Y-axis
-        playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation.eulerAngles.x, playerTransferRotation.eulerAngles.y, playerTransferRotation.eulerAngles.z);
+        if (playerObj != null)
+        {
+            // Set the player's position
+            playerObj.transform.position = playerTransferPosition;
+
+            // Set the player's rotation using Quaternion.Euler to handle negative values correctly
+            playerObj.transform.rotation = Quaternion.Euler(playerTransferRotation);
+        }
+
+        if (playerCam != null)
+        {
+            // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
+            playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation);
+        }
     }
 }

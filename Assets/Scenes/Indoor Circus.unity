@@ -1063,7 +1063,7 @@ MonoBehaviour:
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: Trailer & Campsite
   playerTransferPosition: {x: 793, y: 7, z: 1090}
-  playerTransferRotation: {x: 0, y: -0.9848077, z: 0, w: 0.17364822}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
 --- !u!65 &220696103
@@ -1720,7 +1720,7 @@ MonoBehaviour:
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: Trailer & Campsite
   playerTransferPosition: {x: 794, y: 6, z: 725}
-  playerTransferRotation: {x: 0, y: -0.9848077, z: 0, w: 0.17364822}
+  playerTransferRotation: {x: 0, y: -160, z: 0}
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
 --- !u!65 &350742287
@@ -26528,6 +26528,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   pmScript: {fileID: 0}
   dpmScript: {fileID: 0}
+  currentSceneName: 
   placeholderSprite: {fileID: 0}
   slot1: {fileID: 0}
   slot2: {fileID: 0}
