@@ -34,7 +34,7 @@ public class GameData
         // (250, 25, -275) for indoor circus
         // (591, 170, 256) for inside trailer
         // 78, 0, 1485 for ztest inside trailer
-        playerPosition = new Vector3(591, 170, 256);
+        playerPosition = new Vector3(766, 5, 492);
 
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
