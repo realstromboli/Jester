@@ -74,6 +74,12 @@ public class SlotHighlight : MonoBehaviour, IPointerClickHandler, IPointerEnterH
                         gmScript.Item3Text();
                     }
                     break;
+                case "Slot4":
+                    if (gmScript.slot4Full)
+                    {
+                        gmScript.Item4Text();
+                    }
+                    break;
                 // Add more cases as needed
                 default:
                     Debug.LogWarning("No corresponding slot found for this tag or slot is not full.");

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     bool readyToJump;
     bool doubleJump;
     public LayerMask magicLayer;
+    public float magicRaycastDistance = 50f;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -133,6 +134,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //}
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DisableMagicLayerObjects();
+        }
     }
 
     //public void PlayAnimation()
@@ -373,6 +379,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    }
     //}
 
+    public bool hasJesterPower;
+
     public void ItemInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -399,6 +407,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
                     gmScript.slot3Full = true;
                     Debug.Log("Slot 3 Filled");
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
+
+                if (hit.collider.CompareTag("Placeholder4") && hasJesterPower == true)
+                {
+                    gmScript.slot4Full = true;
+                    Debug.Log("Slot 4 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
             }
@@ -454,30 +469,59 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void DisableMagicLayerObjects()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, magicLayer);
-        foreach (Collider collider in hitColliders)
+        // Enable all objects in the magic layer
+        
+
+        RaycastHit hit;
+        if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, magicRaycastDistance, magicLayer))
         {
-            Renderer renderer = collider.GetComponent<Renderer>();
-            if (renderer != null)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Magic"))
             {
-                renderer.enabled = false;
+                EnableAllMagicLayerObjects();
+                Renderer renderer = hit.collider.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = false;
+                }
+                hit.collider.enabled = false;
+
+                Debug.Log("Disabled magic layer object: " + hit.collider.name);
+
+                StartCoroutine(ReenableMagicLayerObjects(hit.collider));
             }
-            collider.enabled = false;
         }
-        StartCoroutine(ReenableMagicLayerObjects(hitColliders));
     }
 
-    private IEnumerator ReenableMagicLayerObjects(Collider[] colliders)
+    private void EnableAllMagicLayerObjects()
+    {
+        StopAllCoroutines(); // Stop any ongoing coroutine
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == LayerMask.NameToLayer("Magic"))
+            {
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = true;
+                }
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = true;
+                }
+            }
+        }
+    }
+
+    private IEnumerator ReenableMagicLayerObjects(Collider collider)
     {
         yield return new WaitForSeconds(20f);
-        foreach (Collider collider in colliders)
+        Renderer renderer = collider.GetComponent<Renderer>();
+        if (renderer != null)
         {
-            Renderer renderer = collider.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.enabled = true;
-            }
-            collider.enabled = true;
+            renderer.enabled = true;
         }
+        collider.enabled = true;
     }
 }
