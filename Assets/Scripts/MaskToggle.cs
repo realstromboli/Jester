@@ -15,8 +15,9 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public int maskCount;
     public TextMeshProUGUI maskCountText;
 
-    // Add a LayerMask field to specify the layer
+    // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
+    public LayerMask magicLayer;
 
     void Start()
     {
@@ -78,8 +79,26 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
         foreach (GameObject obj in allObjects)
         {
-            // Check if the object is on the specified layer
+            // Check if the object is on the ghost layer
             if (((1 << obj.layer) & ghostLayer) != 0)
+            {
+                // Toggle the Renderer component
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = isVisible;
+                }
+
+                // Toggle the Collider component
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = isVisible;
+                }
+            }
+
+            // Check if the object is on the magic layer
+            if (((1 << obj.layer) & magicLayer) != 0)
             {
                 // Toggle the Renderer component
                 Renderer renderer = obj.GetComponent<Renderer>();

@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float airMultiplier;
     bool readyToJump;
     bool doubleJump;
+    public LayerMask magicLayer;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -448,6 +449,35 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             ResetRestrictions();
 
             GetComponent<Grappling>().StopGrapple();
+        }
+    }
+
+    private void DisableMagicLayerObjects()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, magicLayer);
+        foreach (Collider collider in hitColliders)
+        {
+            Renderer renderer = collider.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            }
+            collider.enabled = false;
+        }
+        StartCoroutine(ReenableMagicLayerObjects(hitColliders));
+    }
+
+    private IEnumerator ReenableMagicLayerObjects(Collider[] colliders)
+    {
+        yield return new WaitForSeconds(20f);
+        foreach (Collider collider in colliders)
+        {
+            Renderer renderer = collider.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = true;
+            }
+            collider.enabled = true;
         }
     }
 }
