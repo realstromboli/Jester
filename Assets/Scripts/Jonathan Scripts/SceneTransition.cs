@@ -1,3 +1,4 @@
+#pragma warning disable 0414
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class SceneTransition : MonoBehaviour
 {
     private bool isFading = false;
 
-    public float fadeSpeed = 1.5f;
+    public float fadeSpeed = 2.0f;
     public GameObject fadeUI;
     public Color fadeUIColor;
     public string sceneToGoTo;
@@ -79,6 +80,8 @@ public class SceneTransition : MonoBehaviour
         GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
 
+        yield return new WaitForSeconds(1.0f);
+
         while (elapsedTime < fadeSpeed)
         {
             fadeObject.color = Color.Lerp(startColor, endColor, elapsedTime / fadeSpeed);
@@ -119,7 +122,7 @@ public class SceneTransition : MonoBehaviour
 
     public IEnumerator SceneLoadDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.4f);
         Debug.Log("Scene Loaded and Player Position Set");
 
         // Ensure playerObj and playerCam are correctly referenced

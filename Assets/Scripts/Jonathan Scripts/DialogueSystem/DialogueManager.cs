@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private Animator anim;
     private Coroutine typing;
     private Image dialogueBox;
+    private Canvas dialogueCanvas;
 
     private GameManager gameManager;
 
@@ -42,6 +43,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             originalAnchorMax = dialogueBox.rectTransform.anchorMax;
             originalOffsetMin = dialogueBox.rectTransform.offsetMin;
             originalOffsetMax = dialogueBox.rectTransform.offsetMax;
+            dialogueCanvas = gameObject.transform.parent.GetComponent<Canvas>();
 
             // dialogueViewedSave set to the saved number
         }
@@ -177,6 +179,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void DisplayOptions(string[] options)
     {
         makingDescision = true;
+        dialogueCanvas.GetComponent<Canvas>().sortingOrder = 3;
 
         foreach (Transform child in buttonContainer)
         {
@@ -216,6 +219,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void OnOptionSelected(string option)
     {
         makingDescision = false;
+        dialogueCanvas.GetComponent<Canvas>().sortingOrder = 0;
 
         // Handle the option selected logic here
         // For now, just continue the conversation
