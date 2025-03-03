@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
         
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene(2);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;

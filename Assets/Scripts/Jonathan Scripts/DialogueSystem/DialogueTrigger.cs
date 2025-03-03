@@ -7,6 +7,9 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
     public int viewNumber;
+    public float raycastDistance = 8f;
+    public LayerMask interactableLayer;
+    public PlayerCamera pcScript;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -26,6 +29,15 @@ public class DialogueTrigger : MonoBehaviour
         {
             DialogueManager.StartConversation(convo);
             Destroy(gameObject);
+        }
+    }
+
+    private void hitEForDialogue()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance, interactableLayer))
+        {
+            DialogueManager.StartConversation(convo);
         }
     }
 }
