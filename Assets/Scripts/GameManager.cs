@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 7 is circus tent
         //scene 5 is inside trailer
         
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(11);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
