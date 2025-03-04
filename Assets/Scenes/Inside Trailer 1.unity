@@ -630,10 +630,11 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: Trailer & Campsite
-  playerTransferPosition: {x: 258, y: 8, z: 128}
+  playerTransferPosition: {x: 260.4333, y: 5, z: 109.1516}
   playerTransferRotation: {x: 0, y: -10, z: 0}
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
 --- !u!65 &112650219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3304,7 +3305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convo: {fileID: 11400000, guid: a299c3161916954478fc055eeff11cb8, type: 2}
   viewNumber: 0
-  raycastDistance: 8
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class SceneTransition : MonoBehaviour
 {
-    private bool isFading = false;
+    public bool isFading = false;
 
     public float fadeSpeed = 2.0f;
     public GameObject fadeUI;
@@ -84,28 +84,21 @@ public class SceneTransition : MonoBehaviour
 
     public IEnumerator FadeInToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
+        isFading = true;
         Color startColor = fadeColor;
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
-        // Calculate the halfway point of the fade-in process
-        float halfwayPoint = fadeSpeed / 2.0f;
-
         GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
+        gmScript.isGameActive = true;
 
         while (elapsedTime < fadeSpeed)
         {
             fadeObject.color = Color.Lerp(startColor, endColor, elapsedTime / fadeSpeed);
             elapsedTime += Time.deltaTime;
-
-            // Set gmScript.isGameActive to true at the halfway point
-            if (elapsedTime >= halfwayPoint && !gmScript.isGameActive)
-            {
-                gmScript.isGameActive = true;
-            }
 
             yield return null;
         }
@@ -118,9 +111,10 @@ public class SceneTransition : MonoBehaviour
 
     private void LoadWantedScene()
     {
+        isFading = false;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneToGoTo);
-        StartCoroutine(SceneLoadDelay());
+        //StartCoroutine(SceneLoadDelay());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -134,7 +128,8 @@ public class SceneTransition : MonoBehaviour
 
         if (fadeUI != null)
         {
-            StartCoroutine(FadeInToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+            StartCoroutine(SceneLoadDelay());
+            //StartCoroutine(FadeInToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
         }
         else
         {
@@ -145,17 +140,23 @@ public class SceneTransition : MonoBehaviour
     public IEnumerator SceneLoadDelay()
     {
         
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         Debug.Log("Scene Loaded and Player Position Set");
 
         // Ensure playerObj and playerCam are correctly referenced
         playerObj = GameObject.Find("Player");
         playerCam = GameObject.Find("CameraHolder");
+        Debug.Log($"Player: {playerObj}");
+        Debug.Log($"Cam: {playerCam}");
 
         if (playerObj != null)
         {
             // Set the player's position
-            playerObj.transform.position = playerTransferPosition;
+            while (playerObj.transform.position != playerTransferPosition)
+            {
+                playerObj.transform.position = playerTransferPosition;
+                Debug.Log("Try");
+            }
 
             // Set the player's rotation using Quaternion.Euler to handle negative values correctly
             playerObj.transform.rotation = Quaternion.Euler(playerTransferRotation);
@@ -165,6 +166,11 @@ public class SceneTransition : MonoBehaviour
         {
             // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
             playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation);
+        }
+
+        if (playerObj != null && playerCam != null)
+        {
+            StartCoroutine(FadeInToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
         }
     }
 }
