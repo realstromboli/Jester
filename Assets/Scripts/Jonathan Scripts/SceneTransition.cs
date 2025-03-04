@@ -19,12 +19,16 @@ public class SceneTransition : MonoBehaviour
     public GameObject playerObj;
     public GameObject playerCam;
 
+    public GameManager gmScript;
+
     void Awake()
     {
         // Ensure playerObj and playerCam are assigned in Awake or Start
         playerObj = GameObject.Find("Player");
         playerCam = GameObject.Find("CameraHolder");
         fadeUI = GameObject.Find("FadeObject");
+
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -42,20 +46,27 @@ public class SceneTransition : MonoBehaviour
         {
             fadeUI = GameObject.Find("FadeObject");
         }
+
+        //if (isFading)
+        //{
+        //    gmScript.isGameActive = false;
+        //}
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            DontDestroyOnLoad(gameObject);
-            StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
-        }
-    }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        DontDestroyOnLoad(gameObject);
+    //        StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+    //    }
+    //}
 
     public IEnumerator FadeOutToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
+        DontDestroyOnLoad(gameObject);
         isFading = true;
+        gmScript.isGameActive = false;
         Color startColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
@@ -77,6 +88,9 @@ public class SceneTransition : MonoBehaviour
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
+        // Calculate the halfway point of the fade-in process
+        float halfwayPoint = fadeSpeed / 2.0f;
+
         GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
 
@@ -86,11 +100,19 @@ public class SceneTransition : MonoBehaviour
         {
             fadeObject.color = Color.Lerp(startColor, endColor, elapsedTime / fadeSpeed);
             elapsedTime += Time.deltaTime;
+
+            // Set gmScript.isGameActive to true at the halfway point
+            if (elapsedTime >= halfwayPoint && !gmScript.isGameActive)
+            {
+                gmScript.isGameActive = true;
+            }
+
             yield return null;
         }
 
         fadeObject.color = endColor; // Ensure the final color is set
         isFading = false;
+
         Destroy(gameObject);
     }
 
@@ -122,6 +144,7 @@ public class SceneTransition : MonoBehaviour
 
     public IEnumerator SceneLoadDelay()
     {
+        
         yield return new WaitForSeconds(0.4f);
         Debug.Log("Scene Loaded and Player Position Set");
 

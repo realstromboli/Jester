@@ -416,6 +416,29 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     Debug.Log("Slot 4 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
+
+                // Check if the item is on an interactable layer
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    Debug.Log("Dialogue hit interactable");
+                    if (dialogueTrigger != null)
+                    {
+                        dialogueTrigger.startConvo();
+                    }
+                }
+
+                if (hit.collider.CompareTag("Door"))
+                {
+                    SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                    Debug.Log("Door hit interactable");
+                    if (sceneTransition != null)
+                    {
+                        StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                    }
+                    
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
             }
         }
     }

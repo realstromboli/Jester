@@ -7,7 +7,6 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
     public int viewNumber;
-    public float raycastDistance = 8f;
     public LayerMask interactableLayer;
     public PlayerCamera pcScript;
 
@@ -32,10 +31,9 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private void hitEForDialogue()
+    public void startConvo()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance, interactableLayer))
+        if (dialogueManager.dialogueViewedSave == viewNumber)
         {
             DialogueManager.StartConversation(convo);
         }
