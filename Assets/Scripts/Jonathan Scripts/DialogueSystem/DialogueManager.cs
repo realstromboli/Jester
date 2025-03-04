@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Transform buttonContainer;
 
     private int currentIndex;
+    private int boxLeftScale = 192;
     private DialogueConversation currentConvo;
     private static DialogueManager instance;
     private Animator anim;
@@ -85,7 +86,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 speakerSprite.gameObject.SetActive(false);
                 // Adjust the width of the dialogue box
-                dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+                dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - boxLeftScale, dialogueBox.rectTransform.offsetMin.y); // Move left edge
                 dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
             }
             else
@@ -102,7 +103,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             speakerName.text = "";
             speakerSprite.gameObject.SetActive(false);
             // Adjust the width of the dialogue box
-            dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+            dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - boxLeftScale, dialogueBox.rectTransform.offsetMin.y); // Move left edge
             dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
         }
 
