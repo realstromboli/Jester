@@ -419,7 +419,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
-                if (hit.collider.CompareTag("Placeholder4") && hasJesterPower == true)
+                if (hit.collider.CompareTag("Placeholder4")/* && hasJesterPower == true*/)
                 {
                     gmScript.slot4Full = true;
                     Debug.Log("Slot 4 Filled");
