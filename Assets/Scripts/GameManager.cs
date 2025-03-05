@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Rigidbody playerRb;
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
+    public MaskToggle maskScript;
+
+    public string currentSceneName;
 
     [Header("Sprites")]
     public Sprite placeholderSprite;
@@ -49,6 +52,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         inventoryOpen = false;
         startScreenOpen = true;
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
+        maskScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         HUD = GameObject.Find("HUD");
         HUD.SetActive(false); // Ensure HUD is hidden initially
         pauseScreen.SetActive(false); // Ensure pause screen is hidden initially
@@ -66,19 +71,28 @@ public class GameManager : MonoBehaviour, IDataPersistence
         InventoryManager();
 
         // Update HUD visibility based on game state
-        HUD.SetActive(isGameActive);
+        if (isGameActive)
+        {
+            HUD.SetActive(true);
+        }
+        else if (!isGameActive)
+        {
+            HUD.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen)
         {
             inventoryScreen.SetActive(true);
             isGameActive = false;
             inventoryOpen = true;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 3;
         }
         else if (Input.GetKeyDown(KeyCode.I) && !isGameActive && inventoryOpen)
         {
             inventoryScreen.SetActive(false);
             isGameActive = true;
             inventoryOpen = false;
+            inventoryScreen.GetComponent<Canvas>().sortingOrder = 1;
         }
 
         //if (!isGameActive)
@@ -178,22 +192,24 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 6 is outdoors
         //scene 7 is circus tent
         //scene 5 is inside trailer
-        //scene 11 is Spirit
+        //scene 1 is test scene
         
         SceneManager.LoadScene(5);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
+        maskScript.maskStatus = false;
     }
 
     public void LoadGame()
     {
         SceneManager.LoadScene(1);
         StartCoroutine(LoadDelay());
+        maskScript.maskStatus = false;
     }
 
     public IEnumerator NewDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         startScreen.SetActive(false);
         dpmScript.NewGame();
         isGameActive = true;
@@ -206,36 +222,38 @@ public class GameManager : MonoBehaviour, IDataPersistence
         item3.GetComponent<Collider>().enabled = true;
         item4.GetComponent<Renderer>().enabled = true;
         item4.GetComponent<Collider>().enabled = true;
-        item5.GetComponent<Renderer>().enabled = true;
-        item5.GetComponent<Collider>().enabled = true;
-        item6.GetComponent<Renderer>().enabled = true;
-        item6.GetComponent<Collider>().enabled = true;
-        item7.GetComponent<Renderer>().enabled = true;
-        item7.GetComponent<Collider>().enabled = true;
-        item8.GetComponent<Renderer>().enabled = true;
-        item8.GetComponent<Collider>().enabled = true;
-        item9.GetComponent<Renderer>().enabled = true;
-        item9.GetComponent<Collider>().enabled = true;
+        //item5.GetComponent<Renderer>().enabled = true;
+        //item5.GetComponent<Collider>().enabled = true;
+        //item6.GetComponent<Renderer>().enabled = true;
+        //item6.GetComponent<Collider>().enabled = true;
+        //item7.GetComponent<Renderer>().enabled = true;
+        //item7.GetComponent<Collider>().enabled = true;
+        //item8.GetComponent<Renderer>().enabled = true;
+        //item8.GetComponent<Collider>().enabled = true;
+        //item9.GetComponent<Renderer>().enabled = true;
+        //item9.GetComponent<Collider>().enabled = true;
         startScreen.GetComponent<Canvas>().sortingOrder = 0;
     }
 
     public IEnumerator LoadDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         startScreen.SetActive(false);
         dpmScript.LoadGame();
         isGameActive = true;
         startScreenOpen = false;
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     public IEnumerator IDKDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         HUD.SetActive(false);
         startScreen.SetActive(true);
         isGameActive = false;
         startScreenOpen = true;
         startScreen.GetComponentInChildren<Canvas>().sortingOrder = 3;
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
@@ -299,6 +317,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         item1 = GameObject.Find("PlaceholderItem1");
         item2 = GameObject.Find("PlaceholderItem2");
         item3 = GameObject.Find("PlaceholderItem3");
+        item4 = GameObject.Find("GhostlyPlaceholderItem");
 
         if (slot1Full)
         {
@@ -333,18 +352,20 @@ public class GameManager : MonoBehaviour, IDataPersistence
             slot3.SetActive(false);
         }
 
-        //if (slot4Full)
-        //{
-        //    slot4.SetActive(true);
-        //    item4.GetComponent<Renderer>().enabled = false;
-        //    item4.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot4Full)
-        //{
-        //    slot4.SetActive(false);
-        //    item4.GetComponent<Renderer>().enabled = true;
-        //    item4.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot4Full)
+        {
+            slot4.SetActive(true);
+            item4.GetComponent<Renderer>().enabled = false;
+            item4.GetComponent<Collider>().enabled = false;
+        }
+        else if (!slot4Full)
+        {
+            slot4.SetActive(false);
+
+            // bc its a ghost item
+            //item4.GetComponent<Renderer>().enabled = true;
+            //item4.GetComponent<Collider>().enabled = true;
+        }
 
         //if (slot5Full)
         //{
@@ -442,7 +463,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item4Text()
     {
         itemNameText.text = "Item 4";
-        itemDescriptionText.text = "This is what item 4 does";
+        itemDescriptionText.text = "This is a spooky ghost item oooooOOOOOoooo";
         inventoryItem.sprite = item4Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -513,6 +534,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot7Full = data.slot7Full;
         this.slot8Full = data.slot8Full;
         this.slot9Full = data.slot9Full;
+
+        StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
 
     public void SaveData(ref GameData data)
@@ -526,6 +549,19 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.slot7Full = this.slot7Full;
         data.slot8Full = this.slot8Full;
         data.slot9Full = this.slot9Full;
+
+        data.currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("Current scene name: " + data.currentSceneName);
     }
 
+    private IEnumerator LoadSceneAndData(string sceneName, GameData data)
+    {
+        // Load the saved scene
+        SceneManager.LoadScene(sceneName);
+
+        // Wait for the scene to load
+        yield return new WaitForSeconds(0.1f);
+
+        Debug.Log("Saved scene loaded: " + sceneName);
+    }
 }

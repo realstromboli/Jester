@@ -1,3 +1,4 @@
+#pragma warning disable 0414
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,58 +9,64 @@ public class SceneTransition : MonoBehaviour
 {
     private bool isFading = false;
 
-    public float fadeSpeed = 1.5f;
+    public float fadeSpeed = 2.0f;
     public GameObject fadeUI;
     public Color fadeUIColor;
     public string sceneToGoTo;
     public Vector3 playerTransferPosition;
-    public Quaternion playerTransferRotation;
+    public Vector3 playerTransferRotation; // Change to Vector3 to store Euler angles
 
     public GameObject playerObj;
     public GameObject playerCam;
 
-    // Start is called before the first frame update
+    public GameManager gmScript;
+
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        // Ensure playerObj and playerCam are assigned in Awake or Start
         playerObj = GameObject.Find("Player");
         playerCam = GameObject.Find("CameraHolder");
         fadeUI = GameObject.Find("FadeObject");
+
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        // Optionally, you can keep these assignments in Update if the objects might change
+        if (playerObj == null)
         {
-            DontDestroyOnLoad(gameObject);
-            StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+            playerObj = GameObject.Find("Player");
         }
+        if (playerCam == null)
+        {
+            playerCam = GameObject.Find("CameraHolder");
+        }
+        if (fadeUI == null)
+        {
+            fadeUI = GameObject.Find("FadeObject");
+        }
+
+        //if (isFading)
+        //{
+        //    gmScript.isGameActive = false;
+        //}
     }
 
-    /*public void FadeOutToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
-    {
-        isFading = true;
-        Debug.Log($"Fade to {fadeColor}");
-        //fadeObject.color = fadeColor;
-
-        //fadeObject.CrossFadeAlpha(1.0f, fadeSpeed, false);
-
-        //while (fadeObject.color.a < 1.0f)
-        //{
-        fadeObject.color = Color.Lerp(fadeObject.color, fadeColor, fadeSpeed * Time.deltaTime);
-            //Debug.Log("fading");
-        //}
-        isFading = false;
-    }*/
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        DontDestroyOnLoad(gameObject);
+    //        StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+    //    }
+    //}
 
     public IEnumerator FadeOutToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
+        DontDestroyOnLoad(gameObject);
         isFading = true;
+        gmScript.isGameActive = false;
         Color startColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
@@ -73,19 +80,20 @@ public class SceneTransition : MonoBehaviour
         fadeObject.color = fadeColor;
 
         LoadWantedScene();
-        //isFading = false;
     }
 
     public IEnumerator FadeInToScene(UnityEngine.UI.Image fadeObject, Color fadeColor)
     {
-        //isFading = true;
-
         Color startColor = fadeColor;
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
         GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
+        
+
+        yield return new WaitForSeconds(1.0f);
+        gmScript.isGameActive = true;
 
         while (elapsedTime < fadeSpeed)
         {
@@ -93,10 +101,11 @@ public class SceneTransition : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         fadeObject.color = endColor; // Ensure the final color is set
         isFading = false;
+        
         Destroy(gameObject);
+        
     }
 
     private void LoadWantedScene()
@@ -127,13 +136,28 @@ public class SceneTransition : MonoBehaviour
 
     public IEnumerator SceneLoadDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        
+        //yield return new WaitForSeconds(0.1f);
+        yield return null;
         Debug.Log("Scene Loaded and Player Position Set");
 
-        // Set the player's position
-        playerObj.transform.position = playerTransferPosition;
+        // Ensure playerObj and playerCam are correctly referenced
+        playerObj = GameObject.Find("Player");
+        playerCam = GameObject.Find("CameraHolder");
 
-        // Set the player's rotation to -90 degrees on the Y-axis
-        playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation.eulerAngles.x, playerTransferRotation.eulerAngles.y, playerTransferRotation.eulerAngles.z);
+        if (playerObj != null)
+        {
+            // Set the player's position
+            playerObj.transform.position = playerTransferPosition;
+
+            // Set the player's rotation using Quaternion.Euler to handle negative values correctly
+            playerObj.transform.rotation = Quaternion.Euler(playerTransferRotation);
+        }
+
+        if (playerCam != null)
+        {
+            // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
+            playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation);
+        }
     }
 }

@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameData
 {
 
     public int maskCount = 0;
-
-    public Vector3 playerPosition = Vector3.zero;
+    public Vector3 playerPosition;
 
     public bool slot1Full;
     public bool slot2Full;
@@ -21,19 +21,11 @@ public class GameData
     public bool slot9Full;
 
     public int dialogueViewedSave;
+    public string currentSceneName;
 
-    void Start()
-    {
-        
-    }
+    public bool jesterCureTrigger;
 
-    
-    void Update()
-    {
-        
-    }
-
-    // the values defined in this constructor will be the default values
+    // The values defined in this constructor will be the default values
     // the game starts when there's no save file
 
     public GameData()
@@ -44,7 +36,10 @@ public class GameData
         // (250, 25, -275) for indoor circus
         // (591, 170, 256) for inside trailer
         // 78, 0, 1485 for ztest inside trailer
-        playerPosition = new Vector3(264, 17, 93);
+        playerPosition = new Vector3(591, 170, 256);
+
+        // Initialize currentSceneName to an empty string
+        currentSceneName = string.Empty;
 
         slot1Full = false;
         slot2Full = false;
@@ -55,7 +50,9 @@ public class GameData
         slot7Full = false;
         slot8Full = false;
         slot9Full = false;
+
         dialogueViewedSave = 0;
 
+        jesterCureTrigger = false;
     }
 }

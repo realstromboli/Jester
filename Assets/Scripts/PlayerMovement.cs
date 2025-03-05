@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float airMultiplier;
     bool readyToJump;
     bool doubleJump;
+    public LayerMask magicLayer;
+    public float magicRaycastDistance = 50f;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -46,7 +48,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Rigidbody rb;
     private GameManager gmScript;
     public Camera pcScript;
+    public DialogueManager dmScript;
     public float raycastDistance = 3;
+
+    public bool activeGrapple;
 
     [Header("Item Stuff")]
 
@@ -95,6 +100,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         readyToJump = true;
         isRunning = false;
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
     }
 
     void Update()
@@ -112,7 +118,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
 
         //handles drag per ground check
-        if (grounded)
+        if (grounded && !activeGrapple)
         {
             rb.drag = groundDrag;
         }
@@ -124,12 +130,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerAnimation.SetTrigger("Test Trigger");
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    playerAnimation.SetTrigger("Test Trigger");
+        //}
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DisableMagicLayerObjects();
+        }
+
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
     }
 
     //public void PlayAnimation()
@@ -171,6 +184,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (freeze)
         {
             state = MovementState.freeze;
+            desiredMoveSpeed = 0;
+            rb.velocity = Vector3.zero;
         }
 
         // Mode - Running
@@ -331,12 +346,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPosition;
+        StartCoroutine(PosSetDelay(data.playerPosition));
+
+        this.jesterCureTrigger = data.jesterCureTrigger;
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = this.transform.position;
+
+        data.jesterCureTrigger = this.jesterCureTrigger;
+    }
+
+    private IEnumerator PosSetDelay(Vector3 position)
+    {
+        yield return new WaitForSeconds(0.15f);
+
+        this.transform.position = position;
     }
 
     //public void OnTriggerEnter(Collider collider)
@@ -345,7 +371,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    {
     //        Debug.Log("XDDDDDDD");
     //        gmScript.slot1Full = true;
-            
+
     //    }
 
     //    if (collider.tag == "Placeholder2")
@@ -361,6 +387,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    }
     //}
 
+    public bool hasJesterPower;
+
+    public bool jesterCureTrigger;
     public void ItemInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -389,7 +418,152 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     Debug.Log("Slot 3 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
+
+                if (hit.collider.CompareTag("Placeholder4") && hasJesterPower == true)
+                {
+                    gmScript.slot4Full = true;
+                    Debug.Log("Slot 4 Filled");
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                    DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+                    dmScript.dialogueViewedSave++; //NOT WORKING
+
+                    jesterCureTrigger = true;
+                }
+
+                // Check if the item is on an interactable layer
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
+                    Debug.Log("Dialogue hit interactable");
+                    if (dialogueTriggerRepeatable != null)
+                    {
+                        dialogueTriggerRepeatable.startConvo();
+                    }
+                    else if (dialogueTrigger != null)
+                    {
+                        dialogueTrigger.startConvo();
+                    }
+                    
+                }
+
+                if (hit.collider.CompareTag("Door"))
+                {
+                    SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                    Debug.Log("Door hit interactable");
+                    if (sceneTransition != null)
+                    {
+                        StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                    }
+
+                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
             }
         }
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity) / 3);
+
+        return velocityXZ + velocityY;
+    }
+
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryheight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryheight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestrictions), 3f);
+    }
+
+    private bool enableMovementOnNextTouch;
+    private Vector3 velocityToSet;
+
+    private void SetVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.velocity = velocityToSet;
+    }
+
+    public void ResetRestrictions()
+    {
+        activeGrapple = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+
+            GetComponent<Grappling>().StopGrapple();
+        }
+    }
+
+    private void DisableMagicLayerObjects()
+    {
+        // Enable all objects in the magic layer
+        
+
+        RaycastHit hit;
+        if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, magicRaycastDistance, magicLayer))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Magic"))
+            {
+                EnableAllMagicLayerObjects();
+                Renderer renderer = hit.collider.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = false;
+                }
+                hit.collider.enabled = false;
+
+                Debug.Log("Disabled magic layer object: " + hit.collider.name);
+
+                StartCoroutine(ReenableMagicLayerObjects(hit.collider));
+            }
+        }
+    }
+
+    private void EnableAllMagicLayerObjects()
+    {
+        StopAllCoroutines(); // Stop any ongoing coroutine
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == LayerMask.NameToLayer("Magic"))
+            {
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = true;
+                }
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = true;
+                }
+            }
+        }
+    }
+
+    private IEnumerator ReenableMagicLayerObjects(Collider collider)
+    {
+        yield return new WaitForSeconds(20f);
+        Renderer renderer = collider.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = true;
+        }
+        collider.enabled = true;
     }
 }

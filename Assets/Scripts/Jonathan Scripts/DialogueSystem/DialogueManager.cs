@@ -16,11 +16,13 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Transform buttonContainer;
 
     private int currentIndex;
+    private int boxLeftScale = 192;
     private DialogueConversation currentConvo;
     private static DialogueManager instance;
     private Animator anim;
     private Coroutine typing;
     private Image dialogueBox;
+    private Canvas dialogueCanvas;
 
     private GameManager gameManager;
 
@@ -42,6 +44,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             originalAnchorMax = dialogueBox.rectTransform.anchorMax;
             originalOffsetMin = dialogueBox.rectTransform.offsetMin;
             originalOffsetMax = dialogueBox.rectTransform.offsetMax;
+            dialogueCanvas = gameObject.transform.parent.GetComponent<Canvas>();
 
             // dialogueViewedSave set to the saved number
         }
@@ -58,7 +61,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
-        instance.dialogueViewedSave++;
+        //instance.dialogueViewedSave++;
 
         instance.ReadNext();
     }
@@ -83,7 +86,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 speakerSprite.gameObject.SetActive(false);
                 // Adjust the width of the dialogue box
-                dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+                dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - boxLeftScale, dialogueBox.rectTransform.offsetMin.y); // Move left edge
                 dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
             }
             else
@@ -100,7 +103,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             speakerName.text = "";
             speakerSprite.gameObject.SetActive(false);
             // Adjust the width of the dialogue box
-            dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - 385, dialogueBox.rectTransform.offsetMin.y); // Move left edge
+            dialogueBox.rectTransform.offsetMin = new Vector2(originalOffsetMin.x - boxLeftScale, dialogueBox.rectTransform.offsetMin.y); // Move left edge
             dialogueBox.rectTransform.offsetMax = new Vector2(originalOffsetMax.x, dialogueBox.rectTransform.offsetMax.y); // Keep right edge
         }
 
@@ -177,6 +180,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void DisplayOptions(string[] options)
     {
         makingDescision = true;
+        dialogueCanvas.GetComponent<Canvas>().sortingOrder = 3;
 
         foreach (Transform child in buttonContainer)
         {
@@ -216,6 +220,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private void OnOptionSelected(string option)
     {
         makingDescision = false;
+        dialogueCanvas.GetComponent<Canvas>().sortingOrder = 0;
 
         // Handle the option selected logic here
         // For now, just continue the conversation
