@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator NewDelay()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return null;
         startScreen.SetActive(false);
         dpmScript.NewGame();
         isGameActive = true;
@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator LoadDelay()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return null;
         startScreen.SetActive(false);
         dpmScript.LoadGame();
         isGameActive = true;
@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator IDKDelay()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return null;
         HUD.SetActive(false);
         startScreen.SetActive(true);
         isGameActive = false;
