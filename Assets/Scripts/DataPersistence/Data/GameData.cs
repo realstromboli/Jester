@@ -32,11 +32,10 @@ public class GameData
     {
         this.maskCount = 0;
 
-        // (255, 1, 110) for outdoor scene
+        // (260, 6, 130) for outdoor scene
         // (250, 25, -275) for indoor circus
         // (591, 170, 256) for inside trailer
-        // 202, 18, 91 for new inside trailer
-        // 78, 0, 1485 for ztest inside trailer
+        // Vector3(256,17,93)
         playerPosition = new Vector3(202, 18, 91);
 
         // Initialize currentSceneName to an empty string
