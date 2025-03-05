@@ -178,8 +178,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 6 is outdoors
         //scene 7 is circus tent
         //scene 5 is inside trailer
+        //scene 11 is Spirit
         
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene(5);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
     }
