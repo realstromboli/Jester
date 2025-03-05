@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public MaskToggle maskScript;
 
     public string currentSceneName;
+    public Vector3 playerPosition;
 
     [Header("Sprites")]
     public Sprite placeholderSprite;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         PauseGame();
         FreezePlayer();
         InventoryManager();
+        UpdatePlayerPosition();
 
         // Update HUD visibility based on game state
         if (isGameActive)
@@ -103,6 +105,19 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //{
         //    Time.timeScale = 1;
         //}
+    }
+
+    private void UpdatePlayerPosition()
+    {
+        GameObject player = GameObject.Find("Player");
+        if (player != null)
+        {
+            playerPosition = player.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("Player GameObject not found");
+        }
     }
 
     public void BackToMainMenu()
@@ -214,14 +229,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
         dpmScript.NewGame();
         isGameActive = true;
         startScreenOpen = false;
-        item1.GetComponent<Renderer>().enabled = true;
-        item1.GetComponent<Collider>().enabled = true;
-        item2.GetComponent<Renderer>().enabled = true;
-        item2.GetComponent<Collider>().enabled = true;
-        item3.GetComponent<Renderer>().enabled = true;
-        item3.GetComponent<Collider>().enabled = true;
-        item4.GetComponent<Renderer>().enabled = true;
-        item4.GetComponent<Collider>().enabled = true;
+        //item1.GetComponent<Renderer>().enabled = true;
+        //item1.GetComponent<Collider>().enabled = true;
+        //item2.GetComponent<Renderer>().enabled = true;
+        //item2.GetComponent<Collider>().enabled = true;
+        //item3.GetComponent<Renderer>().enabled = true;
+        //item3.GetComponent<Collider>().enabled = true;
+        //item4.GetComponent<Renderer>().enabled = true;
+        //item4.GetComponent<Collider>().enabled = true;
         //item5.GetComponent<Renderer>().enabled = true;
         //item5.GetComponent<Collider>().enabled = true;
         //item6.GetComponent<Renderer>().enabled = true;
@@ -233,6 +248,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //item9.GetComponent<Renderer>().enabled = true;
         //item9.GetComponent<Collider>().enabled = true;
         startScreen.GetComponent<Canvas>().sortingOrder = 0;
+
+        StartCoroutine(PlayerPosDelay());
     }
 
     public IEnumerator LoadDelay()
@@ -254,6 +271,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         startScreenOpen = true;
         startScreen.GetComponentInChildren<Canvas>().sortingOrder = 3;
         currentSceneName = SceneManager.GetActiveScene().name;
+    }
+
+    public IEnumerator PlayerPosDelay()
+    {
+        yield return null;
+        playerPosition = new Vector3(202, 18, 91);
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
@@ -556,11 +579,17 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private IEnumerator LoadSceneAndData(string sceneName, GameData data)
     {
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
+            sceneName = "Inside Trailer";
+        }
+
         // Load the saved scene
         SceneManager.LoadScene(sceneName);
 
         // Wait for the scene to load
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
 
         Debug.Log("Saved scene loaded: " + sceneName);
     }
