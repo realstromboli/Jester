@@ -360,7 +360,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private IEnumerator PosSetDelay(Vector3 position)
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return null;
 
         this.transform.position = position;
     }
