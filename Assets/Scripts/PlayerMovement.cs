@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Rigidbody rb;
     private GameManager gmScript;
     public Camera pcScript;
+    public DialogueManager dmScript;
     public float raycastDistance = 3;
 
     public bool activeGrapple;
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         readyToJump = true;
         isRunning = false;
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
     }
 
     void Update()
@@ -139,6 +141,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             DisableMagicLayerObjects();
         }
+
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
     }
 
     //public void PlayAnimation()
@@ -343,11 +347,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         StartCoroutine(PosSetDelay(data.playerPosition));
+
+        this.jesterCureTrigger = data.jesterCureTrigger;
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = this.transform.position;
+
+        data.jesterCureTrigger = this.jesterCureTrigger;
     }
 
     private IEnumerator PosSetDelay(Vector3 position)
@@ -381,6 +389,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public bool hasJesterPower;
 
+    public bool jesterCureTrigger;
     public void ItemInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -415,17 +424,27 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     gmScript.slot4Full = true;
                     Debug.Log("Slot 4 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                    DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+                    dmScript.dialogueViewedSave++; //NOT WORKING
+
+                    jesterCureTrigger = true;
                 }
 
                 // Check if the item is on an interactable layer
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                 {
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
                     Debug.Log("Dialogue hit interactable");
-                    if (dialogueTrigger != null)
+                    if (dialogueTriggerRepeatable != null)
+                    {
+                        dialogueTriggerRepeatable.startConvo();
+                    }
+                    else if (dialogueTrigger != null)
                     {
                         dialogueTrigger.startConvo();
                     }
+                    
                 }
 
                 if (hit.collider.CompareTag("Door"))
@@ -436,7 +455,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                     }
-                    
+
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
             }

@@ -23,6 +23,8 @@ public class GameData
     public int dialogueViewedSave;
     public string currentSceneName;
 
+    public bool jesterCureTrigger;
+
     // The values defined in this constructor will be the default values
     // the game starts when there's no save file
 
@@ -34,7 +36,7 @@ public class GameData
         // (250, 25, -275) for indoor circus
         // (591, 170, 256) for inside trailer
         // 78, 0, 1485 for ztest inside trailer
-        playerPosition = new Vector3(0, 0, 0);
+        playerPosition = new Vector3(591, 170, 256);
 
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
@@ -50,5 +52,7 @@ public class GameData
         slot9Full = false;
 
         dialogueViewedSave = 0;
+
+        jesterCureTrigger = false;
     }
 }

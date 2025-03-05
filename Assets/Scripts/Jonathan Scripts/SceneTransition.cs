@@ -88,32 +88,24 @@ public class SceneTransition : MonoBehaviour
         Color endColor = new Color(fadeColor.r, fadeColor.g, fadeColor.b, 0);
         float elapsedTime = 0f;
 
-        // Calculate the halfway point of the fade-in process
-        float halfwayPoint = fadeSpeed / 2.0f;
-
         GameObject playerObj = GameObject.Find("Player");
         GameObject playerCam = GameObject.Find("CameraHolder");
+        
 
         yield return new WaitForSeconds(1.0f);
+        gmScript.isGameActive = true;
 
         while (elapsedTime < fadeSpeed)
         {
             fadeObject.color = Color.Lerp(startColor, endColor, elapsedTime / fadeSpeed);
             elapsedTime += Time.deltaTime;
-
-            // Set gmScript.isGameActive to true at the halfway point
-            if (elapsedTime >= halfwayPoint && !gmScript.isGameActive)
-            {
-                gmScript.isGameActive = true;
-            }
-
             yield return null;
         }
-
         fadeObject.color = endColor; // Ensure the final color is set
         isFading = false;
-
+        
         Destroy(gameObject);
+        
     }
 
     private void LoadWantedScene()
@@ -145,7 +137,8 @@ public class SceneTransition : MonoBehaviour
     public IEnumerator SceneLoadDelay()
     {
         
-        yield return new WaitForSeconds(0.4f);
+        //yield return new WaitForSeconds(0.1f);
+        yield return null;
         Debug.Log("Scene Loaded and Player Position Set");
 
         // Ensure playerObj and playerCam are correctly referenced

@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
-        instance.dialogueViewedSave++;
+        //instance.dialogueViewedSave++;
 
         instance.ReadNext();
     }
