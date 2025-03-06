@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public IEnumerator PlayerPosDelay()
     {
         yield return null;
-        playerPosition = new Vector3(202, 18, 91);
+        playerPosition = new Vector3(212, 13, 91);
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
