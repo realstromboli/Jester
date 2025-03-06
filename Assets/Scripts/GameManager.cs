@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         item1 = GameObject.Find("PlaceholderItem1");
         item2 = GameObject.Find("PlaceholderItem2");
         item3 = GameObject.Find("PlaceholderItem3");
-        item4 = GameObject.Find("GhostlyPlaceholderItem");
+        //item4 = GameObject.Find("GhostlyPlaceholderItem");
 
         if (slot1Full)
         {

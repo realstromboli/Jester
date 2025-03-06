@@ -64,6 +64,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField]
     private Sprite itemSprite;
 
+    [Header("Etc")]
+    public bool hasJesterPower;
+    public bool hasTrapezistPower;
+    public bool hasMagicianPower;
+
+    public bool interactedJesterPoster;
+    public bool jesterCureTrigger;
+
     public MovementState state;
 
     public enum MovementState
@@ -348,6 +356,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         StartCoroutine(PosSetDelay(data.playerPosition));
 
+        this.interactedJesterPoster = data.interactedJesterPoster;
         this.jesterCureTrigger = data.jesterCureTrigger;
     }
 
@@ -355,6 +364,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         data.playerPosition = this.transform.position;
 
+        data.interactedJesterPoster = this.interactedJesterPoster;
         data.jesterCureTrigger = this.jesterCureTrigger;
     }
 
@@ -387,9 +397,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    }
     //}
 
-    public bool hasJesterPower;
 
-    public bool jesterCureTrigger;
     public void ItemInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -424,10 +432,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     gmScript.slot4Full = true;
                     Debug.Log("Slot 4 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                    DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-                    dmScript.dialogueViewedSave++; //NOT WORKING
-
-                    jesterCureTrigger = true;
+                    
                 }
 
                 // Check if the item is on an interactable layer
@@ -447,6 +452,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     
                 }
 
+                // door scene transition behavior
                 if (hit.collider.CompareTag("Door"))
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
@@ -457,6 +463,31 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
 
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                }
+
+                if (hit.collider.CompareTag("JesterPoster"))
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    if (dialogueTrigger != null)
+                    {
+                        
+
+                        interactedJesterPoster = true;
+                        dialogueTrigger.startConvo();
+                        
+                    }
+                }
+
+                if (hit.collider.CompareTag("JesterCure") && interactedJesterPoster)
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    if (dialogueTrigger != null)
+                    {
+                        
+
+                        jesterCureTrigger = true;
+                        dialogueTrigger.startConvo();
+                    }
                 }
             }
         }

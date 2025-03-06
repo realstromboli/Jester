@@ -7,6 +7,7 @@ public class DialogueTriggerRepeatable : MonoBehaviour
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
     public int viewNumber;
+    public int setDialogueViewedSave;
     public LayerMask interactableLayer;
     public PlayerCamera pcScript;
     public PlayerMovement pmScript;
@@ -40,9 +41,10 @@ public class DialogueTriggerRepeatable : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave == viewNumber)
+        if (dialogueManager.dialogueViewedSave >= viewNumber)
         {
             DialogueManager.StartConversation(convo);
+            dialogueManager.dialogueViewedSave = setDialogueViewedSave;
         }
     }
 }

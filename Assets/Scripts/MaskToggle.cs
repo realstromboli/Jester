@@ -18,6 +18,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
     public LayerMask magicLayer;
+    public LayerMask ghostInteractableLayer; // New LayerMask for GhostInteractable layer
 
     void Start()
     {
@@ -97,8 +98,26 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
-            // Check if the object is on the magic layer
-            if (((1 << obj.layer) & magicLayer) != 0)
+            //// Check if the object is on the magic layer
+            //if (((1 << obj.layer) & magicLayer) != 0)
+            //{
+            //    // Toggle the Renderer component
+            //    Renderer renderer = obj.GetComponent<Renderer>();
+            //    if (renderer != null)
+            //    {
+            //        renderer.enabled = isVisible;
+            //    }
+
+            //    // Toggle the Collider component
+            //    Collider collider = obj.GetComponent<Collider>();
+            //    if (collider != null)
+            //    {
+            //        collider.enabled = isVisible;
+            //    }
+            //}
+
+            // Check if the object is on the ghost interactable layer
+            if (((1 << obj.layer) & ghostInteractableLayer) != 0)
             {
                 // Toggle the Renderer component
                 Renderer renderer = obj.GetComponent<Renderer>();

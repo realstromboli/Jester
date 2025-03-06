@@ -35,7 +35,14 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (dialogueManager.dialogueViewedSave == viewNumber)
         {
+            
             DialogueManager.StartConversation(convo);
+            //Destroy(this);
+
+            // add if statement for conditional for correct and incorrect answers
+
+            DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+            dmScript.dialogueViewedSave++;
         }
     }
 }

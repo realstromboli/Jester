@@ -24,6 +24,7 @@ public class GameData
     public string currentSceneName;
 
     public bool jesterCureTrigger;
+    public bool interactedJesterPoster;
 
     // The values defined in this constructor will be the default values
     // the game starts when there's no save file
@@ -53,6 +54,7 @@ public class GameData
 
         dialogueViewedSave = 0;
 
+        interactedJesterPoster = false;
         jesterCureTrigger = false;
     }
 }
