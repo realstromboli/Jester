@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     float verticalInput;
 
     Vector3 moveDirection;
-    Rigidbody rb;
+    public Rigidbody rb;
     private GameManager gmScript;
     public Camera pcScript;
     public DialogueManager dmScript;

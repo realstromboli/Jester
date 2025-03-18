@@ -86,6 +86,7 @@ public class Grappling : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
 
             //grappleFailParticles.Play();
+            
         }
 
         lineRenderer.enabled = true;
@@ -120,9 +121,13 @@ public class Grappling : MonoBehaviour
         
         grappling = false;
 
+        pmScript.activeGrapple = false;
+
         grappleCdTimer = grappleCooldown;
 
         lineRenderer.enabled = false;
+
+        playerRb.drag = 5f;
 
         pmScript.moveSpeed = 25f;
     }
