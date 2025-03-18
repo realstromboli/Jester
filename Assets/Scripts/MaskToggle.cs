@@ -24,7 +24,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     {
         maskStatus = false;
         maskIndicator.gameObject.SetActive(false);
-        playerAnimation = GetComponent<Animator>();
+        playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
 
@@ -36,7 +36,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         if (Input.GetKeyDown(KeyCode.Q) && readyToPress == true)
         {
             maskToggle();
-            playerAnimation.SetTrigger("Test Trigger");
+            
             readyToPress = false;
         }
 
@@ -63,11 +63,13 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         {
             maskStatus = true;
             SetLayerVisibility(true);
+            playerAnimation.SetTrigger("Mask On Trigger");
         }
         else if (maskStatus == true)
         {
             maskStatus = false;
             SetLayerVisibility(false);
+            playerAnimation.SetTrigger("Mask Off Trigger");
         }
         StartCoroutine(MaskCooldown());
         Debug.Log("LOL");
