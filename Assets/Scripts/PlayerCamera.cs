@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCamera : MonoBehaviour
 {
-
     public float sensitivityX;
     public float sensitivityY;
 
@@ -18,14 +17,13 @@ public class PlayerCamera : MonoBehaviour
 
     public GameManager gmScript;
     private DialogueManager dialogueManager;
+    public GravitySwap gravitySwapScript;
 
     void Start()
     {
-
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
     }
-
 
     void Update()
     {
@@ -35,14 +33,22 @@ public class PlayerCamera : MonoBehaviour
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY;
 
-            yRotation += mouseX;
-            xRotation -= mouseY;
+            if (gravitySwapScript.gravityReversed)
+            {
+                yRotation -= mouseX;
+                xRotation += mouseY;
+            }
+            else
+            {
+                yRotation += mouseX;
+                xRotation -= mouseY;
+            }
 
             //rotate no more than 90 degrees
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             //rotates camera and player orientation
-            camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            camHolder.rotation = Quaternion.Euler(xRotation, yRotation, gravitySwapScript.gravityReversed ? 180f : 0f);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
             playerObj.rotation = Quaternion.Euler(0, yRotation, 0);
 

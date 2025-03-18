@@ -27,12 +27,14 @@ public class Grappling : MonoBehaviour
     public KeyCode grappleKey = KeyCode.Mouse1;
 
     private bool grappling;
+    public Rigidbody playerRb;
 
     //public ParticleSystem grappleFailParticles;
 
     void Start()
     {
         pmScript = GetComponent<PlayerMovement>();
+        playerRb = GetComponent<Rigidbody>();
     }
 
     
@@ -66,7 +68,9 @@ public class Grappling : MonoBehaviour
 
         grappling = true;
 
-        pmScript.freeze = true;
+        pmScript.activeGrapple = true;
+
+        //pmScript.freeze = true;
 
         RaycastHit hit;
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
@@ -91,12 +95,14 @@ public class Grappling : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        pmScript.freeze = false;
+        //pmScript.freeze = false;
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
         float grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
         float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
+
+        pmScript.Jump();
 
         if (grapplePointRelativeYPos < 0)
         {

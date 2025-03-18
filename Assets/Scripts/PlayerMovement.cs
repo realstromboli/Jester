@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     private GameManager gmScript;
     public Camera pcScript;
     public DialogueManager dmScript;
+    public GravitySwap gravitySwapScript;
     public float raycastDistance = 3;
 
     public bool activeGrapple;
@@ -108,7 +109,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         readyToJump = true;
         isRunning = false;
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
+        gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
     }
 
     void Update()
@@ -121,7 +122,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         //RaycastHit hit;
         //ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        if (gravitySwapScript.gravityReversed)
+        {
+            // Perform ground check with reversed gravity (raycast upwards)
+            grounded = Physics.Raycast(transform.position, Vector3.up, playerHeight * 0.5f + 0.2f, whatIsGround);
+        }
+        else if (!gravitySwapScript.gravityReversed)
+        {
+            // Perform ground check with normal gravity (raycast downwards)
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        }
 
         //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
 
@@ -136,29 +146,24 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
 
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    playerAnimation.SetTrigger("Test Trigger");
-        //}
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DisableMagicLayerObjects();
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    DisableMagicLayerObjects();
+        //}
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
     }
 
-    //public void PlayAnimation()
-    //{
-
-    //    playerAnimation.Play("test anim");
-
-    //}
+    public void AnimationManager()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -170,7 +175,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        //jumping
+        // Swap left and right movement axes if gravity is reversed
+        if (gravitySwapScript.gravityReversed)
+        {
+            horizontalInput = -horizontalInput;
+        }
+
+        // Jumping
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
@@ -283,14 +294,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public bool exitingSlope;
 
-    private void Jump()
+    public void Jump()
     {
         exitingSlope = true;
 
-        //resets y velocity
+        // Resets y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        // Determine the jump direction based on gravityReversed
+        Vector3 jumpDirection = gravitySwapScript.gravityReversed ? Vector3.down : Vector3.up;
+
+        // Apply the jump force in the determined direction
+        rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
 
         playerAnimation.SetTrigger("Jump Trigger");
     }
@@ -325,7 +340,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        Vector3 raycastDirection = gravitySwapScript.gravityReversed ? Vector3.up : Vector3.down;
+
+        if (Physics.Raycast(transform.position, raycastDirection, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -501,6 +518,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity) / 3);
+
+        // If gravity is reversed, set the velocities to negative
+        if (gravitySwapScript.gravityReversed)
+        {
+            velocityY = -velocityY * 1.5f;
+        }
 
         return velocityXZ + velocityY;
     }

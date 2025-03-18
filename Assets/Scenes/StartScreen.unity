@@ -579,6 +579,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2028923294}
+    - targetCorrespondingSourceObject: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2028923299}
   m_SourcePrefab: {fileID: 100100000, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
 --- !u!114 &532473940 stripped
 MonoBehaviour:
@@ -958,6 +961,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 577592829}
+    - target: {fileID: 6417363684055785042, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 6900120911874833033, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1391,6 +1398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5745254566375511095, guid: d7935fafad81a0e4a8241da417249422, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6517334
+      objectReference: {fileID: 0}
     - target: {fileID: 8239520233496626095, guid: d7935fafad81a0e4a8241da417249422, type: 3}
       propertyPath: m_Name
       value: NewJonCanvas
@@ -1463,13 +1474,33 @@ MonoBehaviour:
   gunTip: {fileID: 1079474828}
   whatIsGrappleable:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 4294967295
   lineRenderer: {fileID: 34544978}
   maxGrappleDistance: 50
   grappleDelayTime: 0.25
-  overshootYAxis: 5
-  grappleCooldown: 1
+  overshootYAxis: 10
+  grappleCooldown: 0.75
   grappleKey: 324
+  playerRb: {fileID: 0}
+--- !u!114 &2028923299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217325554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf2937fc5e7c5642a0031dbb0b6983c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityReversed: 0
+  gravityStrength: 20
+  cameraHolder: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  raycastDistance: 50
 --- !u!4 &2068482387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3064247510934379709, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
@@ -2205,10 +2236,10 @@ SceneRoots:
   - {fileID: 881336183}
   - {fileID: 405320779}
   - {fileID: 1523432356}
-  - {fileID: 1492812440}
   - {fileID: 6606533187598767411}
   - {fileID: 3720474352569880023}
   - {fileID: 1532904044}
   - {fileID: 2102166774}
   - {fileID: 6883351016037065563}
   - {fileID: 1861384056}
+  - {fileID: 1492812440}
