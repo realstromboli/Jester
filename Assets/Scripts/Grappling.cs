@@ -113,6 +113,10 @@ public class Grappling : MonoBehaviour
         pmScript.JumpToPosition(grapplePoint, highestPointOnArc);
 
         Invoke(nameof(StopGrapple), 1f);
+
+        // Debug log for grapplePoint and lowestPoint
+        Debug.Log($"Grapple Point: {grapplePoint}");
+        Debug.Log($"Lowest Point: {lowestPoint}");
     }
 
     public void StopGrapple()
