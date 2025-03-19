@@ -1143,6 +1143,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9051661506752831399, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: far clip plane
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051661506752831399, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
       propertyPath: near clip plane
       value: 0.1
       objectReference: {fileID: 0}
@@ -1476,7 +1480,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   lineRenderer: {fileID: 34544978}
-  maxGrappleDistance: 50
+  maxGrappleDistance: 1000
   grappleDelayTime: 0.25
   overshootYAxis: 10
   grappleCooldown: 0.75

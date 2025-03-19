@@ -208,8 +208,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 7 is circus tent
         //scene 5 is inside trailer
         //scene 1 is test scene
-        
-        SceneManager.LoadScene(5);
+
+        SceneManager.LoadScene(10);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public IEnumerator PlayerPosDelay()
     {
         yield return null;
-        playerPosition = new Vector3(212, 13, 91);
+        playerPosition = new Vector3(2090, 83, 134);
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
@@ -582,7 +582,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "Inside Trailer";
+            sceneName = "Spirit World";
         }
 
         // Load the saved scene
