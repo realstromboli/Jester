@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
-
     [Header("Movement")]
     public float moveSpeed;
     public float runSpeed;
@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode runKey = KeyCode.LeftShift;
 
-
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -38,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
     //private AudioSource playerAudio;
-    //public Animator playerAnimation;
+    public Animator playerAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -46,6 +45,18 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    private GameManager gmScript;
+
+    [Header("Item Stuff")]
+
+    [SerializeField]
+    private string itemName; // Changed to string
+
+    [SerializeField]
+    private int itemQuantity; // Changed to int
+
+    [SerializeField]
+    private Sprite itemSprite;
 
     public MovementState state;
 
@@ -59,15 +70,32 @@ public class PlayerMovement : MonoBehaviour
 
     public bool freeze;
 
+    public static PlayerMovement instance
+    {
+        get; private set;
+    }
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimation = GetComponent<Animator>();
         rb.freezeRotation = true;
         readyToJump = true;
         isRunning = false;
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    
     void Update()
     {
         PlayerInput();
@@ -80,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         //grounded = Physics.SphereCast(transform.position + Vector3.up * 5, 3, Vector3.down, out hit, playerHeight, whatIsGround);
-
 
         //handles drag per ground check
         if (grounded)
@@ -95,13 +122,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //playerAnimation.SetFloat("move_speed", lolVelocity.magnitude);
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    playerAnimation.SetTrigger("test_trigger");
-        //    //PlayAnimation();
-        //}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerAnimation.SetTrigger("Test Trigger");
+        }
 
-
+        playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
     }
 
     //public void PlayAnimation()
@@ -144,9 +170,9 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.freeze;
         }
-        
+
         // Mode - Running
-        else if(grounded && Input.GetKey(runKey))
+        else if (grounded && Input.GetKey(runKey))
         {
             state = MovementState.running;
             desiredMoveSpeed = runSpeed;
@@ -157,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
-        
+
         else
         {
             state = MovementState.air;
@@ -210,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
         }
-        
+
         else
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -235,11 +261,13 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         exitingSlope = true;
-        
+
         //resets y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        playerAnimation.SetTrigger("Jump Trigger");
     }
 
     private void ResetJump()
@@ -272,7 +300,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -297,5 +325,27 @@ public class PlayerMovement : MonoBehaviour
         freeze = false;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
+
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Placeholder")
+        {
+            itemName = "Placeholder";
+            itemQuantity = 1;
+            itemSprite = gmScript.placeholderSprite;
+            gmScript.AddItem(itemName, itemQuantity, itemSprite);
+            Debug.Log("XDDDDDDD");
+        }
     }
 }

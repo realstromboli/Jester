@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class StickAround2 : MonoBehaviour
 {
+    
+    // MAKE A COPY FOR EACH ITEM THAT NEEDS TO PERSIST BETWEEN SCENES
+    // THIS SCRIPT IS FOR ITEMS THAT NEED TO PERSIST BUT DON'T HAVE OTHER CODE REALLY
 
-    public Transform cameraPosition;
-    public Vector3 offset;
-
-    public static MoveCamera instance
+    public static StickAround2 instance
     {
         get; private set;
     }
@@ -26,12 +26,12 @@ public class MoveCamera : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        transform.position = cameraPosition.position + offset;
+
     }
 }
