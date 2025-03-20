@@ -33,7 +33,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && readyToPress == true)
+        if (Input.GetKeyDown(KeyCode.Q) && readyToPress && pmScript.hasMask == true)
         {
             maskToggle();
             

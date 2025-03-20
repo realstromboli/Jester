@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool hasTrapezistPower;
     public bool hasMagicianPower;
 
-    public bool interactedJesterPoster;
     public bool jesterCureTrigger;
 
     public MovementState state;
@@ -110,6 +109,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         isRunning = false;
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
+        mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
     }
 
     void Update()
@@ -373,7 +373,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         StartCoroutine(PosSetDelay(data.playerPosition));
 
-        this.interactedJesterPoster = data.interactedJesterPoster;
         this.jesterCureTrigger = data.jesterCureTrigger;
     }
 
@@ -381,7 +380,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         data.playerPosition = this.transform.position;
 
-        data.interactedJesterPoster = this.interactedJesterPoster;
         data.jesterCureTrigger = this.jesterCureTrigger;
     }
 
@@ -414,6 +412,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //    }
     //}
 
+    public bool hasMask;
+    public MaskToggle mtScript;
 
     public void ItemInteraction()
     {
@@ -452,11 +452,44 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     
                 }
 
+                if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
+                {
+                    hasMask = true;
+                    mtScript.maskToggle();
+                    mtScript.readyToPress = false;
+                    Destroy(hit.collider.gameObject);
+                    GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+                    foreach (GameObject obj in allObjects)
+                    {
+
+
+                        // Check if the object is on the ghost interactable layer
+                        if (obj.CompareTag("Jester"))
+                        {
+                            // Toggle the Renderer component
+                            Renderer renderer = obj.GetComponent<Renderer>();
+                            if (renderer != null)
+                            {
+                                renderer.enabled = true;
+                            }
+
+                            // Toggle the Collider component
+                            Collider collider = obj.GetComponent<Collider>();
+                            if (collider != null)
+                            {
+                                collider.enabled = true;
+                            }
+                        }
+                    }
+                }
+
                 // Check if the item is on an interactable layer
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable"))
                 {
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
+                    QuestionDialogueTrigger questionDialogueTrigger = hit.collider.GetComponent<QuestionDialogueTrigger>();
                     Debug.Log("Dialogue hit interactable");
                     if (dialogueTriggerRepeatable != null)
                     {
@@ -466,7 +499,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         dialogueTrigger.startConvo();
                     }
-                    
+                    else if (questionDialogueTrigger != null)
+                    {
+                        questionDialogueTrigger.startConvo();
+                    }
                 }
 
                 // door scene transition behavior
@@ -487,23 +523,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
-                        
+                        if (dmScript.dialogueViewedSave == 1)
+                        {
+                            jesterCureTrigger = true;
+                            //dmScript.dialogueViewedSave++;
+                        }
 
-                        interactedJesterPoster = true;
+
                         dialogueTrigger.startConvo();
                         
-                    }
-                }
-
-                if (hit.collider.CompareTag("JesterCure") && interactedJesterPoster)
-                {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
-                    if (dialogueTrigger != null)
-                    {
                         
-
-                        jesterCureTrigger = true;
-                        dialogueTrigger.startConvo();
                     }
                 }
             }
@@ -522,7 +551,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         // If gravity is reversed, set the velocities to negative
         if (gravitySwapScript.gravityReversed)
         {
-            velocityY = -velocityY * 1.5f;
+            velocityY = -velocityY * 2.8f;
         }
 
         return velocityXZ + velocityY;

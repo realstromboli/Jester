@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maxGrappleDistance
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: pcScript
@@ -954,6 +954,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 577592829}
+    - target: {fileID: 5978631047530663091, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978631047530663091, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978631047530663091, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978631047530663091, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 6137567292575826855, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
