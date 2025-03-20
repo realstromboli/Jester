@@ -452,6 +452,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: pcScript
       value: 
@@ -459,6 +463,10 @@ PrefabInstance:
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: runSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: jumpForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: moveSpeed
@@ -1480,7 +1488,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   lineRenderer: {fileID: 34544978}
-  maxGrappleDistance: 1000
+  maxGrappleDistance: 100
   grappleDelayTime: 0.25
   overshootYAxis: 10
   grappleCooldown: 0.75
@@ -1499,7 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityReversed: 0
-  gravityStrength: 20
+  gravityStrength: 40
   cameraHolder: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
