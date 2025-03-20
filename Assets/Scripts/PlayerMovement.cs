@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool hasMagicianPower;
 
     public bool jesterCureTrigger;
+    public bool trapezistCureTrigger;
 
     public MovementState state;
 
@@ -506,7 +507,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door"))
+                if (hit.collider.CompareTag("Door") && hasJesterPower)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
@@ -533,6 +534,24 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dialogueTrigger.startConvo();
                         
                         
+                    }
+                }
+
+                if (hit.collider.CompareTag("TrapezistPoster"))
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    if (dialogueTrigger != null)
+                    {
+                        if (dmScript.dialogueViewedSave == 5)
+                        {
+                            trapezistCureTrigger = true;
+                            //dmScript.dialogueViewedSave++;
+                        }
+
+
+                        dialogueTrigger.startConvo();
+
+
                     }
                 }
             }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestionDialogueTrigger : MonoBehaviour
+public class QuestionDialogueTrigger1 : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
@@ -27,12 +27,11 @@ public class QuestionDialogueTrigger : MonoBehaviour
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        if (dialogueManager.dialogueViewedSave >= 3 )
+        if (dialogueManager.dialogueViewedSave >= 6)
         {
             objectRenderer.material = newMaterial;
-            dtScript = GameObject.Find("HiddenDialogueSpeaker").GetComponent<DialogueTrigger>();
-            dtScript.startConvo();
-            pmScript.hasJesterPower = true;
+            //dtScript = GameObject.Find("HiddenDialogueSpeaker").GetComponent<DialogueTrigger>();
+            //dtScript.startConvo();
             Destroy(this);
         }
     }

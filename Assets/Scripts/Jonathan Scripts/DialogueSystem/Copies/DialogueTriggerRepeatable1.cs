@@ -2,37 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestionDialogueTrigger : MonoBehaviour
+public class DialogueTriggerRepeatable1 : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
     public int viewNumber;
+    public int setDialogueViewedSave;
     public LayerMask interactableLayer;
     public PlayerCamera pcScript;
-    public DialogueTrigger dtScript;
     public PlayerMovement pmScript;
-    public Material newMaterial;
-
-    public Renderer objectRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
-        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        if (dialogueManager.dialogueViewedSave >= 3 )
+        if (pmScript.trapezistCureTrigger == true)
         {
-            objectRenderer.material = newMaterial;
-            dtScript = GameObject.Find("HiddenDialogueSpeaker").GetComponent<DialogueTrigger>();
-            dtScript.startConvo();
-            pmScript.hasJesterPower = true;
             Destroy(this);
         }
     }
@@ -48,16 +41,10 @@ public class QuestionDialogueTrigger : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave == viewNumber)
+        if (dialogueManager.dialogueViewedSave >= viewNumber)
         {
-            
             DialogueManager.StartConversation(convo);
-            //Destroy(this);
-
-            // add if statement for conditional for correct and incorrect answers
-
-            DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-            
+            dialogueManager.dialogueViewedSave = setDialogueViewedSave;
         }
     }
 }

@@ -224,10 +224,19 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialogueCanvas.GetComponent<Canvas>().sortingOrder = 0;
 
         // Handle the option selected logic here
+        if (option == "Colombo" && correctAnswersCount != 1)
+        {
+            correctAnswersCount = -1;
+        }
+
         if (option == "Antonio" || option == "Lottie" || option == "Desire" || option == "Colombo" || option == "Green" || option == "Montague" || option == "The Magnificent")
         {
             correctAnswersCount++;
         }
+
+
+
+        
 
         if (option != "Montague" && correctAnswersCount == 2)
         {
@@ -239,6 +248,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         Debug.Log(option);
 
+        if (option == "Antonio" && correctAnswersCount > 0)
+        {
+            correctAnswersCount = 1;
+        }
+        
 
         // For now, just continue the conversation
         foreach (Transform child in buttonContainer)
