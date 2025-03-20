@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a265629390da5d048b9048e88bfa94cb, type: 3}
-  m_Name: Act1Scene9.2
+  m_Name: Act1Scene3.4
   m_EditorClassIdentifier: 
   allLines:
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: "Ah, I\u2019m back! Thank you! Good thing you were able to understand
-      what to do through that page. I was lucky enough to get it here before I lost
-      control.\r"
+    dialogue: "Ah, I\u2019m back! Thank you!\r"
+    dialogueOptions: []
+  - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
+    dialogueAudio: {fileID: 0}
+    dialogue: Good thing you were able to understand what to do through that page.
+      I was lucky enough to get it here before I lost control.
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
     dialogueAudio: {fileID: 0}
@@ -47,21 +50,17 @@ MonoBehaviour:
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: 'Unfortunately, the reasoning for my death eludes me, as do many of
-      my other memories. '
+    dialogue: "Yes, it was really unfortunate. I died in an accident during a performance,
+      but that\u2019s neither here nor there."
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: Of course.
-    dialogueOptions: []
-  - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
-    dialogueAudio: {fileID: 0}
-    dialogue: Well, what can you remember?
+    dialogue: Well, what else can you tell me? This is all new to me.
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: I remember that I was a magician, a real one, and I was using my powers
-      for good, wanting to entertain the masses.
+    dialogue: Well, I was a magician, a real one, and I was using my powers for good,
+      wanting to entertain the masses.
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
@@ -83,36 +82,41 @@ MonoBehaviour:
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: "We\u2019ll have more time to talk later, but I still need your help
-      tonight."
+    dialogue: Well we can talk more later, but I need to figure out how to help the
+      others.
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: What do you need?
+    dialogue: "There are other ghosts here? I can help out! I\u2019m clearly a professional
+      ghost saver after all."
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: There are other ghosts around here that have lost their humanity before
-      me. I tried to hold on as long as I could, but I reached my limit last night.
+    dialogue: "Um\u2026 The other ghosts around here have lost their humanity long
+      before me. I tried to hold on as long as I could, but I reached my limit last
+      night."
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: So you need me to help them regain their senses the same way I did
-      with you?
+    dialogue: Is there something wrong with that?
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: "Precisely. I can\u2019t remember many details about them, but I know
-      one likes to hang out in the Big Top. We should start there."
+    dialogue: "The longer a ghost is gone, the less of them exist. I\u2019m not sure
+      if you\u2019d be up to the task."
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: "It seems like it\u2019s going to be a long night\u2026 Alright, I\u2019ll
-      see if I can take care of it."
+    dialogue: "You don\u2019t have to worry about me, I can take care of myself.
+      I just want to help you all if I can."
     dialogueOptions: []
   - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
     dialogueAudio: {fileID: 0}
-    dialogue: "I can\u2019t thank you enough, but before you leave, I have something
-      for you. I can attach myself to the mask and give you more power. Just hold
-      still."
+    dialogue: "I guess you aren\u2019t going to take no for an answer\u2026 I guess
+      we can help them together."
+    dialogueOptions: []
+  - speaker: {fileID: 11400000, guid: a03a42448b39ea94a8d4dbe68b31d1b7, type: 2}
+    dialogueAudio: {fileID: 0}
+    dialogue: I have something for you before we leave, though. I can attach myself
+      to the mask and give you more power. Just hold still.
     dialogueOptions: []
