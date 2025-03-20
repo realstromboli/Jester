@@ -462,11 +462,11 @@ PrefabInstance:
       objectReference: {fileID: 1553579440}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: runSpeed
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: jumpForce
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: moveSpeed
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityReversed: 0
-  gravityStrength: 40
+  gravityStrength: 60
   cameraHolder: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
