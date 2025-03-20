@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
 
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene(5);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public IEnumerator PlayerPosDelay()
     {
         yield return null;
-        playerPosition = new Vector3(2090, 83, 134);
+        playerPosition = new Vector3(203, 14, 13);
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
