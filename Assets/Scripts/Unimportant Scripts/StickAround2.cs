@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StickAround2 : MonoBehaviour
 {
-    
+
     // MAKE A COPY FOR EACH ITEM THAT NEEDS TO PERSIST BETWEEN SCENES
     // THIS SCRIPT IS FOR ITEMS THAT NEED TO PERSIST BUT DON'T HAVE OTHER CODE REALLY
 
@@ -26,12 +26,12 @@ public class StickAround2 : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
-
+    
     void Update()
     {
-
+        
     }
 }

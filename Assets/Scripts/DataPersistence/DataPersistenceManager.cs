@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.PageUp))
         {
+            this.dataPersistenceObjects = FindAllDataPersistenceObjects();
             SaveGame();
         }
         if (Input.GetKeyDown(KeyCode.PageDown))
@@ -90,6 +92,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         Debug.Log("Saved button count = " + gameData.maskCount);
+        Debug.Log("Saved dialogue count = " + gameData.dialogueViewedSave);
 
         // save data to a file using data handler
         fdhScript.Save(gameData);
