@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     float verticalInput;
 
     Vector3 moveDirection;
-    Rigidbody rb;
+    public Rigidbody rb;
     private GameManager gmScript;
     public Camera pcScript;
     public DialogueManager dmScript;
@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        playerAnimation = GetComponent<Animator>();
+        playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();
         rb.freezeRotation = true;
         readyToJump = true;
         isRunning = false;
