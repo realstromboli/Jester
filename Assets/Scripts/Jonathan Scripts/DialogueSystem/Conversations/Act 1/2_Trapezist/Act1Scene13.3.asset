@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d909ba0833ad19429c90b98ea89490d, type: 3}
-  m_Name: Antonio
+  m_Script: {fileID: 11500000, guid: a265629390da5d048b9048e88bfa94cb, type: 3}
+  m_Name: Act1Scene13.3
   m_EditorClassIdentifier: 
-  speakerName: Antonio
-  speakerSprite: {fileID: 21300000, guid: 0fbea4b9dac0e8a49adb3deedff83e91, type: 3}
-  isSpriteless: 0
+  allLines:
+  - speaker: {fileID: 11400000, guid: 87aeb4586b2c7154a8ad18806dcc400e, type: 2}
+    dialogueAudio: {fileID: 0}
+    dialogue: WAIT, NO-
+    dialogueOptions: []
