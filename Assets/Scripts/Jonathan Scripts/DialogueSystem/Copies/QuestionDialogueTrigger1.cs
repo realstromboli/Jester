@@ -18,7 +18,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        
     }
 
     // Update is called once per frame
@@ -26,12 +26,13 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 6)
+        if (dialogueManager.dialogueViewedSave >= 7)
         {
             objectRenderer.material = newMaterial;
-            //dtScript = GameObject.Find("HiddenDialogueSpeaker").GetComponent<DialogueTrigger>();
-            //dtScript.startConvo();
+            dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
+            dtScript.startConvo();
             Destroy(this);
         }
     }

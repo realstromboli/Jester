@@ -36,7 +36,7 @@ public class GameData
         //203, 17, 13 for inside trailer
         //2090, 75, 1347 for spririt world
 
-        playerPosition = new Vector3(2090, 75, 1347);
+        playerPosition = new Vector3(203, 17, 13);
 
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;

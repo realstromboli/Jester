@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Camera pcScript;
     public DialogueManager dmScript;
     public GravitySwap gravitySwapScript;
+    public DialogueTrigger dtScript;
     public float raycastDistance = 3;
 
     public bool activeGrapple;
@@ -149,11 +150,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Vector3 lolVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
-
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    DisableMagicLayerObjects();
-        //}
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
     }
@@ -450,7 +446,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     gmScript.slot4Full = true;
                     Debug.Log("Slot 4 Filled");
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                    
                 }
 
                 if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
@@ -463,8 +458,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     foreach (GameObject obj in allObjects)
                     {
-
-
                         // Check if the object is on the ghost interactable layer
                         if (obj.CompareTag("Jester"))
                         {
@@ -486,11 +479,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // Check if the item is on an interactable layer
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
                 {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     QuestionDialogueTrigger questionDialogueTrigger = hit.collider.GetComponent<QuestionDialogueTrigger>();
+                    DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
+                    QuestionDialogueTrigger1 questionDialogueTrigger1 = hit.collider.GetComponent<QuestionDialogueTrigger1>();
+
                     Debug.Log("Dialogue hit interactable");
                     if (dialogueTriggerRepeatable != null)
                     {
@@ -503,6 +499,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     else if (questionDialogueTrigger != null)
                     {
                         questionDialogueTrigger.startConvo();
+                    }
+                    else if (dialogueTriggerRepeatable1 != null)
+                    {
+                        dialogueTriggerRepeatable1.startConvo();
+                    }
+                    else if (questionDialogueTrigger1 != null)
+                    {
+                        questionDialogueTrigger1.startConvo();
                     }
                 }
 
@@ -530,10 +534,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             //dmScript.dialogueViewedSave++;
                         }
 
-
                         dialogueTrigger.startConvo();
-                        
-                        
                     }
                 }
 
@@ -542,21 +543,44 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
-                        if (dmScript.dialogueViewedSave == 5)
+                        if (dmScript.dialogueViewedSave >= 5)
                         {
                             trapezistCureTrigger = true;
                             //dmScript.dialogueViewedSave++;
                         }
 
-
                         dialogueTrigger.startConvo();
 
+                        if (dmScript.dialogueViewedSave == 8)
+                        {
+                            Destroy(dialogueTrigger);
+                            dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                            dtScript.startConvo();
+                            StartCoroutine(WaitForSeconds());
+                        }
 
+                        IEnumerator WaitForSeconds()
+                        {
+                            yield return new WaitForSeconds(0.1f);
+                            enabledGhostWorld = true;
+                        }
+                    }
+
+                    if (dmScript.dialogueViewedSave == 9 && enabledGhostWorld == true)
+                    {
+                        SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                        Debug.Log("Entering Ghost World");
+                        if (sceneTransition != null)
+                        {
+                            StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                        }
                     }
                 }
             }
         }
     }
+
+    public bool enabledGhostWorld;
 
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
@@ -668,4 +692,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
         collider.enabled = true;
     }
+
+    //public Transform camHolder;
+    //public Transform playerObj;
+    //public Transform playerCam;
+    //public Vector3 playerTransferRotation;
+
+    //private void SetPlayerCamRotation()
+    //{
+    //    if (camHolder != null)
+    //    {
+    //        // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
+    //        camHolder.rotation = Quaternion.Euler(playerTransferRotation);
+    //        orientation.rotation = Quaternion.Euler(playerTransferRotation);
+    //        playerObj.rotation = Quaternion.Euler(playerTransferRotation);
+    //        playerCam.rotation = Quaternion.Euler(playerTransferRotation);
+    //        Debug.Log($"PlayerCam Rotation Set: {playerTransferRotation}");
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("PlayerCam is not assigned.");
+    //    }
+    //}
 }

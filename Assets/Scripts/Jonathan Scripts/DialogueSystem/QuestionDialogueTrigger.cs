@@ -18,7 +18,7 @@ public class QuestionDialogueTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class QuestionDialogueTrigger : MonoBehaviour
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
         if (dialogueManager.dialogueViewedSave >= 3 )
         {

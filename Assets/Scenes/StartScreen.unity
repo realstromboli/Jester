@@ -345,12 +345,28 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: camHolder
+      value: 
+      objectReference: {fileID: 2042910461}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: jumpForce
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maxYSpeed
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1553579443}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 1175540701}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: playerTransferRotation.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_Name
@@ -953,6 +969,11 @@ Transform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5837822247465111874, guid: 1f1d26f1c43084f40890a973273afdef, type: 3}
   m_PrefabInstance: {fileID: 1512035327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1175540701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2147394011338719321, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+  m_PrefabInstance: {fileID: 1523432356}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1198003304 stripped
 GameObject:
@@ -1560,6 +1581,10 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 206162023}
+    - target: {fileID: 9051661506752831399, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: far clip plane
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1846,6 +1871,11 @@ MonoBehaviour:
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2042910461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3049403615727023542, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+  m_PrefabInstance: {fileID: 1523432356}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2072998261 stripped
 GameObject:
