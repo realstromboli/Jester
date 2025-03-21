@@ -452,9 +452,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_UseGravity
       value: 1
+=======
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1553579443}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: gunTip
+      value: 
+      objectReference: {fileID: 1079474828}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: lineRenderer
+      value: 
+      objectReference: {fileID: 34544978}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: overshootYAxis
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: maxGrappleDistance
+      value: 100
+>>>>>>> Zach-3
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: pcScript
@@ -1447,6 +1469,7 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!136 &2028923293
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1541,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3064247510934379709, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Zach-3
 --- !u!1 &2072998261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7552627450240393273, guid: 553da350671931b42bebbf9ee7340290, type: 3}
