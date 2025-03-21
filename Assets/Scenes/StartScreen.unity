@@ -352,6 +352,14 @@ PrefabInstance:
       propertyPath: maxYSpeed
       value: 1000000
       objectReference: {fileID: 0}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 2042910460}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: playerTransferRotation.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 4301680102817231925, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1560,6 +1568,10 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 206162023}
+    - target: {fileID: 9051661506752831399, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: far clip plane
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1846,6 +1858,11 @@ MonoBehaviour:
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 805839338564505367, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
   m_PrefabInstance: {fileID: 405320779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2042910460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4828137216089863096, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+  m_PrefabInstance: {fileID: 1523432356}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2072998261 stripped
 GameObject:

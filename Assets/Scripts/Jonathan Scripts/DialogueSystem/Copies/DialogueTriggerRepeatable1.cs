@@ -15,14 +15,15 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
+        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         if (pmScript.trapezistCureTrigger == true)
         {
