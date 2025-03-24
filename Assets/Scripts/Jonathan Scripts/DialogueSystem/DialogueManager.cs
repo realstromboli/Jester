@@ -229,7 +229,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = -1;
         }
 
-        if (option == "Antonio" || option == "Lottie" || option == "Desire" || option == "Colombo" || option == "Green" || option == "Montague" || option == "The Magnificent")
+        if (option == "Antonio" || option == "Lottie" || option == "Désiré" || option == "Colombo" || option == "Green" || option == "Montague" || option == "\"The Magnificent\"")
         {
             correctAnswersCount++;
         }
