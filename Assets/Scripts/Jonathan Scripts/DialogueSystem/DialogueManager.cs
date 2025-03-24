@@ -229,6 +229,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = -1;
         }
 
+        if (option == "Green" && correctAnswersCount != 1)
+        {
+            correctAnswersCount = -1;
+        }
+
         if (option == "Antonio" || option == "Lottie" || option == "Désiré" || option == "Colombo" || option == "Green" || option == "Montague" || option == "\"The Magnificent\"")
         {
             correctAnswersCount++;
@@ -252,7 +257,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             correctAnswersCount = 1;
         }
-        
+
+        if (option == "Lottie" && correctAnswersCount > 0)
+        {
+            correctAnswersCount = 1;
+        }
 
         // For now, just continue the conversation
         foreach (Transform child in buttonContainer)

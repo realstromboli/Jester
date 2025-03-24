@@ -410,7 +410,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //}
 
     public bool hasMask;
+    public bool tPosterFixed;
     public MaskToggle mtScript;
+    public int tPosterPieceCount;
 
     public void ItemInteraction()
     {
@@ -420,33 +422,33 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
             {
-                if (hit.collider.CompareTag("Placeholder"))
-                {
-                    gmScript.slot1Full = true;
-                    Debug.Log("Slot 1 Filled");
-                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                }
+                //if (hit.collider.CompareTag("Placeholder"))
+                //{
+                //    gmScript.slot1Full = true;
+                //    Debug.Log("Slot 1 Filled");
+                //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                //}
 
-                if (hit.collider.CompareTag("Placeholder2"))
-                {
-                    gmScript.slot2Full = true;
-                    Debug.Log("Slot 2 Filled");
-                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                }
+                //if (hit.collider.CompareTag("Placeholder2"))
+                //{
+                //    gmScript.slot2Full = true;
+                //    Debug.Log("Slot 2 Filled");
+                //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                //}
 
-                if (hit.collider.CompareTag("Placeholder3"))
-                {
-                    gmScript.slot3Full = true;
-                    Debug.Log("Slot 3 Filled");
-                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                }
+                //if (hit.collider.CompareTag("Placeholder3"))
+                //{
+                //    gmScript.slot3Full = true;
+                //    Debug.Log("Slot 3 Filled");
+                //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                //}
 
-                if (hit.collider.CompareTag("Placeholder4")/* && hasJesterPower == true*/)
-                {
-                    gmScript.slot4Full = true;
-                    Debug.Log("Slot 4 Filled");
-                    //hit.collider.gameObject.SetActive(false); // Deactivate the item
-                }
+                //if (hit.collider.CompareTag("Placeholder4")/* && hasJesterPower == true*/)
+                //{
+                //    gmScript.slot4Full = true;
+                //    Debug.Log("Slot 4 Filled");
+                //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
+                //}
 
                 if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
                 {
@@ -538,6 +540,27 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
+                if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
+                {
+                    
+                    Destroy(hit.collider.gameObject);
+
+                    tPosterPieceCount++;
+
+                    if (tPosterPieceCount == 1)
+                    {
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                    }
+
+                    if (tPosterPieceCount == 2)
+                    {
+                        tPosterFixed = true;
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                    }
+                }
+
                 if (hit.collider.CompareTag("TrapezistPoster"))
                 {
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
@@ -545,16 +568,25 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         if (dmScript.dialogueViewedSave >= 5)
                         {
-                            trapezistCureTrigger = true;
+                            
                             //dmScript.dialogueViewedSave++;
                         }
 
                         dialogueTrigger.startConvo();
 
-                        if (dmScript.dialogueViewedSave == 8)
+                        if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
+                        {
+                            
+                            dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                            dtScript.startConvo();
+                            gmScript.slot1Full = true;
+                            trapezistCureTrigger = true;
+                        }
+
+                        if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
                         {
                             Destroy(dialogueTrigger);
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                            dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
                             dtScript.startConvo();
                             StartCoroutine(WaitForSeconds());
                         }
@@ -566,7 +598,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         }
                     }
 
-                    if (dmScript.dialogueViewedSave == 9 && enabledGhostWorld == true)
+                    if (dmScript.dialogueViewedSave == 12 && enabledGhostWorld == true)
                     {
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                         Debug.Log("Entering Ghost World");

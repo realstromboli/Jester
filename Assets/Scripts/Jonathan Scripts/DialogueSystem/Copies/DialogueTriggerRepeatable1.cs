@@ -11,6 +11,7 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
     public LayerMask interactableLayer;
     public PlayerCamera pcScript;
     public PlayerMovement pmScript;
+    public int currentDialogueViewedSave;
 
     // Start is called before the first frame update
     void Start()
@@ -42,10 +43,18 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave >= viewNumber)
+        if (dialogueManager.dialogueViewedSave == viewNumber)
         {
             DialogueManager.StartConversation(convo);
             dialogueManager.dialogueViewedSave = setDialogueViewedSave;
+        }
+
+        else if (dialogueManager.dialogueViewedSave > viewNumber)
+        {
+            currentDialogueViewedSave = dialogueManager.dialogueViewedSave;
+            dialogueManager.dialogueViewedSave = 4;
+            DialogueManager.StartConversation(convo);
+            dialogueManager.dialogueViewedSave = currentDialogueViewedSave;
         }
     }
 }

@@ -345,8 +345,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot1Full)
         {
             slot1.SetActive(true);
-            item1.GetComponent<Renderer>().enabled = false;
-            item1.GetComponent<Collider>().enabled = false;
+            //item1.GetComponent<Renderer>().enabled = false;
+            //item1.GetComponent<Collider>().enabled = false;
         }
         else if (!slot1Full)
         {
@@ -356,8 +356,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot2Full)
         {
             slot2.SetActive(true);
-            item2.GetComponent<Renderer>().enabled = false;
-            item2.GetComponent<Collider>().enabled = false;
+            //item2.GetComponent<Renderer>().enabled = false;
+            //item2.GetComponent<Collider>().enabled = false;
         }
         else if (!slot2Full)
         {
@@ -461,8 +461,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item1Text()
     {
-        itemNameText.text = "Item 1";
-        itemDescriptionText.text = "This is what item 1 does";
+        itemNameText.text = "Lottie's Image";
+        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }

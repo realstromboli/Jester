@@ -28,7 +28,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 7)
+        if (dialogueManager.dialogueViewedSave >= 10)
         {
             objectRenderer.material = newMaterial;
             dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
@@ -48,7 +48,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave == viewNumber)
+        if (dialogueManager.dialogueViewedSave == viewNumber && pmScript.trapezistCureTrigger)
         {
             
             DialogueManager.StartConversation(convo);

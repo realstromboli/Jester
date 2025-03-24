@@ -48,10 +48,12 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         if (maskStatus == false)
         {
             maskIndicator.gameObject.SetActive(false);
+            SetLayerVisibility(false);
         }
         else if (maskStatus == true)
         {
             maskIndicator.gameObject.SetActive(true);
+            SetLayerVisibility(true);
         }
 
         maskCountText.text = "" + maskCount;
