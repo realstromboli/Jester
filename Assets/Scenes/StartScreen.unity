@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 2042910461}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: jumpForce
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maxYSpeed
@@ -368,6 +368,10 @@ PrefabInstance:
     - target: {fileID: 8757356253965863426, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: gravityStrength
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757356253965863426, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: raycastDistance
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
