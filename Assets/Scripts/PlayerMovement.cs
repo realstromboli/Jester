@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -73,6 +74,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public bool jesterCureTrigger;
     public bool trapezistCureTrigger;
+    public bool magicianCureTrigger;
 
     public MovementState state;
 
@@ -112,6 +114,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
+        cardCountText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -413,6 +416,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool tPosterFixed;
     public MaskToggle mtScript;
     public int tPosterPieceCount;
+    public int mCardsCount;
+    public TextMeshProUGUI cardCountText;
 
     public void ItemInteraction()
     {
@@ -488,6 +493,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     QuestionDialogueTrigger questionDialogueTrigger = hit.collider.GetComponent<QuestionDialogueTrigger>();
                     DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
                     QuestionDialogueTrigger1 questionDialogueTrigger1 = hit.collider.GetComponent<QuestionDialogueTrigger1>();
+                    DialogueTriggerRepeatable2 dialogueTriggerRepeatable2 = hit.collider.GetComponent<DialogueTriggerRepeatable2>();
+                    QuestionDialogueTrigger2 questionDialogueTrigger2 = hit.collider.GetComponent<QuestionDialogueTrigger2>();
 
                     Debug.Log("Dialogue hit interactable");
                     if (dialogueTriggerRepeatable != null)
@@ -509,6 +516,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     else if (questionDialogueTrigger1 != null)
                     {
                         questionDialogueTrigger1.startConvo();
+                    }
+                    else if (dialogueTriggerRepeatable2 != null)
+                    {
+                        dialogueTriggerRepeatable2.startConvo();
+                    }
+                    else if (questionDialogueTrigger2 != null)
+                    {
+                        questionDialogueTrigger2.startConvo();
                     }
                 }
 
@@ -608,8 +623,35 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         }
                     }
                 }
+
+                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 21)
+                {
+
+                    Destroy(hit.collider.gameObject);
+
+                    mCardsCount++;
+
+                    cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
+
+                    cardCountText.gameObject.SetActive(true);
+
+                    StartCoroutine(HUDPopUp());
+
+                    if (mCardsCount == 6)
+                    {
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker7").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        magicianCureTrigger = true;
+                    }
+                }
             }
         }
+    }
+
+    public IEnumerator HUDPopUp()
+    {
+        yield return new WaitForSeconds(3f);
+        cardCountText.gameObject.SetActive(false);
     }
 
     public bool enabledGhostWorld;

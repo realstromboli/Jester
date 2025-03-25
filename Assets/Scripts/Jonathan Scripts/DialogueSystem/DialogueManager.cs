@@ -234,7 +234,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = -1;
         }
 
-        if (option == "Antonio" || option == "Lottie" || option == "Désiré" || option == "Colombo" || option == "Green" || option == "Montague" || option == "\"The Magnificent\"")
+        if (option == "Montague" && correctAnswersCount != 2)
+        {
+            correctAnswersCount = -1;
+        }
+
+        if (option == "Antonio" || option == "Lottie" || option == "Désiré" || option == "Colombo" || option == "Green" || option == "Montague" || option == "The Magnificent")
         {
             correctAnswersCount++;
         }
@@ -245,9 +250,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if (option != "Montague" && correctAnswersCount == 2)
         {
-            dialogueViewedSave++;
+            dialogueViewedSave = 0;
         }
-        else if (option == "Montague" && correctAnswersCount == 3)
+        else if (option == "Montague" && correctAnswersCount == 2)
         {
             dialogueViewedSave++;
         }
@@ -259,6 +264,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         if (option == "Lottie" && correctAnswersCount > 0)
+        {
+            correctAnswersCount = 1;
+        }
+
+        if (option == "Désiré" && correctAnswersCount > 0)
         {
             correctAnswersCount = 1;
         }

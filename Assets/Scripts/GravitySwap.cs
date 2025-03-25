@@ -30,7 +30,7 @@ public class GravitySwap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (CheckForGroundAbove())
+            if (CheckForGround())
             {
                 gravityReversed = !gravityReversed;
                 UpdateTargetObjectRotation();
@@ -38,18 +38,21 @@ public class GravitySwap : MonoBehaviour
         }
     }
 
-    private bool CheckForGroundAbove()
+    private bool CheckForGround()
     {
-        // Perform a raycast upwards to check for objects on the "whatIsGround" layer
+        // Determine the direction based on gravityReversed
+        Vector3 direction = gravityReversed ? Vector3.down : Vector3.up;
+
+        // Perform a raycast in the determined direction to check for objects on the "whatIsGround" layer
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.up, out hit, raycastDistance, whatIsGround))
+        if (Physics.Raycast(transform.position, direction, out hit, raycastDistance, whatIsGround))
         {
-            Debug.Log("Ground detected above: " + hit.collider.name);
+            Debug.Log("Ground detected: " + hit.collider.name);
             return true;
         }
         else
         {
-            Debug.Log("No ground detected above");
+            Debug.Log("No ground detected");
             return false;
         }
     }
