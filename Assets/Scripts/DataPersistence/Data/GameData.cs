@@ -33,10 +33,11 @@ public class GameData
     {
         this.maskCount = 0;
 
-        //203, 17, 13 for inside trailer
+        //524, 16, 213 for inside trailer
         //2090, 75, 1347 for spririt world
+        // Vector3(4259, 734, -422)
 
-        playerPosition = new Vector3(4259, 734, -422);
+        playerPosition = new Vector3(524, 16, 213);
 
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;

@@ -244,13 +244,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount++;
         }
 
-
-
-        
-
         if (option != "Montague" && correctAnswersCount == 2)
         {
-            dialogueViewedSave = 0;
+            dialogueViewedSave++;
         }
         else if (option == "Montague" && correctAnswersCount == 2)
         {

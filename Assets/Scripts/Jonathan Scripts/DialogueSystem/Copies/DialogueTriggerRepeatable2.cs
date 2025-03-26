@@ -52,7 +52,7 @@ public class DialogueTriggerRepeatable2 : MonoBehaviour
         else if (dialogueManager.dialogueViewedSave > viewNumber)
         {
             currentDialogueViewedSave = dialogueManager.dialogueViewedSave;
-            dialogueManager.dialogueViewedSave = 4;
+            dialogueManager.dialogueViewedSave = 20;
             DialogueManager.StartConversation(convo);
             dialogueManager.dialogueViewedSave = currentDialogueViewedSave;
         }

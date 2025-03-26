@@ -31,7 +31,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
         if (dialogueManager.dialogueViewedSave >= 10)
         {
             objectRenderer.material = newMaterial;
-            dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
+            dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
             dtScript.startConvo();
             Destroy(this);
         }

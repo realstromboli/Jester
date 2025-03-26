@@ -564,14 +564,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     if (tPosterPieceCount == 1)
                     {
-                        dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                     }
 
                     if (tPosterPieceCount == 2)
                     {
                         tPosterFixed = true;
-                        dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                     }
                 }
@@ -592,7 +592,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
                         {
                             
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                            dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
                             dtScript.startConvo();
                             gmScript.slot1Full = true;
                             trapezistCureTrigger = true;
@@ -650,7 +650,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public IEnumerator HUDPopUp()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         cardCountText.gameObject.SetActive(false);
     }
 
