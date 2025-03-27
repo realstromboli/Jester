@@ -421,6 +421,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI cardCountText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
+    public GameObject jesterParticles;
 
     public void ItemInteraction()
     {
@@ -465,6 +466,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mtScript.readyToPress = false;
                     Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
+                    jesterParticles = GameObject.Find("Particle System2");
+                    jesterParticles.SetActive(true);
 
                     foreach (GameObject obj in allObjects)
                     {
