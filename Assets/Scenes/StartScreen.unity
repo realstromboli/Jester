@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 2042910461}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: jumpForce
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maxYSpeed
@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: cardCountText
       value: 
       objectReference: {fileID: 996303301}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: tPosterMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b6399a5d6752c41498e4c53e94b53cb0, type: 2}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: playerTransferRotation.y
       value: 90

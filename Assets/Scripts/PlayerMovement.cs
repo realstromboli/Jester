@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -418,6 +419,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public int tPosterPieceCount;
     public int mCardsCount;
     public TextMeshProUGUI cardCountText;
+    public Material tPosterMaterial;
+    private Renderer tPosterRenderer;
 
     public void ItemInteraction()
     {
@@ -573,6 +576,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         tPosterFixed = true;
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
+                        tPosterRenderer = GameObject.Find("TrapezistPoster").GetComponent<Renderer>();
+                        tPosterRenderer.material = tPosterMaterial;
                     }
                 }
 
@@ -596,6 +601,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             dtScript.startConvo();
                             gmScript.slot1Full = true;
                             trapezistCureTrigger = true;
+                            
                         }
 
                         if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
