@@ -466,8 +466,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mtScript.readyToPress = false;
                     Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
-                    jesterParticles = GameObject.Find("Particle System2");
-                    jesterParticles.SetActive(true);
+                    
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -489,6 +488,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             }
                         }
                     }
+
+                    //jesterParticles = GameObject.Find("Particle System2");
+                    //jesterParticles.SetActive(true);
                 }
 
                 // Check if the item is on an interactable layer
