@@ -244,11 +244,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount++;
         }
 
-        if (option != "Montague" && correctAnswersCount == 2)
+        if (option != "The Magnificent" && correctAnswersCount == 2)
         {
             dialogueViewedSave++;
         }
-        else if (option == "Montague" && correctAnswersCount == 2)
+        else if (option == "Montague" && correctAnswersCount == 3)
         {
             dialogueViewedSave++;
         }
@@ -272,7 +272,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         // For now, just continue the conversation
         foreach (Transform child in buttonContainer)
         {
-            if (correctAnswersCount <= 0 || correctAnswersCount >= 2)
+            if ((correctAnswersCount <= 0 || correctAnswersCount >= 2) && option != "The Magnificent")
+            {
+                correctAnswersCount = 0;
+            }
+            else if (option == "Montague" && correctAnswersCount >= 3)
             {
                 correctAnswersCount = 0;
             }
