@@ -156,6 +156,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        jesterParticles = GameObject.Find("Particle System2");
     }
 
     public void AnimationManager()
@@ -489,8 +490,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         }
                     }
 
-                    //jesterParticles = GameObject.Find("Particle System2");
-                    //jesterParticles.SetActive(true);
+                    
+                    jesterParticles.SetActive(true);
                 }
 
                 // Check if the item is on an interactable layer
