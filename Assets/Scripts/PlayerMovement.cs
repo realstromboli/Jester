@@ -156,6 +156,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        jesterParticles = GameObject.Find("Particle System2");
     }
 
     public void AnimationManager()
@@ -421,6 +422,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI cardCountText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
+    public GameObject jesterParticles;
 
     public void ItemInteraction()
     {
@@ -465,6 +467,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mtScript.readyToPress = false;
                     Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
+                    
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -486,6 +489,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             }
                         }
                     }
+
+                    
+                    jesterParticles.SetActive(true);
                 }
 
                 // Check if the item is on an interactable layer
