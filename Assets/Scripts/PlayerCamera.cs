@@ -14,8 +14,8 @@ public class PlayerCamera : MonoBehaviour
 
     public Vector3 offset;
 
-    float xRotation;
-    float yRotation;
+    public float xRotation;
+    public float yRotation;
 
     public GameManager gmScript;
     private DialogueManager dialogueManager;
@@ -25,6 +25,7 @@ public class PlayerCamera : MonoBehaviour
     {
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
+        yRotation = 90f;
     }
 
     void Update()
