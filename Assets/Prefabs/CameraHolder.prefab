@@ -201,7 +201,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 1000
+  far clip plane: 100000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -246,6 +246,8 @@ MonoBehaviour:
   camHolder: {fileID: 3049403615727023542}
   playerObj: {fileID: 2147394011338719321}
   offset: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
   gmScript: {fileID: 0}
   gravitySwapScript: {fileID: 0}
 --- !u!1 &7806944533756095271
@@ -517,6 +519,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72157b7ec6b9de14ea8c3a9ba050eceb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6772112393696767556, guid: 72157b7ec6b9de14ea8c3a9ba050eceb, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -444071335918693599, guid: 72157b7ec6b9de14ea8c3a9ba050eceb, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 72157b7ec6b9de14ea8c3a9ba050eceb, type: 3}
