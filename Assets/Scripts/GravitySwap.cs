@@ -10,6 +10,7 @@ public class GravitySwap : MonoBehaviour
     public GameObject cameraHolder; // Reference to the target GameObject
     public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
     public float raycastDistance = 50f; // Distance for the raycast
+    public PlayerMovement pmScript; // Reference to the PlayerMovement script
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class GravitySwap : MonoBehaviour
         rb.useGravity = false; // Disable Unity's default gravity
 
         cameraHolder = GameObject.Find("CameraHolder");
+        pmScript = GetComponent<PlayerMovement>();
     }
 
     void FixedUpdate()
@@ -28,7 +30,7 @@ public class GravitySwap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && pmScript.hasMagicianPower == true)
         {
             if (CheckForGround())
             {

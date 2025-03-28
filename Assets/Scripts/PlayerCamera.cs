@@ -33,8 +33,8 @@ public class PlayerCamera : MonoBehaviour
         if (gmScript.isGameActive == true && !dialogueManager.makingDescision)  //UNCOMMENT LATER
         {
             //mouse input
-            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY;
+            float mouseX = Input.GetAxisRaw("Mouse X") * sensitivityX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * sensitivityY;
 
             if (gravitySwapScript.gravityReversed)
             {

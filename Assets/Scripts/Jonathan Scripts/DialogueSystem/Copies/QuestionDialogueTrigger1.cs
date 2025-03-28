@@ -32,6 +32,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
         {
             objectRenderer.material = newMaterial;
             dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
+            pmScript.hasTrapezistPower = true;
             dtScript.startConvo();
             Destroy(this);
         }
