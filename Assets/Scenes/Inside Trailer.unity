@@ -6454,11 +6454,14 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: Indoor Circus
-  playerTransferPosition: {x: -106.12, y: 27.91, z: -276.09}
+  playerTransferPosition: {x: -106.12, y: 26, z: -276.09}
   playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 90
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!65 &537227492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12038,9 +12041,12 @@ MonoBehaviour:
   sceneToGoTo: Indoor Circus
   playerTransferPosition: {x: -102, y: 28, z: -276}
   playerTransferRotation: {x: 0, y: 85, z: 0}
+  xRotation: 0
+  yRotation: 0
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!65 &1055505490
 BoxCollider:
   m_ObjectHideFlags: 0

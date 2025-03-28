@@ -2330,12 +2330,15 @@ MonoBehaviour:
   fadeSpeed: 2
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
-  sceneToGoTo: OutsideFunhouse
-  playerTransferPosition: {x: 452, y: 3, z: 2923}
+  sceneToGoTo: Inside Fun House
+  playerTransferPosition: {x: -29, y: 1, z: 144}
   playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 179
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!1 &251136901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,9 +2532,12 @@ MonoBehaviour:
   sceneToGoTo: Trailer & Campsite
   playerTransferPosition: {x: 526, y: 7, z: 561}
   playerTransferRotation: {x: 0, y: -160, z: 0}
+  xRotation: 0
+  yRotation: 0
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!65 &350742287
 BoxCollider:
   m_ObjectHideFlags: 0
