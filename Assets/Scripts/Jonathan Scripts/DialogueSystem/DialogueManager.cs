@@ -358,6 +358,35 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     */
 
+    private void StartParticleEffects()
+    {
+        // Find all particle systems in the scene
+        ParticleSystem[] particleSystems = FindObjectsOfType<ParticleSystem>();
+
+        // Loop through the particle systems and start the ones with the specified name
+        int foundCount = 0;
+        foreach (ParticleSystem ps in particleSystems)
+        {
+            if (ps.name == "Particle System") // Replace with the actual name of your particle systems
+            {
+                var main = ps.main;
+                main.loop = true; // Enable looping
+                ps.Play(); // Start the particle system
+                foundCount++;
+                if (foundCount == 2) break; // Stop after finding and starting two particle systems
+            }
+        }
+    }
+
+    private void Update()
+    {
+        // Check if dialogueViewedSave reaches 5
+        if (dialogueViewedSave == 5)
+        {
+            StartParticleEffects();
+        }
+    }
+
     public void LoadData(GameData data)
     {
         dialogueViewedSave = data.dialogueViewedSave;

@@ -495,7 +495,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
 
                     
-                    jesterParticles.SetActive(true);
+                    //jesterParticles.SetActive(true);
                 }
 
                 // Check if the item is on an interactable layer
