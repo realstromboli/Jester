@@ -499,7 +499,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // Check if the item is on an interactable layer
-                if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive)
+                if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive && !dmScript.dialogueActive)
                 {
                     DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
