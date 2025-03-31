@@ -40,7 +40,7 @@ public class Grappling : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(grappleKey))
+        if (Input.GetKeyDown(grappleKey)/* && pmScript.hasTrapezistPower == true*/)
         {
             StartGrapple();
         }
@@ -89,14 +89,18 @@ public class Grappling : MonoBehaviour
             
         }
 
-        lineRenderer.enabled = true;
-        lineRenderer.SetPosition(1, grapplePoint);
-        pmScript.playerAnimation.SetTrigger("grapple_trigger");
+        //lineRenderer.enabled = true;
+        //lineRenderer.SetPosition(1, grapplePoint);
+        //pmScript.playerAnimation.SetTrigger("grapple_trigger");
     }
 
     private void ExecuteGrapple()
     {
         //pmScript.freeze = false;
+
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(1, grapplePoint);
+        pmScript.playerAnimation.SetTrigger("grapple_trigger");
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 

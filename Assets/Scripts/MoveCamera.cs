@@ -36,11 +36,11 @@ public class MoveCamera : MonoBehaviour
         // Update the offset based on the gravityReversed value
         if (gravitySwapScript.gravityReversed)
         {
-            offset = new Vector3(0, -3, 0);
+            offset = new Vector3(0, -4.5f, 0);
         }
         else
         {
-            offset = new Vector3(0, 3, 0);
+            offset = new Vector3(0, 4.5f, 0);
         }
 
         // Update the camera position

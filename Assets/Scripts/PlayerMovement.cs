@@ -116,6 +116,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         cardCountText.gameObject.SetActive(false);
+
+        hasJesterPower = false;
+        hasTrapezistPower = false;
+        hasMagicianPower = false;
     }
 
     void Update()
@@ -465,7 +469,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     hasMask = true;
                     mtScript.maskToggle();
                     mtScript.readyToPress = false;
-                    Destroy(hit.collider.gameObject);
+                    //Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
                     
 
@@ -495,7 +499,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // Check if the item is on an interactable layer
-                if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive)
+                if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive)
                 {
                     DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
