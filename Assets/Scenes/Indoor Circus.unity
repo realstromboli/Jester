@@ -2308,13 +2308,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247127496}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.3780695, z: -0, w: 0.92577726}
-  m_LocalPosition: {x: 25.25, y: 31.3, z: -323.25}
+  m_LocalRotation: {x: -0, y: -0.008920925, z: -0, w: 0.99996024}
+  m_LocalPosition: {x: -66.79301, y: 31.3, z: -318.164}
   m_LocalScale: {x: 4.4658365, y: 8.042203, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 44.428, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.022, z: 0}
 --- !u!114 &247127502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,7 +2507,7 @@ GameObject:
   - component: {fileID: 350742288}
   - component: {fileID: 350742287}
   - component: {fileID: 350742286}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorFromTrailers
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -2668,7 +2668,7 @@ Transform:
   m_GameObject: {fileID: 407274399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.68, y: 24.601, z: -315.44}
+  m_LocalPosition: {x: 202.01001, y: 24.601, z: -268.22998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5820,31 +5820,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.1
+      value: -74.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.67
+      value: 25.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -311.64
+      value: -297.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.80367833
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.59506404
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5852,7 +5852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 73.034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -10553,7 +10553,7 @@ GameObject:
   - component: {fileID: 691224525}
   - component: {fileID: 691224524}
   - component: {fileID: 691224523}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10630,17 +10630,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691224522}
-  m_LocalRotation: {x: -0, y: 0.9261255, z: -0, w: -0.37721542}
-  m_LocalPosition: {x: 0, y: 0, z: -323.026}
+  m_LocalRotation: {x: -0, y: 0.99995154, z: -0, w: 0.0098444205}
+  m_LocalPosition: {x: 0, y: 0, z: -317.83}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1574523208}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 224.323, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 178.872, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25.503, y: 32.26}
+  m_AnchoredPosition: {x: -66.54, y: 32.26}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &705507993
@@ -13745,7 +13745,7 @@ Transform:
   m_GameObject: {fileID: 917158638}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.69745076, z: -0, w: 0.7166327}
-  m_LocalPosition: {x: -53.16, y: 28.15, z: -310.87}
+  m_LocalPosition: {x: 244.3, y: 28.15, z: -272.22}
   m_LocalScale: {x: 0.8, y: 1.25, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16233,7 +16233,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -27399,7 +27399,7 @@ Transform:
   m_GameObject: {fileID: 1566877049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.68, y: 24.601, z: -315.44}
+  m_LocalPosition: {x: 202.01001, y: 24.601, z: -268.22998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27416,7 +27416,7 @@ GameObject:
   - component: {fileID: 1574523208}
   - component: {fileID: 1574523210}
   - component: {fileID: 1574523209}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LOL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27462,7 +27462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'THIS IS A POSTER
+  m_text: 'THIS IS A PICTURE FRAME
 
 
     CLICK WITH "E"'
@@ -33060,7 +33060,7 @@ GameObject:
   - component: {fileID: 1749131139}
   - component: {fileID: 1749131138}
   m_Layer: 10
-  m_Name: Particle System (1)
+  m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33170,7 +33170,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -43306,7 +43306,7 @@ Transform:
   m_GameObject: {fileID: 1989013773}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.3780695, z: -0, w: 0.92577726}
-  m_LocalPosition: {x: -72.59, y: 27.96, z: -301.91}
+  m_LocalPosition: {x: 196.58, y: 27.96, z: -239.83}
   m_LocalScale: {x: 0.8, y: 1.25, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
