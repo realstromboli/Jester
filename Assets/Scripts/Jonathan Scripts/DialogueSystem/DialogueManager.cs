@@ -378,15 +378,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void Update()
-    {
-        // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 5)
-        {
-            StartParticleEffects();
-        }
-    }
-
     public void LoadData(GameData data)
     {
         dialogueViewedSave = data.dialogueViewedSave;
