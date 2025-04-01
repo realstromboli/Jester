@@ -35,6 +35,7 @@ public class Grappling : MonoBehaviour
     {
         pmScript = GetComponent<PlayerMovement>();
         playerRb = GetComponent<Rigidbody>();
+        StartGrapple();
     }
 
     
@@ -98,8 +99,9 @@ public class Grappling : MonoBehaviour
     {
         //pmScript.freeze = false;
 
-        lineRenderer.enabled = true;
+        
         lineRenderer.SetPosition(1, grapplePoint);
+        lineRenderer.enabled = true;
         pmScript.playerAnimation.SetTrigger("grapple_trigger");
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
