@@ -237,7 +237,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 layoutElement = button.AddComponent<LayoutElement>();
             }
             layoutElement.minWidth = buttonContainer.GetComponent<RectTransform>().rect.width;
-            layoutElement.preferredHeight = 40; // Adjust the height as needed
+            layoutElement.preferredHeight = 85; // Adjust the height as needed
         }
     }
 
