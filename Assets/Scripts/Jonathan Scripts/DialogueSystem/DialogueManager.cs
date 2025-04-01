@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEditor.Rendering;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
@@ -11,6 +12,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public float dialogueDelay = 3.0f;
     public int dialogueViewedSave;
     public bool makingDescision;
+    public bool dialogueActive;
 
     public GameObject buttonPrefab;
     public Transform buttonContainer;
@@ -47,6 +49,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             originalOffsetMax = dialogueBox.rectTransform.offsetMax;
             dialogueCanvas = gameObject.transform.parent.GetComponent<Canvas>();
 
+            dialogueActive = false;
+
             // dialogueViewedSave set to the saved number
         }
         else
@@ -55,9 +59,26 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
     }
 
+    private void Update()
+    {
+        DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentLine.dialogueOptions.Length <= 0)
+        {
+            ReadNext();
+        }
+
+        // Check if dialogueViewedSave reaches 5
+        if (dialogueViewedSave == 5)
+        {
+            StartParticleEffects();
+        }
+    }
+
     public static void StartConversation(DialogueConversation convo)
     {
         instance.anim.SetBool("isOpen", true);
+        instance.dialogueActive = true;
         instance.currentIndex = 0;
         instance.currentConvo = convo;
         instance.speakerName.text = "";
@@ -72,6 +93,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
+            dialogueActive = false;
             return;
         }
 
@@ -120,6 +142,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             instance.StopCoroutine(typing);
             typing = null;
+            //dialogueText.text = TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue;
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
 
@@ -170,6 +193,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if (currentLine.dialogueOptions != null && currentLine.dialogueOptions.Length > 0)
         {
+            makingDescision = true;
             DisplayOptions(currentLine.dialogueOptions);
         }
         else
@@ -339,6 +363,26 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         StartCoroutine(WaitAndReadNext(text));
     }
     */
+
+    private void StartParticleEffects()
+    {
+        // Find all particle systems in the scene
+        ParticleSystem[] particleSystems = FindObjectsOfType<ParticleSystem>();
+
+        // Loop through the particle systems and start the ones with the specified name
+        int foundCount = 0;
+        foreach (ParticleSystem ps in particleSystems)
+        {
+            if (ps.name == "Particle System") // Replace with the actual name of your particle systems
+            {
+                var main = ps.main;
+                main.loop = true; // Enable looping
+                ps.Play(); // Start the particle system
+                foundCount++;
+                if (foundCount == 2) break; // Stop after finding and starting two particle systems
+            }
+        }
+    }
 
     public void LoadData(GameData data)
     {
