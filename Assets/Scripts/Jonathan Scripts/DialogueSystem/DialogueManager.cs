@@ -67,6 +67,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             ReadNext();
         }
+
+        // Check if dialogueViewedSave reaches 5
+        if (dialogueViewedSave == 5)
+        {
+            StartParticleEffects();
+        }
     }
 
     public static void StartConversation(DialogueConversation convo)
