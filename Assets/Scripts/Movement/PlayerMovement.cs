@@ -219,17 +219,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             state = MovementState.running;
             desiredMoveSpeed = runSpeed;
+            playerAnimation.SetBool("Grounded", true);
         }
 
         else if (grounded)
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+            playerAnimation.SetBool("Grounded", true);
         }
 
         else
         {
             state = MovementState.air;
+            playerAnimation.SetBool("Grounded", false);
 
             if (desiredMoveSpeed < runSpeed)
             {
@@ -541,6 +544,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
+                if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
+                {
+                    playerAnimation.SetTrigger("Ghost Interaction Trigger");
+                }
+
                 // door scene transition behavior
                 if (hit.collider.CompareTag("Door") && hasJesterPower)
                 {
@@ -572,6 +580,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
                 {
                     
+                    
+
                     Destroy(hit.collider.gameObject);
 
                     tPosterPieceCount++;
