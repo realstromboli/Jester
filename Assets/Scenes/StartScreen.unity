@@ -340,7 +340,6 @@ GameObject:
   m_Component:
   - component: {fileID: 410089159}
   - component: {fileID: 410089158}
-  - component: {fileID: 410089157}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -348,14 +347,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &410089157
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410089156}
-  m_Enabled: 1
 --- !u!20 &410089158
 Camera:
   m_ObjectHideFlags: 0
@@ -1611,10 +1602,18 @@ PrefabInstance:
       propertyPath: dpmScript
       value: 
       objectReference: {fileID: 629228895}
+    - target: {fileID: 6570238236808157557, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 577592829}
     - target: {fileID: 8469979222817177293, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_Name
       value: StartManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8489535974986806029, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 577592829}
     - target: {fileID: 9138436460434075351, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
