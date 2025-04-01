@@ -67,6 +67,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             ReadNext();
         }
+
+        // Check if dialogueViewedSave reaches 5
+        if (dialogueViewedSave == 5)
+        {
+            StartParticleEffects();
+        }
     }
 
     public static void StartConversation(DialogueConversation convo)
@@ -375,15 +381,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 foundCount++;
                 if (foundCount == 2) break; // Stop after finding and starting two particle systems
             }
-        }
-    }
-
-    private void Update()
-    {
-        // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 5)
-        {
-            StartParticleEffects();
         }
     }
 
