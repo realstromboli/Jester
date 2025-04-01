@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     float horizontalInput;
     float verticalInput;
 
+    public Vector3 respawnLocation;
     Vector3 moveDirection;
     public Rigidbody rb;
     private GameManager gmScript;
@@ -218,17 +219,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             state = MovementState.running;
             desiredMoveSpeed = runSpeed;
+            playerAnimation.SetBool("Grounded", true);
         }
 
         else if (grounded)
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+            playerAnimation.SetBool("Grounded", true);
         }
 
         else
         {
             state = MovementState.air;
+            playerAnimation.SetBool("Grounded", false);
 
             if (desiredMoveSpeed < runSpeed)
             {
@@ -540,6 +544,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
+                if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
+                {
+                    playerAnimation.SetTrigger("Ghost Interaction Trigger");
+                }
+
                 // door scene transition behavior
                 if (hit.collider.CompareTag("Door") && hasJesterPower)
                 {
@@ -571,6 +580,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
                 {
                     
+                    
+
                     Destroy(hit.collider.gameObject);
 
                     tPosterPieceCount++;
@@ -723,85 +734,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             GetComponent<Grappling>().StopGrapple();
         }
-    }
 
-    private void DisableMagicLayerObjects()
-    {
-        // Enable all objects in the magic layer
+        if (collision.gameObject.CompareTag("Checkpoint"))
+        {
+            // Save the position of the collided object as the respawn location
+            respawnLocation = collision.transform.position;
+            Debug.Log("Respawn location saved: " + respawnLocation);
+        }
         
-
-        RaycastHit hit;
-        if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, magicRaycastDistance, magicLayer))
+        if (collision.gameObject.CompareTag("Death"))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Magic"))
-            {
-                EnableAllMagicLayerObjects();
-                Renderer renderer = hit.collider.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    renderer.enabled = false;
-                }
-                hit.collider.enabled = false;
-
-                Debug.Log("Disabled magic layer object: " + hit.collider.name);
-
-                StartCoroutine(ReenableMagicLayerObjects(hit.collider));
-            }
+            // Set the player's position to the respawn location
+            transform.position = respawnLocation;
+            Debug.Log("Player respawned at: " + respawnLocation);
         }
     }
 
-    private void EnableAllMagicLayerObjects()
+    private void OnTriggerEnter(Collider other)
     {
-        StopAllCoroutines(); // Stop any ongoing coroutine
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in allObjects)
+        if (other.CompareTag("Checkpoint"))
         {
-            if (obj.layer == LayerMask.NameToLayer("Magic"))
-            {
-                Renderer renderer = obj.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    renderer.enabled = true;
-                }
-                Collider collider = obj.GetComponent<Collider>();
-                if (collider != null)
-                {
-                    collider.enabled = true;
-                }
-            }
+            // Save the position of the collided object as the respawn location
+            respawnLocation = other.transform.position;
+            Debug.Log("Respawn location saved: " + respawnLocation);
+        }
+        
+        if (other.CompareTag("Death"))
+        {
+            // Set the player's position to the respawn location
+            transform.position = respawnLocation;
+            Debug.Log("Player respawned at: " + respawnLocation);
         }
     }
-
-    private IEnumerator ReenableMagicLayerObjects(Collider collider)
-    {
-        yield return new WaitForSeconds(20f);
-        Renderer renderer = collider.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.enabled = true;
-        }
-        collider.enabled = true;
-    }
-
-    //public Transform camHolder;
-    //public Transform playerObj;
-    //public Transform playerCam;
-    //public Vector3 playerTransferRotation;
-
-    //private void SetPlayerCamRotation()
-    //{
-    //    if (camHolder != null)
-    //    {
-    //        // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
-    //        camHolder.rotation = Quaternion.Euler(playerTransferRotation);
-    //        orientation.rotation = Quaternion.Euler(playerTransferRotation);
-    //        playerObj.rotation = Quaternion.Euler(playerTransferRotation);
-    //        playerCam.rotation = Quaternion.Euler(playerTransferRotation);
-    //        Debug.Log($"PlayerCam Rotation Set: {playerTransferRotation}");
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("PlayerCam is not assigned.");
-    //    }
-    //}
 }
