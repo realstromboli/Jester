@@ -53,7 +53,7 @@ public class PlayerCamera : MonoBehaviour
             //rotates camera and player orientation
             camHolder.rotation = Quaternion.Euler(xRotation, yRotation, gravitySwapScript.gravityReversed ? 180f : 0f);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-            playerObj.rotation = Quaternion.Euler(0, yRotation + 90, gravitySwapScript.gravityReversed ? xRotation + 180f : xRotation);
+            playerObj.rotation = Quaternion.Euler(gravitySwapScript.gravityReversed ? 180: 0, gravitySwapScript.gravityReversed ? yRotation - 90 : yRotation + 90, gravitySwapScript.gravityReversed ? xRotation + 180f : xRotation);
 
             //offset = new Vector3(0, 0, 0f);
             //playerObj.position = camHolder.position + offset;
