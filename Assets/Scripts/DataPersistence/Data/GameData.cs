@@ -37,8 +37,9 @@ public class GameData
         // Vector3(2090, 75, 1347) for spririt world
         // Vector3(4259, 734, -422)
         // Vector3(452,3,2923) for outside funhouse
+        // Vector3(-14, 0, 114)
 
-        playerPosition = new Vector3(-32, 2, 129);
+        playerPosition = new Vector3(518, 16, 212);
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
 

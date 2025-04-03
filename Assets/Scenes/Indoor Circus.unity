@@ -2070,8 +2070,8 @@ MonoBehaviour:
   fadeSpeed: 2
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
-  sceneToGoTo: OutsideFunhouse
-  playerTransferPosition: {x: 452, y: 3, z: 2923}
+  sceneToGoTo: Inside Fun House
+  playerTransferPosition: {x: -14, y: 0, z: 114}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 0
@@ -40334,6 +40334,7 @@ GameObject:
   - component: {fileID: 1989013776}
   - component: {fileID: 1989013775}
   - component: {fileID: 1989013774}
+  - component: {fileID: 1989013779}
   m_Layer: 10
   m_Name: tPosterPiece1
   m_TagString: tPosterPiece
@@ -40446,6 +40447,30 @@ Transform:
   - {fileID: 1144948820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 44.428, z: 0}
+--- !u!114 &1989013779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989013773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 2
+  fadeUI: {fileID: 0}
+  fadeUIColor: {r: 0, g: 0, b: 0, a: 0}
+  sceneToGoTo: 
+  playerTransferPosition: {x: 0, y: 0, z: 0}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
+  playerObj: {fileID: 0}
+  playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!1001 &2009641508
 PrefabInstance:
   m_ObjectHideFlags: 0
