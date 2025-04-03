@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentLine.dialogueOptions.Length <= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
             ReadNext();
         }
@@ -237,7 +237,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 layoutElement = button.AddComponent<LayoutElement>();
             }
             layoutElement.minWidth = buttonContainer.GetComponent<RectTransform>().rect.width;
-            layoutElement.preferredHeight = 40; // Adjust the height as needed
+            layoutElement.preferredHeight = 85; // Adjust the height as needed
         }
     }
 
