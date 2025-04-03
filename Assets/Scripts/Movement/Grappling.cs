@@ -67,6 +67,8 @@ public class Grappling : MonoBehaviour
             return;
         }
 
+        pmScript.playerAnimation.SetTrigger("Grapple Throw Trigger");
+
         grappling = true;
 
         pmScript.activeGrapple = true;
@@ -102,7 +104,7 @@ public class Grappling : MonoBehaviour
         
         lineRenderer.SetPosition(1, grapplePoint);
         lineRenderer.enabled = true;
-        pmScript.playerAnimation.SetTrigger("grapple_trigger");
+        pmScript.playerAnimation.SetTrigger("Grapple Pull Trigger");
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
