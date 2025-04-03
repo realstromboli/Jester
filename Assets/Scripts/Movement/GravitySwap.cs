@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GravitySwap : MonoBehaviour
 {
     private Rigidbody rb;
     public bool gravityReversed = false;
     public float gravityStrength = 60f;
-    public GameObject cameraHolder; // Reference to the target GameObject
+    public GameObject cameraHolder;
+    public GameObject playerObject;
     public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
     public float raycastDistance = 50f; // Distance for the raycast
     public PlayerMovement pmScript; // Reference to the PlayerMovement script
@@ -18,6 +20,8 @@ public class GravitySwap : MonoBehaviour
         rb.useGravity = false; // Disable Unity's default gravity
 
         cameraHolder = GameObject.Find("CameraHolder");
+        playerObject = GameObject.Find("PlayerObjHolder");
+        
         pmScript = GetComponent<PlayerMovement>();
     }
 
@@ -30,7 +34,7 @@ public class GravitySwap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && pmScript.hasMagicianPower == true)
+        if (Input.GetKeyDown(KeyCode.F)/* && pmScript.hasMagicianPower == true*/)
         {
             if (CheckForGround())
             {
@@ -38,6 +42,8 @@ public class GravitySwap : MonoBehaviour
                 UpdateTargetObjectRotation();
             }
         }
+        childObject = GameObject.Find("Player Arms");
+        childTransform = childObject.transform;
     }
 
     private bool CheckForGround()
@@ -59,13 +65,28 @@ public class GravitySwap : MonoBehaviour
         }
     }
 
+    public GameObject childObject;
+    public Transform childTransform;
+
     private void UpdateTargetObjectRotation()
     {
         if (cameraHolder != null)
         {
             float zRotation = gravityReversed ? 180f : 0f;
             cameraHolder.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
+            playerObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
             pmScript.playerAnimation.SetTrigger("Gravity Trigger");
+            float zOffset = gravityReversed ? 0.75f : -0.75f;
+            float yOffset = gravityReversed ? 1f : -1f;
+
+            if (childObject != null)
+            {
+                Vector3 childPosition = childTransform.localPosition;
+                childPosition.z = zOffset;
+                childPosition.y = yOffset;
+                childTransform.localPosition = childPosition;
+                childObject.transform.rotation = Quaternion.Euler(gravityReversed ? 180f : 0f, 0f, zRotation);
+            }
         }
     }
 }

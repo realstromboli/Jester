@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float moveSpeed;
     public float runSpeed;
     public float walkSpeed;
-    bool isRunning;
+    public bool isRunning;
 
     public float maxYSpeed;
 
@@ -172,6 +172,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
+    //private void LateUpdate()
+    //{
+    //    // Follow the camera with an offset based on gravityReversed
+    //    Vector3 cameraPosition = pcScript.transform.position;
+    //    float xOffset = gravitySwapScript.gravityReversed ? 0.75f : -0.75f; // Adjust the offset values as needed
+    //    transform.position = new Vector3(cameraPosition.x + xOffset, transform.position.y, transform.position.z);
+    //}
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -329,11 +337,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void Run()
     {
-        if (Input.GetKey(runKey))
+        if (Input.GetKeyDown(runKey) && isRunning == false)
         {
             isRunning = true;
         }
-        else
+        
+        else if (Input.GetKeyDown(runKey) && isRunning == true)
         {
             isRunning = false;
         }
@@ -695,7 +704,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         // If gravity is reversed, set the velocities to negative
         if (gravitySwapScript.gravityReversed)
         {
-            velocityY = -velocityY * 2.8f;
+            velocityY = -velocityY * 5f;
         }
 
         return velocityXZ + velocityY;
