@@ -30,7 +30,7 @@ public class GravitySwap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && pmScript.hasMagicianPower == true)
+        if (Input.GetKeyDown(KeyCode.F) /*&& pmScript.hasMagicianPower == true*/)
         {
             if (CheckForGround())
             {
