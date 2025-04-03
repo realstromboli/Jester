@@ -161,7 +161,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-        jesterParticles = GameObject.Find("Particle System2");
     }
 
     public void AnimationManager()
@@ -439,7 +438,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI cardCountText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
-    public GameObject jesterParticles;
+    public TMP_Text jesterText;
 
     public void ItemInteraction()
     {
@@ -482,7 +481,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     hasMask = true;
                     mtScript.maskToggle();
                     mtScript.readyToPress = false;
-                    //Destroy(hit.collider.gameObject);
+                    Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
                     
 
@@ -556,6 +555,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
                 {
                     playerAnimation.SetTrigger("Ghost Interaction Trigger");
+                    jesterText = GameObject.Find("LOLText").GetComponent<TMP_Text>();
+                    jesterText.text = "Antonio Colombo";
                 }
 
                 // door scene transition behavior
