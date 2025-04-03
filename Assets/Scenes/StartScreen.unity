@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0400f5cdcd679f84c989988fd929a554, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -257,6 +257,14 @@ PrefabInstance:
       propertyPath: grappleCooldown
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: maxGrappleDistance
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: whatIsGrappleable.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: pcScript
       value: 
@@ -329,6 +337,10 @@ PrefabInstance:
       propertyPath: reticleHand
       value: 
       objectReference: {fileID: 417923420}
+    - target: {fileID: 8757356253965863426, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
