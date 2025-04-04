@@ -560,7 +560,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door") && hasJesterPower && dmScript.dialogueActive)
+                if (hit.collider.CompareTag("Door") && hasJesterPower && !dmScript.dialogueActive)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
