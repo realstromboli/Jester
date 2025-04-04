@@ -3282,6 +3282,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2122998416}
   m_SourcePrefab: {fileID: 100100000, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
+--- !u!137 &351932691 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6720074273990516761, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
+  m_PrefabInstance: {fileID: 351932690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407274399
 GameObject:
   m_ObjectHideFlags: 0
@@ -6867,6 +6872,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_TagString
@@ -41888,7 +41897,7 @@ MonoBehaviour:
   dtScript: {fileID: 0}
   pmScript: {fileID: 0}
   newMaterial: {fileID: 2100000, guid: 9be03899b2938684dbfacc73f72a9df7, type: 2}
-  objectRenderer: {fileID: 499540115}
+  objectRenderer: {fileID: 351932691}
 --- !u!114 &2122998418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42001,6 +42010,7 @@ SceneRoots:
   - {fileID: 554101226}
   - {fileID: 1604109165}
   - {fileID: 499540113}
+  - {fileID: 351932690}
   - {fileID: 247127501}
   - {fileID: 1989013778}
   - {fileID: 917158643}
@@ -42022,4 +42032,3 @@ SceneRoots:
   - {fileID: 1957790415}
   - {fileID: 181414921}
   - {fileID: 2073570879}
-  - {fileID: 351932690}
