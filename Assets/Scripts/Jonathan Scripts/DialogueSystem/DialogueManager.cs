@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using UnityEditor.Rendering;
+using JetBrains.Annotations;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
@@ -15,6 +16,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public bool dialogueActive;
 
     public GameObject buttonPrefab;
+    public GameObject skipText;
     public Transform buttonContainer;
 
     private int currentIndex;
@@ -57,21 +59,33 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+
+        skipText = GameObject.Find("SkipText");
+        skipText.SetActive(false);
     }
 
     private void Update()
     {
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
+        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
             ReadNext();
         }
 
         // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 6)
+        if (dialogueViewedSave == 5)
         {
             StartParticleEffects();
+        }
+
+        if (dialogueActive)
+        {
+            skipText.SetActive(true);
+        }
+        else
+        {
+            skipText.SetActive(false);
         }
     }
 

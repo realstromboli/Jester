@@ -2269,11 +2269,11 @@ MonoBehaviour:
   fadeSpeed: 1.5
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
-  sceneToGoTo: Trailer & Campsite
-  playerTransferPosition: {x: 526, y: 7, z: 561}
-  playerTransferRotation: {x: 0, y: -160, z: 0}
+  sceneToGoTo: Inside Trailer
+  playerTransferPosition: {x: 518, y: 16, z: 212}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
-  yRotation: 0
+  yRotation: 90
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
@@ -14941,7 +14941,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -30487,7 +30487,7 @@ GameObject:
   - component: {fileID: 1749131139}
   - component: {fileID: 1749131138}
   m_Layer: 10
-  m_Name: Particle System (1)
+  m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30597,7 +30597,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

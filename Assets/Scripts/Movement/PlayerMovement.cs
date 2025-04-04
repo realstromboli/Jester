@@ -442,7 +442,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void ItemInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && gmScript.isGameActive && !dmScript.dialogueActive)
         {
             RaycastHit hit;
 
@@ -560,10 +560,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door") && hasJesterPower)
+                if (hit.collider.CompareTag("Door") && hasJesterPower && dmScript.dialogueActive)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
+                    playerAnimation.SetTrigger("Pickup Trigger");
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -577,6 +578,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
+                        playerAnimation.SetTrigger("Pickup Trigger");
                         if (dmScript.dialogueViewedSave == 1)
                         {
                             jesterCureTrigger = true;
@@ -589,9 +591,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
                 {
-                    
-                    
 
+
+                    playerAnimation.SetTrigger("Pickup Trigger");
                     Destroy(hit.collider.gameObject);
 
                     tPosterPieceCount++;
@@ -617,6 +619,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
+                        playerAnimation.SetTrigger("Pickup Trigger");
+
                         if (dmScript.dialogueViewedSave >= 5)
                         {
                             
@@ -665,6 +669,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
 
                     Destroy(hit.collider.gameObject);
+
+                    playerAnimation.SetTrigger("Pickup Trigger");
 
                     mCardsCount++;
 
