@@ -113724,7 +113724,6 @@ GameObject:
   - component: {fileID: 1947230647}
   - component: {fileID: 1947230646}
   - component: {fileID: 1947230645}
-  - component: {fileID: 1947230644}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Door
@@ -113732,30 +113731,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1947230644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947230643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeSpeed: 2
-  fadeUI: {fileID: 0}
-  fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
-  sceneToGoTo: Spirit World
-  playerTransferPosition: {x: 2090, y: 75, z: 1347}
-  playerTransferRotation: {x: 0, y: 0, z: 0}
-  xRotation: 0
-  yRotation: 0
-  playerObj: {fileID: 0}
-  playerCam: {fileID: 0}
-  gmScript: {fileID: 0}
-  pcScript: {fileID: 0}
 --- !u!65 &1947230645
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public DialogueManager dmScript;
     public GravitySwap gravitySwapScript;
     public DialogueTrigger dtScript;
+    public AllDialogueTriggerRepeatable adtrScript;
     public float raycastDistance = 3;
 
     public bool activeGrapple;
@@ -161,6 +162,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+
+        if (hasMask)
+        {
+            mask.SetActive(false);
+        }
     }
 
     public void AnimationManager()
@@ -431,6 +437,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //}
 
     public bool hasMask;
+    public GameObject mask;
     public bool tPosterFixed;
     public MaskToggle mtScript;
     public int tPosterPieceCount;
@@ -478,6 +485,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
                 {
+                    mask = GameObject.Find("Jester Mask");
                     hasMask = true;
                     mtScript.maskToggle();
                     mtScript.readyToPress = false;
@@ -575,7 +583,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("JesterPoster"))
                 {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    AllDialogueTriggerRepeatable dialogueTrigger = hit.collider.GetComponent<AllDialogueTriggerRepeatable>();
                     if (dialogueTrigger != null)
                     {
                         playerAnimation.SetTrigger("Pickup Trigger");
@@ -623,35 +631,34 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         if (dmScript.dialogueViewedSave >= 5)
                         {
-                            
+
                             //dmScript.dialogueViewedSave++;
+                            dialogueTrigger.startConvo();
                         }
+                    }
 
-                        dialogueTrigger.startConvo();
+                    if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
+                    {
 
-                        if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
-                        {
-                            
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
-                            dtScript.startConvo();
-                            gmScript.slot1Full = true;
-                            trapezistCureTrigger = true;
-                            
-                        }
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        gmScript.slot1Full = true;
+                        trapezistCureTrigger = true;
 
-                        if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
-                        {
-                            Destroy(dialogueTrigger);
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
-                            dtScript.startConvo();
-                            StartCoroutine(WaitForSeconds());
-                        }
+                    }
 
-                        IEnumerator WaitForSeconds()
-                        {
-                            yield return new WaitForSeconds(0.1f);
-                            enabledGhostWorld = true;
-                        }
+                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
+                    {
+                        Destroy(dialogueTrigger);
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        StartCoroutine(WaitForSeconds());
+                    }
+
+                    IEnumerator WaitForSeconds()
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                        enabledGhostWorld = true;
                     }
 
                     if (dmScript.dialogueViewedSave == 12 && enabledGhostWorld == true)

@@ -1942,7 +1942,7 @@ GameObject:
   - component: {fileID: 247127500}
   - component: {fileID: 247127499}
   - component: {fileID: 247127498}
-  - component: {fileID: 247127497}
+  - component: {fileID: 247127503}
   - component: {fileID: 247127502}
   m_Layer: 9
   m_Name: TrapezistPoster
@@ -1951,24 +1951,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &247127497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247127496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fd961c2ad4fd343906c5a129d1cb9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: bb11fa9c4598e4d4f893ba08b8851d0b, type: 2}
-  viewNumber: 5
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  pcScript: {fileID: 0}
 --- !u!65 &247127498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2079,6 +2061,27 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
   pcScript: {fileID: 0}
+--- !u!114 &247127503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247127496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c1ce5d9cbb01941adf20886780cffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: bb11fa9c4598e4d4f893ba08b8851d0b, type: 2}
+  viewNumber: 5
+  setDialogueViewedSave: 6
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
+  currentDialogueViewedSave: 0
 --- !u!1 &251136901
 GameObject:
   m_ObjectHideFlags: 0
@@ -25968,7 +25971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580456590}
-  - component: {fileID: 1580456589}
+  - component: {fileID: 1580456591}
   m_Layer: 0
   m_Name: HiddenDialogueSpeaker4
   m_TagString: Untagged
@@ -25976,7 +25979,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1580456589
+--- !u!4 &1580456590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580456588}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.47, y: 24.601, z: -330.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580456591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25994,21 +26012,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   pcScript: {fileID: 0}
---- !u!4 &1580456590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580456588}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.47, y: 24.601, z: -330.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1584408243
 Mesh:
   m_ObjectHideFlags: 0

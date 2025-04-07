@@ -41,7 +41,7 @@ public class Grappling : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(grappleKey)/* && pmScript.hasTrapezistPower == true*/)
+        if (Input.GetKeyDown(grappleKey) && pmScript.hasTrapezistPower == true)
         {
             StartGrapple();
         }

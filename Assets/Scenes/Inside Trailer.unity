@@ -8062,7 +8062,7 @@ GameObject:
   - component: {fileID: 1017950188}
   - component: {fileID: 1017950190}
   - component: {fileID: 1017950189}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Particle System2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13868,20 +13868,88 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1666593951390355221, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
       propertyPath: m_Name
       value: Book_Open
       objectReference: {fileID: 0}
+    - target: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      propertyPath: m_TagString
+      value: JesterPoster
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 952286503120152343, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1604118164}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1376539909}
+    - targetCorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1376539908}
   m_SourcePrefab: {fileID: 100100000, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
 --- !u!4 &1376539906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952286503120152343, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
   m_PrefabInstance: {fileID: 1376539905}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1376539907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
+  m_PrefabInstance: {fileID: 1376539905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1376539908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376539907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151278463118e874894d21b2ebcc7bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: b5b4d4c55682862479361406fa17e009, type: 2}
+  viewNumber: 1
+  setDialogueViewedSave: 2
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
+  currentDialogueViewedSave: 0
+--- !u!65 &1376539909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376539907}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 10, z: 80}
+  m_Center: {x: 0, y: 0, z: 30}
 --- !u!1001 &1380450683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14979,13 +15047,13 @@ GameObject:
   - component: {fileID: 1435179119}
   - component: {fileID: 1435179118}
   - component: {fileID: 1435179122}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: JesterPoster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1435179118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15071,7 +15139,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1017950188}
-  - {fileID: 1604118164}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1435179122
@@ -15083,15 +15150,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435179117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fd961c2ad4fd343906c5a129d1cb9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 151278463118e874894d21b2ebcc7bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   convo: {fileID: 11400000, guid: b5b4d4c55682862479361406fa17e009, type: 2}
   viewNumber: 1
+  setDialogueViewedSave: 2
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1536
   pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
+  currentDialogueViewedSave: 0
 --- !u!1001 &1503787510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15661,7 +15731,7 @@ GameObject:
   - component: {fileID: 1604118167}
   - component: {fileID: 1604118166}
   - component: {fileID: 1604118165}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: JesterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15675,17 +15745,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604118163}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5429993}
-  m_LocalScale: {x: 0.0039891, y: 0.0049085873, z: 0.0039891}
+  m_LocalRotation: {x: 0.5904916, y: -0.38899836, z: 0.38899836, w: 0.5904916}
+  m_LocalPosition: {x: 0, y: 0, z: 97.21809}
+  m_LocalScale: {x: 0.22862513, y: 0.28132325, z: 0.02286252}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1854037045}
-  m_Father: {fileID: 1435179121}
+  m_Father: {fileID: 1376539906}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.5819092, y: 34.28999}
+  m_AnchoredPosition: {x: -69.64055, y: 199.33794}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604118165
@@ -16680,7 +16750,7 @@ GameObject:
   - component: {fileID: 1854037045}
   - component: {fileID: 1854037047}
   - component: {fileID: 1854037046}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LOLText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
