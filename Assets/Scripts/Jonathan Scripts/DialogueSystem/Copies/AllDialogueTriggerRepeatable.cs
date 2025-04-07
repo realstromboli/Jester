@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTriggerRepeatable1 : MonoBehaviour
+public class AllDialogueTriggerRepeatable : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
@@ -25,11 +25,6 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-
-        if (pmScript.tPosterFixed == true)
-        {
-            Destroy(this);
-        }
     }
 
     //private void OnCollisionEnter(Collision other)
@@ -52,7 +47,6 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
         else if (dialogueManager.dialogueViewedSave > viewNumber)
         {
             currentDialogueViewedSave = dialogueManager.dialogueViewedSave;
-            //dialogueManager.dialogueViewedSave = 4;
             DialogueManager.StartConversation(convo);
             dialogueManager.dialogueViewedSave = currentDialogueViewedSave;
         }

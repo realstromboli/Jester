@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTriggerRepeatable1 : MonoBehaviour
+public class DialogueTriggerRepeatable3 : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
@@ -26,7 +26,7 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        if (pmScript.tPosterFixed == true)
+        if (pmScript.hasTrapezistPower == true)
         {
             Destroy(this);
         }

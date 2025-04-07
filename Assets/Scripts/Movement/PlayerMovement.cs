@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float moveSpeed;
     public float runSpeed;
     public float walkSpeed;
-    bool isRunning;
+    public bool isRunning;
 
     public float maxYSpeed;
 
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public DialogueManager dmScript;
     public GravitySwap gravitySwapScript;
     public DialogueTrigger dtScript;
+    public AllDialogueTriggerRepeatable adtrScript;
     public float raycastDistance = 3;
 
     public bool activeGrapple;
@@ -161,7 +162,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-        jesterParticles = GameObject.Find("Particle System2");
+
+        if (hasMask)
+        {
+            mask.SetActive(false);
+        }
     }
 
     public void AnimationManager()
@@ -171,6 +176,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             
         }
     }
+
+    //private void LateUpdate()
+    //{
+    //    // Follow the camera with an offset based on gravityReversed
+    //    Vector3 cameraPosition = pcScript.transform.position;
+    //    float xOffset = gravitySwapScript.gravityReversed ? 0.75f : -0.75f; // Adjust the offset values as needed
+    //    transform.position = new Vector3(cameraPosition.x + xOffset, transform.position.y, transform.position.z);
+    //}
 
     private void FixedUpdate()
     {
@@ -329,11 +342,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void Run()
     {
-        if (Input.GetKey(runKey))
+        if (Input.GetKeyDown(runKey) && isRunning == false)
         {
             isRunning = true;
         }
-        else
+        
+        else if (Input.GetKeyDown(runKey) && isRunning == true)
         {
             isRunning = false;
         }
@@ -423,6 +437,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //}
 
     public bool hasMask;
+    public GameObject mask;
     public bool tPosterFixed;
     public MaskToggle mtScript;
     public int tPosterPieceCount;
@@ -430,11 +445,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI cardCountText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
-    public GameObject jesterParticles;
+    public TMP_Text jesterText;
 
     public void ItemInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && gmScript.isGameActive && !dmScript.dialogueActive)
         {
             RaycastHit hit;
 
@@ -470,10 +485,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
                 {
+                    mask = GameObject.Find("Jester Mask");
                     hasMask = true;
                     mtScript.maskToggle();
                     mtScript.readyToPress = false;
-                    //Destroy(hit.collider.gameObject);
+                    Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
                     
 
@@ -547,13 +563,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
                 {
                     playerAnimation.SetTrigger("Ghost Interaction Trigger");
+                    jesterText = GameObject.Find("LOLText").GetComponent<TMP_Text>();
+                    jesterText.text = "Antonio Colombo";
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door") && hasJesterPower)
+                if (hit.collider.CompareTag("Door") && hasJesterPower && !dmScript.dialogueActive)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
+                    playerAnimation.SetTrigger("Pickup Trigger");
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -564,9 +583,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("JesterPoster"))
                 {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    AllDialogueTriggerRepeatable dialogueTrigger = hit.collider.GetComponent<AllDialogueTriggerRepeatable>();
                     if (dialogueTrigger != null)
                     {
+                        playerAnimation.SetTrigger("Pickup Trigger");
                         if (dmScript.dialogueViewedSave == 1)
                         {
                             jesterCureTrigger = true;
@@ -579,9 +599,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
                 {
-                    
-                    
 
+
+                    playerAnimation.SetTrigger("Pickup Trigger");
                     Destroy(hit.collider.gameObject);
 
                     tPosterPieceCount++;
@@ -607,37 +627,38 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
+                        playerAnimation.SetTrigger("Pickup Trigger");
+
                         if (dmScript.dialogueViewedSave >= 5)
                         {
-                            
+
                             //dmScript.dialogueViewedSave++;
+                            dialogueTrigger.startConvo();
                         }
+                    }
 
-                        dialogueTrigger.startConvo();
+                    if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
+                    {
 
-                        if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
-                        {
-                            
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
-                            dtScript.startConvo();
-                            gmScript.slot1Full = true;
-                            trapezistCureTrigger = true;
-                            
-                        }
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        gmScript.slot1Full = true;
+                        trapezistCureTrigger = true;
 
-                        if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
-                        {
-                            Destroy(dialogueTrigger);
-                            dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
-                            dtScript.startConvo();
-                            StartCoroutine(WaitForSeconds());
-                        }
+                    }
 
-                        IEnumerator WaitForSeconds()
-                        {
-                            yield return new WaitForSeconds(0.1f);
-                            enabledGhostWorld = true;
-                        }
+                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
+                    {
+                        Destroy(dialogueTrigger);
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        StartCoroutine(WaitForSeconds());
+                    }
+
+                    IEnumerator WaitForSeconds()
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                        enabledGhostWorld = true;
                     }
 
                     if (dmScript.dialogueViewedSave == 12 && enabledGhostWorld == true)
@@ -655,6 +676,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
 
                     Destroy(hit.collider.gameObject);
+
+                    playerAnimation.SetTrigger("Pickup Trigger");
 
                     mCardsCount++;
 
@@ -695,7 +718,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         // If gravity is reversed, set the velocities to negative
         if (gravitySwapScript.gravityReversed)
         {
-            velocityY = -velocityY * 2.8f;
+            velocityY = -velocityY * 5f;
         }
 
         return velocityXZ + velocityY;
