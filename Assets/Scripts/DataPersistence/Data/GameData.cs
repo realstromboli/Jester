@@ -38,7 +38,7 @@ public class GameData
         // Vector3(4259, 734, -422)
         // Vector3(452,3,2923) for outside funhouse
 
-        playerPosition = new Vector3(633, -1173, -1197);
+        playerPosition = new Vector3(-28, 0, 123);
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
 
