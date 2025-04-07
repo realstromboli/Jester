@@ -9423,7 +9423,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1376539908}
+      addedObject: {fileID: 1376539910}
     - targetCorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1376539909}
@@ -9438,27 +9438,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7464435722949740409, guid: 6a8531bf255fc2a47ad5a4468f979fe2, type: 3}
   m_PrefabInstance: {fileID: 1376539905}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1376539908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376539907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151278463118e874894d21b2ebcc7bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: b5b4d4c55682862479361406fa17e009, type: 2}
-  viewNumber: 1
-  setDialogueViewedSave: 2
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  pcScript: {fileID: 0}
-  pmScript: {fileID: 0}
-  currentDialogueViewedSave: 0
 --- !u!65 &1376539909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9480,6 +9459,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50, y: 10, z: 80}
   m_Center: {x: 0, y: 0, z: 30}
+--- !u!114 &1376539910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376539907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd961c2ad4fd343906c5a129d1cb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: b5b4d4c55682862479361406fa17e009, type: 2}
+  viewNumber: 1
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  pcScript: {fileID: 0}
 --- !u!1001 &1380450683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10405,7 +10402,7 @@ PrefabInstance:
       addedObject: {fileID: 1418664989}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1418664988}
+      addedObject: {fileID: 1418664991}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418664990}
@@ -10444,26 +10441,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
   m_PrefabInstance: {fileID: 1418664984}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1418664988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418664985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21e73c197779224e911d2087ed2a69a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: 16ff23da5571ee34fbacae610bdb3332, type: 2}
-  viewNumber: 0
-  setDialogueViewedSave: 1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 1536
-  pcScript: {fileID: 0}
-  pmScript: {fileID: 0}
 --- !u!136 &1418664989
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10509,6 +10486,25 @@ MonoBehaviour:
   pmScript: {fileID: 0}
   newMaterial: {fileID: 2100000, guid: ca625dd95e4ff8c4188eebdae304afe8, type: 2}
   objectRenderer: {fileID: 2111331563}
+--- !u!114 &1418664991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418664985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23c5c9cc0c68ba41b138e6936c25902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: 16ff23da5571ee34fbacae610bdb3332, type: 2}
+  viewNumber: 0
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
 --- !u!1001 &1424538040
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2070,18 +2070,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 247127496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c1ce5d9cbb01941adf20886780cffa, type: 3}
+  m_Script: {fileID: 11500000, guid: a92773b9b2db2f24f9bd2f5cf307fc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   convo: {fileID: 11400000, guid: bb11fa9c4598e4d4f893ba08b8851d0b, type: 2}
   viewNumber: 5
-  setDialogueViewedSave: 6
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
   pcScript: {fileID: 0}
   pmScript: {fileID: 0}
-  currentDialogueViewedSave: 0
 --- !u!1 &251136901
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,7 +3340,7 @@ PrefabInstance:
       addedObject: {fileID: 2122998419}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2122998418}
+      addedObject: {fileID: 2122998421}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2122998417}
@@ -41460,27 +41458,6 @@ MonoBehaviour:
   pmScript: {fileID: 0}
   newMaterial: {fileID: 2100000, guid: 9be03899b2938684dbfacc73f72a9df7, type: 2}
   objectRenderer: {fileID: 351932691}
---- !u!114 &2122998418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122998415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c1ce5d9cbb01941adf20886780cffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: 2ba5b553536a19848a3a5ccb541c29c5, type: 2}
-  viewNumber: 4
-  setDialogueViewedSave: 5
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  pcScript: {fileID: 0}
-  pmScript: {fileID: 0}
-  currentDialogueViewedSave: 0
 --- !u!136 &2122998419
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -41509,6 +41486,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
   m_PrefabInstance: {fileID: 351932690}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122998421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122998415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92773b9b2db2f24f9bd2f5cf307fc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: 2ba5b553536a19848a3a5ccb541c29c5, type: 2}
+  viewNumber: 4
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

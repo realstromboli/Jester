@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger2 : MonoBehaviour
 {
     private DialogueManager dialogueManager;
     public DialogueConversation convo;
     public int viewNumber;
     public LayerMask interactableLayer;
     public PlayerCamera pcScript;
+    public PlayerMovement pmScript;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,12 @@ public class DialogueTrigger : MonoBehaviour
     void Update()
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
+        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        if (pmScript.tPosterFixed == true)
+        {
+            Destroy(this);
+        }
     }
 
     //private void OnCollisionEnter(Collision other)
@@ -45,5 +52,4 @@ public class DialogueTrigger : MonoBehaviour
             dmScript.dialogueViewedSave++;
         }
     }
-    
 }

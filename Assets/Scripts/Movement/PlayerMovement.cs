@@ -521,22 +521,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 // Check if the item is on an interactable layer
                 if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive && !dmScript.dialogueActive)
                 {
-                    DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
+                    
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     QuestionDialogueTrigger questionDialogueTrigger = hit.collider.GetComponent<QuestionDialogueTrigger>();
                     DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
                     QuestionDialogueTrigger1 questionDialogueTrigger1 = hit.collider.GetComponent<QuestionDialogueTrigger1>();
                     DialogueTriggerRepeatable2 dialogueTriggerRepeatable2 = hit.collider.GetComponent<DialogueTriggerRepeatable2>();
                     QuestionDialogueTrigger2 questionDialogueTrigger2 = hit.collider.GetComponent<QuestionDialogueTrigger2>();
+                    DialogueTrigger1 dialogueTrigger1 = hit.collider.GetComponent<DialogueTrigger1>();
+                    DialogueTrigger2 dialogueTrigger2 = hit.collider.GetComponent<DialogueTrigger2>();
 
                     Debug.Log("Dialogue hit interactable");
-                    if (dialogueTriggerRepeatable != null)
+                    if (dialogueTrigger1 != null)
                     {
-                        dialogueTriggerRepeatable.startConvo();
+                        dialogueTrigger1.startConvo();
                     }
                     else if (dialogueTrigger != null)
                     {
                         dialogueTrigger.startConvo();
+                    }
+                    else if (dialogueTrigger2 != null)
+                    {
+                        dialogueTrigger2.startConvo();
                     }
                     else if (questionDialogueTrigger != null)
                     {
@@ -583,11 +589,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                 if (hit.collider.CompareTag("JesterPoster"))
                 {
-                    AllDialogueTriggerRepeatable dialogueTrigger = hit.collider.GetComponent<AllDialogueTriggerRepeatable>();
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     if (dialogueTrigger != null)
                     {
                         playerAnimation.SetTrigger("Pickup Trigger");
-                        if (dmScript.dialogueViewedSave == 1)
+                        if (dmScript.dialogueViewedSave >= 1)
                         {
                             jesterCureTrigger = true;
                             //dmScript.dialogueViewedSave++;
