@@ -6,7 +6,7 @@ public class GravitySwap : MonoBehaviour
 {
     private Rigidbody rb;
     public bool gravityReversed = false;
-    public float gravityStrength = 20f;
+    public float gravityStrength = 40f;
     public GameObject cameraHolder; // Reference to the target GameObject
     public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
     public float raycastDistance = 50f; // Distance for the raycast

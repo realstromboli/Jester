@@ -86,6 +86,7 @@ public class Grappling : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
 
             //grappleFailParticles.Play();
+            
         }
 
         lineRenderer.enabled = true;
@@ -112,6 +113,10 @@ public class Grappling : MonoBehaviour
         pmScript.JumpToPosition(grapplePoint, highestPointOnArc);
 
         Invoke(nameof(StopGrapple), 1f);
+
+        // Debug log for grapplePoint and lowestPoint
+        Debug.Log($"Grapple Point: {grapplePoint}");
+        Debug.Log($"Lowest Point: {lowestPoint}");
     }
 
     public void StopGrapple()
@@ -120,9 +125,13 @@ public class Grappling : MonoBehaviour
         
         grappling = false;
 
+        pmScript.activeGrapple = false;
+
         grappleCdTimer = grappleCooldown;
 
         lineRenderer.enabled = false;
+
+        playerRb.drag = 5f;
 
         pmScript.moveSpeed = 25f;
     }
