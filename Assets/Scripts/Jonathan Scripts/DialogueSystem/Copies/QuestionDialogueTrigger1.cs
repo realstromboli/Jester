@@ -18,7 +18,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        
     }
 
     // Update is called once per frame
@@ -26,12 +26,14 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 6)
+        if (dialogueManager.dialogueViewedSave >= 10)
         {
             objectRenderer.material = newMaterial;
-            //dtScript = GameObject.Find("HiddenDialogueSpeaker").GetComponent<DialogueTrigger>();
-            //dtScript.startConvo();
+            dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
+            pmScript.hasTrapezistPower = true;
+            dtScript.startConvo();
             Destroy(this);
         }
     }
@@ -47,7 +49,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave == viewNumber)
+        if (dialogueManager.dialogueViewedSave == viewNumber && pmScript.trapezistCureTrigger)
         {
             
             DialogueManager.StartConversation(convo);
