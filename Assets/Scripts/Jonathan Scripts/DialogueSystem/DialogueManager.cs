@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEditor.Rendering;
 using JetBrains.Annotations;
+using TMPro.Examples;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
@@ -17,6 +18,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public GameObject buttonPrefab;
     public GameObject skipText;
+    public GameObject magicianDoor;
+    public GameObject magicianCards;
     public Transform buttonContainer;
 
     private int currentIndex;
@@ -29,6 +32,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private Canvas dialogueCanvas;
 
     private GameManager gameManager;
+    private PlayerMovement pmScript;
 
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
@@ -62,6 +66,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         skipText = GameObject.Find("SkipText");
         skipText.SetActive(false);
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -86,6 +91,15 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         else
         {
             skipText.SetActive(false);
+        }
+
+        magicianDoor = GameObject.Find("Magician Door");
+        magicianCards = GameObject.Find("MagicianCards");
+
+        if (dialogueViewedSave >= 20) //update based on dialogueViewedSave after end of Parkour 1
+        {
+            magicianDoor.gameObject.SetActive(false);
+            pmScript.enabledGhostWorld1 = false;
         }
     }
 

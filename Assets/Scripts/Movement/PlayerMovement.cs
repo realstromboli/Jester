@@ -163,7 +163,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (hasMask)
+        if (gmScript.isGameActive && hasMask)
         {
             mask.SetActive(false);
         }
@@ -521,7 +521,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 // Check if the item is on an interactable layer
                 if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician")) && gmScript.isGameActive && !dmScript.dialogueActive)
                 {
-                    
+                    //DialogueTriggerRepeatable dialogueTriggerRepeatable = hit.collider.GetComponent<DialogueTriggerRepeatable>();
+                    //AllDialogueTriggerRepeatable adtrScript = hit.collider.GetComponent<AllDialogueTriggerRepeatable>();
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
                     QuestionDialogueTrigger questionDialogueTrigger = hit.collider.GetComponent<QuestionDialogueTrigger>();
                     DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
@@ -530,6 +531,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     QuestionDialogueTrigger2 questionDialogueTrigger2 = hit.collider.GetComponent<QuestionDialogueTrigger2>();
                     DialogueTrigger1 dialogueTrigger1 = hit.collider.GetComponent<DialogueTrigger1>();
                     DialogueTrigger2 dialogueTrigger2 = hit.collider.GetComponent<DialogueTrigger2>();
+                    DialogueTrigger3 dialogueTrigger3 = hit.collider.GetComponent<DialogueTrigger3>();
 
                     Debug.Log("Dialogue hit interactable");
                     if (dialogueTrigger1 != null)
@@ -543,6 +545,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     else if (dialogueTrigger2 != null)
                     {
                         dialogueTrigger2.startConvo();
+                    }
+                    else if (dialogueTrigger3 != null)
+                    {
+                        dialogueTrigger3.startConvo();
                     }
                     else if (questionDialogueTrigger != null)
                     {
@@ -664,10 +670,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     IEnumerator WaitForSeconds()
                     {
                         yield return new WaitForSeconds(0.1f);
-                        enabledGhostWorld = true;
+                        enabledGhostWorld1 = true;
                     }
 
-                    if (dmScript.dialogueViewedSave == 12 && enabledGhostWorld == true)
+                    if (dmScript.dialogueViewedSave == 12 && enabledGhostWorld1 == true)
                     {
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                         Debug.Log("Entering Ghost World");
@@ -710,7 +716,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         cardCountText.gameObject.SetActive(false);
     }
 
-    public bool enabledGhostWorld;
+    public bool enabledGhostWorld1;
 
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
