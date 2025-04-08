@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI speakerName, dialogue;
     public Image speakerSprite;
     public float dialogueTypeSpeed = 0.02f;
-    public float dialogueDelay = 3.0f;
+    public float dialogueDelay = 2f;
     public int dialogueViewedSave;
     public bool makingDescision;
     public bool dialogueActive;
@@ -75,6 +75,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
+            //StopAllCoroutines();
+            StopCoroutine("WaitAndReadNext");
             ReadNext();
         }
 
