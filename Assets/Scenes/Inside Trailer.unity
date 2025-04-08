@@ -9777,12 +9777,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3748152135481727340, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3748152135481727340, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b95ef16d0b1a354e9ff38a4f45de333, type: 2}
     - target: {fileID: -3716697753776404623, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -10132,6 +10132,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6688320980132475924, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688320980132475924, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       propertyPath: m_TagString
       value: Jester
       objectReference: {fileID: 0}
@@ -10219,7 +10223,7 @@ PrefabInstance:
       addedObject: {fileID: 1418664989}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1418664988}
+      addedObject: {fileID: 1418664991}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418664990}
@@ -10258,26 +10262,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d14f1b0e50798eb4dbd5eb30458dc167, type: 3}
   m_PrefabInstance: {fileID: 1418664984}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1418664988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418664985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21e73c197779224e911d2087ed2a69a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: 16ff23da5571ee34fbacae610bdb3332, type: 2}
-  viewNumber: 0
-  setDialogueViewedSave: 1
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 1536
-  pcScript: {fileID: 0}
-  pmScript: {fileID: 0}
 --- !u!136 &1418664989
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10321,8 +10305,28 @@ MonoBehaviour:
   pcScript: {fileID: 0}
   dtScript: {fileID: 0}
   pmScript: {fileID: 0}
-  newMaterial: {fileID: 2100000, guid: 9be03899b2938684dbfacc73f72a9df7, type: 2}
+  newMaterial: {fileID: 2100000, guid: ca625dd95e4ff8c4188eebdae304afe8, type: 2}
   objectRenderer: {fileID: 2111331563}
+--- !u!114 &1418664991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418664985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21e73c197779224e911d2087ed2a69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: 16ff23da5571ee34fbacae610bdb3332, type: 2}
+  viewNumber: 0
+  setDialogueViewedSave: 1
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 1536
+  pcScript: {fileID: 0}
+  pmScript: {fileID: 0}
 --- !u!1001 &1424538040
 PrefabInstance:
   m_ObjectHideFlags: 0
