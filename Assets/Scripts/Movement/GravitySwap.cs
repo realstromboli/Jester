@@ -6,7 +6,7 @@ public class GravitySwap : MonoBehaviour
 {
     private Rigidbody rb;
     public bool gravityReversed = false;
-    public float gravityStrength = 40f;
+    public float gravityStrength = 60f;
     public GameObject cameraHolder; // Reference to the target GameObject
     public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
     public float raycastDistance = 50f; // Distance for the raycast
@@ -30,7 +30,7 @@ public class GravitySwap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && pmScript.hasMagicianPower == true)
+        if (Input.GetKeyDown(KeyCode.F) /*&& pmScript.hasMagicianPower == true*/)
         {
             if (CheckForGround())
             {
@@ -65,6 +65,7 @@ public class GravitySwap : MonoBehaviour
         {
             float zRotation = gravityReversed ? 180f : 0f;
             cameraHolder.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
+            pmScript.playerAnimation.SetTrigger("Gravity Trigger");
         }
     }
 }

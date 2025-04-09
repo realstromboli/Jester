@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Transform buttonContainer;
 
     private int currentIndex;
-    private int boxLeftScale = 192;
+    private int boxLeftScale = 382;
     private DialogueConversation currentConvo;
     private static DialogueManager instance;
     private Animator anim;
@@ -77,8 +77,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public static void StartConversation(DialogueConversation convo)
     {
-        instance.anim.SetBool("isOpen", true);
         instance.dialogueActive = true;
+        instance.anim.SetBool("isOpen", true);
         instance.currentIndex = 0;
         instance.currentConvo = convo;
         instance.speakerName.text = "";
@@ -142,7 +142,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             instance.StopCoroutine(typing);
             typing = null;
-            //dialogueText.text = TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue;
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
 
