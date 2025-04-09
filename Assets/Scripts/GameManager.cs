@@ -367,8 +367,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot3Full)
         {
             slot3.SetActive(true);
-            item3.GetComponent<Renderer>().enabled = false;
-            item3.GetComponent<Collider>().enabled = false;
+            //item3.GetComponent<Renderer>().enabled = false;
+            //item3.GetComponent<Collider>().enabled = false;
         }
         else if (!slot3Full)
         {
@@ -378,8 +378,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot4Full)
         {
             slot4.SetActive(true);
-            item4.GetComponent<Renderer>().enabled = false;
-            item4.GetComponent<Collider>().enabled = false;
+            //item4.GetComponent<Renderer>().enabled = false;
+            //item4.GetComponent<Collider>().enabled = false;
         }
         else if (!slot4Full)
         {
@@ -461,24 +461,24 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item1Text()
     {
-        itemNameText.text = "Lottie's Image";
-        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
+        itemNameText.text = "Antonio's Flyer";
+        itemDescriptionText.text = "This flyer advertizes a Jester with the stage name Oliver, but ghostly writing overwrites it to say Antonio Colombo..";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item2Text()
     {
-        itemNameText.text = "Item 2";
-        itemDescriptionText.text = "This is what item 2 does";
+        itemNameText.text = "Lottie's Image";
+        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
         inventoryItem.sprite = item2Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item3Text()
     {
-        itemNameText.text = "Item 3";
-        itemDescriptionText.text = "This is what item 3 does";
+        itemNameText.text = "Desire's Cards";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Desire.";
         inventoryItem.sprite = item3Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }

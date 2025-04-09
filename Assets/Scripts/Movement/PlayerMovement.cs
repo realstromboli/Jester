@@ -602,6 +602,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         if (dmScript.dialogueViewedSave >= 1)
                         {
                             jesterCureTrigger = true;
+                            gmScript.slot1Full = true;
                             //dmScript.dialogueViewedSave++;
                         }
 
@@ -654,7 +655,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        gmScript.slot1Full = true;
+                        gmScript.slot2Full = true;
                         trapezistCureTrigger = true;
 
                     }
@@ -703,7 +704,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         dtScript = GameObject.Find("HiddenDialogueSpeaker7").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
+                        gmScript.slot3Full = true;
                         magicianCureTrigger = true;
+                    }
+                }
+
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 24 && hasMagicianPower == true)
+                {
+                    SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                    Debug.Log("Entering Ghost World");
+                    if (sceneTransition != null)
+                    {
+                        StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                     }
                 }
             }
