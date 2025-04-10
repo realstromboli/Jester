@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0af8896af821f1b42b4fe346135f6eee, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -590,7 +590,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9368751, g: 0.93710685, b: 0.5510659, a: 1}
+  m_Color: {r: 0.5529412, g: 0.55892617, b: 0.9372549, a: 1}
   m_Intensity: 6
   m_Range: 70.58534
   m_SpotAngle: 63.714123
@@ -7115,7 +7115,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9368751, g: 0.93710685, b: 0.5510659, a: 1}
+  m_Color: {r: 0.9372549, g: 0.5529412, b: 0.56023896, a: 1}
   m_Intensity: 6
   m_Range: 70.58534
   m_SpotAngle: 63.714123
@@ -13182,6 +13182,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
       insertIndex: -1
       addedObject: {fileID: 292537433}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1097938301}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 842b3242de058a44dbefc8460ad7c240, type: 3}
       insertIndex: -1
@@ -26093,7 +26096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -26105,7 +26108,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.40251565, g: 0.40251565, b: 0.40251565, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -29738,13 +29741,25 @@ PrefabInstance:
       value: 5.401
       objectReference: {fileID: 0}
     - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
     - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3eb632a6d17c0404592ef4d9163ae22c, type: 2}
+    - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -29977,6 +29992,100 @@ Transform:
   - {fileID: 1920516514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1097938300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097938301}
+  - component: {fileID: 1097938302}
+  m_Layer: 0
+  m_Name: Spot Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1097938301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097938300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.8711352, y: 0.029481253, z: -0.05270887, w: 0.48731536}
+  m_LocalPosition: {x: 0.69, y: 10.62, z: 5.67}
+  m_LocalScale: {x: 0.024625247, y: 0.024625245, z: 0.024625245}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2122998420}
+  m_LocalEulerAnglesHint: {x: 121.554, y: 0, z: 0}
+--- !u!108 &1097938302
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097938300}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.9704738, b: 0.80784315, a: 1}
+  m_Intensity: 1.5
+  m_Range: 17.932577
+  m_SpotAngle: 47.504143
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1104326752
 GameObject:
   m_ObjectHideFlags: 0
@@ -35534,13 +35643,25 @@ PrefabInstance:
       value: 5.401
       objectReference: {fileID: 0}
     - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
     - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3eb632a6d17c0404592ef4d9163ae22c, type: 2}
+    - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -39855,7 +39976,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.91823894, g: 0.69084555, b: 0.37826818, a: 1}
   m_Intensity: 2
-  m_Range: 8
+  m_Range: 18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -61042,13 +61163,25 @@ PrefabInstance:
       value: 5.401
       objectReference: {fileID: 0}
     - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
     - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3eb632a6d17c0404592ef4d9163ae22c, type: 2}
+    - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -71178,13 +71311,25 @@ PrefabInstance:
       value: 5.401
       objectReference: {fileID: 0}
     - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432628336715821070, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 455d03c47335d1d47b56ec14e688c24e, type: 2}
     - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944241288946299366, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3eb632a6d17c0404592ef4d9163ae22c, type: 2}
+    - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9049238159464732266, guid: 2d93b660c3e2724439f9f505a824e304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -71535,7 +71680,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.91823894, g: 0.69084555, b: 0.37826818, a: 1}
   m_Intensity: 2
-  m_Range: 8
+  m_Range: 17.1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -72609,7 +72754,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9368751, g: 0.93710685, b: 0.5510659, a: 1}
+  m_Color: {r: 0.56719065, g: 0.9372549, b: 0.5529412, a: 1}
   m_Intensity: 6
   m_Range: 70.58534
   m_SpotAngle: 63.714123
