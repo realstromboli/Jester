@@ -4,19 +4,22 @@ using System.Collections;
 using TMPro;
 using UnityEditor.Rendering;
 using JetBrains.Annotations;
+using TMPro.Examples;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI speakerName, dialogue;
     public Image speakerSprite;
     public float dialogueTypeSpeed = 0.02f;
-    public float dialogueDelay = 3.0f;
+    public float dialogueDelay = 1.5f;
     public int dialogueViewedSave;
     public bool makingDescision;
     public bool dialogueActive;
 
     public GameObject buttonPrefab;
     public GameObject skipText;
+    public GameObject magicianDoor;
+    public GameObject magicianCards;
     public Transform buttonContainer;
 
     private int currentIndex;
@@ -29,6 +32,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private Canvas dialogueCanvas;
 
     private GameManager gameManager;
+    private PlayerMovement pmScript;
 
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
@@ -62,6 +66,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         skipText = GameObject.Find("SkipText");
         skipText.SetActive(false);
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -70,6 +75,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
+            //StopAllCoroutines();
+            StopCoroutine("WaitAndReadNext");
             ReadNext();
         }
 
@@ -87,6 +94,17 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             skipText.SetActive(false);
         }
+
+        magicianDoor = GameObject.Find("Magician Door");
+        magicianCards = GameObject.Find("MagicianCards");
+
+        if (dialogueViewedSave >= 20) //update based on dialogueViewedSave after end of Parkour 1
+        {
+            magicianDoor.gameObject.SetActive(false);
+            pmScript.enabledGhostWorld1 = false;
+        }
+
+        SetObjectiveText();
     }
 
     public static void StartConversation(DialogueConversation convo)
@@ -394,6 +412,47 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 foundCount++;
                 if (foundCount == 2) break; // Stop after finding and starting two particle systems
             }
+        }
+    }
+
+    public TMP_Text objectiveText;
+
+    private void SetObjectiveText()
+    {
+        objectiveText = GameObject.Find("ObjectiveText").GetComponent<TMP_Text>();
+
+        switch (dialogueViewedSave)
+        {
+            case 0:
+                objectiveText.text = "Get accustomed to your trailer, anything amiss?";
+                break;
+            case 1:
+                objectiveText.text = "See what is on the vanity";
+                break;
+            case 2:
+                objectiveText.text = "Any significance to the name Antonio Colombo?";
+                break;
+            case 4:
+                objectiveText.text = "Explore the Big Top after leaving your trailer";
+                break;
+            case 5:
+                objectiveText.text = "Any objects related to the ghost in the Big Top?";
+                break;
+            case 6:
+                objectiveText.text = "Find the torn off pieces of the picture";
+                break;
+            case 8:
+                objectiveText.text = "Examine the completed picture";
+                break;
+            case 9:
+                objectiveText.text = "Any significance to the name Lottie Green?";
+                break;
+            case 11:
+                objectiveText.text = "Enter the Spirit World through the picture to recover Lottie's memories";
+                break;
+            default:
+                objectiveText.text = "Keep progressing!";
+                break;
         }
     }
 

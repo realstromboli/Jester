@@ -35,7 +35,7 @@ public class Grappling : MonoBehaviour
     {
         pmScript = GetComponent<PlayerMovement>();
         playerRb = GetComponent<Rigidbody>();
-        StartGrapple();
+        
     }
 
     
