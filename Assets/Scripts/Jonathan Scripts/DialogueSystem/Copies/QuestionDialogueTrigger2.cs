@@ -28,7 +28,7 @@ public class QuestionDialogueTrigger2 : MonoBehaviour
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 23)
+        if (dialogueManager.dialogueViewedSave >= 16)
         {
             objectRenderer.material = newMaterial;
             dtScript = GameObject.Find("HiddenDialogueSpeaker8").GetComponent<DialogueTrigger>();

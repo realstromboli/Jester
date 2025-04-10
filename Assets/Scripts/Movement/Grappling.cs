@@ -60,7 +60,7 @@ public class Grappling : MonoBehaviour
         }
     }
 
-    private void StartGrapple()
+    public void StartGrapple()
     {
         if (grappleCdTimer > 0)
         {

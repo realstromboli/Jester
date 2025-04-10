@@ -98,7 +98,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         magicianDoor = GameObject.Find("Magician Door");
         magicianCards = GameObject.Find("MagicianCards");
 
-        if (dialogueViewedSave >= 20) //update based on dialogueViewedSave after end of Parkour 1
+        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
         {
             magicianDoor.gameObject.SetActive(false);
             pmScript.enabledGhostWorld1 = false;
