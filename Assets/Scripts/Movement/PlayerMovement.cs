@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
@@ -131,6 +132,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Run();
         StateHandler();
         ItemInteraction();
+        CheckAndDisablePosterPieces();
 
         //RaycastHit hit;
         //ground check
@@ -580,11 +582,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door") && hasJesterPower && !dmScript.dialogueActive)
+                if ((hit.collider.CompareTag("Door") || hit.collider.CompareTag("Net")) && hasJesterPower && !dmScript.dialogueActive)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
+
+                    if (hit.collider.CompareTag("Net"))
+                    {
+                        dmScript.dialogueViewedSave++;
+                    }
+
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -666,6 +674,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         StartCoroutine(WaitForSeconds());
+                        dmScript.correctAnswersCount = 0;
                     }
 
                     IEnumerator WaitForSeconds()
@@ -681,11 +690,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         if (sceneTransition != null)
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                            enabledGhostWorld1 = false;
                         }
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 21)
+                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 14)
                 {
 
                     Destroy(hit.collider.gameObject);
@@ -709,7 +719,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 24 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 17 && hasMagicianPower == true)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
@@ -812,5 +822,29 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
         }
+    }
+
+    public void CheckAndDisablePosterPieces()
+    {
+        if (tPosterFixed)
+        {
+            GameObject[] posterPieces = GameObject.FindGameObjectsWithTag("tPosterPiece");
+            foreach (GameObject piece in posterPieces)
+            {
+                piece.SetActive(false);
+            }
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(SetRespawnLocationAfterDelay());
+    }
+
+    private IEnumerator SetRespawnLocationAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        respawnLocation = transform.position;
+        Debug.Log("Respawn location set to: " + respawnLocation);
     }
 }
