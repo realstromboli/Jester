@@ -10074,9 +10074,10 @@ GameObject:
   - component: {fileID: 269779920}
   - component: {fileID: 269779919}
   - component: {fileID: 269779918}
+  - component: {fileID: 269779922}
   m_Layer: 0
   m_Name: er
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10161,12 +10162,36 @@ Transform:
   m_GameObject: {fileID: 269779917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1907.5808, y: -241.41956, z: -1059.0914}
-  m_LocalScale: {x: 5.5378, y: 5.5378, z: 5.5378}
+  m_LocalPosition: {x: 1939.1, y: -238.1, z: -1065.7}
+  m_LocalScale: {x: 5.5378, y: 21.325514, z: 11.355813}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269779922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269779917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 2
+  fadeUI: {fileID: 0}
+  fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
+  sceneToGoTo: Indoor Circus
+  playerTransferPosition: {x: -106.12, y: 26, z: -276.09}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 90
+  playerObj: {fileID: 0}
+  playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!1001 &291301337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42444,7 +42469,7 @@ GameObject:
   - component: {fileID: 1172374473}
   - component: {fileID: 1172374472}
   - component: {fileID: 1172374471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
