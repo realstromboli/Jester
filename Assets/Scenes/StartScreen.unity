@@ -238,11 +238,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1913936961172229621, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
   m_PrefabInstance: {fileID: 1492812440}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &379528454 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-  m_PrefabInstance: {fileID: 2020155956}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &405320779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1732,10 +1727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8654906781160529564, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 379528454}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
 --- !u!1001 &1532904044
@@ -2111,88 +2103,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 422929894066930574, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
   m_PrefabInstance: {fileID: 1492812440}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2020155956
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1508820286}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6772112393696767556, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -444071335918693599, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_Name
-      value: Jump with Cane
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318011891128605782, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5866666021909216657, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d8968838dbdc7ee408d10faa6ea2ca43, type: 3}
 --- !u!114 &2028923283 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}

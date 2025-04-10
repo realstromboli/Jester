@@ -112,6 +112,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
         instance.currentIndex = 0;
+        Debug.Log(instance.currentIndex);
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
@@ -122,6 +123,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void ReadNext()
     {
+
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
@@ -449,6 +451,21 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 break;
             case 11:
                 objectiveText.text = "Enter the Spirit World through the picture to recover Lottie's memories";
+                break;
+            case 12:
+                objectiveText.text = "Traverse the Spirit World to recover Lottie's memories";
+                break;
+            case 13:
+                objectiveText.text = "Explore the Big Top for any changes after coming back";
+                break;
+            case 14:
+                objectiveText.text = "Find the Magician's six cards";
+                break;
+            case 15:
+                objectiveText.text = "Figure out the Magician's name";
+                break;
+            case 17:
+                objectiveText.text = "Enter the Spirit World through the picture to recover Desire's memories";
                 break;
             default:
                 objectiveText.text = "Keep progressing!";
