@@ -112,6 +112,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
         instance.currentIndex = 0;
+        Debug.Log(instance.currentIndex);
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
@@ -122,6 +123,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void ReadNext()
     {
+
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
