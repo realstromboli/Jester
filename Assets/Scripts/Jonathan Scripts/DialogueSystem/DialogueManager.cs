@@ -452,6 +452,21 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             case 11:
                 objectiveText.text = "Enter the Spirit World through the picture to recover Lottie's memories";
                 break;
+            case 12:
+                objectiveText.text = "Traverse the Spirit World to recover Lottie's memories";
+                break;
+            case 13:
+                objectiveText.text = "Explore the Big Top for any changes after coming back";
+                break;
+            case 14:
+                objectiveText.text = "Find the Magician's six cards";
+                break;
+            case 15:
+                objectiveText.text = "Figure out the Magician's name";
+                break;
+            case 17:
+                objectiveText.text = "Enter the Spirit World through the picture to recover Desire's memories";
+                break;
             default:
                 objectiveText.text = "Keep progressing!";
                 break;
