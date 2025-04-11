@@ -326,7 +326,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = 1;
         }
 
-        // For now, just continue the conversation
         foreach (Transform child in buttonContainer)
         {
             if ((correctAnswersCount <= 0 || correctAnswersCount >= 2) && option != "The Magnificent")
