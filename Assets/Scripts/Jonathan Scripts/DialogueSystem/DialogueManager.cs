@@ -75,8 +75,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
-            //StopAllCoroutines();
-            StopCoroutine("WaitAndReadNext");
+            StopAllCoroutines();
+            //StopCoroutine("WaitAndReadNext");
             ReadNext();
         }
 
