@@ -596,8 +596,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                        StartCoroutine(SetRespawnLocationAfterDelay());
                     }
 
+                    
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
@@ -690,6 +692,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         if (sceneTransition != null)
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                            StartCoroutine(SetRespawnLocationAfterDelay());
                             enabledGhostWorld1 = false;
                         }
                     }
@@ -726,6 +729,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                        StartCoroutine(SetRespawnLocationAfterDelay());
                     }
                 }
             }
@@ -836,14 +840,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(SetRespawnLocationAfterDelay());
-    }
-
     private IEnumerator SetRespawnLocationAfterDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;
         Debug.Log("Respawn location set to: " + respawnLocation);
     }
