@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MaskToggle : MonoBehaviour, IDataPersistence
 {
@@ -11,6 +12,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public DataPersistenceManager dpmScript;
     public Animator playerAnimation;
     public GameObject maskIndicator;
+    public Timer timerScript;
 
     public int maskCount;
     public TextMeshProUGUI maskCountText;
@@ -23,7 +25,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     void Start()
     {
         maskStatus = false;
-        maskIndicator.gameObject.SetActive(false);
+        SetMaskIndicatorVisibility(false);
         playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
@@ -36,7 +38,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         if (Input.GetKeyDown(KeyCode.Q) && readyToPress && pmScript.hasMask == true)
         {
             maskToggle();
-            
+
             readyToPress = false;
         }
 
@@ -47,12 +49,12 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
         if (maskStatus == false)
         {
-            maskIndicator.gameObject.SetActive(false);
+            SetMaskIndicatorVisibility(false);
             SetLayerVisibility(false);
         }
         else if (maskStatus == true)
         {
-            maskIndicator.gameObject.SetActive(true);
+            SetMaskIndicatorVisibility(true);
             SetLayerVisibility(true);
         }
 
@@ -66,18 +68,22 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             maskStatus = true;
             SetLayerVisibility(true);
             playerAnimation.SetTrigger("Mask On Trigger");
+            timerScript.Pause = false;
+            timerScript.Begin(timerScript.Duration);
         }
         else if (maskStatus == true)
         {
             maskStatus = false;
             SetLayerVisibility(false);
             playerAnimation.SetTrigger("Mask Off Trigger");
+            timerScript.Begin(timerScript.Duration);
+            timerScript.Pause = true;
         }
         StartCoroutine(MaskCooldown());
         Debug.Log("LOL");
     }
 
-    private void SetLayerVisibility(bool isVisible)
+    public void SetLayerVisibility(bool isVisible)
     {
         // Find all objects in the scene
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
@@ -102,24 +108,6 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
-            //// Check if the object is on the magic layer
-            //if (((1 << obj.layer) & magicLayer) != 0)
-            //{
-            //    // Toggle the Renderer component
-            //    Renderer renderer = obj.GetComponent<Renderer>();
-            //    if (renderer != null)
-            //    {
-            //        renderer.enabled = isVisible;
-            //    }
-
-            //    // Toggle the Collider component
-            //    Collider collider = obj.GetComponent<Collider>();
-            //    if (collider != null)
-            //    {
-            //        collider.enabled = isVisible;
-            //    }
-            //}
-
             // Check if the object is on the ghost interactable layer
             if (((1 << obj.layer) & ghostInteractableLayer) != 0)
             {
@@ -137,6 +125,23 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                     collider.enabled = isVisible;
                 }
             }
+        }
+    }
+
+    private void SetMaskIndicatorVisibility(bool isVisible)
+    {
+        // Get the Image component on the maskIndicator
+        Image maskImage = maskIndicator.GetComponent<Image>();
+        if (maskImage != null)
+        {
+            maskImage.enabled = isVisible;
+        }
+
+        // Get the Image components on the children of the maskIndicator
+        Image[] childImages = maskIndicator.GetComponentsInChildren<Image>();
+        foreach (Image img in childImages)
+        {
+            img.enabled = isVisible;
         }
     }
 

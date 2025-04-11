@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
     public MaskToggle maskScript;
+    public Timer timerScript;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -76,10 +77,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (isGameActive)
         {
             HUD.SetActive(true);
+            timerScript.Pause = false;
         }
         else if (!isGameActive)
         {
             HUD.SetActive(false);
+            timerScript.Pause = true;
         }
 
         if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen)

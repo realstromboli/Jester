@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private GameManager gameManager;
     private PlayerMovement pmScript;
+    private Timer timerScript;
 
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
@@ -67,6 +68,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         skipText = GameObject.Find("SkipText");
         skipText.SetActive(false);
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
     }
 
     private void Update()
@@ -89,10 +91,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         if (dialogueActive)
         {
             skipText.SetActive(true);
+            timerScript.Pause = true;
         }
         else
         {
             skipText.SetActive(false);
+            timerScript.Pause = false;
         }
 
         magicianDoor = GameObject.Find("Magician Door");
