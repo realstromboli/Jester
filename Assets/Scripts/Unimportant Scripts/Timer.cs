@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
     public bool Pause;
     public MaskToggle mtScript;
     public Timer timerScript;
+    public Image obscurity;
 
     private Coroutine timerCoroutine;
 
@@ -24,6 +25,7 @@ public class Timer : MonoBehaviour
         insanityIndicator = GameObject.Find("Insanity");
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
+        obscurity = GameObject.Find("Obscurity").GetComponent<Image>();
     }
 
     void Update()
@@ -48,6 +50,14 @@ public class Timer : MonoBehaviour
             if (!Pause && mtScript.maskStatus)
             {
                 uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+
+                // Calculate the new alpha value based on the remaining duration
+                if (obscurity != null)
+                {
+                    float alpha = Mathf.Lerp(0, 200f / 255f, (Duration - remainingDuration) / (float)Duration);
+                    obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, alpha);
+                }
+
                 remainingDuration--;
                 yield return new WaitForSeconds(1f);
             }
@@ -81,7 +91,7 @@ public class Timer : MonoBehaviour
 
         // Enable the Image component of the insanityIndicator GameObject
         Image insanityImage = insanityIndicator.GetComponent<Image>();
-        
+
 
         while (elapsedTime < cooldownDuration)
         {
@@ -90,6 +100,7 @@ public class Timer : MonoBehaviour
             {
                 insanityImage.enabled = true;
             }
+            obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, 200);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -98,6 +109,12 @@ public class Timer : MonoBehaviour
         if (insanityImage != null)
         {
             insanityImage.enabled = false;
+        }
+
+        // Set the alpha of obscurityImage to 0
+        if (obscurity != null)
+        {
+            obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, 0);
         }
 
         mtScript.readyToPress = true;
