@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             skipText.SetActive(true);
             timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
         else
         {

@@ -70,6 +70,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             playerAnimation.SetTrigger("Mask On Trigger");
             timerScript.Pause = false;
             timerScript.Begin(timerScript.Duration);
+            
         }
         else if (maskStatus == true)
         {
@@ -78,6 +79,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             playerAnimation.SetTrigger("Mask Off Trigger");
             timerScript.Begin(timerScript.Duration);
             timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
         StartCoroutine(MaskCooldown());
         Debug.Log("LOL");
