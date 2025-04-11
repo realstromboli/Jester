@@ -108,6 +108,13 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 {
                     collider.enabled = isVisible;
                 }
+
+                // Toggle the Light component
+                Light light = obj.GetComponent<Light>();
+                if (light != null)
+                {
+                    light.enabled = isVisible;
+                }
             }
 
             // Check if the object is on the ghost interactable layer
