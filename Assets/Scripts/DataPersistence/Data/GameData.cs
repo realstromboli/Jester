@@ -26,6 +26,8 @@ public class GameData
     public bool jesterCureTrigger;
     public bool interactedJesterPoster;
 
+    public AudioClip savedSceneSong;
+
     // The values defined in this constructor will be the default values
     // the game starts when there's no save file
 
@@ -56,5 +58,7 @@ public class GameData
 
         interactedJesterPoster = false;
         jesterCureTrigger = false;
+
+        savedSceneSong = GameObject.Find("Main Camera").GetComponent<MusicController>().musicClips[0];
     }
 }
