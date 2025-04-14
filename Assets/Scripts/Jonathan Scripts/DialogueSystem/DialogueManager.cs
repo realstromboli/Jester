@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private GameManager gameManager;
     private PlayerMovement pmScript;
+    private Timer timerScript;
 
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
@@ -67,6 +68,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         skipText = GameObject.Find("SkipText");
         skipText.SetActive(false);
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
     }
 
     private void Update()
@@ -75,8 +77,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
-            //StopAllCoroutines();
-            StopCoroutine("WaitAndReadNext");
+            StopAllCoroutines();
+            //StopCoroutine("WaitAndReadNext");
             ReadNext();
         }
 
@@ -89,10 +91,13 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         if (dialogueActive)
         {
             skipText.SetActive(true);
+            timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
         else
         {
             skipText.SetActive(false);
+            timerScript.Pause = false;
         }
 
         magicianDoor = GameObject.Find("Magician Door");
@@ -326,7 +331,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = 1;
         }
 
-        // For now, just continue the conversation
         foreach (Transform child in buttonContainer)
         {
             if ((correctAnswersCount <= 0 || correctAnswersCount >= 2) && option != "The Magnificent")

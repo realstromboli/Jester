@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
     public MaskToggle maskScript;
+    public Timer timerScript;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -76,10 +77,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (isGameActive)
         {
             HUD.SetActive(true);
+            timerScript.Pause = false;
         }
         else if (!isGameActive)
         {
             HUD.SetActive(false);
+            timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen)
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             isGameActive = false;
             pauseCanvas.GetComponent<Canvas>().sortingOrder = 2;
             inventoryScreen.GetComponent<Canvas>().sortingOrder = 1;
+            timerScript.Pause = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !isGameActive && !inventoryOpen && !startScreenOpen)
         {
@@ -149,6 +154,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             isGameActive = true;
             pauseCanvas.GetComponent<Canvas>().sortingOrder = 1;
             inventoryScreen.GetComponent<Canvas>().sortingOrder = 2;
+            timerScript.Pause = false;
         }
     }
 
