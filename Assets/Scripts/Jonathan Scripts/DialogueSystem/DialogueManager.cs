@@ -112,7 +112,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         SetObjectiveText();
     }
 
-    public static void StartConversation(DialogueConversation convo)
+    /*public static void StartConversation(DialogueConversation convo)
     {
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
@@ -124,6 +124,25 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         //instance.dialogueViewedSave++;
 
         instance.ReadNext();
+    }*/
+
+    public static void StartConversation(DialogueConversation convo)
+    {
+        instance.StartCoroutine(instance.StartConversationWithDelay(convo));
+    }
+
+    private IEnumerator StartConversationWithDelay(DialogueConversation convo)
+    {
+        yield return new WaitForSeconds(0.1f); // Small delay to ensure proper initialization
+        instance.dialogueActive = true;
+        instance.anim.SetBool("isOpen", true);
+        instance.currentIndex = 0;
+        Debug.Log("Starting conversation with delay. Current index: " + instance.currentIndex);
+        instance.currentConvo = convo;
+        instance.speakerName.text = "";
+        instance.dialogue.text = "";
+
+        instance.ReadNext();
     }
 
     public void ReadNext()
@@ -133,6 +152,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             instance.anim.SetBool("isOpen", false);
             dialogueActive = false;
+            currentIndex = 0;
+            currentConvo = null;
+            correctAnswersCount = 0;
             return;
         }
 
