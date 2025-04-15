@@ -156,7 +156,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     public IEnumerator MaskCooldown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         readyToPress = true;
         Debug.Log("Mask Ready!");
     }
