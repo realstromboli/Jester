@@ -133,11 +133,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private IEnumerator StartConversationWithDelay(DialogueConversation convo)
     {
-        yield return new WaitForSeconds(0.1f); // Small delay to ensure proper initialization
+        yield return new WaitForSeconds(0.1f);
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
         instance.currentIndex = 0;
-        Debug.Log("Starting conversation with delay. Current index: " + instance.currentIndex);
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
@@ -147,7 +146,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void ReadNext()
     {
-
+        Debug.Log("Yo 3");
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
