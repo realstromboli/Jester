@@ -149,7 +149,7 @@ RectTransform:
   m_GameObject: {fileID: 158001676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.50498, y: 0.50498, z: 0.50498}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 212207229}
@@ -157,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5000, y: 5000}
+  m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158001678
 MonoBehaviour:
@@ -172,14 +172,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13746631, g: 0.13746631, b: 0.13746631, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2fc2da058da3abf478c97cb0d3599e63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -291,6 +291,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 254918365}
   - {fileID: 158001677}
   - {fileID: 1559054644}
   m_Father: {fileID: 0}
@@ -300,6 +301,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &254918364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 254918365}
+  - component: {fileID: 254918367}
+  - component: {fileID: 254918366}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &254918365
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254918364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9131554, y: 0.9131554, z: 0.9131554}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 212207229}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 3840, y: 2160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &254918366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254918364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &254918367
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254918364}
+  m_CullTransparentMesh: 1
 --- !u!1 &324923964
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +599,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -3598}
-  m_SizeDelta: {x: 200, y: 1511}
+  m_SizeDelta: {x: 200, y: 3549.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1559054645
 Animator:
@@ -566,46 +642,46 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<font=\"Carnevalee Freakshow SDF\"><color=#4ea849>LEAD</font></color>\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Producer</font></color>\nCJ Giannino\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Creative Director</font></color>\nMackenzie Harris\n\n\n\n\n\n<font=\"Carnevalee
-    Freakshow SDF\"><color=#4ea849>PROGRAMMING</font></color>\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Lead Programmer</font></color>\nZachary Hinckley\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Programmer</font></color>\nJonathan Arel\n\n\n\n\n\n<font=\"Carnevalee
-    Freakshow SDF\"><color=#4ea849>ART</font></color>\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Art Director</font></color>\nMackenzie Harris\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Concept Artists</font></color>\nMackenzie Harris\nKeshauni
-    Johnson\nAri Merkowitz\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>3D
-    Modelers & Textures</font></color>\nMackenzie Harris\nKeshauni Johnson\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>3D Rigging & Animators</font></color>\nCJ Giannino\nNathan
-    Lagerstedt\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>2D Artist & Textures</font></color>\nAri
-    Merkowitz\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Modeling & Texture
-    Assistance</font></color>\nJamie Caferelli\n\n\n\n\n\n<font=\"Carnevalee Freakshow
-    SDF\"><color=#4ea849>DESIGN</font></color>\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Level
-    Designer</font></color>\nDante Melo\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Narrative
-    Designer & Documentation</font></color>\nJonathan Arel\n\n\n\n\n\n<font=\"Carnevalee
-    Freakshow SDF\"><color=#4ea849>EXTERNAL</font></color>\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Audio Director</font></color>\nBerklee\u2019s Juniper Redmer
-    (narcolepsyDriver)\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Music Composers
-    & Sound Effects</font></color>\nHeather Kim\nJuniper Redmer\n\nBerklee College
-    of Music\n\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Voices</font></color>\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Playtesters</font></color>\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Quality Assurance Testers</font></color>\n\n\n\n<font=\"StonyIslandNF-Bold
-    SDF\"><color=#fff1bc>Professors</font></color>\nJonathan Amakawa\nJeff Warmouth\n\n\nFitchburg
-    State University\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Assets</font></color>\n<color=#fff1bc>Fonts</color>\nCarnivalee
+  m_text: "<font=\"Carnevalee Freakshow SDF\"><color=#4ea849><size=75>LEAD</font></color></size>\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Producer</font></color>\nCJ Giannino\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Creative Director</font></color>\nMackenzie Harris\n\n\n\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#4ea849><size=75>PROGRAMMING</font></color></size>\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Lead Programmer</font></color>\nZachary Hinckley\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Programmer</font></color>\nJonathan Arel\n\n\n\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#4ea849><size=75>ART</font></color></size>\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Art Director</font></color>\nMackenzie Harris\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Concept Artists</font></color>\nMackenzie Harris\nKeshauni
+    Johnson\nAri Merkowitz\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>3D
+    Modelers & Textures</font></color>\nMackenzie Harris\nKeshauni Johnson\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>3D Rigging & Animators</font></color>\nCJ Giannino\nNathan
+    Lagerstedt\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>2D Artist &
+    Textures</font></color>\nAri Merkowitz\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Modeling
+    & Texture Assistance</font></color>\nJamie Caferelli\n\n\n\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#4ea849><size=75>DESIGN</font></color></size>\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Level Designer</font></color>\nDante Melo\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Narrative Designer & Documentation</font></color>\nJonathan
+    Arel\n\n\n\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#4ea849><size=75>EXTERNAL</font></color></size>\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Audio Director</font></color>\nBerklee\u2019s
+    Juniper Redmer (narcolepsyDriver)\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Music
+    Composers & Sound Effects</font></color>\nHeather Kim\nJuniper Redmer\n\nBerklee
+    College of Music\n\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Voices</font></color>\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Playtesters</font></color>\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Quality Assurance Testers</font></color>\n\n\n\n<font=\"Carnevalee
+    Freakshow SDF\"><color=#fff1bc>Professors</font></color>\nJonathan Amakawa\nJeff
+    Warmouth\n\n\nFitchburg State University\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Assets</font></color>\n<color=#fff1bc>Fonts</color>\nCarnivalee
     Freakshow Font by Chris Hansen on 1001 Fonts\nStony Island NF by Nick Curtis
     on 1001 Fonts\nWonderia by Keithzo on 1001 Fonts\nExtraOrnamentalNo2 by House
-    of Lime on 1001 Fonts\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>SPECIAL
-    THANKS</font></color>\n\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Precursor
+    of Lime on 1001 Fonts\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>SPECIAL
+    THANKS</font></color>\n\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Precursor
     Team</font></color>\nGlenndale Bartolome\nJamie Caferelli\nIsabel Cochran\nJuan
-    Pena-Deoleo\nSamuel Rocha\nParker Stearns\n\n<font=\"StonyIslandNF-Bold SDF\"><color=#fff1bc>Game
+    Pena-Deoleo\nSamuel Rocha\nParker Stearns\n\n<font=\"Carnevalee Freakshow SDF\"><color=#fff1bc>Game
     Design Professors</font></color>\nAndres Gonzalez\nFrank Mabee\nXiaoying Meng\nLes
     Nelken\nBrianna Shuttleworth\nBritt Snyder\nSam Tobin\n\n\n\n\nMade with Unity\n\n\nPublished
     to Itch.io and Steam\n\n\n\n\n\n\n\n\n\n\n<font=\"Carnevalee Freakshow SDF\">Thank
     you for playing!</font>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}
-  m_sharedMaterial: {fileID: -4834616352554964953, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -639,7 +715,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 4
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
