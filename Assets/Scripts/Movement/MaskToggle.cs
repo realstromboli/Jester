@@ -16,6 +16,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     public int maskCount;
     public TextMeshProUGUI maskCountText;
+    public Image timerFill;
 
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;

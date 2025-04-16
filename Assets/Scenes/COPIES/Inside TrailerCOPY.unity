@@ -18367,56 +18367,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4680361361008276554, guid: 721c4621ab593bf4cad8fa809b4d5d4e, type: 3}
   m_PrefabInstance: {fileID: 1978640424}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1996973393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1996973395}
-  - component: {fileID: 1996973394}
-  m_Layer: 10
-  m_Name: HiddenDialogueSpeaker1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1996973394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996973393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fd961c2ad4fd343906c5a129d1cb9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convo: {fileID: 11400000, guid: 4ba5ee055e4f3a541b6a18d3cfa65cf9, type: 2}
-  viewNumber: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  pcScript: {fileID: 0}
---- !u!4 &1996973395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996973393}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000002790449, y: -0.060393453, z: 0.000003696966, w: 0.99817467}
-  m_LocalPosition: {x: 535.24, y: 12.47, z: 209.1}
-  m_LocalScale: {x: 40.60873, y: 40.60873, z: 40.60873}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014738468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4908261580543255775, guid: 60ce731edade7ad488ea77672ece2720, type: 3}
@@ -18996,4 +18946,3 @@ SceneRoots:
   - {fileID: 525703540}
   - {fileID: 1805119777}
   - {fileID: 2068081630}
-  - {fileID: 1996973395}

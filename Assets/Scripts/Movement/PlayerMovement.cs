@@ -487,7 +487,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 //}
 
-                if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
+                if (hit.collider.CompareTag("Mask"))
                 {
                     mask = GameObject.Find("Jester Mask");
                     hasMask = true;
@@ -495,7 +495,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mtScript.readyToPress = false;
                     Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
-                    
+                    dtScript = GameObject.Find("HiddenDialogueSpeaker1").GetComponent<DialogueTrigger>();
+                    dtScript.startConvo();
+                    logText.text = "Entry added to log";
+                    gmScript.slot1Full = true;
+                    logText.gameObject.SetActive(true);
+                    StartCoroutine(HUDPopUp2());
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -614,7 +619,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         if (dmScript.dialogueViewedSave >= 1)
                         {
                             jesterCureTrigger = true;
-                            gmScript.slot1Full = true;
+                            gmScript.slot2Full = true;
                             logText.text = "Jester info added to log";
                             logText.gameObject.SetActive(true);
                             StartCoroutine(HUDPopUp2());
@@ -755,8 +760,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public IEnumerator HUDPopUp2()
     {
-        yield return new WaitForSeconds(1.2f);
-        logText.gameObject.SetActive(false);
+        float duration = 2f; // Duration of the fade-out in seconds
+        float elapsedTime = 0f;
+
+        Color originalColor = logText.color;
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+
+        while (elapsedTime < duration)
+        {
+            logText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the final alpha is set to 0
+        logText.color = targetColor;
     }
 
     public bool enabledGhostWorld1;
