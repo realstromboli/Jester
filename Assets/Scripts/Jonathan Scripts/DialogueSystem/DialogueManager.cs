@@ -83,7 +83,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 5)
+        if (dialogueViewedSave == 7)
         {
             StartParticleEffects();
         }
@@ -446,7 +446,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void SetObjectiveText()
     {
-        objectiveText = GameObject.Find("ObjectiveText").GetComponent<TMP_Text>();
 
         switch (dialogueViewedSave)
         {

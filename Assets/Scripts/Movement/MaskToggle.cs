@@ -52,11 +52,13 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         {
             SetMaskIndicatorVisibility(false);
             SetLayerVisibility(false);
+            timerFill.enabled = false;
         }
         else if (maskStatus == true)
         {
             SetMaskIndicatorVisibility(true);
             SetLayerVisibility(true);
+            timerFill.enabled = true;
         }
 
         maskCountText.text = "" + maskCount;

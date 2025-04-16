@@ -468,7 +468,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item1Text()
     {
         itemNameText.text = "Mask Instructions (Press Q)";
-        itemDescriptionText.text = "-these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. You must be careful around these ghosts, however, as they can be prone to aggressive outbursts due to their confusion. If you do not restore their humanity, they can";
+        itemDescriptionText.text = "Follow these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. Prolonged use of the mask not recommended, remove the mask to cleanse oneself of any effects.";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }

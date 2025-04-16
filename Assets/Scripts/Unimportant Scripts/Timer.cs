@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
     public bool Pause;
     public MaskToggle mtScript;
     public DialogueManager dmScript;
+    public GameManager gmScript;
     public Timer timerScript;
     public Image obscurity;
 
@@ -28,16 +29,17 @@ public class Timer : MonoBehaviour
         timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
         obscurity = GameObject.Find("Obscurity").GetComponent<Image>();
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
         // Update code if needed
-        if (dmScript.dialogueActive)
+        if (dmScript.dialogueActive || gmScript.isGameActive == false)
         {
             Pause = true;
         }
-        else if (dmScript.dialogueActive == false)
+        else if (dmScript.dialogueActive == false || gmScript.isGameActive == true)
         {
             Pause = false;
         }
