@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -1.7999878, y: -6.100006}
-  m_SizeDelta: {x: 99, y: 24.9}
+  m_SizeDelta: {x: 99, y: 35.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9026411562955118695
 CanvasRenderer:
@@ -142,15 +142,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[NAME]'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f7c634646bd74cb4288bb98b52c473e4, type: 2}
+  m_sharedMaterial: {fileID: -4241530477915818265, guid: f7c634646bd74cb4288bb98b52c473e4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280894419
+  m_fontColor: {r: 0.82745105, g: 0.2627451, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 31
+  m_fontSizeBase: 31
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -318,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.7001953, y: 30.3}
+  m_AnchoredPosition: {x: -0.7001953, y: 28}
   m_SizeDelta: {x: -73.19957, y: 69.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1667446184745128294
@@ -352,8 +352,8 @@ MonoBehaviour:
   m_text: 'This is placeholder text. If you are seeing this, this is a bug. Please
     report this issue to a member of the development team. '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}
+  m_sharedMaterial: {fileID: -4834616352554964953, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -377,8 +377,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -595,8 +595,14 @@ MonoBehaviour:
   dialogueDelay: 2
   dialogueViewedSave: 0
   makingDescision: 0
+  dialogueActive: 0
   buttonPrefab: {fileID: 8931985735094623756, guid: ae770ec0004a38c4dac148af90dae641, type: 3}
+  skipText: {fileID: 0}
+  magicianDoor: {fileID: 0}
+  magicianCards: {fileID: 0}
   buttonContainer: {fileID: 662005101049259827}
+  correctAnswersCount: 0
+  objectiveText: {fileID: 0}
 --- !u!95 &7681042773389662724
 Animator:
   serializedVersion: 5

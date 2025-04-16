@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680361361008276554}
+  - component: {fileID: 1655387347233042042}
   m_Layer: 0
   m_Name: Book_Closed
   m_TagString: Untagged
@@ -24,14 +25,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2967119671686088141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01744821, y: 0.01744821, z: 0.01744821}
+  m_LocalScale: {x: 0.017448207, y: 0.01744821, z: 0.017448207}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7702892773098311226}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1655387347233042042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967119671686088141}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 44.891903, y: 5.7741456, z: 30.455915}
+  m_Center: {x: 0, y: 2.7431176, z: 15.328303}
 --- !u!1 &6254291887357719872
 GameObject:
   m_ObjectHideFlags: 0

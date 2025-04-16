@@ -3,18 +3,23 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using UnityEditor.Rendering;
+using JetBrains.Annotations;
+using TMPro.Examples;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI speakerName, dialogue;
     public Image speakerSprite;
     public float dialogueTypeSpeed = 0.02f;
-    public float dialogueDelay = 3.0f;
+    public float dialogueDelay = 1.5f;
     public int dialogueViewedSave;
     public bool makingDescision;
     public bool dialogueActive;
 
     public GameObject buttonPrefab;
+    public GameObject skipText;
+    public GameObject magicianDoor;
+    public GameObject magicianCards;
     public Transform buttonContainer;
 
     private int currentIndex;
@@ -27,6 +32,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private Canvas dialogueCanvas;
 
     private GameManager gameManager;
+    private PlayerMovement pmScript;
+    private Timer timerScript;
 
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
@@ -57,14 +64,21 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+
+        skipText = GameObject.Find("SkipText");
+        skipText.SetActive(false);
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
     }
 
     private void Update()
     {
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentLine.dialogueOptions.Length <= 0)
+        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
         {
+            StopAllCoroutines();
+            //StopCoroutine("WaitAndReadNext");
             ReadNext();
         }
 
@@ -73,6 +87,29 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             StartParticleEffects();
         }
+
+        if (dialogueActive)
+        {
+            skipText.SetActive(true);
+            timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
+        }
+        else
+        {
+            skipText.SetActive(false);
+            timerScript.Pause = false;
+        }
+
+        magicianDoor = GameObject.Find("Magician Door");
+        magicianCards = GameObject.Find("MagicianCards");
+
+        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
+        {
+            magicianDoor.gameObject.SetActive(false);
+            pmScript.enabledGhostWorld1 = false;
+        }
+
+        SetObjectiveText();
     }
 
     public static void StartConversation(DialogueConversation convo)
@@ -80,6 +117,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
         instance.currentIndex = 0;
+        Debug.Log(instance.currentIndex);
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
@@ -90,6 +128,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void ReadNext()
     {
+
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
@@ -237,7 +276,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 layoutElement = button.AddComponent<LayoutElement>();
             }
             layoutElement.minWidth = buttonContainer.GetComponent<RectTransform>().rect.width;
-            layoutElement.preferredHeight = 40; // Adjust the height as needed
+            layoutElement.preferredHeight = 85; // Adjust the height as needed
         }
     }
 
@@ -292,7 +331,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             correctAnswersCount = 1;
         }
 
-        // For now, just continue the conversation
         foreach (Transform child in buttonContainer)
         {
             if ((correctAnswersCount <= 0 || correctAnswersCount >= 2) && option != "The Magnificent")
@@ -380,6 +418,62 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 foundCount++;
                 if (foundCount == 2) break; // Stop after finding and starting two particle systems
             }
+        }
+    }
+
+    public TMP_Text objectiveText;
+
+    private void SetObjectiveText()
+    {
+        objectiveText = GameObject.Find("ObjectiveText").GetComponent<TMP_Text>();
+
+        switch (dialogueViewedSave)
+        {
+            case 0:
+                objectiveText.text = "Get accustomed to your trailer, anything amiss?";
+                break;
+            case 1:
+                objectiveText.text = "See what is on the vanity";
+                break;
+            case 2:
+                objectiveText.text = "Any significance to the name Antonio Colombo?";
+                break;
+            case 4:
+                objectiveText.text = "Explore the Big Top after leaving your trailer";
+                break;
+            case 5:
+                objectiveText.text = "Any objects related to the ghost in the Big Top?";
+                break;
+            case 6:
+                objectiveText.text = "Find the torn off pieces of the picture";
+                break;
+            case 8:
+                objectiveText.text = "Examine the completed picture";
+                break;
+            case 9:
+                objectiveText.text = "Any significance to the name Lottie Green?";
+                break;
+            case 11:
+                objectiveText.text = "Enter the Spirit World through the picture to recover Lottie's memories";
+                break;
+            case 12:
+                objectiveText.text = "Traverse the Spirit World to recover Lottie's memories";
+                break;
+            case 13:
+                objectiveText.text = "Explore the Big Top for any changes after coming back";
+                break;
+            case 14:
+                objectiveText.text = "Find the Magician's six cards";
+                break;
+            case 15:
+                objectiveText.text = "Figure out the Magician's name";
+                break;
+            case 17:
+                objectiveText.text = "Enter the Spirit World through the picture to recover Desire's memories";
+                break;
+            default:
+                objectiveText.text = "Keep progressing!";
+                break;
         }
     }
 
