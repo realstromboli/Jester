@@ -119,6 +119,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         cardCountText.gameObject.SetActive(false);
+        logText.gameObject.SetActive(false);
 
         hasJesterPower = false;
         hasTrapezistPower = false;
@@ -445,6 +446,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public int tPosterPieceCount;
     public int mCardsCount;
     public TextMeshProUGUI cardCountText;
+    public TextMeshProUGUI logText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
     public TMP_Text jesterText;
@@ -613,6 +615,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         {
                             jesterCureTrigger = true;
                             gmScript.slot1Full = true;
+                            logText.text = "Jester info added to log";
+                            logText.gameObject.SetActive(true);
+                            StartCoroutine(HUDPopUp2());
                             //dmScript.dialogueViewedSave++;
                         }
 
@@ -667,6 +672,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript.startConvo();
                         gmScript.slot2Full = true;
                         trapezistCureTrigger = true;
+                        logText.text = "Trapeze Artist info added to log";
+                        logText.gameObject.SetActive(true);
+                        StartCoroutine(HUDPopUp2());
 
                     }
 
@@ -719,6 +727,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript.startConvo();
                         gmScript.slot3Full = true;
                         magicianCureTrigger = true;
+                        logText.text = "Magician info added to log";
+                        logText.gameObject.SetActive(true);
+                        StartCoroutine(HUDPopUp2());
                     }
                 }
 
@@ -738,8 +749,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public IEnumerator HUDPopUp()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         cardCountText.gameObject.SetActive(false);
+    }
+
+    public IEnumerator HUDPopUp2()
+    {
+        yield return new WaitForSeconds(1.2f);
+        logText.gameObject.SetActive(false);
     }
 
     public bool enabledGhostWorld1;
@@ -825,6 +842,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             // Set the player's position to the respawn location
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
+            rb.velocity = Vector3.zero;
         }
     }
 
