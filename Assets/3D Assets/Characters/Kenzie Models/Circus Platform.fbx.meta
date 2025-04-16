@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d27ce50dff73d61499a5f887b0458945
+guid: a5cd02f5029178d419dd9e822886a154
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,38 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Ceiling
-    second: {fileID: 2100000, guid: c0f1f52ab13e41f4f99666c90bea1338, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Door
-    second: {fileID: 2100000, guid: 695abfe7d09ebf64c8b472a6f50de33c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Floor
-    second: {fileID: 2100000, guid: 38964de39aec7014ba024f35ce6d232f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: efa80eba63a2eeb4c998deb36ebab515, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 6ab97bfd12c053f4c93eccc3ada3a5a9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall Trim
-    second: {fileID: 2100000, guid: b032e5aacc912554b801a2462207414c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: standardSurface1
-    second: {fileID: 2100000, guid: 4b8bf130f96707445853f26dbf8fbdb4, type: 2}
+      name: Circus Platform
+    second: {fileID: 2100000, guid: 08e922b8a67ea0149850eae1bfe4f303, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -70,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.6
+    globalScale: 500
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -125,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.016
+    globalScale: 500
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
