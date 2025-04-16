@@ -169,4 +169,12 @@ public class SceneTransition : MonoBehaviour
             pcScript.yRotation = yRotation;
         }
     }
+
+    public void NewGame()
+    {
+        StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+        Debug.Log("Starting Game");
+        StartCoroutine(gmScript.NewDelay());
+        gmScript.maskScript.maskStatus = false;
+    }
 }
