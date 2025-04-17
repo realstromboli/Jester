@@ -1,11 +1,13 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
@@ -451,6 +453,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
     public TMP_Text jesterText;
+    public Image lottiePic1;
+    public Image lottiePic2;
+    public Image lottiePicFull;
 
     public void ItemInteraction()
     {
@@ -596,7 +601,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     if (hit.collider.CompareTag("Net"))
                     {
-                        dmScript.dialogueViewedSave++;
+                        StartCoroutine(NetDelay());
                     }
 
                     if (sceneTransition != null)
@@ -660,6 +665,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
 
 
+                    lottiePic1 = GameObject.Find("LottiePic1").GetComponent<Image>();
+                    lottiePic2 = GameObject.Find("LottiePic2").GetComponent<Image>();
+                    lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
                     playerAnimation.SetTrigger("Pickup Trigger");
                     Destroy(hit.collider.gameObject);
 
@@ -680,8 +688,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         tPosterRenderer = GameObject.Find("TrapezistPoster").GetComponent<Renderer>();
                         tPosterRenderer.material = tPosterMaterial;
                         cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
+                        lottiePic1.enabled = false;
+                        lottiePic2.enabled = false;
+                        lottiePicFull.enabled = true;
 
                         StartCoroutine(FadeOutText(cardCountText, 2f));
+                    }
+
+                    if (hit.collider.gameObject.name == "tPosterPiece1")
+                    {
+                        lottiePic1.enabled = true;
+                    }
+
+                    if (hit.collider.gameObject.name == "tPosterPiece2")
+                    {
+                        lottiePic2.enabled = true;
                     }
                 }
 
@@ -936,6 +957,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         respawnLocation = transform.position;
         Debug.Log("Respawn location set to: " + respawnLocation);
     }
+
+    public GameObject magicianDoor;
+
+    private IEnumerator NetDelay()
+    {
+        yield return new WaitForSeconds(4f);
+        lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
+        lottiePicFull.enabled = true;
+        dtScript = GameObject.Find("HiddenDialogueSpeaker9").GetComponent<DialogueTrigger>();
+        dtScript.startConvo();
+    }
+
     public IEnumerator FadeOutText(TextMeshProUGUI textElement, float duration)
     {
         textElement.alpha = 1f;

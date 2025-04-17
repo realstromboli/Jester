@@ -73,6 +73,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        magicianDoor = GameObject.Find("Magician Door");
+        magicianCards = GameObject.Find("MagicianCards");
+
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
@@ -88,6 +91,15 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             StartParticleEffects();
         }
 
+        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
+        {
+            magicianDoor.gameObject.SetActive(false);
+            pmScript.enabledGhostWorld1 = false;
+            pmScript.lottiePicFull.enabled = true;
+        }
+
+        SetObjectiveText();
+
         if (dialogueActive)
         {
             skipText.SetActive(true);
@@ -99,17 +111,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             skipText.SetActive(false);
             timerScript.Pause = false;
         }
-
-        magicianDoor = GameObject.Find("Magician Door");
-        magicianCards = GameObject.Find("MagicianCards");
-
-        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
-        {
-            magicianDoor.gameObject.SetActive(false);
-            pmScript.enabledGhostWorld1 = false;
-        }
-
-        SetObjectiveText();
     }
 
     /*public static void StartConversation(DialogueConversation convo)
