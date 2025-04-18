@@ -26,6 +26,14 @@ public class GameData
     public bool jesterCureTrigger;
     public bool interactedJesterPoster;
 
+    public AudioClip savedSceneSong;
+    private MusicController musicController;
+
+    void Start()
+    {
+        musicController = GameObject.Find("Main Camera").GetComponent<MusicController>();
+    }
+
     // The values defined in this constructor will be the default values
     // the game starts when there's no save file
 
@@ -33,12 +41,12 @@ public class GameData
     {
         this.maskCount = 0;
 
-        // (260, 6, 130) for outdoor scene
-        // (250, 25, -275) for indoor circus
-        // (591, 170, 256) for inside trailer
-        // Vector3(256,17,93)
-        playerPosition = new Vector3(0, 0, 0);
+        // Vector3(518, 16, 212) for inside trailer
+        // Vector3(2090, 75, 1347) for spririt world
+        // Vector3(4259, 734, -422)
+        // Vector3(-14, 0, 114) inside funhouse spawn
 
+        playerPosition = new Vector3 (518, 16, 212);
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
 
@@ -56,5 +64,7 @@ public class GameData
 
         interactedJesterPoster = false;
         jesterCureTrigger = false;
+
+        //savedSceneSong = musicController.musicClips[0];
     }
 }

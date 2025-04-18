@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public PlayerMovement pmScript;
     public DataPersistenceManager dpmScript;
     public MaskToggle maskScript;
+    public Timer timerScript;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -76,10 +77,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (isGameActive)
         {
             HUD.SetActive(true);
+            timerScript.Pause = false;
         }
         else if (!isGameActive)
         {
             HUD.SetActive(false);
+            timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen)
@@ -140,6 +144,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             isGameActive = false;
             pauseCanvas.GetComponent<Canvas>().sortingOrder = 2;
             inventoryScreen.GetComponent<Canvas>().sortingOrder = 1;
+            timerScript.Pause = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !isGameActive && !inventoryOpen && !startScreenOpen)
         {
@@ -149,6 +154,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             isGameActive = true;
             pauseCanvas.GetComponent<Canvas>().sortingOrder = 1;
             inventoryScreen.GetComponent<Canvas>().sortingOrder = 2;
+            timerScript.Pause = false;
         }
     }
 
@@ -186,7 +192,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void QuitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public void FreezePlayer()
@@ -208,7 +214,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 7 is circus tent
         //scene 5 is inside trailer
         //scene 1 is test scene
-        
+
         SceneManager.LoadScene(5);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
@@ -276,7 +282,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public IEnumerator PlayerPosDelay()
     {
         yield return null;
-        playerPosition = new Vector3(212, 13, 91);
+        playerPosition = new Vector3(203, 14, 13);
     }
 
     public void AddItem(string itemName, int itemQuantity, Sprite itemSprite)
@@ -345,8 +351,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot1Full)
         {
             slot1.SetActive(true);
-            item1.GetComponent<Renderer>().enabled = false;
-            item1.GetComponent<Collider>().enabled = false;
+            //item1.GetComponent<Renderer>().enabled = false;
+            //item1.GetComponent<Collider>().enabled = false;
         }
         else if (!slot1Full)
         {
@@ -356,8 +362,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot2Full)
         {
             slot2.SetActive(true);
-            item2.GetComponent<Renderer>().enabled = false;
-            item2.GetComponent<Collider>().enabled = false;
+            //item2.GetComponent<Renderer>().enabled = false;
+            //item2.GetComponent<Collider>().enabled = false;
         }
         else if (!slot2Full)
         {
@@ -367,8 +373,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot3Full)
         {
             slot3.SetActive(true);
-            item3.GetComponent<Renderer>().enabled = false;
-            item3.GetComponent<Collider>().enabled = false;
+            //item3.GetComponent<Renderer>().enabled = false;
+            //item3.GetComponent<Collider>().enabled = false;
         }
         else if (!slot3Full)
         {
@@ -378,8 +384,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (slot4Full)
         {
             slot4.SetActive(true);
-            item4.GetComponent<Renderer>().enabled = false;
-            item4.GetComponent<Collider>().enabled = false;
+            //item4.GetComponent<Renderer>().enabled = false;
+            //item4.GetComponent<Collider>().enabled = false;
         }
         else if (!slot4Full)
         {
@@ -461,32 +467,32 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item1Text()
     {
-        itemNameText.text = "Item 1";
-        itemDescriptionText.text = "This is what item 1 does";
+        itemNameText.text = "Mask Instructions (Press Q)";
+        itemDescriptionText.text = "Follow these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. Prolonged use of the mask not recommended, remove the mask to cleanse oneself of any effects.";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item2Text()
     {
-        itemNameText.text = "Item 2";
-        itemDescriptionText.text = "This is what item 2 does";
+        itemNameText.text = "Antonio's Flyer";
+        itemDescriptionText.text = "This flyer advertizes a Jester with the stage name Oliver, but ghostly writing overwrites it to say Antonio Colombo..";
         inventoryItem.sprite = item2Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item3Text()
     {
-        itemNameText.text = "Item 3";
-        itemDescriptionText.text = "This is what item 3 does";
+        itemNameText.text = "Desire's Cards";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Desire.";
         inventoryItem.sprite = item3Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item4Text()
     {
-        itemNameText.text = "Item 4";
-        itemDescriptionText.text = "This is a spooky ghost item oooooOOOOOoooo";
+        itemNameText.text = "Lottie's Image";
+        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
         inventoryItem.sprite = item4Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -509,8 +515,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item7Text()
     {
-        itemNameText.text = "Item 7";
-        itemDescriptionText.text = "This is what item 7 does";
+        itemNameText.text = "Desire's Cards";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, ghostly letters on them will spell out his name: Desire.";
         inventoryItem.sprite = item7Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }

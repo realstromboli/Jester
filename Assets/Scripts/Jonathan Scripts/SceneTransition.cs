@@ -15,11 +15,16 @@ public class SceneTransition : MonoBehaviour
     public string sceneToGoTo;
     public Vector3 playerTransferPosition;
     public Vector3 playerTransferRotation; // Change to Vector3 to store Euler angles
+    public float xRotation;
+    public float yRotation;
 
     public GameObject playerObj;
     public GameObject playerCam;
 
     public GameManager gmScript;
+    public PlayerCamera pcScript;
+
+
 
     void Awake()
     {
@@ -51,6 +56,8 @@ public class SceneTransition : MonoBehaviour
         //{
         //    gmScript.isGameActive = false;
         //}
+
+        pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
     }
 
     //private void OnCollisionEnter(Collision other)
@@ -158,6 +165,16 @@ public class SceneTransition : MonoBehaviour
         {
             // Set the camera's rotation using Quaternion.Euler to handle negative values correctly
             playerCam.transform.rotation = Quaternion.Euler(playerTransferRotation);
+            pcScript.xRotation = xRotation;
+            pcScript.yRotation = yRotation;
         }
+    }
+
+    public void NewGame()
+    {
+        StartCoroutine(FadeOutToScene(fadeUI.GetComponent<UnityEngine.UI.Image>(), fadeUIColor));
+        Debug.Log("Starting Game");
+        StartCoroutine(gmScript.NewDelay());
+        gmScript.maskScript.maskStatus = false;
     }
 }

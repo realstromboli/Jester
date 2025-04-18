@@ -60,6 +60,11 @@ public class StartManager : MonoBehaviour
         controlsScreen.gameObject.SetActive(true);
     }
 
+    public void OpenCredits()
+    {
+        SceneManager.LoadScene("CreditsScene");
+    }
+
     public void BackToStart()
     {
         startScreen.gameObject.SetActive(true);
@@ -70,6 +75,6 @@ public class StartManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
