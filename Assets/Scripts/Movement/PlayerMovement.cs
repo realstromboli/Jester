@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using TMPro.Examples;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -919,6 +920,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
         }
+
+        if (collision.gameObject.CompareTag("Net"))
+        {
+            SceneTransition sceneTransition = collision.gameObject.GetComponent<SceneTransition>();
+            NetDelay();
+
+            if (sceneTransition != null)
+            {
+                StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                StartCoroutine(SetRespawnLocationAfterDelay());
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -936,6 +949,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
             rb.velocity = Vector3.zero;
+        }
+
+        if (other.gameObject.CompareTag("Net"))
+        {
+            SceneTransition sceneTransition = other.gameObject.GetComponent<SceneTransition>();
+            NetDelay();
+
+            if (sceneTransition != null)
+            {
+                StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                StartCoroutine(SetRespawnLocationAfterDelay());
+            }
         }
     }
 
