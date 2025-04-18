@@ -6,21 +6,22 @@ using UnityEngine.UI;
 public class ReactiveReticle : MonoBehaviour
 {
     public PlayerCamera pcScript;
-    public float raycastDistance = 12f; // Distance for the raycast
+    public float raycastDistance = 12f;
     public GameObject reticleHand;
     public GameObject reticleDot;
     public Image reticleHandSprite;
-    public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
+    public Image reticleTalkSprite;
+    public LayerMask whatIsGround;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
-        reticleHandSprite = reticleHand.GetComponent<Image>();
         reticleHandSprite.enabled = false;
+        reticleTalkSprite.enabled = false;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         SetReticleSprite();
@@ -32,21 +33,29 @@ public class ReactiveReticle : MonoBehaviour
 
         if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
         {
-            // Check if the hit collider's tag is "Untagged" and the layer is either "Default" or "whatIsGround"
-            if (hit.collider.CompareTag("Untagged") || (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0))
+            
+            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0))
             {
-                reticleHandSprite.enabled = false; // Hide the hand reticle
-                reticleDot.SetActive(true); // Show the dot reticle
+                reticleHandSprite.enabled = false;
+                reticleTalkSprite.enabled = false;
+                reticleDot.SetActive(true);
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable"))
+            {
+                reticleTalkSprite.enabled = true;
+                reticleHandSprite.enabled = false;
+                reticleDot.SetActive(false);
             }
             else
             {
-                reticleHandSprite.enabled = true; // Show the hand reticle
-                reticleDot.SetActive(false); // Hide the dot reticle
+                reticleHandSprite.enabled = true;
+                reticleTalkSprite.enabled = false;
+                reticleDot.SetActive(false);
             }
         }
         else
         {
-            // If nothing is hit, default to showing the dot reticle and hiding the hand reticle
+            reticleTalkSprite.enabled = false;
             reticleHandSprite.enabled = false;
             reticleDot.SetActive(true);
         }

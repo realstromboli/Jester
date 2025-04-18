@@ -16,6 +16,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     public int maskCount;
     public TextMeshProUGUI maskCountText;
+    public Image timerFill;
 
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
@@ -51,11 +52,13 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         {
             SetMaskIndicatorVisibility(false);
             SetLayerVisibility(false);
+            timerFill.enabled = false;
         }
         else if (maskStatus == true)
         {
             SetMaskIndicatorVisibility(true);
             SetLayerVisibility(true);
+            timerFill.enabled = true;
         }
 
         maskCountText.text = "" + maskCount;
@@ -156,7 +159,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     public IEnumerator MaskCooldown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         readyToPress = true;
         Debug.Log("Mask Ready!");
     }

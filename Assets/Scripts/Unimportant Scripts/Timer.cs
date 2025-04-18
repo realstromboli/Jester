@@ -14,6 +14,8 @@ public class Timer : MonoBehaviour
     public int remainingDuration;
     public bool Pause;
     public MaskToggle mtScript;
+    public DialogueManager dmScript;
+    public GameManager gmScript;
     public Timer timerScript;
     public Image obscurity;
 
@@ -26,11 +28,21 @@ public class Timer : MonoBehaviour
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         timerScript = GameObject.Find("MaskIndicator").GetComponent<Timer>();
         obscurity = GameObject.Find("Obscurity").GetComponent<Image>();
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
         // Update code if needed
+        if (dmScript.dialogueActive || gmScript.isGameActive == false)
+        {
+            Pause = true;
+        }
+        else if (dmScript.dialogueActive == false || gmScript.isGameActive == true)
+        {
+            Pause = false;
+        }
     }
 
     public void Begin(int seconds)
@@ -92,7 +104,6 @@ public class Timer : MonoBehaviour
         // Enable the Image component of the insanityIndicator GameObject
         Image insanityImage = insanityIndicator.GetComponent<Image>();
 
-
         while (elapsedTime < cooldownDuration)
         {
             mtScript.readyToPress = false;
@@ -100,7 +111,8 @@ public class Timer : MonoBehaviour
             {
                 insanityImage.enabled = true;
             }
-            obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, 200);
+            // Set the alpha of obscurity to be slightly transparent (e.g., 0.78)
+            obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, 0.78f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

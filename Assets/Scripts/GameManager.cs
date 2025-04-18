@@ -467,16 +467,16 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item1Text()
     {
-        itemNameText.text = "Antonio's Flyer";
-        itemDescriptionText.text = "This flyer advertizes a Jester with the stage name Oliver, but ghostly writing overwrites it to say Antonio Colombo..";
+        itemNameText.text = "Mask Instructions (Press Q)";
+        itemDescriptionText.text = "Follow these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. Prolonged use of the mask not recommended, remove the mask to cleanse oneself of any effects.";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item2Text()
     {
-        itemNameText.text = "Lottie's Image";
-        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
+        itemNameText.text = "Antonio's Flyer";
+        itemDescriptionText.text = "This flyer advertizes a Jester with the stage name Oliver, but ghostly writing overwrites it to say Antonio Colombo..";
         inventoryItem.sprite = item2Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -491,8 +491,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item4Text()
     {
-        itemNameText.text = "Item 4";
-        itemDescriptionText.text = "This is a spooky ghost item oooooOOOOOoooo";
+        itemNameText.text = "Lottie's Image";
+        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
         inventoryItem.sprite = item4Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -515,8 +515,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item7Text()
     {
-        itemNameText.text = "Item 7";
-        itemDescriptionText.text = "This is what item 7 does";
+        itemNameText.text = "Desire's Cards";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, ghostly letters on them will spell out his name: Desire.";
         inventoryItem.sprite = item7Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
