@@ -45,4 +45,5 @@ public class DialogueTrigger : MonoBehaviour
             dmScript.dialogueViewedSave++;
         }
     }
+    
 }

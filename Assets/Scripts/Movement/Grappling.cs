@@ -35,13 +35,13 @@ public class Grappling : MonoBehaviour
     {
         pmScript = GetComponent<PlayerMovement>();
         playerRb = GetComponent<Rigidbody>();
-        StartGrapple();
+        
     }
 
     
     void Update()
     {
-        if (Input.GetKeyDown(grappleKey)/* && pmScript.hasTrapezistPower == true*/)
+        if (Input.GetKeyDown(grappleKey) && pmScript.hasTrapezistPower == true)
         {
             StartGrapple();
         }
@@ -60,7 +60,7 @@ public class Grappling : MonoBehaviour
         }
     }
 
-    private void StartGrapple()
+    public void StartGrapple()
     {
         if (grappleCdTimer > 0)
         {

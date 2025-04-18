@@ -26,7 +26,7 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        if (pmScript.trapezistCureTrigger == true)
+        if (pmScript.tPosterFixed == true)
         {
             Destroy(this);
         }
@@ -52,7 +52,7 @@ public class DialogueTriggerRepeatable1 : MonoBehaviour
         else if (dialogueManager.dialogueViewedSave > viewNumber)
         {
             currentDialogueViewedSave = dialogueManager.dialogueViewedSave;
-            dialogueManager.dialogueViewedSave = 4;
+            //dialogueManager.dialogueViewedSave = 4;
             DialogueManager.StartConversation(convo);
             dialogueManager.dialogueViewedSave = currentDialogueViewedSave;
         }

@@ -11,6 +11,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     public PlayerCamera pcScript;
     public DialogueTrigger dtScript;
     public PlayerMovement pmScript;
+    public Grappling grappleScript;
     public Material newMaterial;
 
     public Renderer objectRenderer;
@@ -26,6 +27,8 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        grappleScript = GameObject.Find("Player").GetComponent<Grappling>();
+
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
         if (dialogueManager.dialogueViewedSave >= 10)
@@ -33,6 +36,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
             objectRenderer.material = newMaterial;
             dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
             pmScript.hasTrapezistPower = true;
+            grappleScript.StartGrapple();
             dtScript.startConvo();
             Destroy(this);
         }
