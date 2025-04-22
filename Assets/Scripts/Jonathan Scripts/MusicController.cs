@@ -98,9 +98,9 @@ public class MusicController : MonoBehaviour
         //sceneSong = data.savedSceneSong;
     //}
 
-    public void SaveData(ref GameData data)
-    {
-        data.savedSceneSong = sceneSong;
+    //public void SaveData(ref GameData data)
+    //{
+        //data.savedSceneSong = sceneSong;
 
-    }
+    //}
 }
