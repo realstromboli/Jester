@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 16b8111d47e954443b3a2a629ec86434
+guid: 5e2cc88fb6d41e24e885182ca89e9dfa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: db4567716c10e93498a993afa521812a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle
+    second: {fileID: 2100000, guid: c43f71625658f094aa17d99a41895d6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tank
+    second: {fileID: 2100000, guid: 86b3cb555130d184ca288e92159db1da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water
+    second: {fileID: 2100000, guid: e57402db311f70d42887452c3c1d2530, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
