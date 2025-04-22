@@ -171,8 +171,10 @@ MonoBehaviour:
   dpmScript: {fileID: 0}
   playerAnimation: {fileID: 0}
   maskIndicator: {fileID: 0}
+  timerScript: {fileID: 0}
   maskCount: 0
   maskCountText: {fileID: 0}
+  timerFill: {fileID: 0}
   ghostLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -197,6 +199,7 @@ MonoBehaviour:
   moveSpeed: 25
   runSpeed: 50
   walkSpeed: 25
+  isRunning: 0
   maxYSpeed: 1000000
   groundDrag: 5
   jumpForce: 30
@@ -215,11 +218,13 @@ MonoBehaviour:
   maxSlopeAngle: 45
   orientation: {fileID: 7023698011907724694}
   playerAnimation: {fileID: 0}
+  respawnLocation: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   pcScript: {fileID: 0}
   dmScript: {fileID: 0}
   gravitySwapScript: {fileID: 0}
   dtScript: {fileID: 0}
+  adtrScript: {fileID: 0}
   raycastDistance: 12
   activeGrapple: 0
   itemName: 
@@ -227,7 +232,7 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   hasJesterPower: 0
   hasTrapezistPower: 0
-  hasMagicianPower: 0
+  hasMagicianPower: 1
   jesterCureTrigger: 0
   trapezistCureTrigger: 0
   magicianCureTrigger: 0
@@ -235,14 +240,25 @@ MonoBehaviour:
   freeze: 0
   exitingSlope: 0
   hasMask: 0
+  mask: {fileID: 0}
   tPosterFixed: 0
   mtScript: {fileID: 0}
+  jPosterPieceCount: 0
   tPosterPieceCount: 0
   mCardsCount: 0
   cardCountText: {fileID: 0}
+  logText: {fileID: 0}
   tPosterMaterial: {fileID: 2100000, guid: b6399a5d6752c41498e4c53e94b53cb0, type: 2}
-  jesterParticles: {fileID: 0}
-  enabledGhostWorld: 0
+  jesterText: {fileID: 0}
+  lottiePic1: {fileID: 0}
+  lottiePic2: {fileID: 0}
+  lottiePicFull: {fileID: 0}
+  enabledGhostWorld1: 0
+  magicianDoor: {fileID: 0}
+  jesterPiece1: {fileID: 0}
+  jesterPiece2: {fileID: 0}
+  tPosterPiece1: {fileID: 0}
+  tPosterPiece2: {fileID: 0}
 --- !u!114 &656430333089287818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,12 +275,12 @@ MonoBehaviour:
   gunTip: {fileID: 0}
   whatIsGrappleable:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   lineRenderer: {fileID: 0}
-  maxGrappleDistance: 100
+  maxGrappleDistance: 110
   grappleDelayTime: 0.25
   overshootYAxis: 2
-  grappleCooldown: 0.75
+  grappleCooldown: 0.2
   grappleKey: 324
   playerRb: {fileID: 0}
 --- !u!114 &8757356253965863426
@@ -282,11 +298,14 @@ MonoBehaviour:
   gravityReversed: 0
   gravityStrength: 60
   cameraHolder: {fileID: 0}
+  playerObject: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4096
   raycastDistance: 10000
   pmScript: {fileID: 0}
+  childObject: {fileID: 0}
+  childTransform: {fileID: 0}
 --- !u!114 &8475339240768967296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +323,7 @@ MonoBehaviour:
   reticleHand: {fileID: 0}
   reticleDot: {fileID: 0}
   reticleHandSprite: {fileID: 0}
+  reticleTalkSprite: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
