@@ -1,9 +1,18 @@
 fileFormatVersion: 2
-guid: 16b8111d47e954443b3a2a629ec86434
+<<<<<<<< HEAD:Assets/3D Assets/Bowling_Pin(v2.1).fbx.meta
+guid: c75129b44f7b14949a99ea17a3e43d58
+========
+guid: 999e73f7470caa74aaa2ad4470543109
+>>>>>>>> origin/Kenzie:Assets/3D Assets/Characters/Kenzie Models/Bowling_Pin(v2).fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bowling Pin
+    second: {fileID: 2100000, guid: 8e9e00238d5937446bfa98344a5fc69b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +44,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.3
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +99,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

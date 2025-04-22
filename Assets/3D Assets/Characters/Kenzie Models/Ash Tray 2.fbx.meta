@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef8f9da14afa89a4480c8d8d9454bbbf
+guid: 9ac97f251674b2848b9000e3650d3c52
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Blush
-    second: {fileID: 2100000, guid: a22a71bbe121f634e98214506e75e59f, type: 2}
+      name: Grey_Ends
+    second: {fileID: 2100000, guid: b489eaa5bc3a05c41b9963ed915722a7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: 819233f3fdc23434fa794f5bc3209d00, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Handle
-    second: {fileID: 2100000, guid: 76d00c1766b738c4fa553fc26630a232, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: 92ba4272d454e974496556e37dca380f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: 2100000, guid: 243837f41bd192b41a661362888e057b, type: 2}
+    second: {fileID: 2100000, guid: cd2d66f7397f8e443bc234730372f4a6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Mirror
-    second: {fileID: 2100000, guid: 038998f748088f843add9e2ec5bde5fc, type: 2}
+      name: White
+    second: {fileID: 2100000, guid: 5efe3c050765eee47926d58c9c166084, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -60,7 +55,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -115,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.02
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
