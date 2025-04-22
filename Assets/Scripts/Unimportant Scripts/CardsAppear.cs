@@ -15,7 +15,7 @@ public class CardsAppear : MonoBehaviour
     {
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dmScript != null && dmScript.dialogueViewedSave >= 14)
+        if (dmScript != null && dmScript.dialogueViewedSave >= 13)
         {
             // Set all child objects to active
             foreach (Transform child in transform)

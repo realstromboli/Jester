@@ -40,20 +40,12 @@ public class GravitySwap : MonoBehaviour
             {
                 gravityReversed = !gravityReversed;
                 UpdateTargetObjectRotation();
-                StartCoroutine(GravAnimDelay());
+                pmScript.playerAnimation.SetTrigger("Gravity Trigger");
             }
         }
         
         childObject = GameObject.Find("Jump with Cane");
         childTransform = childObject.transform;
-
-        
-    }
-
-    public IEnumerator GravAnimDelay()
-    {
-        yield return new WaitForSeconds(0.35f);
-        pmScript.playerAnimation.SetTrigger("Gravity Trigger");
     }
 
     private bool CheckForGround()
@@ -98,5 +90,20 @@ public class GravitySwap : MonoBehaviour
                 childObject.transform.rotation = Quaternion.Euler(gravityReversed ? 180f : 0f, 0f, zRotation);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Death"))
+        {
+            gravityReversed = false;
+            UpdateTargetObjectRotation();
+        }
+    }
+
+    public void resetOrientation()
+    {
+        gravityReversed = false;
+        UpdateTargetObjectRotation();
     }
 }
