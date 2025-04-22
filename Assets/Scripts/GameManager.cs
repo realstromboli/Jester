@@ -633,7 +633,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "CJ Test Scene";
+            sceneName = "Inside Trailer";
         }
 
         // Load the saved scene
