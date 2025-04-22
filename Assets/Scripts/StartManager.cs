@@ -63,6 +63,9 @@ public class StartManager : MonoBehaviour
     public void OpenCredits()
     {
         SceneManager.LoadScene("CreditsScene");
+        startScreen.gameObject.SetActive(false);
+        settingsScreen.gameObject.SetActive(false);
+        controlsScreen.gameObject.SetActive(false);
     }
 
     public void BackToStart()
