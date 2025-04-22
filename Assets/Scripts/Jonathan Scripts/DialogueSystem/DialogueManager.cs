@@ -206,17 +206,35 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         float waitTime = (dialogueTypeSpeed * text.Length) + dialogueDelay;
         float elapsedTime = 0f;
+        var audio = currentConvo.GetLineByIndex(currentIndex).dialogueAudio;
 
-        while (elapsedTime < waitTime)
+        if (audio == null)
         {
-            // Pause if the game is not active
-            while (!gameManager.isGameActive)
+            while (elapsedTime < waitTime)
             {
+                // Pause if the game is not active
+                while (!gameManager.isGameActive)
+                {
+                    yield return null;
+                }
+
+                elapsedTime += Time.deltaTime;
                 yield return null;
             }
+        }
+        else if (audio != null)
+        {
+            while (elapsedTime < audio.length)
+            {
+                // Pause if the game is not active
+                while (!gameManager.isGameActive)
+                {
+                    yield return null;
+                }
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
         }
 
         ReadNext();
