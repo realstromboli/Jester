@@ -131,12 +131,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        mask = GameObject.Find("Jester Mask Low Poly (1)");
+
         PlayerInput();
         SpeedControl();
         Run();
         StateHandler();
         ItemInteraction();
+        IDontKnow();
         CheckAndDisablePosterPieces();
+        
 
         //RaycastHit hit;
         //ground check
@@ -167,11 +172,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
-        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-
         if (gmScript.isGameActive && hasMask)
         {
-            mask.SetActive(false);
+            if (mask != null)
+            {
+                mask.SetActive(false);
+            }
         }
     }
 
@@ -404,6 +410,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         StartCoroutine(PosSetDelay(data.playerPosition));
 
         this.jesterCureTrigger = data.jesterCureTrigger;
+
+        this.hasMask = data.hasMask;
+
+        this.jPosterPieceCount = data.jPosterPieceCount;
+
+        this.tPosterPieceCount = data.tPosterPieceCount;
+
+        this.tPosterFixed = data.tPosterFixed;
+
+        this.hasJesterPower = data.hasJesterPower;
+
+        this.trapezistCureTrigger = data.trapezistCureTrigger;
+
+        this.magicianCureTrigger = data.magicianCureTrigger;
+
+        this.hasMagicianPower = data.hasMagicianPower;
+
+        this.hasTrapezistPower = data.hasTrapezistPower;
+
+        this.enabledGhostWorld1 = data.enabledGhostWorld1;
     }
 
     public void SaveData(ref GameData data)
@@ -411,6 +437,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.playerPosition = this.transform.position;
 
         data.jesterCureTrigger = this.jesterCureTrigger;
+
+        data.hasMask = this.hasMask;
+
+        data.jPosterPieceCount = this.jPosterPieceCount;
+
+        data.tPosterPieceCount = this.tPosterPieceCount;
+
+        data.tPosterFixed = this.tPosterFixed;
+
+        data.hasJesterPower = this.hasJesterPower;
+
+        data.trapezistCureTrigger = this.trapezistCureTrigger;
+
+        data.magicianCureTrigger = this.magicianCureTrigger;
+
+        data.hasMagicianPower = this.hasMagicianPower;
+
+        data.hasTrapezistPower = this.hasTrapezistPower;
+
+        data.enabledGhostWorld1 = this.enabledGhostWorld1;
     }
 
     private IEnumerator PosSetDelay(Vector3 position)
@@ -507,7 +553,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     logText.text = "Entry added to log (Press I to open)";
                     gmScript.slot1Full = true;
                     logText.gameObject.SetActive(true);
-                    StartCoroutine(FadeOutText(logText, 2f));
+                    StartCoroutine(FadeOutText(logText, 3f));
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -594,16 +640,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if ((hit.collider.CompareTag("Door") || hit.collider.CompareTag("Net")) && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2)
+                if ((hit.collider.CompareTag("Door") && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2))
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
-
-                    if (hit.collider.CompareTag("Net"))
-                    {
-                        StartCoroutine(NetDelay());
-                    }
 
                     if (sceneTransition != null)
                     {
@@ -644,7 +685,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         cardCountText.gameObject.SetActive(true);
 
-                        StartCoroutine(FadeOutText(cardCountText, 2f));
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
                     if (jPosterPieceCount >= 2)
@@ -653,12 +694,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot2Full = true;
                         logText.text = "Jester entry added to log";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 2f));
+                        StartCoroutine(FadeOutText(logText, 3f));
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
 
-                        StartCoroutine(FadeOutText(cardCountText, 2f));
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
                 }
 
@@ -693,7 +734,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         lottiePic2.enabled = false;
                         lottiePicFull.enabled = true;
 
-                        StartCoroutine(FadeOutText(cardCountText, 2f));
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
                     if (hit.collider.gameObject.name == "tPosterPiece1")
@@ -727,7 +768,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        gmScript.slot4Full = true;
+                        gmScript.slot5Full = true;
                         trapezistCureTrigger = true;
                         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
@@ -744,7 +785,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         logText.text = "Trapeze Artist info added to log";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 2f));
+                        StartCoroutine(FadeOutText(logText, 3f));
 
                     }
 
@@ -776,7 +817,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 14)
+                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 13)
                 {
 
                     Destroy(hit.collider.gameObject);
@@ -787,21 +828,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
 
-                    StartCoroutine(FadeOutText(cardCountText, 2f));
+                    StartCoroutine(FadeOutText(cardCountText, 3f));
 
                     if (mCardsCount == 6)
                     {
                         dtScript = GameObject.Find("HiddenDialogueSpeaker7").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        gmScript.slot3Full = true;
+                        gmScript.slot9Full = true;
                         magicianCureTrigger = true;
                         logText.text = "Magician info added to log";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 2f));
+                        StartCoroutine(FadeOutText(logText, 3f));
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 17 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 16 && hasMagicianPower == true)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
@@ -924,7 +965,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (collision.gameObject.CompareTag("Net"))
         {
             SceneTransition sceneTransition = collision.gameObject.GetComponent<SceneTransition>();
-            NetDelay();
 
             if (sceneTransition != null)
             {
@@ -941,6 +981,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             // Save the position of the collided object as the respawn location
             respawnLocation = other.transform.position;
             Debug.Log("Respawn location saved: " + respawnLocation);
+            cardCountText.text = "Checkpoint!";
+
+            StartCoroutine(FadeOutText(cardCountText, 3f));
         }
         
         if (other.CompareTag("Death"))
@@ -954,7 +997,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (other.gameObject.CompareTag("Net"))
         {
             SceneTransition sceneTransition = other.gameObject.GetComponent<SceneTransition>();
-            NetDelay();
 
             if (sceneTransition != null)
             {
@@ -985,19 +1027,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public GameObject magicianDoor;
 
-    private IEnumerator NetDelay()
-    {
-        yield return new WaitForSeconds(4f);
-        lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
-        lottiePicFull.enabled = true;
-        dtScript = GameObject.Find("HiddenDialogueSpeaker9").GetComponent<DialogueTrigger>();
-        dtScript.startConvo();
-    }
-
     public IEnumerator FadeOutText(TextMeshProUGUI textElement, float duration)
     {
         textElement.alpha = 1f;
-        float elapsedTime = 0f;
+        float elapsedTime = 1f;
 
         while (elapsedTime < duration)
         {
@@ -1007,5 +1040,55 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
 
         textElement.alpha = 0f;
+    }
+
+    public GameObject jesterPiece1;
+    public GameObject jesterPiece2;
+    public GameObject tPosterPiece1;
+    public GameObject tPosterPiece2;
+
+    public void IDontKnow()
+    {
+        if (jPosterPieceCount == 1)
+        {
+            jesterPiece1 = GameObject.Find("jPosterPiece1");
+
+            if (jesterPiece1 != null)
+            {
+                jesterPiece1.SetActive(false);
+            }
+        }
+
+        if (jPosterPieceCount == 2)
+        {
+            jesterPiece2 = GameObject.Find("jPosterPiece2");
+
+            if (jesterPiece2 != null)
+            {
+                jesterPiece2.SetActive(false);
+            }
+        }
+
+        if (tPosterPieceCount == 1)
+        {
+            tPosterPiece1 = GameObject.Find("tPosterPiece1");
+
+            if (tPosterPiece1 != null)
+            {
+                tPosterPiece1.SetActive(false);
+            }
+        }
+
+        if (tPosterPieceCount == 2)
+        {
+            tPosterPiece2 = GameObject.Find("tPosterPiece2");
+
+            if (tPosterPiece2 != null)
+            {
+                tPosterPiece2.SetActive(false);
+                lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
+                lottiePicFull.enabled = true;
+            }
+        }
     }
 }

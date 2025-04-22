@@ -80,6 +80,54 @@ public class SlotHighlight : MonoBehaviour, IPointerClickHandler, IPointerEnterH
                         gmScript.Item4Text();
                     }
                     break;
+                case "Slot5":
+                    if (gmScript.slot5Full)
+                    {
+                        gmScript.Item5Text();
+                    }
+                    break;
+                case "Slot6":
+                    if (gmScript.slot6Full)
+                    {
+                        gmScript.Item6Text();
+                    }
+                    break;
+                case "Slot7":
+                    if (gmScript.slot7Full)
+                    {
+                        gmScript.Item7Text();
+                    }
+                    break;
+                case "Slot8":
+                    if (gmScript.slot8Full)
+                    {
+                        gmScript.Item8Text();
+                    }
+                    break;
+                case "Slot9":
+                    if (gmScript.slot9Full)
+                    {
+                        gmScript.Item9Text();
+                    }
+                    break;
+                case "Slot10":
+                    if (gmScript.slot10Full)
+                    {
+                        gmScript.Item10Text();
+                    }
+                    break;
+                case "Slot11":
+                    if (gmScript.slot11Full)
+                    {
+                        gmScript.Item11Text();
+                    }
+                    break;
+                case "Slot12":
+                    if (gmScript.slot12Full)
+                    {
+                        gmScript.Item12Text();
+                    }
+                    break;
                 // Add more cases as needed
                 default:
                     Debug.LogWarning("No corresponding slot found for this tag or slot is not full.");

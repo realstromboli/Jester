@@ -86,16 +86,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 7)
+        if (dialogueViewedSave >= 7)
         {
             StartParticleEffects();
-        }
-
-        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
-        {
-            magicianDoor.gameObject.SetActive(false);
-            pmScript.enabledGhostWorld1 = false;
-            pmScript.lottiePicFull.enabled = true;
         }
 
         SetObjectiveText();
