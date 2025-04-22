@@ -206,7 +206,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         float waitTime = (dialogueTypeSpeed * text.Length) + dialogueDelay;
         float elapsedTime = 0f;
-        var audio = currentConvo.GetLineByIndex(currentIndex).dialogueAudio;
+        var audio = currentConvo.GetLineByIndex(currentIndex-1).dialogueAudio;
 
         if (audio == null)
         {
