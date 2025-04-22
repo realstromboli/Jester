@@ -40,7 +40,7 @@ public class MusicController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.4f;
         //audioSource.Play();
         //audioSource.loop = true;
 
@@ -152,7 +152,7 @@ public class MusicController : MonoBehaviour
         StopCoroutine(FadeMusicOut());
 
         audioSource.clip = sceneSong;
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.4f;
         if (sceneSong == musicClips[1])
         {
             audioSource.spatialBlend = 1f;
