@@ -40,20 +40,12 @@ public class GravitySwap : MonoBehaviour
             {
                 gravityReversed = !gravityReversed;
                 UpdateTargetObjectRotation();
-                StartCoroutine(GravAnimDelay());
+                pmScript.playerAnimation.SetTrigger("Gravity Trigger");
             }
         }
         
         childObject = GameObject.Find("Jump with Cane");
         childTransform = childObject.transform;
-
-        
-    }
-
-    public IEnumerator GravAnimDelay()
-    {
-        yield return new WaitForSeconds(0.35f);
-        pmScript.playerAnimation.SetTrigger("Gravity Trigger");
     }
 
     private bool CheckForGround()
