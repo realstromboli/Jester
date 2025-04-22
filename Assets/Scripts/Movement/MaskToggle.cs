@@ -118,6 +118,12 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 {
                     light.enabled = isVisible;
                 }
+
+                Canvas canvas = obj.GetComponent<Canvas>();
+                if (canvas != null)
+                {
+                    canvas.enabled = isVisible;
+                }
             }
 
             // Check if the object is on the ghost interactable layer

@@ -743,7 +743,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 6 || dmScript.dialogueViewedSave == 7))
+                if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 7 || dmScript.dialogueViewedSave == 8))
                 {
 
 
@@ -815,7 +815,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         foreach (GameObject obj in allObjects)
                         {
                             // Check if the object's name is "trapeze artist idle"
-                            if (obj.name == "Trapeze Artist Idle")
+                            if (obj.name == "Trapeze Idle Mixamo")
                             {
                                 // Change the layer to GhostInteractable
                                 obj.layer = LayerMask.NameToLayer("GhostInteractable");
