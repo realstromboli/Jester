@@ -73,6 +73,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        magicianDoor = GameObject.Find("Magician Door");
+        magicianCards = GameObject.Find("MagicianCards");
+
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
@@ -83,10 +86,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave == 5)
+        if (dialogueViewedSave >= 7)
         {
             StartParticleEffects();
         }
+
+        SetObjectiveText();
 
         if (dialogueActive)
         {
@@ -99,20 +104,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             skipText.SetActive(false);
             timerScript.Pause = false;
         }
-
-        magicianDoor = GameObject.Find("Magician Door");
-        magicianCards = GameObject.Find("MagicianCards");
-
-        if (dialogueViewedSave >= 13) //update based on dialogueViewedSave after end of Parkour 1
-        {
-            magicianDoor.gameObject.SetActive(false);
-            pmScript.enabledGhostWorld1 = false;
-        }
-
-        SetObjectiveText();
     }
 
-    public static void StartConversation(DialogueConversation convo)
+    /*public static void StartConversation(DialogueConversation convo)
     {
         instance.dialogueActive = true;
         instance.anim.SetBool("isOpen", true);
@@ -124,15 +118,36 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         //instance.dialogueViewedSave++;
 
         instance.ReadNext();
+    }*/
+
+    public static void StartConversation(DialogueConversation convo)
+    {
+        instance.StartCoroutine(instance.StartConversationWithDelay(convo));
+    }
+
+    private IEnumerator StartConversationWithDelay(DialogueConversation convo)
+    {
+        yield return new WaitForSeconds(0.1f);
+        instance.dialogueActive = true;
+        instance.anim.SetBool("isOpen", true);
+        instance.currentIndex = 0;
+        instance.currentConvo = convo;
+        instance.speakerName.text = "";
+        instance.dialogue.text = "";
+
+        instance.ReadNext();
     }
 
     public void ReadNext()
     {
-
+        Debug.Log("Yo 3");
         if (currentIndex >= currentConvo.GetLength() + 1)
         {
             instance.anim.SetBool("isOpen", false);
             dialogueActive = false;
+            currentIndex = 0;
+            currentConvo = null;
+            correctAnswersCount = 0;
             return;
         }
 
@@ -425,7 +440,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void SetObjectiveText()
     {
-        objectiveText = GameObject.Find("ObjectiveText").GetComponent<TMP_Text>();
 
         switch (dialogueViewedSave)
         {

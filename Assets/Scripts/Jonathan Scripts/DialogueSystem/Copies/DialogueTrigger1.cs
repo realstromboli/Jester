@@ -40,7 +40,7 @@ public class DialogueTrigger1 : MonoBehaviour
 
     public void startConvo()
     {
-        if (dialogueManager.dialogueViewedSave == viewNumber)
+        if (dialogueManager.dialogueViewedSave >= viewNumber)
         {
             
             DialogueManager.StartConversation(convo);
@@ -49,7 +49,6 @@ public class DialogueTrigger1 : MonoBehaviour
             // add if statement for conditional for correct and incorrect answers
 
             DialogueManager dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-            dmScript.dialogueViewedSave++;
         }
     }
 }

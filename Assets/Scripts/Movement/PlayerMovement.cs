@@ -1,11 +1,14 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using TMPro.Examples;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
@@ -119,6 +122,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         cardCountText.gameObject.SetActive(false);
+        logText.gameObject.SetActive(false);
 
         hasJesterPower = false;
         hasTrapezistPower = false;
@@ -127,12 +131,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        mask = GameObject.Find("Jester Mask Low Poly (1)");
+
         PlayerInput();
         SpeedControl();
         Run();
         StateHandler();
         ItemInteraction();
+        IDontKnow();
         CheckAndDisablePosterPieces();
+        
 
         //RaycastHit hit;
         //ground check
@@ -163,11 +172,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         playerAnimation.SetFloat("Velocity", lolVelocity.magnitude);
 
-        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
-
         if (gmScript.isGameActive && hasMask)
         {
-            mask.SetActive(false);
+            if (mask != null)
+            {
+                mask.SetActive(false);
+            }
         }
     }
 
@@ -400,6 +410,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         StartCoroutine(PosSetDelay(data.playerPosition));
 
         this.jesterCureTrigger = data.jesterCureTrigger;
+
+        this.hasMask = data.hasMask;
+
+        this.jPosterPieceCount = data.jPosterPieceCount;
+
+        this.tPosterPieceCount = data.tPosterPieceCount;
+
+        this.tPosterFixed = data.tPosterFixed;
+
+        this.hasJesterPower = data.hasJesterPower;
+
+        this.trapezistCureTrigger = data.trapezistCureTrigger;
+
+        this.magicianCureTrigger = data.magicianCureTrigger;
+
+        this.hasMagicianPower = data.hasMagicianPower;
+
+        this.hasTrapezistPower = data.hasTrapezistPower;
+
+        this.enabledGhostWorld1 = data.enabledGhostWorld1;
     }
 
     public void SaveData(ref GameData data)
@@ -407,6 +437,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.playerPosition = this.transform.position;
 
         data.jesterCureTrigger = this.jesterCureTrigger;
+
+        data.hasMask = this.hasMask;
+
+        data.jPosterPieceCount = this.jPosterPieceCount;
+
+        data.tPosterPieceCount = this.tPosterPieceCount;
+
+        data.tPosterFixed = this.tPosterFixed;
+
+        data.hasJesterPower = this.hasJesterPower;
+
+        data.trapezistCureTrigger = this.trapezistCureTrigger;
+
+        data.magicianCureTrigger = this.magicianCureTrigger;
+
+        data.hasMagicianPower = this.hasMagicianPower;
+
+        data.hasTrapezistPower = this.hasTrapezistPower;
+
+        data.enabledGhostWorld1 = this.enabledGhostWorld1;
     }
 
     private IEnumerator PosSetDelay(Vector3 position)
@@ -442,12 +492,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public GameObject mask;
     public bool tPosterFixed;
     public MaskToggle mtScript;
+    public int jPosterPieceCount;
     public int tPosterPieceCount;
     public int mCardsCount;
     public TextMeshProUGUI cardCountText;
+    public TextMeshProUGUI logText;
     public Material tPosterMaterial;
     private Renderer tPosterRenderer;
     public TMP_Text jesterText;
+    public Image lottiePic1;
+    public Image lottiePic2;
+    public Image lottiePicFull;
 
     public void ItemInteraction()
     {
@@ -485,7 +540,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 //    //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 //}
 
-                if (hit.collider.CompareTag("Mask")/* && hasJesterPower == true*/)
+                if (hit.collider.CompareTag("Mask"))
                 {
                     mask = GameObject.Find("Jester Mask");
                     hasMask = true;
@@ -493,7 +548,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mtScript.readyToPress = false;
                     Destroy(hit.collider.gameObject);
                     GameObject[] allObjects = FindObjectsOfType<GameObject>();
-                    
+                    dtScript = GameObject.Find("HiddenDialogueSpeaker1").GetComponent<DialogueTrigger>();
+                    dtScript.startConvo();
+                    logText.text = "Entry added to log (Press I to open)";
+                    gmScript.slot1Full = true;
+                    logText.gameObject.SetActive(true);
+                    StartCoroutine(FadeOutText(logText, 3f));
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -577,21 +637,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
                 {
                     playerAnimation.SetTrigger("Ghost Interaction Trigger");
-                    jesterText = GameObject.Find("LOLText").GetComponent<TMP_Text>();
-                    jesterText.text = "Antonio Colombo";
                 }
 
                 // door scene transition behavior
-                if ((hit.collider.CompareTag("Door") || hit.collider.CompareTag("Net")) && hasJesterPower && !dmScript.dialogueActive)
+                if ((hit.collider.CompareTag("Door") && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2))
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
-
-                    if (hit.collider.CompareTag("Net"))
-                    {
-                        dmScript.dialogueViewedSave++;
-                    }
 
                     if (sceneTransition != null)
                     {
@@ -603,20 +656,50 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
-                if (hit.collider.CompareTag("JesterPoster"))
+                if ((hit.collider.CompareTag("JDoor") && dmScript.dialogueViewedSave >= 6))
                 {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
-                    if (dialogueTrigger != null)
+                    SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                    Debug.Log("Door hit interactable");
+                    playerAnimation.SetTrigger("Pickup Trigger");
+                    if (sceneTransition != null)
                     {
-                        playerAnimation.SetTrigger("Pickup Trigger");
-                        if (dmScript.dialogueViewedSave >= 1)
-                        {
-                            jesterCureTrigger = true;
-                            gmScript.slot1Full = true;
-                            //dmScript.dialogueViewedSave++;
-                        }
+                        StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                        StartCoroutine(SetRespawnLocationAfterDelay());
+                    }
+                }
 
-                        dialogueTrigger.startConvo();
+                if (hit.collider.CompareTag("JesterPoster") && (dmScript.dialogueViewedSave == 2 || dmScript.dialogueViewedSave == 3))
+                {
+
+
+                    playerAnimation.SetTrigger("Pickup Trigger");
+                    Destroy(hit.collider.gameObject);
+
+                    jPosterPieceCount++;
+
+                    if (jPosterPieceCount >= 1)
+                    {
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
+
+                        cardCountText.gameObject.SetActive(true);
+
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
+                    }
+
+                    if (jPosterPieceCount >= 2)
+                    {
+                        jesterCureTrigger = true;
+                        gmScript.slot2Full = true;
+                        logText.text = "Jester entry added to log";
+                        logText.gameObject.SetActive(true);
+                        StartCoroutine(FadeOutText(logText, 3f));
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                        dtScript.startConvo();
+                        cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
+
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
                 }
 
@@ -624,6 +707,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
 
 
+                    lottiePic1 = GameObject.Find("LottiePic1").GetComponent<Image>();
+                    lottiePic2 = GameObject.Find("LottiePic2").GetComponent<Image>();
+                    lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
                     playerAnimation.SetTrigger("Pickup Trigger");
                     Destroy(hit.collider.gameObject);
 
@@ -631,48 +717,81 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     if (tPosterPieceCount == 1)
                     {
-                        dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
-                        dtScript.startConvo();
+                        cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
+
+                        StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
 
                     if (tPosterPieceCount == 2)
                     {
                         tPosterFixed = true;
-                        dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                        dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         tPosterRenderer = GameObject.Find("TrapezistPoster").GetComponent<Renderer>();
                         tPosterRenderer.material = tPosterMaterial;
+                        cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
+                        lottiePic1.enabled = false;
+                        lottiePic2.enabled = false;
+                        lottiePicFull.enabled = true;
+
+                        StartCoroutine(FadeOutText(cardCountText, 3f));
+                    }
+
+                    if (hit.collider.gameObject.name == "tPosterPiece1")
+                    {
+                        lottiePic1.enabled = true;
+                    }
+
+                    if (hit.collider.gameObject.name == "tPosterPiece2")
+                    {
+                        lottiePic2.enabled = true;
                     }
                 }
 
                 if (hit.collider.CompareTag("TrapezistPoster"))
                 {
-                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
-                    if (dialogueTrigger != null)
+                    DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
+                    if (dialogueTriggerRepeatable1 != null)
                     {
                         playerAnimation.SetTrigger("Pickup Trigger");
 
-                        if (dmScript.dialogueViewedSave >= 5)
+                        if (dmScript.dialogueViewedSave >= 6)
                         {
 
                             //dmScript.dialogueViewedSave++;
-                            dialogueTrigger.startConvo();
+                            dialogueTriggerRepeatable1.startConvo();
                         }
                     }
 
-                    if (dmScript.dialogueViewedSave == 8 && tPosterFixed && mtScript.maskStatus == true)
+                    if (dmScript.dialogueViewedSave == 8 && tPosterFixed/* && mtScript.maskStatus == true*/)
                     {
 
                         dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        gmScript.slot2Full = true;
+                        gmScript.slot5Full = true;
                         trapezistCureTrigger = true;
+                        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+                        foreach (GameObject obj in allObjects)
+                        {
+                            // Check if the object's name is "trapeze artist idle"
+                            if (obj.name == "Trapeze Artist Idle")
+                            {
+                                // Change the layer to GhostInteractable
+                                obj.layer = LayerMask.NameToLayer("GhostInteractable");
+                                Debug.Log($"Layer of '{obj.name}' changed to GhostInteractable");
+                            }
+                        }
+
+                        logText.text = "Trapeze Artist info added to log";
+                        logText.gameObject.SetActive(true);
+                        StartCoroutine(FadeOutText(logText, 3f));
 
                     }
 
                     if (dmScript.dialogueViewedSave == 11 && tPosterFixed)
                     {
-                        Destroy(dialogueTrigger);
+                        Destroy(dialogueTriggerRepeatable1);
                         dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         StartCoroutine(WaitForSeconds());
@@ -698,7 +817,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 14)
+                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 13)
                 {
 
                     Destroy(hit.collider.gameObject);
@@ -709,20 +828,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
 
-                    cardCountText.gameObject.SetActive(true);
-
-                    StartCoroutine(HUDPopUp());
+                    StartCoroutine(FadeOutText(cardCountText, 3f));
 
                     if (mCardsCount == 6)
                     {
                         dtScript = GameObject.Find("HiddenDialogueSpeaker7").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        gmScript.slot3Full = true;
+                        gmScript.slot9Full = true;
                         magicianCureTrigger = true;
+                        logText.text = "Magician info added to log";
+                        logText.gameObject.SetActive(true);
+                        StartCoroutine(FadeOutText(logText, 3f));
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 17 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 16 && hasMagicianPower == true)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
@@ -738,8 +858,40 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public IEnumerator HUDPopUp()
     {
-        yield return new WaitForSeconds(2f);
-        cardCountText.gameObject.SetActive(false);
+        float duration = 2f; // Duration of the fade-out in seconds
+        float elapsedTime = 0f;
+
+        Color originalColor = new Color(255, 255, 255, 255);
+        Color targetColor = new Color(255, 255, 255, 0);
+
+        while (elapsedTime < duration)
+        {
+            cardCountText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the final alpha is set to 0
+        cardCountText.color = targetColor;
+    }
+
+    public IEnumerator HUDPopUp2()
+    {
+        float duration = 2f; // Duration of the fade-out in seconds
+        float elapsedTime = 0f;
+
+        Color originalColor = new Color(255, 255, 255, 255);
+        Color targetColor = new Color(255, 255, 255, 0);
+
+        while (elapsedTime < duration)
+        {
+            logText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the final alpha is set to 0
+        logText.color = targetColor;
     }
 
     public bool enabledGhostWorld1;
@@ -809,6 +961,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
         }
+
+        if (collision.gameObject.CompareTag("Net"))
+        {
+            SceneTransition sceneTransition = collision.gameObject.GetComponent<SceneTransition>();
+
+            if (sceneTransition != null)
+            {
+                StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                StartCoroutine(SetRespawnLocationAfterDelay());
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -818,6 +981,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             // Save the position of the collided object as the respawn location
             respawnLocation = other.transform.position;
             Debug.Log("Respawn location saved: " + respawnLocation);
+            cardCountText.text = "Checkpoint!";
+
+            StartCoroutine(FadeOutText(cardCountText, 3f));
         }
         
         if (other.CompareTag("Death"))
@@ -825,6 +991,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             // Set the player's position to the respawn location
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
+            rb.velocity = Vector3.zero;
+        }
+
+        if (other.gameObject.CompareTag("Net"))
+        {
+            SceneTransition sceneTransition = other.gameObject.GetComponent<SceneTransition>();
+
+            if (sceneTransition != null)
+            {
+                StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                StartCoroutine(SetRespawnLocationAfterDelay());
+            }
         }
     }
 
@@ -845,5 +1023,72 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;
         Debug.Log("Respawn location set to: " + respawnLocation);
+    }
+
+    public GameObject magicianDoor;
+
+    public IEnumerator FadeOutText(TextMeshProUGUI textElement, float duration)
+    {
+        textElement.alpha = 1f;
+        float elapsedTime = 1f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            textElement.alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+            yield return null;
+        }
+
+        textElement.alpha = 0f;
+    }
+
+    public GameObject jesterPiece1;
+    public GameObject jesterPiece2;
+    public GameObject tPosterPiece1;
+    public GameObject tPosterPiece2;
+
+    public void IDontKnow()
+    {
+        if (jPosterPieceCount == 1)
+        {
+            jesterPiece1 = GameObject.Find("jPosterPiece1");
+
+            if (jesterPiece1 != null)
+            {
+                jesterPiece1.SetActive(false);
+            }
+        }
+
+        if (jPosterPieceCount == 2)
+        {
+            jesterPiece2 = GameObject.Find("jPosterPiece2");
+
+            if (jesterPiece2 != null)
+            {
+                jesterPiece2.SetActive(false);
+            }
+        }
+
+        if (tPosterPieceCount == 1)
+        {
+            tPosterPiece1 = GameObject.Find("tPosterPiece1");
+
+            if (tPosterPiece1 != null)
+            {
+                tPosterPiece1.SetActive(false);
+            }
+        }
+
+        if (tPosterPieceCount == 2)
+        {
+            tPosterPiece2 = GameObject.Find("tPosterPiece2");
+
+            if (tPosterPiece2 != null)
+            {
+                tPosterPiece2.SetActive(false);
+                lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
+                lottiePicFull.enabled = true;
+            }
+        }
     }
 }
