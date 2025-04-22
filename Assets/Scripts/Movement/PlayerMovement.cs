@@ -121,7 +121,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
-        cardCountText.gameObject.SetActive(false);
         logText.gameObject.SetActive(false);
 
         hasJesterPower = false;
