@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestionDialogueTrigger1 : MonoBehaviour
@@ -11,6 +12,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     public PlayerCamera pcScript;
     public DialogueTrigger dtScript;
     public PlayerMovement pmScript;
+    public GameManager gmScript;
     public Grappling grappleScript;
     public Material newMaterial;
 
@@ -28,6 +30,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         grappleScript = GameObject.Find("Player").GetComponent<Grappling>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
@@ -38,8 +41,35 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
             pmScript.hasTrapezistPower = true;
             grappleScript.StartGrapple();
             dtScript.startConvo();
-            Destroy(this);
+            pmScript.logText.text = "Trapezist Grapple Acquired! (Right click objects when reticle turns red)";
+            pmScript.logText.gameObject.SetActive(true);
+            gmScript.slot6Full = true;
+            StartCoroutine(FadeOutText(pmScript.logText, 4f));
+            
         }
+    }
+
+    public IEnumerator ok()
+    {
+        yield return new WaitForSeconds(3f);
+        pmScript.logText.gameObject.SetActive(true);
+
+    }
+
+    public IEnumerator FadeOutText(TextMeshProUGUI textElement, float duration)
+    {
+        textElement.alpha = 1f;
+        float elapsedTime = 1f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            textElement.alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+            yield return null;
+        }
+
+        textElement.alpha = 0f;
+        Destroy(this);
     }
 
     //private void OnCollisionEnter(Collision other)

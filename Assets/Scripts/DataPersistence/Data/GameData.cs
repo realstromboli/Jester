@@ -19,12 +19,25 @@ public class GameData
     public bool slot7Full;
     public bool slot8Full;
     public bool slot9Full;
+    public bool slot10Full;
+    public bool slot11Full;
+    public bool slot12Full;
 
     public int dialogueViewedSave;
+    public int jPosterPieceCount;
+    public int tPosterPieceCount;
     public string currentSceneName;
 
     public bool jesterCureTrigger;
     public bool interactedJesterPoster;
+    public bool hasMask;
+    public bool tPosterFixed;
+    public bool hasJesterPower;
+    public bool trapezistCureTrigger;
+    public bool hasMagicianPower;
+    public bool hasTrapezistPower;
+    public bool magicianCureTrigger;
+    public bool enabledGhostWorld1;
 
     public AudioClip savedSceneSong;
     private MusicController musicController;
@@ -59,11 +72,24 @@ public class GameData
         slot7Full = false;
         slot8Full = false;
         slot9Full = false;
+        slot10Full = false;
+        slot11Full = false;
+        slot12Full = false;
 
         dialogueViewedSave = 0;
 
         interactedJesterPoster = false;
         jesterCureTrigger = false;
+        hasMask = false;
+        tPosterFixed = false;
+        hasJesterPower = false;
+        trapezistCureTrigger = false;
+        hasMagicianPower = false;
+        hasTrapezistPower = false;
+        magicianCureTrigger = false;
+        enabledGhostWorld1 = false;
+        jPosterPieceCount = 0;
+        tPosterPieceCount = 0;
 
         //savedSceneSong = musicController.musicClips[0];
     }
