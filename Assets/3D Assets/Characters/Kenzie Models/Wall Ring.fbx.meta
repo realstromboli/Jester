@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef16960ac6b13af47b81306f6f5e0e38
+guid: 13695f89038b3ea41a56b72d02b7c349
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: standardSurface1
-    second: {fileID: 2100000, guid: 3b0450a7dba69664ab4be3a6fb71c5af, type: 2}
+      name: Wall Ring
+    second: {fileID: 2100000, guid: 4ca30d67485a95c45b93f4ff769d31e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 50
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 50
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
