@@ -689,6 +689,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                             StartCoroutine(SetRespawnLocationAfterDelay());
+                            StartCoroutine(TalkOnRespawn());
                         }
                     }
                     
@@ -698,6 +699,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
                     yield return new WaitForSeconds(0.1f);
                     dmScript.dialogueViewedSave++;
+                }
+
+                IEnumerator TalkOnRespawn()
+                {
+                    yield return new WaitForSeconds(5f);
+                    dtScript = GameObject.Find("HiddenDialogueSpeaker9").GetComponent<DialogueTrigger>();
+                    dtScript.startConvo();
                 }
 
                 if (hit.collider.CompareTag("JesterPoster") && (dmScript.dialogueViewedSave == 2 || dmScript.dialogueViewedSave == 3))
