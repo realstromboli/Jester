@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Transform orientation;
     //private AudioSource playerAudio;
     public Animator playerAnimation;
+    public Animator ghostAnimation;
 
     float horizontalInput;
     float verticalInput;
@@ -593,6 +594,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     DialogueTrigger1 dialogueTrigger1 = hit.collider.GetComponent<DialogueTrigger1>();
                     DialogueTrigger2 dialogueTrigger2 = hit.collider.GetComponent<DialogueTrigger2>();
                     DialogueTrigger3 dialogueTrigger3 = hit.collider.GetComponent<DialogueTrigger3>();
+                    
 
                     Debug.Log("Dialogue hit interactable");
                     if (dialogueTrigger1 != null)
@@ -636,10 +638,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (hit.collider.CompareTag("Jester") || hit.collider.CompareTag("Trapezist") || hit.collider.CompareTag("Magician"))
                 {
                     playerAnimation.SetTrigger("Ghost Interaction Trigger");
+                    ghostAnimation = hit.collider.GetComponent<Animator>();
+                    ghostAnimation.SetTrigger("Ghost Interaction Trigger");
                 }
 
                 // door scene transition behavior
-                if ((hit.collider.CompareTag("Door") && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2))
+                if (hit.collider.CompareTag("Door") && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
@@ -655,7 +659,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
-                if ((hit.collider.CompareTag("JDoor") && dmScript.dialogueViewedSave >= 6))
+                if (hit.collider.CompareTag("JDoor") && dmScript.dialogueViewedSave >= 6)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
@@ -665,6 +669,43 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                         StartCoroutine(SetRespawnLocationAfterDelay());
                     }
+                }
+
+                if (hit.collider.CompareTag("WaterTank"))
+                {
+                    DialogueTrigger4 dialogueTrigger4 = hit.collider.GetComponent<DialogueTrigger4>();
+                    if (dialogueTrigger4 != null)
+                    {
+                        dialogueTrigger4.startConvo();
+                        StartCoroutine(WaitForSeconds2());
+                    }
+
+                    if (dmScript.dialogueViewedSave == 18)
+                    {
+                        SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
+                        Debug.Log("Door hit interactable");
+                        playerAnimation.SetTrigger("Pickup Trigger");
+                        if (sceneTransition != null)
+                        {
+                            StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
+                            StartCoroutine(SetRespawnLocationAfterDelay());
+                            StartCoroutine(TalkOnRespawn());
+                        }
+                    }
+                    
+                }
+
+                IEnumerator WaitForSeconds2()
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    dmScript.dialogueViewedSave++;
+                }
+
+                IEnumerator TalkOnRespawn()
+                {
+                    yield return new WaitForSeconds(5f);
+                    dtScript = GameObject.Find("HiddenDialogueSpeaker9").GetComponent<DialogueTrigger>();
+                    dtScript.startConvo();
                 }
 
                 if (hit.collider.CompareTag("JesterPoster") && (dmScript.dialogueViewedSave == 2 || dmScript.dialogueViewedSave == 3))

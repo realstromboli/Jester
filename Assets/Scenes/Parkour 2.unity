@@ -10462,10 +10462,11 @@ GameObject:
   - component: {fileID: 269779920}
   - component: {fileID: 269779919}
   - component: {fileID: 269779918}
+  - component: {fileID: 269779923}
   - component: {fileID: 269779922}
-  m_Layer: 0
-  m_Name: Zach Cube
-  m_TagString: Door
+  m_Layer: 11
+  m_Name: WaterTankPlaceholder
+  m_TagString: WaterTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10511,7 +10512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b6399a5d6752c41498e4c53e94b53cb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10571,7 +10572,7 @@ MonoBehaviour:
   fadeSpeed: 2
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 1, g: 1, b: 1, a: 1}
-  sceneToGoTo: Inside Trailer
+  sceneToGoTo: FINISHInside Trailer
   playerTransferPosition: {x: 518, y: 16, z: 212}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
@@ -10579,6 +10580,24 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
+--- !u!114 &269779923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269779917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b5fad73805fb940996eb2f44eb7c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: b4338bd65ab608447a01169c6d994444, type: 2}
+  viewNumber: 16
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   pcScript: {fileID: 0}
 --- !u!1001 &291301337
 PrefabInstance:
