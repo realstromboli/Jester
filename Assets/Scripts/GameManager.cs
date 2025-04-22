@@ -309,6 +309,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public GameObject slot7;
     public GameObject slot8;
     public GameObject slot9;
+    public GameObject slot10;
+    public GameObject slot11;
+    public GameObject slot12;
 
     public GameObject item1;
     public GameObject item2;
@@ -319,6 +322,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public GameObject item7;
     public GameObject item8;
     public GameObject item9;
+    public GameObject item10;
+    public GameObject item11;
+    public GameObject item12;
 
     public bool slot1Full;
     public bool slot2Full;
@@ -329,6 +335,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public bool slot7Full;
     public bool slot8Full;
     public bool slot9Full;
+    public bool slot10Full;
+    public bool slot11Full;
+    public bool slot12Full;
 
     public Image inventoryItem;
     public Image item1Image;
@@ -340,13 +349,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Image item7Image;
     public Image item8Image;
     public Image item9Image;
+    public Image item10Image;
+    public Image item11Image;
+    public Image item12Image;
 
     public void InventoryManager()
     {
-        item1 = GameObject.Find("PlaceholderItem1");
-        item2 = GameObject.Find("PlaceholderItem2");
-        item3 = GameObject.Find("PlaceholderItem3");
-        //item4 = GameObject.Find("GhostlyPlaceholderItem");
 
         if (slot1Full)
         {
@@ -396,70 +404,77 @@ public class GameManager : MonoBehaviour, IDataPersistence
             //item4.GetComponent<Collider>().enabled = true;
         }
 
-        //if (slot5Full)
-        //{
-        //    slot5.SetActive(true);
-        //    item5.GetComponent<Renderer>().enabled = false;
-        //    item5.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot5Full)
-        //{
-        //    slot5.SetActive(false);
-        //    item5.GetComponent<Renderer>().enabled = true;
-        //    item5.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot5Full)
+        {
+            slot5.SetActive(true);
+        }
+        else if (!slot5Full)
+        {
+            slot5.SetActive(false);
+        }
 
-        //if (slot6Full)
-        //{
-        //    slot6.SetActive(true);
-        //    item6.GetComponent<Renderer>().enabled = false;
-        //    item6.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot6Full)
-        //{
-        //    slot6.SetActive(false);
-        //    item6.GetComponent<Renderer>().enabled = true;
-        //    item6.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot6Full)
+        {
+            slot6.SetActive(true);
+        }
+        else if (!slot6Full)
+        {
+            slot6.SetActive(false);
+        }
 
-        //if (slot7Full)
-        //{
-        //    slot7.SetActive(true);
-        //    item7.GetComponent<Renderer>().enabled = false;
-        //    item7.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot7Full)
-        //{
-        //    slot7.SetActive(false);
-        //    item7.GetComponent<Renderer>().enabled = true;
-        //    item7.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot7Full)
+        {
+            slot7.SetActive(true);
+        }
+        else if (!slot7Full)
+        {
+            slot7.SetActive(false);
+        }
 
-        //if (slot8Full)
-        //{
-        //    slot8.SetActive(true);
-        //    item8.GetComponent<Renderer>().enabled = false;
-        //    item8.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot8Full)
-        //{
-        //    slot8.SetActive(false);
-        //    item8.GetComponent<Renderer>().enabled = true;
-        //    item8.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot8Full)
+        {
+            slot8.SetActive(true);
+        }
+        else if (!slot8Full)
+        {
+            slot8.SetActive(false);
+        }
 
-        //if (slot9Full)
-        //{
-        //    slot9.SetActive(true);
-        //    item9.GetComponent<Renderer>().enabled = false;
-        //    item9.GetComponent<Collider>().enabled = false;
-        //}
-        //else if (!slot9Full)
-        //{
-        //    slot9.SetActive(false);
-        //    item9.GetComponent<Renderer>().enabled = true;
-        //    item9.GetComponent<Collider>().enabled = true;
-        //}
+        if (slot9Full)
+        {
+            slot9.SetActive(true);
+        }
+        else if (!slot9Full)
+        {
+            slot9.SetActive(false);
+        }
+
+        if (slot10Full)
+        {
+            slot10.SetActive(true);
+        }
+        else if (!slot10Full)
+        {
+            slot10.SetActive(false);
+        }
+
+        if (slot11Full)
+        {
+            slot11.SetActive(true);
+        }
+        else if (!slot11Full)
+        {
+            slot11.SetActive(false);
+        }
+
+        if (slot12Full)
+        {
+            slot12.SetActive(true);
+        }
+        else if (!slot12Full)
+        {
+            slot12.SetActive(false);
+        }
     }
 
     public TMP_Text itemNameText;
@@ -483,40 +498,40 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item3Text()
     {
-        itemNameText.text = "Desire's Cards";
-        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Desire.";
+        itemNameText.text = "Item 3";
+        itemDescriptionText.text = "This is what item 3 does";
         inventoryItem.sprite = item3Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item4Text()
     {
-        itemNameText.text = "Lottie's Image";
-        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
+        itemNameText.text = "Item 4";
+        itemDescriptionText.text = "This is what item 4 does";
         inventoryItem.sprite = item4Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item5Text()
     {
-        itemNameText.text = "Item 5";
-        itemDescriptionText.text = "This is what item 5 does";
+        itemNameText.text = "Lottie's Image";
+        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
         inventoryItem.sprite = item5Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item6Text()
     {
-        itemNameText.text = "Item 6";
-        itemDescriptionText.text = "This is what item 6 does";
+        itemNameText.text = "Trapeze Grapple Instructions";
+        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! ";
         inventoryItem.sprite = item6Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
     public void Item7Text()
     {
-        itemNameText.text = "Desire's Cards";
-        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, ghostly letters on them will spell out his name: Desire.";
+        itemNameText.text = "Item 7";
+        itemDescriptionText.text = "This is what item 7 does";
         inventoryItem.sprite = item7Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -531,9 +546,33 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Item9Text()
     {
-        itemNameText.text = "Item 9";
-        itemDescriptionText.text = "This is what item 9 does";
+        itemNameText.text = "Desire's Cards";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Desire.";
         inventoryItem.sprite = item9Image.sprite;
+        SetImageAlpha(inventoryItem, 1f);
+    }
+
+    public void Item10Text()
+    {
+        itemNameText.text = "Magician Flip Instructions";
+        itemDescriptionText.text = "Presing F while there are magic platforms above you will reverse gravity, this can be toggled on and off as long as you have proper land above you!";
+        inventoryItem.sprite = item10Image.sprite;
+        SetImageAlpha(inventoryItem, 1f);
+    }
+
+    public void Item11Text()
+    {
+        itemNameText.text = "Item 11";
+        itemDescriptionText.text = "This is what item 11 does";
+        inventoryItem.sprite = item11Image.sprite;
+        SetImageAlpha(inventoryItem, 1f);
+    }
+
+    public void Item12Text()
+    {
+        itemNameText.text = "Item 12";
+        itemDescriptionText.text = "This is what item 12 does";
+        inventoryItem.sprite = item12Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
 
@@ -563,6 +602,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot7Full = data.slot7Full;
         this.slot8Full = data.slot8Full;
         this.slot9Full = data.slot9Full;
+        this.slot10Full = data.slot10Full;
+        this.slot11Full = data.slot11Full;
+        this.slot12Full = data.slot12Full;
 
         StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
@@ -578,6 +620,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.slot7Full = this.slot7Full;
         data.slot8Full = this.slot8Full;
         data.slot9Full = this.slot9Full;
+        data.slot10Full = this.slot10Full;
+        data.slot11Full = this.slot11Full;
+        data.slot12Full = this.slot12Full;
 
         data.currentSceneName = SceneManager.GetActiveScene().name;
         Debug.Log("Current scene name: " + data.currentSceneName);

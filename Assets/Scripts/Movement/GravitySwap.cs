@@ -108,4 +108,10 @@ public class GravitySwap : MonoBehaviour
             UpdateTargetObjectRotation();
         }
     }
+
+    public void resetOrientation()
+    {
+        gravityReversed = false;
+        UpdateTargetObjectRotation();
+    }
 }

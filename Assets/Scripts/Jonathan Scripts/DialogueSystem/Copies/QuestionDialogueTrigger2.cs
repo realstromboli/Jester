@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestionDialogueTrigger2 : MonoBehaviour
@@ -11,6 +12,7 @@ public class QuestionDialogueTrigger2 : MonoBehaviour
     public PlayerCamera pcScript;
     public DialogueTrigger dtScript;
     public PlayerMovement pmScript;
+    public GameManager gmScript;
     public Material newMaterial;
 
     public Renderer objectRenderer;
@@ -27,15 +29,35 @@ public class QuestionDialogueTrigger2 : MonoBehaviour
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 16)
+        if (dialogueManager.dialogueViewedSave >= 15)
         {
             objectRenderer.material = newMaterial;
             dtScript = GameObject.Find("HiddenDialogueSpeaker8").GetComponent<DialogueTrigger>();
             pmScript.hasMagicianPower = true;
             dtScript.startConvo();
-            Destroy(this);
+            pmScript.logText.text = "Magician Flip Acquired! (Press F ro flip gravity while magic platforms are above)";
+            pmScript.logText.gameObject.SetActive(true);
+            gmScript.slot10Full = true;
+            StartCoroutine(FadeOutText(pmScript.logText, 4f));
         }
+    }
+
+    public IEnumerator FadeOutText(TextMeshProUGUI textElement, float duration)
+    {
+        textElement.alpha = 1f;
+        float elapsedTime = 1f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            textElement.alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+            yield return null;
+        }
+
+        textElement.alpha = 0f;
+        Destroy(this);
     }
 
     //private void OnCollisionEnter(Collision other)
