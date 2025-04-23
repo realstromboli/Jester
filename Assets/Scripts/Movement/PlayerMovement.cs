@@ -1089,45 +1089,53 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void IDontKnow()
     {
-        if (jPosterPieceCount == 1)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && gmScript.isGameActive && !dmScript.dialogueActive)
         {
-            jesterPiece1 = GameObject.Find("jPosterPiece1");
+            RaycastHit hit;
 
-            if (jesterPiece1 != null)
+            if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
             {
-                jesterPiece1.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "jPosterPiece1")
+                {
+                    jesterPiece1 = GameObject.Find("jPosterPiece1");
 
-        if (jPosterPieceCount == 2)
-        {
-            jesterPiece2 = GameObject.Find("jPosterPiece2");
+                    if (jesterPiece1 != null)
+                    {
+                        jesterPiece1.SetActive(false);
+                    }
+                }
 
-            if (jesterPiece2 != null)
-            {
-                jesterPiece2.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "jPosterPiece2")
+                {
+                    jesterPiece2 = GameObject.Find("jPosterPiece2");
 
-        if (tPosterPieceCount == 1)
-        {
-            tPosterPiece1 = GameObject.Find("tPosterPiece1");
+                    if (jesterPiece2 != null)
+                    {
+                        jesterPiece2.SetActive(false);
+                    }
+                }
 
-            if (tPosterPiece1 != null)
-            {
-                tPosterPiece1.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "tPosterPiece1")
+                {
+                    tPosterPiece1 = GameObject.Find("tPosterPiece1");
 
-        if (tPosterPieceCount == 2)
-        {
-            tPosterPiece2 = GameObject.Find("tPosterPiece2");
+                    if (tPosterPiece1 != null)
+                    {
+                        tPosterPiece1.SetActive(false);
+                    }
+                }
 
-            if (tPosterPiece2 != null)
-            {
-                tPosterPiece2.SetActive(false);
-                lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
-                lottiePicFull.enabled = true;
+                if (hit.collider.gameObject.name == "tPosterPiece2")
+                {
+                    tPosterPiece2 = GameObject.Find("tPosterPiece2");
+
+                    if (tPosterPiece2 != null)
+                    {
+                        tPosterPiece2.SetActive(false);
+                        lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
+                        lottiePicFull.enabled = true;
+                    }
+                }
             }
         }
     }
