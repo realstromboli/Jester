@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public DialogueTrigger dtScript;
     public AllDialogueTriggerRepeatable adtrScript;
     public float raycastDistance = 3;
+    public Canvas jesterPicFull;
 
     public bool activeGrapple;
 
@@ -740,6 +741,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
+                        jesterPicFull = GameObject.Find("JesterPicFull").GetComponent<Canvas>();
+                        jesterPicFull.enabled = true;
 
                         StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
@@ -900,44 +903,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
             }
         }
-    }
-
-    public IEnumerator HUDPopUp()
-    {
-        float duration = 2f; // Duration of the fade-out in seconds
-        float elapsedTime = 0f;
-
-        Color originalColor = new Color(255, 255, 255, 255);
-        Color targetColor = new Color(255, 255, 255, 0);
-
-        while (elapsedTime < duration)
-        {
-            cardCountText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the final alpha is set to 0
-        cardCountText.color = targetColor;
-    }
-
-    public IEnumerator HUDPopUp2()
-    {
-        float duration = 2f; // Duration of the fade-out in seconds
-        float elapsedTime = 0f;
-
-        Color originalColor = new Color(255, 255, 255, 255);
-        Color targetColor = new Color(255, 255, 255, 0);
-
-        while (elapsedTime < duration)
-        {
-            logText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the final alpha is set to 0
-        logText.color = targetColor;
     }
 
     public bool enabledGhostWorld1;
