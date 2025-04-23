@@ -468,19 +468,22 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 objectiveText.text = "See what is on the vanity";
                 break;
             case 2:
-                objectiveText.text = "Any significance to the name Antonio Colombo?";
+                objectiveText.text = "Follow the ghost!";
+                break;
+            case 3:
+                objectiveText.text = "Explore the maze and collect mysterious poster scraps";
                 break;
             case 4:
-                objectiveText.text = "Explore the Big Top after leaving your trailer";
-                break;
-            case 5:
-                objectiveText.text = "Any objects related to the ghost in the Big Top?";
+                objectiveText.text = "Any significance to the name Antonio Colombo?";
                 break;
             case 6:
-                objectiveText.text = "Find the torn off pieces of the picture";
+                objectiveText.text = "Exit the maze to explore the Big Top for clues on the next Ghost";
+                break;
+            case 7:
+                objectiveText.text = "Explore the Big Top for scraps of the Trapeze Artist's Picture";
                 break;
             case 8:
-                objectiveText.text = "Examine the completed picture";
+                objectiveText.text = "Examine the completed picture of the Trapeze Artist";
                 break;
             case 9:
                 objectiveText.text = "Any significance to the name Lottie Green?";
@@ -492,16 +495,19 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 objectiveText.text = "Traverse the Spirit World to recover Lottie's memories";
                 break;
             case 13:
-                objectiveText.text = "Explore the Big Top for any changes after coming back";
+                objectiveText.text = "Explore the Big Top for the Magician's six cards";
                 break;
             case 14:
-                objectiveText.text = "Find the Magician's six cards";
-                break;
-            case 15:
                 objectiveText.text = "Figure out the Magician's name";
                 break;
+            case 16:
+                objectiveText.text = "Traverse the Spirit World again to recover Desire's memories";
+                break;
             case 17:
-                objectiveText.text = "Enter the Spirit World through the picture to recover Desire's memories";
+                objectiveText.text = "Exit the spirit world and reconvene with the Spirits";
+                break;
+            case 18:
+                objectiveText.text = "You're done for now! There will be a more proper finish in a future build :)";
                 break;
             default:
                 objectiveText.text = "Keep progressing!";

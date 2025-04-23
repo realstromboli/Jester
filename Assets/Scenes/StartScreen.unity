@@ -273,6 +273,10 @@ PrefabInstance:
       propertyPath: reticleTalkSprite
       value: 
       objectReference: {fileID: 2004360197}
+    - target: {fileID: 8475339240768967296, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: reticleGrappleSprite
+      value: 
+      objectReference: {fileID: 542699825}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -474,6 +478,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1492812440}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417923420}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &542699825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2555745865659643454, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+  m_PrefabInstance: {fileID: 1492812440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -1105,14 +1120,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 577592829}
-    - target: {fileID: 2692232618258504661, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
-      propertyPath: m_fontColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2692232618258504661, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 16777215
-      objectReference: {fileID: 0}
+    - target: {fileID: 2555745865659643454, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c8b3f5783a08db54f9262af873195c00, type: 3}
     - target: {fileID: 6137567292575826855, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1306,6 +1317,10 @@ PrefabInstance:
     - target: {fileID: 8469979222817177293, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_Name
       value: StartManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469979222817177293, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8489535974986806029, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
