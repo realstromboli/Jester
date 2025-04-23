@@ -69,6 +69,13 @@ public class ReactiveReticle : MonoBehaviour
                 reticleGrappleSprite.enabled = true;
                 reticleDot.SetActive(false);
             }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0)
+            {
+                reticleHandSprite.enabled = false;
+                reticleTalkSprite.enabled = false;
+                reticleGrappleSprite.enabled = false;
+                reticleDot.SetActive(true);
+            }
         }
         else
         {
