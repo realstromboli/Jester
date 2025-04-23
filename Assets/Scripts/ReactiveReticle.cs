@@ -34,17 +34,25 @@ public class ReactiveReticle : MonoBehaviour
         if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
         {
             
-            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Swapa") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0)
             {
                 reticleHandSprite.enabled = false;
                 reticleTalkSprite.enabled = false;
                 reticleDot.SetActive(true);
+                reticleDot.GetComponent<Image>().color = Color.magenta;
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("GhostInteractable"))
             {
                 reticleTalkSprite.enabled = true;
                 reticleHandSprite.enabled = false;
                 reticleDot.SetActive(false);
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint"))
+            {
+                reticleHandSprite.enabled = false;
+                reticleTalkSprite.enabled = false;
+                reticleDot.SetActive(true);
+                reticleDot.GetComponent<Image>().color = Color.red;
             }
             else
             {
