@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public DialogueTrigger dtScript;
     public AllDialogueTriggerRepeatable adtrScript;
     public float raycastDistance = 3;
+    public Canvas jesterPicFull;
 
     public bool activeGrapple;
 
@@ -553,6 +554,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     logText.text = "Entry added to log (Press I to open)";
                     gmScript.slot1Full = true;
                     logText.gameObject.SetActive(true);
+                    StopCoroutine(FadeOutText(logText, 3f));
                     StartCoroutine(FadeOutText(logText, 3f));
 
                     foreach (GameObject obj in allObjects)
@@ -724,7 +726,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
 
                         cardCountText.gameObject.SetActive(true);
-
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
@@ -734,11 +736,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot2Full = true;
                         logText.text = "Jester entry added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
+                        jesterPicFull = GameObject.Find("JesterPicFull").GetComponent<Canvas>();
+                        jesterPicFull.enabled = true;
 
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
                 }
@@ -758,7 +764,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     if (tPosterPieceCount == 1)
                     {
                         cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
-
+                        StopCoroutine(FadeOutText(cardCountText, 2f));
                         StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
 
@@ -773,7 +779,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         lottiePic1.enabled = false;
                         lottiePic2.enabled = false;
                         lottiePicFull.enabled = true;
-
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
@@ -825,6 +831,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         logText.text = "Trapeze Artist info added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
 
                     }
@@ -834,6 +841,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         Destroy(dialogueTriggerRepeatable1);
                         dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
+
                         StartCoroutine(WaitForSeconds());
                         dmScript.correctAnswersCount = 0;
                     }
@@ -867,7 +875,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mCardsCount++;
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
-
+                    StopCoroutine(FadeOutText(cardCountText, 3f));
                     StartCoroutine(FadeOutText(cardCountText, 3f));
 
                     if (mCardsCount == 6)
@@ -878,6 +886,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         magicianCureTrigger = true;
                         logText.text = "Magician info added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
                     }
                 }
@@ -894,44 +903,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
             }
         }
-    }
-
-    public IEnumerator HUDPopUp()
-    {
-        float duration = 2f; // Duration of the fade-out in seconds
-        float elapsedTime = 0f;
-
-        Color originalColor = new Color(255, 255, 255, 255);
-        Color targetColor = new Color(255, 255, 255, 0);
-
-        while (elapsedTime < duration)
-        {
-            cardCountText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the final alpha is set to 0
-        cardCountText.color = targetColor;
-    }
-
-    public IEnumerator HUDPopUp2()
-    {
-        float duration = 2f; // Duration of the fade-out in seconds
-        float elapsedTime = 0f;
-
-        Color originalColor = new Color(255, 255, 255, 255);
-        Color targetColor = new Color(255, 255, 255, 0);
-
-        while (elapsedTime < duration)
-        {
-            logText.color = Color.Lerp(originalColor, targetColor, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the final alpha is set to 0
-        logText.color = targetColor;
     }
 
     public bool enabledGhostWorld1;
@@ -1022,7 +993,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             respawnLocation = other.transform.position;
             Debug.Log("Respawn location saved: " + respawnLocation);
             cardCountText.text = "Checkpoint!";
-
+            StopCoroutine(FadeOutText(cardCountText, 3f));
             StartCoroutine(FadeOutText(cardCountText, 3f));
         }
         
@@ -1089,45 +1060,53 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void IDontKnow()
     {
-        if (jPosterPieceCount == 1)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && gmScript.isGameActive && !dmScript.dialogueActive)
         {
-            jesterPiece1 = GameObject.Find("jPosterPiece1");
+            RaycastHit hit;
 
-            if (jesterPiece1 != null)
+            if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
             {
-                jesterPiece1.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "jPosterPiece1")
+                {
+                    jesterPiece1 = GameObject.Find("jPosterPiece1");
 
-        if (jPosterPieceCount == 2)
-        {
-            jesterPiece2 = GameObject.Find("jPosterPiece2");
+                    if (jesterPiece1 != null)
+                    {
+                        jesterPiece1.SetActive(false);
+                    }
+                }
 
-            if (jesterPiece2 != null)
-            {
-                jesterPiece2.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "jPosterPiece2")
+                {
+                    jesterPiece2 = GameObject.Find("jPosterPiece2");
 
-        if (tPosterPieceCount == 1)
-        {
-            tPosterPiece1 = GameObject.Find("tPosterPiece1");
+                    if (jesterPiece2 != null)
+                    {
+                        jesterPiece2.SetActive(false);
+                    }
+                }
 
-            if (tPosterPiece1 != null)
-            {
-                tPosterPiece1.SetActive(false);
-            }
-        }
+                if (hit.collider.gameObject.name == "tPosterPiece1")
+                {
+                    tPosterPiece1 = GameObject.Find("tPosterPiece1");
 
-        if (tPosterPieceCount == 2)
-        {
-            tPosterPiece2 = GameObject.Find("tPosterPiece2");
+                    if (tPosterPiece1 != null)
+                    {
+                        tPosterPiece1.SetActive(false);
+                    }
+                }
 
-            if (tPosterPiece2 != null)
-            {
-                tPosterPiece2.SetActive(false);
-                lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
-                lottiePicFull.enabled = true;
+                if (hit.collider.gameObject.name == "tPosterPiece2")
+                {
+                    tPosterPiece2 = GameObject.Find("tPosterPiece2");
+
+                    if (tPosterPiece2 != null)
+                    {
+                        tPosterPiece2.SetActive(false);
+                        lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
+                        lottiePicFull.enabled = true;
+                    }
+                }
             }
         }
     }
