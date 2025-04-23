@@ -553,6 +553,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     logText.text = "Entry added to log (Press I to open)";
                     gmScript.slot1Full = true;
                     logText.gameObject.SetActive(true);
+                    StopCoroutine(FadeOutText(logText, 3f));
                     StartCoroutine(FadeOutText(logText, 3f));
 
                     foreach (GameObject obj in allObjects)
@@ -724,7 +725,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
 
                         cardCountText.gameObject.SetActive(true);
-
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
@@ -734,11 +735,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot2Full = true;
                         logText.text = "Jester entry added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
 
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
                 }
@@ -758,7 +761,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     if (tPosterPieceCount == 1)
                     {
                         cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
-
+                        StopCoroutine(FadeOutText(cardCountText, 2f));
                         StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
 
@@ -773,7 +776,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         lottiePic1.enabled = false;
                         lottiePic2.enabled = false;
                         lottiePicFull.enabled = true;
-
+                        StopCoroutine(FadeOutText(cardCountText, 3f));
                         StartCoroutine(FadeOutText(cardCountText, 3f));
                     }
 
@@ -825,6 +828,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         logText.text = "Trapeze Artist info added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
 
                     }
@@ -834,6 +838,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         Destroy(dialogueTriggerRepeatable1);
                         dtScript = GameObject.Find("HiddenDialogueSpeaker6").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
+
                         StartCoroutine(WaitForSeconds());
                         dmScript.correctAnswersCount = 0;
                     }
@@ -867,7 +872,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mCardsCount++;
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
-
+                    StopCoroutine(FadeOutText(cardCountText, 3f));
                     StartCoroutine(FadeOutText(cardCountText, 3f));
 
                     if (mCardsCount == 6)
@@ -878,6 +883,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         magicianCureTrigger = true;
                         logText.text = "Magician info added to log";
                         logText.gameObject.SetActive(true);
+                        StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
                     }
                 }
@@ -1022,7 +1028,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             respawnLocation = other.transform.position;
             Debug.Log("Respawn location saved: " + respawnLocation);
             cardCountText.text = "Checkpoint!";
-
+            StopCoroutine(FadeOutText(cardCountText, 3f));
             StartCoroutine(FadeOutText(cardCountText, 3f));
         }
         
