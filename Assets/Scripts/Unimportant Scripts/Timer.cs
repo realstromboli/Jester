@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
+
 
 public class Timer : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class Timer : MonoBehaviour
     public Timer timerScript;
     public Image obscurity;
 
-    private Coroutine timerCoroutine;
+    public Coroutine timerCoroutine;
 
     private void Start()
     {
@@ -35,13 +37,22 @@ public class Timer : MonoBehaviour
     void Update()
     {
         // Update code if needed
-        if (dmScript.dialogueActive || gmScript.isGameActive == false)
+        if (dmScript.dialogueActive == true || gmScript.isGameActive == false)
         {
             Pause = true;
         }
         else if (dmScript.dialogueActive == false || gmScript.isGameActive == true)
         {
             Pause = false;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Inside Fun House" || SceneManager.GetActiveScene().name == "Mirrored Maze")
+        {
+            Pause = false;
+        }
+        else if (SceneManager.GetActiveScene().name != "Inside Fun House" || SceneManager.GetActiveScene().name != "Mirrored Maze")
+        {
+            Pause = true;
         }
     }
 
