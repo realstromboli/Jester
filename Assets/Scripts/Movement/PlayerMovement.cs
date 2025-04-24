@@ -432,6 +432,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         this.hasTrapezistPower = data.hasTrapezistPower;
 
         this.enabledGhostWorld1 = data.enabledGhostWorld1;
+
+        this.mCardsCount = data.mCardsCount;
     }
 
     public void SaveData(ref GameData data)
@@ -459,6 +461,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.hasTrapezistPower = this.hasTrapezistPower;
 
         data.enabledGhostWorld1 = this.enabledGhostWorld1;
+
+        data.mCardsCount = this.mCardsCount;
     }
 
     private IEnumerator PosSetDelay(Vector3 position)

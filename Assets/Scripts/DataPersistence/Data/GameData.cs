@@ -26,6 +26,7 @@ public class GameData
     public int dialogueViewedSave;
     public int jPosterPieceCount;
     public int tPosterPieceCount;
+    public int mCardsCount;
     public string currentSceneName;
 
     public bool jesterCureTrigger;
@@ -90,6 +91,7 @@ public class GameData
         enabledGhostWorld1 = false;
         jPosterPieceCount = 0;
         tPosterPieceCount = 0;
+        mCardsCount = 0;
 
         //savedSceneSong = musicController.musicClips[0];
     }
