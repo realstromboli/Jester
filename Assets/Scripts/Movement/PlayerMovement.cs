@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Rigidbody rb;
     private GameManager gmScript;
     public Camera pcScript;
+    public PlayerCamera playerCameraScript;
     public DialogueManager dmScript;
     public GravitySwap gravitySwapScript;
     public DialogueTrigger dtScript;
@@ -985,6 +986,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
+    public float currentYRotation;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Checkpoint"))
@@ -995,6 +998,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             cardCountText.text = "Checkpoint!";
             StopCoroutine(FadeOutText(cardCountText, 3f));
             StartCoroutine(FadeOutText(cardCountText, 3f));
+            currentYRotation = playerCameraScript.yRotation;
         }
         
         if (other.CompareTag("Death"))
@@ -1003,6 +1007,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = respawnLocation;
             Debug.Log("Player respawned at: " + respawnLocation);
             rb.velocity = Vector3.zero;
+            playerCameraScript.yRotation = currentYRotation;
         }
 
         if (other.gameObject.CompareTag("Net"))
