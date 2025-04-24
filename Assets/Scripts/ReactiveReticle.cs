@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ReactiveReticle : MonoBehaviour
 {
     public PlayerCamera pcScript;
+    public PlayerMovement pmScript;
     public float raycastDistance = 12f;
     public float grappleRayDistance = 110f;
     public GameObject reticleHand;
@@ -19,6 +20,7 @@ public class ReactiveReticle : MonoBehaviour
     void Start()
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
+        pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         reticleHandSprite.enabled = false;
         reticleTalkSprite.enabled = false;
     }
@@ -60,12 +62,19 @@ public class ReactiveReticle : MonoBehaviour
         }
         if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, grappleRayDistance))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") && pmScript.hasTrapezistPower)
             {
                 reticleHandSprite.enabled = false;
                 reticleTalkSprite.enabled = false;
                 reticleGrappleSprite.enabled = true;
                 reticleDot.SetActive(false);
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") || ((1 << hit.collider.gameObject.layer) & whatIsGround) != 0)
+            {
+                reticleHandSprite.enabled = false;
+                reticleTalkSprite.enabled = false;
+                reticleGrappleSprite.enabled = false;
+                reticleDot.SetActive(true);
             }
         }
         else
