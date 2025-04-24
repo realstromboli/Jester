@@ -10,8 +10,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI speakerName, dialogue;
     public Image speakerSprite;
-    public float dialogueTypeSpeed = 0.06f;
-    public float dialogueDelay = 1.5f;
+    private float dialogueTypeSpeed = 0.012f;
+    private float dialogueDelay = 1.3f;
     public int dialogueViewedSave;
     public bool makingDescision;
     public bool dialogueActive;
