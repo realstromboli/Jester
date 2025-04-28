@@ -525,7 +525,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item6Text()
     {
         itemNameText.text = "Trapeze Grapple Instructions";
-        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! ";
+        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! Keep in mind that grappling will only give a player momentum when they pull upwards towards an object.";
         inventoryItem.sprite = item6Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
