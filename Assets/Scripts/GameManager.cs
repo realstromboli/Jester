@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public MaskToggle maskScript;
     public Timer timerScript;
     public DialogueManager dmScript;
+    public SceneTransition stScript;
+    public GameData gameData;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -211,6 +213,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
     }
 
+
+
     public void NewGame()
     {
         //scene 6 is outdoors
@@ -218,7 +222,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
 
-        SceneManager.LoadScene(1);
+        stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
+        stScript.sceneToGoTo = "Inside Trailer";
+        if (stScript != null)
+        {
+            StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
+            StartCoroutine(pmScript.SetRespawnLocationAfterDelay());
+        }
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
@@ -599,7 +609,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot11Full = data.slot11Full;
         this.slot12Full = data.slot12Full;
 
-        StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
+        //StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
 
     public void SaveData(ref GameData data)

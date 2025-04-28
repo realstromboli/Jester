@@ -1039,7 +1039,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    private IEnumerator SetRespawnLocationAfterDelay()
+    public IEnumerator SetRespawnLocationAfterDelay()
     {
         yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;
