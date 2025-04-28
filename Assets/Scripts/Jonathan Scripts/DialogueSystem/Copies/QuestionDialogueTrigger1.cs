@@ -41,10 +41,10 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
             pmScript.hasTrapezistPower = true;
             grappleScript.StartGrapple();
             dtScript.startConvo();
-            pmScript.logText.text = "Trapezist Grapple Acquired! (Right click objects when reticle says '!')";
+            pmScript.logText.text = "Trapezist Grapple Acquired! (Right click objects when reticle changes to *) (Press I for info)";
             pmScript.logText.gameObject.SetActive(true);
             gmScript.slot6Full = true;
-            StartCoroutine(FadeOutText(pmScript.logText, 4f));
+            StartCoroutine(FadeOutText(pmScript.logText, 5f));
             
         }
     }

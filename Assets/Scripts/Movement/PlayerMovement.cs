@@ -124,6 +124,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         gravitySwapScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
+        playerCameraScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         logText.gameObject.SetActive(false);
 
         hasJesterPower = false;
@@ -739,7 +740,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         jesterCureTrigger = true;
                         gmScript.slot2Full = true;
-                        logText.text = "Jester entry added to log";
+                        logText.text = "Jester entry added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
                         StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
@@ -834,7 +835,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             }
                         }
 
-                        logText.text = "Trapeze Artist info added to log";
+                        logText.text = "Trapeze Artist info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
                         StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
@@ -889,7 +890,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript.startConvo();
                         gmScript.slot9Full = true;
                         magicianCureTrigger = true;
-                        logText.text = "Magician info added to log";
+                        logText.text = "Magician info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
                         StopCoroutine(FadeOutText(logText, 3f));
                         StartCoroutine(FadeOutText(logText, 3f));
