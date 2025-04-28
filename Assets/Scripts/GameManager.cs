@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
 
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(1);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
@@ -633,7 +633,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "Parkour 1";
+            sceneName = "Inside Trailer";
         }
 
         // Load the saved scene

@@ -78,11 +78,15 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0)
+        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing == null)
         {
             StopAllCoroutines();
             //StopCoroutine("WaitAndReadNext");
             ReadNext();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing != null)
+        {
+            dialogueTypeSpeed = 0.0f;
         }
 
         // Check if dialogueViewedSave reaches 5
@@ -259,6 +263,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         typing = null;
+        dialogueTypeSpeed = 0.012f;
 
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
