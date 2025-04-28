@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public DataPersistenceManager dpmScript;
     public MaskToggle maskScript;
     public Timer timerScript;
+    public DialogueManager dmScript;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
         maskScript = GameObject.Find("Player").GetComponent<MaskToggle>();
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         HUD = GameObject.Find("HUD");
         HUD.SetActive(false); // Ensure HUD is hidden initially
         pauseScreen.SetActive(false); // Ensure pause screen is hidden initially
@@ -74,19 +76,19 @@ public class GameManager : MonoBehaviour, IDataPersistence
         UpdatePlayerPosition();
 
         // Update HUD visibility based on game state
-        if (isGameActive)
+        if (isGameActive || dmScript.dialogueActive)
         {
             HUD.SetActive(true);
             timerScript.Pause = false;
         }
-        else if (!isGameActive)
+        else if (!isGameActive || dmScript.dialogueActive == false)
         {
             HUD.SetActive(false);
             timerScript.Pause = true;
             timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen)
+        if (Input.GetKeyDown(KeyCode.I) && isGameActive && !inventoryOpen && dmScript.dialogueActive == false)
         {
             inventoryScreen.SetActive(true);
             isGameActive = false;

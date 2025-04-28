@@ -37,10 +37,10 @@ public class QuestionDialogueTrigger2 : MonoBehaviour
             dtScript = GameObject.Find("HiddenDialogueSpeaker8").GetComponent<DialogueTrigger>();
             pmScript.hasMagicianPower = true;
             dtScript.startConvo();
-            pmScript.logText.text = "Magician Flip Acquired! (Press F ro flip gravity while magic platforms are above)";
+            pmScript.logText.text = "Magician Flip Acquired! (Press F ro flip gravity while magic platforms are above) (Press I for info)";
             pmScript.logText.gameObject.SetActive(true);
             gmScript.slot10Full = true;
-            StartCoroutine(FadeOutText(pmScript.logText, 4f));
+            StartCoroutine(FadeOutText(pmScript.logText, 5f));
         }
     }
 
