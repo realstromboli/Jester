@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         controlsScreen.SetActive(false);
         pauseScreen.SetActive(false);
         HUD.SetActive(false);
+        Item0Text();
         StartCoroutine(IDKDelay());
     }
 
@@ -199,7 +200,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void FreezePlayer()
     {
-        if (!isGameActive)
+        if (!isGameActive || dmScript.makingDescision)
         {
             playerRb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
@@ -237,26 +238,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         dpmScript.NewGame();
         isGameActive = true;
         startScreenOpen = false;
-        //item1.GetComponent<Renderer>().enabled = true;
-        //item1.GetComponent<Collider>().enabled = true;
-        //item2.GetComponent<Renderer>().enabled = true;
-        //item2.GetComponent<Collider>().enabled = true;
-        //item3.GetComponent<Renderer>().enabled = true;
-        //item3.GetComponent<Collider>().enabled = true;
-        //item4.GetComponent<Renderer>().enabled = true;
-        //item4.GetComponent<Collider>().enabled = true;
-        //item5.GetComponent<Renderer>().enabled = true;
-        //item5.GetComponent<Collider>().enabled = true;
-        //item6.GetComponent<Renderer>().enabled = true;
-        //item6.GetComponent<Collider>().enabled = true;
-        //item7.GetComponent<Renderer>().enabled = true;
-        //item7.GetComponent<Collider>().enabled = true;
-        //item8.GetComponent<Renderer>().enabled = true;
-        //item8.GetComponent<Collider>().enabled = true;
-        //item9.GetComponent<Renderer>().enabled = true;
-        //item9.GetComponent<Collider>().enabled = true;
         startScreen.GetComponent<Canvas>().sortingOrder = 0;
-
+        Item0Text();
         StartCoroutine(PlayerPosDelay());
     }
 
@@ -481,6 +464,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public TMP_Text itemNameText;
     public TMP_Text itemDescriptionText;
+
+    public void Item0Text()
+    {
+        itemNameText.text = "";
+        itemDescriptionText.text = "";
+        inventoryItem.sprite = null;
+        SetImageAlpha(inventoryItem, 0f);
+    }
 
     public void Item1Text()
     {
