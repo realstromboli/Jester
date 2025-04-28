@@ -13,6 +13,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public Animator playerAnimation;
     public GameObject maskIndicator;
     public Timer timerScript;
+    public DialogueManager dmScript;
 
     public int maskCount;
     public TextMeshProUGUI maskCountText;
@@ -20,8 +21,8 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
 
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
-    public LayerMask magicLayer;
     public LayerMask ghostInteractableLayer; // New LayerMask for GhostInteractable layer
+    public LayerMask trapezistPosterLayer;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
+        dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
         readyToPress = true;
     }
@@ -141,6 +143,56 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 if (collider != null)
                 {
                     collider.enabled = isVisible;
+                }
+            }
+
+            // Check if the object is on the trapezistPoster layer
+            if (((1 << obj.layer) & trapezistPosterLayer) != 0)
+            {
+                // Only enable components if dialogueViewedSave is 7 or higher
+                if (dmScript.dialogueViewedSave >= 7)
+                {
+                    // Toggle the Renderer component
+                    Renderer renderer = obj.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        renderer.enabled = isVisible;
+                    }
+
+                    // Toggle the Collider component
+                    Collider collider = obj.GetComponent<Collider>();
+                    if (collider != null)
+                    {
+                        collider.enabled = isVisible;
+                    }
+
+                    // Toggle the Canvas component
+                    Canvas canvas = obj.GetComponent<Canvas>();
+                    if (canvas != null)
+                    {
+                        canvas.enabled = isVisible;
+                    }
+                }
+                else
+                {
+                    // Ensure components are disabled if dialogueViewedSave is less than 7
+                    Renderer renderer = obj.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        renderer.enabled = false;
+                    }
+
+                    Collider collider = obj.GetComponent<Collider>();
+                    if (collider != null)
+                    {
+                        collider.enabled = false;
+                    }
+
+                    Canvas canvas = obj.GetComponent<Canvas>();
+                    if (canvas != null)
+                    {
+                        canvas.enabled = false;
+                    }
                 }
             }
         }
