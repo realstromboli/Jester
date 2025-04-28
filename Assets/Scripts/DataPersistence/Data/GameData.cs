@@ -60,7 +60,7 @@ public class GameData
         // Vector3(4259, 734, -422)
         // Vector3(-14, 0, 114) inside funhouse spawn
 
-        playerPosition = new Vector3(518, 16, 212);
+        playerPosition = new Vector3(518, 15, 212);
         // Initialize currentSceneName to an empty string
         currentSceneName = string.Empty;
 
