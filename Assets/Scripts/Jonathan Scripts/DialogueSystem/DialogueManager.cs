@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private Coroutine typing;
     private Image dialogueBox;
     private Canvas dialogueCanvas;
+    private AudioSource audioSource;
 
     private GameManager gameManager;
     private PlayerMovement pmScript;
@@ -48,6 +49,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             instance = this;
             anim = GetComponent<Animator>();
             dialogueBox = GetComponent<Image>();
+            audioSource = GetComponent<AudioSource>();
             gameManager = FindObjectOfType<GameManager>();
 
             originalAnchorMin = dialogueBox.rectTransform.anchorMin;
@@ -82,6 +84,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             StopAllCoroutines();
             //StopCoroutine("WaitAndReadNext");
+            audioSource.Stop();
             ReadNext();
         }
         else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing != null)
@@ -152,6 +155,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             currentIndex = 0;
             currentConvo = null;
             correctAnswersCount = 0;
+            audioSource.Stop();
             return;
         }
 
@@ -194,12 +198,14 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 Destroy(child.gameObject);
             }
+            audioSource.PlayOneShot(currentConvo.GetLineByIndex(currentIndex).dialogueAudio);
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
         else
         {
             instance.StopCoroutine(typing);
             typing = null;
+            audioSource.PlayOneShot(currentConvo.GetLineByIndex(currentIndex).dialogueAudio);
             typing = instance.StartCoroutine(TypeText(currentConvo.GetLineByIndex(currentIndex).dialogue));
         }
 
