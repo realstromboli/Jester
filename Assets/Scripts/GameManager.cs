@@ -217,7 +217,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
 
-        SceneManager.LoadScene(1);
+        GameObject.Find("TransitionCube").GetComponent<SceneTransition>().FadeInToScene(GameObject.Find("TransitionCube").GetComponent<SceneTransition>().fadeUI.GetComponent<Image>(), GameObject.Find("TransitionCube").GetComponent<SceneTransition>().fadeUIColor);
+        //SceneManager.LoadScene(1);
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
