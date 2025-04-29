@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 1 is test scene
 
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
-        stScript.sceneToGoTo = "Inside Trailer";
+        stScript.sceneToGoTo = "Parkour 2";
         if (stScript != null)
         {
             StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
@@ -639,7 +639,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "Inside Trailer";
+            sceneName = "Parkour 2";
         }
 
         // Load the saved scene
