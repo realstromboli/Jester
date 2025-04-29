@@ -357,12 +357,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void Run()
     {
-        if (Input.GetKeyDown(runKey) && isRunning == false)
+        if (SceneManager.GetActiveScene().name == "Parkour 1" || SceneManager.GetActiveScene().name == "Parkour 2")
         {
             isRunning = true;
         }
         
-        else if (Input.GetKeyDown(runKey) && isRunning == true)
+        else
         {
             isRunning = false;
         }
@@ -755,7 +755,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("tPosterPiece") && (dmScript.dialogueViewedSave == 7 || dmScript.dialogueViewedSave == 8))
+                if ((dmScript.dialogueViewedSave == 7 || dmScript.dialogueViewedSave == 8) && hit.collider.CompareTag("tPosterPiece"))
                 {
 
 
@@ -1039,7 +1039,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    private IEnumerator SetRespawnLocationAfterDelay()
+    public IEnumerator SetRespawnLocationAfterDelay()
     {
         yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;

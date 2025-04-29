@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public MaskToggle maskScript;
     public Timer timerScript;
     public DialogueManager dmScript;
+    public SceneTransition stScript;
+    public GameData gameData;
 
     public string currentSceneName;
     public Vector3 playerPosition;
@@ -133,6 +135,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         controlsScreen.SetActive(false);
         pauseScreen.SetActive(false);
         HUD.SetActive(false);
+        Item0Text();
         StartCoroutine(IDKDelay());
     }
 
@@ -199,7 +202,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void FreezePlayer()
     {
-        if (!isGameActive)
+        if (!isGameActive || dmScript.makingDescision)
         {
             playerRb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
@@ -210,6 +213,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
     }
 
+
+
     public void NewGame()
     {
         //scene 6 is outdoors
@@ -217,7 +222,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 5 is inside trailer
         //scene 1 is test scene
 
-        SceneManager.LoadScene(1);
+        stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
+        stScript.sceneToGoTo = "Inside Trailer";
+        if (stScript != null)
+        {
+            StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
+            StartCoroutine(pmScript.SetRespawnLocationAfterDelay());
+        }
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
@@ -237,26 +248,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         dpmScript.NewGame();
         isGameActive = true;
         startScreenOpen = false;
-        //item1.GetComponent<Renderer>().enabled = true;
-        //item1.GetComponent<Collider>().enabled = true;
-        //item2.GetComponent<Renderer>().enabled = true;
-        //item2.GetComponent<Collider>().enabled = true;
-        //item3.GetComponent<Renderer>().enabled = true;
-        //item3.GetComponent<Collider>().enabled = true;
-        //item4.GetComponent<Renderer>().enabled = true;
-        //item4.GetComponent<Collider>().enabled = true;
-        //item5.GetComponent<Renderer>().enabled = true;
-        //item5.GetComponent<Collider>().enabled = true;
-        //item6.GetComponent<Renderer>().enabled = true;
-        //item6.GetComponent<Collider>().enabled = true;
-        //item7.GetComponent<Renderer>().enabled = true;
-        //item7.GetComponent<Collider>().enabled = true;
-        //item8.GetComponent<Renderer>().enabled = true;
-        //item8.GetComponent<Collider>().enabled = true;
-        //item9.GetComponent<Renderer>().enabled = true;
-        //item9.GetComponent<Collider>().enabled = true;
         startScreen.GetComponent<Canvas>().sortingOrder = 0;
-
+        Item0Text();
         StartCoroutine(PlayerPosDelay());
     }
 
@@ -482,6 +475,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public TMP_Text itemNameText;
     public TMP_Text itemDescriptionText;
 
+    public void Item0Text()
+    {
+        itemNameText.text = "";
+        itemDescriptionText.text = "";
+        inventoryItem.sprite = null;
+        SetImageAlpha(inventoryItem, 0f);
+    }
+
     public void Item1Text()
     {
         itemNameText.text = "Mask Instructions (Press Q)";
@@ -525,7 +526,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item6Text()
     {
         itemNameText.text = "Trapeze Grapple Instructions";
-        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! ";
+        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! Keep in mind that grappling will only give a player momentum when they pull upwards towards an object.";
         inventoryItem.sprite = item6Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -608,7 +609,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot11Full = data.slot11Full;
         this.slot12Full = data.slot12Full;
 
-        StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
+        //StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
 
     public void SaveData(ref GameData data)

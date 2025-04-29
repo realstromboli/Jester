@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: playerAnimation
       value: 
       objectReference: {fileID: 1774951466}
+    - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: trapezistPosterLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 8475339240768967296, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: reticleDot
       value: 
@@ -1026,6 +1030,62 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6998562633916498622, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
   m_PrefabInstance: {fileID: 1492812440}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1208871255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1208871257}
+  - component: {fileID: 1208871256}
+  m_Layer: 0
+  m_Name: SceneTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1208871256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208871255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 1
+  fadeUI: {fileID: 0}
+  fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
+  sceneToGoTo: 
+  playerTransferPosition: {x: 518, y: 16, z: 212}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 90
+  playerObj: {fileID: 0}
+  playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
+--- !u!4 &1208871257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208871255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1153.4052, y: 773.44836, z: -61.42401}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1235787911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4316798115868411550, guid: 553da350671931b42bebbf9ee7340290, type: 3}
@@ -1294,6 +1354,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483328652382312609, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4380549983464674498, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: gmScript
       value: 
@@ -1891,6 +1955,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6118265086084410241, guid: 553da350671931b42bebbf9ee7340290, type: 3}
+      propertyPath: m_margin.x
+      value: -286.13162
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118265086084410241, guid: 553da350671931b42bebbf9ee7340290, type: 3}
+      propertyPath: m_margin.z
+      value: -285.97778
+      objectReference: {fileID: 0}
     - target: {fileID: 6152312936592285502, guid: 553da350671931b42bebbf9ee7340290, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2095,6 +2167,10 @@ PrefabInstance:
     - target: {fileID: 1225427743105261640, guid: 86af59beab048f54981c032269179794, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588158667815587810, guid: 86af59beab048f54981c032269179794, type: 3}
+      propertyPath: fileName
+      value: JESTERDATA.json
       objectReference: {fileID: 0}
     - target: {fileID: 8748149879284463199, guid: 86af59beab048f54981c032269179794, type: 3}
       propertyPath: m_Name
@@ -2392,3 +2468,4 @@ SceneRoots:
   - {fileID: 1861384056}
   - {fileID: 1492812440}
   - {fileID: 820145926}
+  - {fileID: 1208871257}
