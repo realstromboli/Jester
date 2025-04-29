@@ -22,7 +22,7 @@ public class DeleteAfterDelay : MonoBehaviour
 
     public IEnumerator Something()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }
