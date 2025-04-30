@@ -1268,6 +1268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause&HUDCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7581038621142904275, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7696712265149918794, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1337,10 +1341,18 @@ PrefabInstance:
       propertyPath: cameraPosition
       value: 
       objectReference: {fileID: 1638801475}
+    - target: {fileID: 7663579257725352826, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: m_Name
+      value: Jump with Cane
+      objectReference: {fileID: 0}
     - target: {fileID: 7663783896895564114, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
       propertyPath: orientation
       value: 
       objectReference: {fileID: 206162023}
+    - target: {fileID: 8530653427747124577, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 1b93c40007fda8c46bc62b2b610a0fc7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1354,10 +1366,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1483328652382312609, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4380549983464674498, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: gmScript
       value: 
@@ -1377,10 +1385,6 @@ PrefabInstance:
     - target: {fileID: 8469979222817177293, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_Name
       value: StartManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8469979222817177293, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8489535974986806029, guid: 9c666b7bc77416f4b9a029e3469b428b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
