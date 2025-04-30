@@ -1063,7 +1063,7 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: 
-  playerTransferPosition: {x: -544.18, y: -242.98, z: -1123.2}
+  playerTransferPosition: {x: 518, y: 16, z: 212}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
@@ -1341,10 +1341,18 @@ PrefabInstance:
       propertyPath: cameraPosition
       value: 
       objectReference: {fileID: 1638801475}
+    - target: {fileID: 7663579257725352826, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: m_Name
+      value: Jump with Cane
+      objectReference: {fileID: 0}
     - target: {fileID: 7663783896895564114, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
       propertyPath: orientation
       value: 
       objectReference: {fileID: 206162023}
+    - target: {fileID: 8530653427747124577, guid: bd021de8c37067e40ae45617e13fc60c, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 1b93c40007fda8c46bc62b2b610a0fc7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
