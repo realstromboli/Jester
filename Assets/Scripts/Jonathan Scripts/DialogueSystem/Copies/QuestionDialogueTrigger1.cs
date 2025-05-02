@@ -44,7 +44,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
             pmScript.logText.text = "Trapezist Grapple Acquired! (Right click objects when reticle changes to *) (Press I for info)";
             pmScript.logText.gameObject.SetActive(true);
             gmScript.slot6Full = true;
-            StartCoroutine(FadeOutText(pmScript.logText, 8f));
+            StartCoroutine(FadeOutText(pmScript.logText, 10f));
             
         }
     }

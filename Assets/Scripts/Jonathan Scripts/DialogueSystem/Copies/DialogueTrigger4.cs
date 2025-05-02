@@ -21,7 +21,7 @@ public class DialogueTrigger4 : MonoBehaviour
     {
         pcScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
 
-        if (dialogueManager.dialogueViewedSave >= 17)
+        if (dialogueManager.dialogueViewedSave >= 16)
         {
             Destroy(this);
         }

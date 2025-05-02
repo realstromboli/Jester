@@ -560,7 +560,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     logText.text = "Entry added to log (Press I to open)";
                     gmScript.slot1Full = true;
                     logText.gameObject.SetActive(true);
-                    StartCoroutine(FadeOutText(logText, 5f));
+                    StartCoroutine(FadeOutText(logText, 6f));
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -740,7 +740,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot2Full = true;
                         logText.text = "Jester entry added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 5f));
+                        StartCoroutine(FadeOutText(logText, 6f));
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
@@ -830,7 +830,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         logText.text = "Trapeze Artist info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 2f));
+                        StartCoroutine(FadeOutText(logText, 6f));
 
                     }
 
@@ -874,11 +874,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         magicianCureTrigger = true;
                         logText.text = "Magician info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StartCoroutine(FadeOutText(logText, 8f));
+                        StartCoroutine(FadeOutText(logText, 6f));
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 16 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
