@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         maskScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         HUD = GameObject.Find("HUD");
+        stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
         HUD.SetActive(false); // Ensure HUD is hidden initially
         pauseScreen.SetActive(false); // Ensure pause screen is hidden initially
         inventoryScreen.SetActive(false);
@@ -223,7 +224,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 1 is test scene
 
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
-        stScript.sceneToGoTo = "Inside Trailer";
+        stScript.sceneToGoTo = "Parkour";
         if (stScript != null)
         {
             StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
@@ -236,6 +237,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void LoadGame()
     {
+        stScript.sceneToGoTo = gameData.currentSceneName;
+        StartCoroutine(LoadSceneAndData(stScript.sceneToGoTo, gameData));
         SceneManager.LoadScene(1);
         StartCoroutine(LoadDelay());
         maskScript.maskStatus = false;
@@ -609,7 +612,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.slot11Full = data.slot11Full;
         this.slot12Full = data.slot12Full;
 
-        //StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
+        StartCoroutine(LoadSceneAndData(data.currentSceneName, data));
     }
 
     public void SaveData(ref GameData data)
@@ -631,12 +634,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         Debug.Log("Current scene name: " + data.currentSceneName);
     }
 
-    private IEnumerator LoadSceneAndData(string sceneName, GameData data)
+    public IEnumerator LoadSceneAndData(string sceneName, GameData data)
     {
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "Inside Trailer";
+            sceneName = "Parkour 2";
         }
 
         // Load the saved scene

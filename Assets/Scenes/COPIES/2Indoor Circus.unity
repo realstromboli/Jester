@@ -26052,74 +26052,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 53.328, y: -28.786, z: -1.521}
---- !u!1 &724421141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 724421144}
-  - component: {fileID: 724421143}
-  - component: {fileID: 724421142}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &724421142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724421141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &724421143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724421141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &724421144
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724421141}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751009100
 GameObject:
   m_ObjectHideFlags: 0
@@ -70942,6 +70874,39 @@ MonoBehaviour:
   dpmScript: {fileID: 0}
   maskScript: {fileID: 0}
   timerScript: {fileID: 0}
+  dmScript: {fileID: 0}
+  stScript: {fileID: 0}
+  gameData:
+    maskCount: 0
+    playerPosition: {x: 518, y: 12.2, z: 212}
+    slot1Full: 0
+    slot2Full: 0
+    slot3Full: 0
+    slot4Full: 0
+    slot5Full: 0
+    slot6Full: 0
+    slot7Full: 0
+    slot8Full: 0
+    slot9Full: 0
+    slot10Full: 0
+    slot11Full: 0
+    slot12Full: 0
+    dialogueViewedSave: 0
+    jPosterPieceCount: 0
+    tPosterPieceCount: 0
+    mCardsCount: 0
+    currentSceneName: 
+    jesterCureTrigger: 0
+    interactedJesterPoster: 0
+    hasMask: 0
+    tPosterFixed: 0
+    hasJesterPower: 0
+    trapezistCureTrigger: 0
+    hasMagicianPower: 0
+    hasTrapezistPower: 0
+    magicianCureTrigger: 0
+    enabledGhostWorld1: 0
+    savedSceneSong: {fileID: 0}
   currentSceneName: 
   playerPosition: {x: 0, y: 0, z: 0}
   placeholderSprite: {fileID: 0}
@@ -73197,12 +73162,6 @@ SceneRoots:
   - {fileID: 1984535655}
   - {fileID: 1004710733}
   - {fileID: 1732259532}
-  - {fileID: 1038807434}
-  - {fileID: 907734909}
-  - {fileID: 1483597493}
-  - {fileID: 1815897258}
-  - {fileID: 2094990008}
-  - {fileID: 724421144}
   - {fileID: 610672481}
   - {fileID: 246383478}
   - {fileID: 1735535269}
@@ -73218,3 +73177,8 @@ SceneRoots:
   - {fileID: 1068571393}
   - {fileID: 155234514}
   - {fileID: 320732313}
+  - {fileID: 1038807434}
+  - {fileID: 907734909}
+  - {fileID: 1483597493}
+  - {fileID: 1815897258}
+  - {fileID: 2094990008}
