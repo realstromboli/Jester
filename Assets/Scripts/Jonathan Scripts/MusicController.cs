@@ -74,7 +74,7 @@ public class MusicController : MonoBehaviour
             prevSceneSong = audioSource.clip;
             sceneSong = musicClips[1];
         }
-        else if (SceneManager.GetActiveScene().name == "Inside Fun House" || SceneManager.GetActiveScene().name == "Mirrored Maze")
+        else if (SceneManager.GetActiveScene().name == "Inside Fun House" || SceneManager.GetActiveScene().name == "Mirrored Maze" || SceneManager.GetActiveScene().name == "GRAVTUTORIAL" || SceneManager.GetActiveScene().name == "TUT")
         {
             Debug.Log("2" + SceneManager.GetActiveScene().name);
             prevSceneSong = audioSource.clip;
