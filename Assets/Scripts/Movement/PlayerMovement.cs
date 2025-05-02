@@ -792,7 +792,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //}
                 }
 
-                if (hit.collider.CompareTag("TrapezistPicture"))
+                if (hit.collider.CompareTag("TrapezistPoster"))
                 {
                     DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
                     if (dialogueTriggerRepeatable1 != null)
