@@ -775,27 +775,24 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         tPosterFixed = true;
                         dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        tPosterRenderer = GameObject.Find("TrapezistPoster").GetComponent<Renderer>();
+                        tPosterRenderer = GameObject.Find("TrapezistPicture").GetComponent<Renderer>();
                         tPosterRenderer.material = tPosterMaterial;
                         cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
-                        lottiePic1.enabled = false;
-                        lottiePic2.enabled = false;
-                        lottiePicFull.enabled = true;
                         StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
 
-                    if (hit.collider.gameObject.name == "tPosterPiece1")
-                    {
-                        lottiePic1.enabled = true;
-                    }
+                    //if (hit.collider.gameObject.name == "tPosterPiece1")
+                    //{
+                    //    lottiePic1.enabled = true;
+                    //}
 
-                    if (hit.collider.gameObject.name == "tPosterPiece2")
-                    {
-                        lottiePic2.enabled = true;
-                    }
+                    //if (hit.collider.gameObject.name == "tPosterPiece2")
+                    //{
+                    //    lottiePic2.enabled = true;
+                    //}
                 }
 
-                if (hit.collider.CompareTag("TrapezistPoster"))
+                if (hit.collider.CompareTag("TrapezistPicture"))
                 {
                     DialogueTriggerRepeatable1 dialogueTriggerRepeatable1 = hit.collider.GetComponent<DialogueTriggerRepeatable1>();
                     if (dialogueTriggerRepeatable1 != null)
@@ -816,6 +813,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         gmScript.slot5Full = true;
+                        lottiePicFull.enabled = true;
                         trapezistCureTrigger = true;
                         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
