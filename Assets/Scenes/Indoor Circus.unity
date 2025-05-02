@@ -28163,30 +28163,16 @@ GameObject:
   m_Component:
   - component: {fileID: 529756120}
   - component: {fileID: 529756119}
-  - component: {fileID: 529756118}
   - component: {fileID: 529756117}
-  - component: {fileID: 529756116}
+  - component: {fileID: 529756122}
+  - component: {fileID: 529756121}
   m_Layer: 0
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &529756116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529756115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3922decffe4cd44e9f728157d4bde59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueToDestroyAt: 9
-  dmScript: {fileID: 0}
+  m_IsActive: 1
 --- !u!199 &529756117
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -28261,20 +28247,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &529756118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529756115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7003d0aa865aba429b2041fa8d343f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueToActivateAt: 8
-  dmScript: {fileID: 0}
 --- !u!198 &529756119
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -28283,14 +28255,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529756115}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -33006,13 +32978,42 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529756115}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -65.176, y: 27.12, z: -315.448}
-  m_LocalScale: {x: 0.78786, y: 0.78786, z: 0.78786}
+  m_LocalScale: {x: 0.78786, y: 0.7878603, z: 0.7878603}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &529756121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529756115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3922decffe4cd44e9f728157d4bde59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueToDestroyAt: 9
+  dmScript: {fileID: 0}
+--- !u!114 &529756122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529756115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7003d0aa865aba429b2041fa8d343f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueToActivateAt: 8
+  dmScript: {fileID: 0}
+  targetParticleSystemObject: {fileID: 529756115}
 --- !u!1 &533079294
 GameObject:
   m_ObjectHideFlags: 0

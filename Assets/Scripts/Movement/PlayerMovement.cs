@@ -775,8 +775,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         tPosterFixed = true;
                         dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
-                        tPosterRenderer = GameObject.Find("TrapezistPicture").GetComponent<Renderer>();
-                        tPosterRenderer.material = tPosterMaterial;
                         cardCountText.text = "Picture Pieces: " + tPosterPieceCount + "/2";
                         StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
