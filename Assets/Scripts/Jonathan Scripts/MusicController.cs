@@ -68,7 +68,7 @@ public class MusicController : MonoBehaviour
             prevSceneSong = audioSource.clip;
             sceneSong = musicClips[0];
         }
-        else if (SceneManager.GetActiveScene().name == "Inside Trailer" || SceneManager.GetActiveScene().name == "Indoor Circus" || SceneManager.GetActiveScene().name == "2Indoor Circus")
+        else if (SceneManager.GetActiveScene().name == "Inside Trailer" || SceneManager.GetActiveScene().name == "Indoor Circus" || SceneManager.GetActiveScene().name == "3INDOORCIRC")
         {
             Debug.Log("1" + SceneManager.GetActiveScene().name);
             prevSceneSong = audioSource.clip;
