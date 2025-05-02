@@ -357,7 +357,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void Run()
     {
-        if (SceneManager.GetActiveScene().name == "Parkour 1" || SceneManager.GetActiveScene().name == "Parkour 2")
+        if (SceneManager.GetActiveScene().name == "Parkour 1" || SceneManager.GetActiveScene().name == "Parkour 2" || SceneManager.GetActiveScene().name == "TUT")
         {
             isRunning = true;
         }
@@ -560,8 +560,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     logText.text = "Entry added to log (Press I to open)";
                     gmScript.slot1Full = true;
                     logText.gameObject.SetActive(true);
-                    StopCoroutine(FadeOutText(logText, 3f));
-                    StartCoroutine(FadeOutText(logText, 3f));
+                    StartCoroutine(FadeOutText(logText, 5f));
 
                     foreach (GameObject obj in allObjects)
                     {
@@ -732,8 +731,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
 
                         cardCountText.gameObject.SetActive(true);
-                        StopCoroutine(FadeOutText(cardCountText, 3f));
-                        StartCoroutine(FadeOutText(cardCountText, 3f));
+                        StartCoroutine(FadeOutText(cardCountText, 5f));
                     }
 
                     if (jPosterPieceCount >= 2)
@@ -742,16 +740,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot2Full = true;
                         logText.text = "Jester entry added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StopCoroutine(FadeOutText(logText, 3f));
-                        StartCoroutine(FadeOutText(logText, 3f));
+                        StartCoroutine(FadeOutText(logText, 5f));
                         dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
                         dtScript.startConvo();
                         cardCountText.text = "Picture Pieces: " + jPosterPieceCount + "/2";
                         jesterPicFull = GameObject.Find("JesterPicFull").GetComponent<Canvas>();
                         jesterPicFull.enabled = true;
 
-                        StopCoroutine(FadeOutText(cardCountText, 3f));
-                        StartCoroutine(FadeOutText(cardCountText, 3f));
+                        StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
                 }
 
@@ -785,8 +781,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         lottiePic1.enabled = false;
                         lottiePic2.enabled = false;
                         lottiePicFull.enabled = true;
-                        StopCoroutine(FadeOutText(cardCountText, 3f));
-                        StartCoroutine(FadeOutText(cardCountText, 3f));
+                        StartCoroutine(FadeOutText(cardCountText, 2f));
                     }
 
                     if (hit.collider.gameObject.name == "tPosterPiece1")
@@ -837,8 +832,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                         logText.text = "Trapeze Artist info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StopCoroutine(FadeOutText(logText, 3f));
-                        StartCoroutine(FadeOutText(logText, 3f));
+                        StartCoroutine(FadeOutText(logText, 2f));
 
                     }
 
@@ -881,8 +875,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     mCardsCount++;
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
-                    StopCoroutine(FadeOutText(cardCountText, 3f));
-                    StartCoroutine(FadeOutText(cardCountText, 3f));
+                    StartCoroutine(FadeOutText(cardCountText, 2f));
 
                     if (mCardsCount == 6)
                     {
@@ -892,8 +885,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         magicianCureTrigger = true;
                         logText.text = "Magician info added to log (Press I to open)";
                         logText.gameObject.SetActive(true);
-                        StopCoroutine(FadeOutText(logText, 3f));
-                        StartCoroutine(FadeOutText(logText, 3f));
+                        StartCoroutine(FadeOutText(logText, 2f));
                     }
                 }
 
@@ -1001,8 +993,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             respawnLocation = other.transform.position;
             Debug.Log("Respawn location saved: " + respawnLocation);
             cardCountText.text = "Checkpoint!";
-            StopCoroutine(FadeOutText(cardCountText, 3f));
-            StartCoroutine(FadeOutText(cardCountText, 3f));
+            StartCoroutine(FadeOutText(cardCountText, 2f));
             currentYRotation = playerCameraScript.yRotation;
         }
         

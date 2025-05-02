@@ -18,6 +18,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public int maskCount;
     public TextMeshProUGUI maskCountText;
     public Image timerFill;
+    public Image vignetteImage;
 
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
@@ -212,6 +213,11 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         foreach (Image img in childImages)
         {
             img.enabled = isVisible;
+        }
+
+        if (vignetteImage != null)
+        {
+            vignetteImage.enabled = isVisible;
         }
     }
 
