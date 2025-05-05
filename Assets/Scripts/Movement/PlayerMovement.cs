@@ -832,7 +832,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     }
 
-                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed && hasTrapezistPower)
+                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed && hasTrapezistPower && dmScript.dialogueActive == false)
                     {
                         Destroy(dialogueTriggerRepeatable1);
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
@@ -876,7 +876,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true && dmScript.dialogueActive == false)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
