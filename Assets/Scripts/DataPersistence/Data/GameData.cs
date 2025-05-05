@@ -60,6 +60,8 @@ public class GameData
         // Vector3(4259, 734, -422)
         // Vector3(-14, 0, 114) inside funhouse spawn
         // Vector3(-106,26,-276) indoor circus
+        // Vector3(-27,10,-110) TUT 1
+        // Vector3(-548,138,-124) TUT 2
 
         playerPosition = new Vector3(518, 12.2f, 212);
         // Initialize currentSceneName to an empty string
