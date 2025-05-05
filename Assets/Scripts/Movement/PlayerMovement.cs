@@ -843,12 +843,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             StartCoroutine(SetRespawnLocationAfterDelay());
                         }
                         dmScript.correctAnswersCount = 0;
-                    }
-
-                    IEnumerator WaitForSeconds()
-                    {
-                        yield return new WaitForSeconds(0.1f);
-                        enabledGhostWorld1 = true;
+                        logText.alpha = 0f;
                     }
                 }
 
@@ -1022,6 +1017,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;
         Debug.Log("Respawn location set to: " + respawnLocation);
+        logText.alpha = 0f;
     }
 
     public GameObject magicianDoor;

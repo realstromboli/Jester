@@ -40,6 +40,7 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
             dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
             pmScript.hasTrapezistPower = true;
             grappleScript.StartGrapple();
+            grappleScript.StopGrapple();
             dtScript.startConvo();
             pmScript.logText.text = "Trapezist Grapple Acquired! (Right click objects when reticle changes to *) (Press I for info)";
             pmScript.logText.gameObject.SetActive(true);
