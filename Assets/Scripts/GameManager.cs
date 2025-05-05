@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 1 is test scene
 
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
-        stScript.sceneToGoTo = "Parkour";
+        stScript.sceneToGoTo = "Parkour 1";
         if (stScript != null)
         {
             StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
