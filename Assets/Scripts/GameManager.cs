@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 1 is test scene
 
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
-        stScript.sceneToGoTo = "Parkour";
+        stScript.sceneToGoTo = "Inside Trailer";
         if (stScript != null)
         {
             StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
@@ -489,7 +489,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item1Text()
     {
         itemNameText.text = "Mask Instructions (Press Q)";
-        itemDescriptionText.text = "Follow these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. Prolonged use of the mask not recommended, remove the mask to cleanse oneself of any effects.";
+        itemDescriptionText.text = "Follow these instructions properly. If the ghost does appear angry, seemingly without their humanity, it can be restored. You must say their full name to them to remind them of who they are. When wearing the mask ghostly objects are revealed but some on the human plane are obscured, wearing in intervals is the best way to reveal all.";
         inventoryItem.sprite = item1Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -639,7 +639,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty, defaulting to 'Inside Trailer'");
-            sceneName = "Parkour 2";
+            sceneName = "Inside Trailer";
         }
 
         // Load the saved scene
