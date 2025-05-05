@@ -48,7 +48,8 @@ public class ReactiveReticle : MonoBehaviour
                 reticleDot.SetActive(false);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("JustShowHand") ||
-                     hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost"))
+                     hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost") ||
+                     hit.collider.gameObject.layer == LayerMask.NameToLayer("tPoster"))
             {
                 reticleHandSprite.enabled = true;
                 reticleTalkSprite.enabled = false;

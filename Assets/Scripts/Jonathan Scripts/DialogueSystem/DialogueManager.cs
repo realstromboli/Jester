@@ -89,7 +89,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing != null)
         {
-            dialogueTypeSpeed = 0.0f;
+            StopCoroutine(typing);
+            typing = null;
+            dialogue.text = currentLine.dialogue;
         }
 
         // Check if dialogueViewedSave reaches 5
@@ -269,7 +271,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         typing = null;
-        dialogueTypeSpeed = 0.012f;
 
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
