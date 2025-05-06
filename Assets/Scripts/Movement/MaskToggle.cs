@@ -30,6 +30,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     {
         maskStatus = false;
         SetMaskIndicatorVisibility(false);
+        SetParticleEffectsVisibility(true);
         playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();
         pmScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         dpmScript = GameObject.Find("DataPersistenceManager").GetComponent<DataPersistenceManager>();
@@ -274,49 +275,47 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     {
         data.maskCount = maskCount;
     }
+
     public void SetParticleEffectsVisibility(bool isVisible)
     {
-        // Find all objects in the scene
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        // Find all ParticleSystem components in the scene
+        ParticleSystem[] allParticleSystems = FindObjectsOfType<ParticleSystem>();
 
-        foreach (GameObject obj in allObjects)
+        foreach (ParticleSystem ps in allParticleSystems)
         {
-            // Check if the object is on the "ParticleGhost" layer
-            if (obj.layer == LayerMask.NameToLayer("ParticleGhost"))
+            if (ps.gameObject.layer == LayerMask.NameToLayer("ParticleGhost"))
             {
-                // Get all ParticleSystem components on the object
-                ParticleSystem[] particleSystems = obj.GetComponentsInChildren<ParticleSystem>();
-
-                foreach (ParticleSystem ps in particleSystems)
+                if (isVisible)
                 {
-                    if (isVisible)
+                    if (!ps.isPlaying)
                     {
-                        // Play the particle system
+                        ps.Clear();
                         ps.Play();
                     }
-                    else
+                }
+                else
+                {
+                    if (ps.isPlaying)
                     {
-                        // Stop the particle system
                         ps.Stop();
                     }
                 }
             }
 
-            if (obj.layer == LayerMask.NameToLayer("ParticleInverse"))
+            if (ps.gameObject.layer == LayerMask.NameToLayer("ParticleInverse"))
             {
-                // Get all ParticleSystem components on the object
-                ParticleSystem[] particleSystems = obj.GetComponentsInChildren<ParticleSystem>();
-
-                foreach (ParticleSystem ps in particleSystems)
+                if (!isVisible)
                 {
-                    if (!isVisible)
+                    if (!ps.isPlaying)
                     {
-                        // Play the particle system
+                        ps.Clear();
                         ps.Play();
                     }
-                    else
+                }
+                else
+                {
+                    if (ps.isPlaying)
                     {
-                        // Stop the particle system
                         ps.Stop();
                     }
                 }
