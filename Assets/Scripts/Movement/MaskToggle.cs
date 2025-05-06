@@ -24,6 +24,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public LayerMask ghostLayer;
     public LayerMask ghostInteractableLayer; // New LayerMask for GhostInteractable layer
     public LayerMask trapezistPosterLayer;
+    public LayerMask ghostGrappleLayer;
 
     void Start()
     {
@@ -147,6 +148,23 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
+            if (((1 << obj.layer) & ghostGrappleLayer) != 0)
+            {
+                // Toggle the Renderer component
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = isVisible;
+                }
+
+                // Toggle the Collider component
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = isVisible;
+                }
+            }
+
             // Check if the object is on the trapezistPoster layer
             if (((1 << obj.layer) & trapezistPosterLayer) != 0)
             {
@@ -194,6 +212,23 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                     {
                         canvas.enabled = false;
                     }
+                }
+            }
+
+            if (obj.layer == LayerMask.NameToLayer("Inverse"))
+            {
+                // Toggle the Renderer component
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = !isVisible; // Opposite of ghost layer visibility
+                }
+
+                // Toggle the Collider component
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = !isVisible; // Opposite of ghost layer visibility
                 }
             }
         }
