@@ -1094,7 +1094,7 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: 
-  playerTransferPosition: {x: 518, y: 16, z: 212}
+  playerTransferPosition: {x: 633, y: -1173, z: -1197}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
@@ -1111,7 +1111,7 @@ Transform:
   m_GameObject: {fileID: 1208871255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1153.4052, y: 773.44836, z: -61.42401}
+  m_LocalPosition: {x: 633, y: -1173, z: -1197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1211,6 +1211,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 577592829}
+    - target: {fileID: 2555745865659643454, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9aefe093ccd74024a8cacfd0d3b4d5da, type: 3}
     - target: {fileID: 6137567292575826855, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
