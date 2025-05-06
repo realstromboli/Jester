@@ -67,7 +67,7 @@ public class ReactiveReticle : MonoBehaviour
         // Second raycast for grapple points
         else if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, grappleRayDistance))
         {
-            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") || (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple")) && pmScript.hasTrapezistPower)
+            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") || (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple")) && pmScript.hasTrapezistPower))
             {
                 reticleHandSprite.enabled = false;
                 reticleTalkSprite.enabled = false;
