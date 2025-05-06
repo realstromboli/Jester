@@ -173,6 +173,10 @@ PrefabInstance:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 34544978}
+    - target: {fileID: 656430333089287818, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: whatIsGrappleable.m_Bits
+      value: 16512
+      objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: logText
       value: 
@@ -264,6 +268,10 @@ PrefabInstance:
     - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maskSpriteRenderer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: ghostGrappleLayer.m_Bits
+      value: 16384
       objectReference: {fileID: 0}
     - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: trapezistPosterLayer.m_Bits
