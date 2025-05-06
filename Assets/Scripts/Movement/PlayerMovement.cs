@@ -217,7 +217,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
 
         // Jumping
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && (SceneManager.GetActiveScene().name != "Inside Trailer"))
         {
             readyToJump = false;
 
