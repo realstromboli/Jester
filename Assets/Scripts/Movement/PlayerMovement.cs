@@ -832,7 +832,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     }
 
-                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed && hasTrapezistPower)
+                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed && hasTrapezistPower && dmScript.dialogueActive == false)
                     {
                         Destroy(dialogueTriggerRepeatable1);
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
@@ -843,12 +843,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                             StartCoroutine(SetRespawnLocationAfterDelay());
                         }
                         dmScript.correctAnswersCount = 0;
-                    }
-
-                    IEnumerator WaitForSeconds()
-                    {
-                        yield return new WaitForSeconds(0.1f);
-                        enabledGhostWorld1 = true;
+                        logText.alpha = 0f;
                     }
                 }
 
@@ -876,7 +871,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true && dmScript.dialogueActive == false)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
@@ -1022,6 +1017,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(3f);
         respawnLocation = transform.position;
         Debug.Log("Respawn location set to: " + respawnLocation);
+        logText.alpha = 0f;
     }
 
     public GameObject magicianDoor;
