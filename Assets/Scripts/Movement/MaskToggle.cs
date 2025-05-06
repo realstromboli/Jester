@@ -24,6 +24,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public LayerMask ghostLayer;
     public LayerMask ghostInteractableLayer; // New LayerMask for GhostInteractable layer
     public LayerMask trapezistPosterLayer;
+    public LayerMask ghostGrappleLayer;
 
     void Start()
     {
@@ -55,12 +56,14 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
         {
             SetMaskIndicatorVisibility(false);
             SetLayerVisibility(false);
+            SetParticleEffectsVisibility(true);
             timerFill.enabled = false;
         }
         else if (maskStatus == true)
         {
             SetMaskIndicatorVisibility(true);
             SetLayerVisibility(true);
+            SetParticleEffectsVisibility(false);
             timerFill.enabled = true;
         }
 
@@ -147,6 +150,23 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
+            if (((1 << obj.layer) & ghostGrappleLayer) != 0)
+            {
+                // Toggle the Renderer component
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = isVisible;
+                }
+
+                // Toggle the Collider component
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = isVisible;
+                }
+            }
+
             // Check if the object is on the trapezistPoster layer
             if (((1 << obj.layer) & trapezistPosterLayer) != 0)
             {
@@ -196,6 +216,23 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                     }
                 }
             }
+
+            if (obj.layer == LayerMask.NameToLayer("Inverse"))
+            {
+                // Toggle the Renderer component
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = !isVisible; // Opposite of ghost layer visibility
+                }
+
+                // Toggle the Collider component
+                Collider collider = obj.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = !isVisible; // Opposite of ghost layer visibility
+                }
+            }
         }
     }
 
@@ -236,5 +273,54 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.maskCount = maskCount;
+    }
+    public void SetParticleEffectsVisibility(bool isVisible)
+    {
+        // Find all objects in the scene
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            // Check if the object is on the "ParticleGhost" layer
+            if (obj.layer == LayerMask.NameToLayer("ParticleGhost"))
+            {
+                // Get all ParticleSystem components on the object
+                ParticleSystem[] particleSystems = obj.GetComponentsInChildren<ParticleSystem>();
+
+                foreach (ParticleSystem ps in particleSystems)
+                {
+                    if (isVisible)
+                    {
+                        // Play the particle system
+                        ps.Play();
+                    }
+                    else
+                    {
+                        // Stop the particle system
+                        ps.Stop();
+                    }
+                }
+            }
+
+            if (obj.layer == LayerMask.NameToLayer("ParticleInverse"))
+            {
+                // Get all ParticleSystem components on the object
+                ParticleSystem[] particleSystems = obj.GetComponentsInChildren<ParticleSystem>();
+
+                foreach (ParticleSystem ps in particleSystems)
+                {
+                    if (!isVisible)
+                    {
+                        // Play the particle system
+                        ps.Play();
+                    }
+                    else
+                    {
+                        // Stop the particle system
+                        ps.Stop();
+                    }
+                }
+            }
+        }
     }
 }
