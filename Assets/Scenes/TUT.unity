@@ -11797,15 +11797,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301071555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -550}
+  m_LocalScale: {x: 1.8074, y: 1.8074, z: 1.8074}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102476158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -734, y: 476.1}
+  m_AnchoredPosition: {x: -1249, y: 24}
   m_SizeDelta: {x: 205.8, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &301071557
@@ -11828,7 +11828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have complete Tutorial 1! Enter Door to go back!
+  m_text: You have complete Tutorial 1! Enter the door to go back!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11891,7 +11891,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -75.17167, y: 0, z: -1588.5641, w: 0}
+  m_margin: {x: 121.12588, y: 0, z: -1257.9464, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -46562,7 +46562,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375113835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46570,7 +46570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -734, y: 476.1}
+  m_AnchoredPosition: {x: -786, y: 326}
   m_SizeDelta: {x: 205.8, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375113837
@@ -46593,7 +46593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The lower you are when you grapple the more momentem you will have when
+  m_text: The lower you are when you grapple the more momentum you will have when
     you move upward.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -46621,8 +46621,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85.21
-  m_fontSizeBase: 85.21
+  m_fontSize: 116.09
+  m_fontSizeBase: 116.09
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -46657,7 +46657,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -75.17167, y: 0, z: -1588.5641, w: 0}
+  m_margin: {x: 140.98763, y: 0, z: -1334.6431, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -48672,7 +48672,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Put the mask on by clicking Q , Some Objects may appear and some may disappear
+  m_text: Put the mask on by clicking Q. Some objects may appear and some may disappear
     with the mask on!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -51664,16 +51664,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorUVsAssigned (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1658158605}
   m_SourcePrefab: {fileID: 100100000, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!4 &1658158603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
   m_PrefabInstance: {fileID: 1658158602}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1658158604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+  m_PrefabInstance: {fileID: 1658158602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1658158605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658158604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 2
+  fadeUI: {fileID: 0}
+  fadeUIColor: {r: 0, g: 0, b: 0, a: 0}
+  sceneToGoTo: PlayGround
+  playerTransferPosition: {x: -476, y: 265, z: -1482}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
+  playerObj: {fileID: 0}
+  playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!1001 &1673238056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53930,13 +53970,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822938407}
   m_SourcePrefab: {fileID: 100100000, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!4 &1822938405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
   m_PrefabInstance: {fileID: 1822938404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1822938406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+  m_PrefabInstance: {fileID: 1822938404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1822938407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822938406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38523a146145b33429147a4903db258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 2
+  fadeUI: {fileID: 0}
+  fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
+  sceneToGoTo: Parkour 1
+  playerTransferPosition: {x: 624, y: -1172, z: -1112}
+  playerTransferRotation: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
+  playerObj: {fileID: 0}
+  playerCam: {fileID: 0}
+  gmScript: {fileID: 0}
+  pcScript: {fileID: 0}
 --- !u!43 &1823601355
 Mesh:
   m_ObjectHideFlags: 0

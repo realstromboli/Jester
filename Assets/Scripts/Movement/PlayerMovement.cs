@@ -127,9 +127,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         playerCameraScript = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
         logText.gameObject.SetActive(false);
 
-        hasJesterPower = false;
-        hasTrapezistPower = false;
-        hasMagicianPower = false;
+        hasJesterPower = true;
+        hasTrapezistPower = true;
+        hasMagicianPower = true;
     }
 
     void Update()
@@ -414,8 +414,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         this.jesterCureTrigger = data.jesterCureTrigger;
 
-        this.hasMask = data.hasMask;
-
         this.jPosterPieceCount = data.jPosterPieceCount;
 
         this.tPosterPieceCount = data.tPosterPieceCount;
@@ -428,10 +426,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         this.magicianCureTrigger = data.magicianCureTrigger;
 
-        this.hasMagicianPower = data.hasMagicianPower;
-
-        this.hasTrapezistPower = data.hasTrapezistPower;
-
         this.enabledGhostWorld1 = data.enabledGhostWorld1;
 
         this.mCardsCount = data.mCardsCount;
@@ -442,8 +436,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.playerPosition = this.transform.position;
 
         data.jesterCureTrigger = this.jesterCureTrigger;
-
-        data.hasMask = this.hasMask;
 
         data.jPosterPieceCount = this.jPosterPieceCount;
 
@@ -456,10 +448,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         data.trapezistCureTrigger = this.trapezistCureTrigger;
 
         data.magicianCureTrigger = this.magicianCureTrigger;
-
-        data.hasMagicianPower = this.hasMagicianPower;
-
-        data.hasTrapezistPower = this.hasTrapezistPower;
 
         data.enabledGhostWorld1 = this.enabledGhostWorld1;
 

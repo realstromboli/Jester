@@ -178,6 +178,10 @@ PrefabInstance:
       value: 49280
       objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: hasMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: logText
       value: 
       objectReference: {fileID: 697110693}
@@ -189,6 +193,10 @@ PrefabInstance:
       propertyPath: cardCountText
       value: 
       objectReference: {fileID: 996303301}
+    - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: hasTrapezistPower
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2991029323953704539, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 456
@@ -1098,10 +1106,10 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: 
-  playerTransferPosition: {x: -544.97, y: 138.41, z: -124}
+  playerTransferPosition: {x: -13, y: 10, z: -118}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
-  yRotation: 90
+  yRotation: -179
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
