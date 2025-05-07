@@ -992,6 +992,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             dtScript = GameObject.Find("HiddenDialogueSpeaker1").GetComponent<DialogueTrigger>();
             dtScript.startConvo();
         }
+
+        if (other.gameObject.CompareTag("Placeholder2"))
+        {
+            dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
+            dtScript.startConvo();
+        }
     }
 
     public void CheckAndDisablePosterPieces()
