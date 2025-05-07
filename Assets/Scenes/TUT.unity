@@ -48673,7 +48673,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Put the mask on by clicking Q. Some objects may appear and some may disappear
-    with the mask on!
+    with the mask on! Hidden objects are indicated by particle effects.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -48736,7 +48736,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -75.17167, y: -24.958073, z: -1588.5641, w: -15.294341}
+  m_margin: {x: -158.374, y: -24.958073, z: -1447.9486, w: -15.294341}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -51679,6 +51679,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1658158605}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1658158606}
   m_SourcePrefab: {fileID: 100100000, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!4 &1658158603 stripped
 Transform:
@@ -51714,6 +51717,28 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
   pcScript: {fileID: 0}
+--- !u!64 &1658158606
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658158604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3413749884260724170, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!1001 &1673238056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53967,6 +53992,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorUVsAssigned (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53974,6 +54007,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1822938407}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822938408}
   m_SourcePrefab: {fileID: 100100000, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!4 &1822938405 stripped
 Transform:
@@ -54001,7 +54037,7 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: Parkour 1
-  playerTransferPosition: {x: 624, y: -1172, z: -1112}
+  playerTransferPosition: {x: 633, y: -1173, z: -1197}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 0
@@ -54009,6 +54045,28 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
   pcScript: {fileID: 0}
+--- !u!64 &1822938408
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822938406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3413749884260724170, guid: 7a04919bf4692a945986a46a7142e4fe, type: 3}
 --- !u!43 &1823601355
 Mesh:
   m_ObjectHideFlags: 0

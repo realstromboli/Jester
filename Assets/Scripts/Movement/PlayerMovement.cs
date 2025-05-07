@@ -638,7 +638,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
 
                 // door scene transition behavior
-                if (hit.collider.CompareTag("Door") && !dmScript.dialogueActive && dmScript.dialogueViewedSave >= 2)
+                if (hit.collider.CompareTag("Door") && !dmScript.dialogueActive)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
@@ -985,6 +985,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                 StartCoroutine(SetRespawnLocationAfterDelay());
             }
+        }
+
+        if (other.gameObject.CompareTag("Placeholder"))
+        {
+            dtScript = GameObject.Find("HiddenDialogueSpeaker1").GetComponent<DialogueTrigger>();
+            dtScript.startConvo();
         }
     }
 
