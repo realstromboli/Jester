@@ -297,6 +297,10 @@ PrefabInstance:
       propertyPath: reticleGrappleSprite
       value: 
       objectReference: {fileID: 542699825}
+    - target: {fileID: 8475339240768967296, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
+      propertyPath: reticleGrappleSprite2
+      value: 
+      objectReference: {fileID: 1853501956}
     - target: {fileID: 8651084510946560644, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: m_Material
       value: 
@@ -1094,7 +1098,7 @@ MonoBehaviour:
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
   sceneToGoTo: 
-  playerTransferPosition: {x: -548, y: 138, z: -124}
+  playerTransferPosition: {x: 633, y: -1173, z: -1197}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
@@ -1553,6 +1557,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3676277163436436807, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
   m_PrefabInstance: {fileID: 1492812440}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1853501956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 296911801911149973, guid: 947b4b99010f6814693756d12f58ba27, type: 3}
+  m_PrefabInstance: {fileID: 1492812440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1861384056
 PrefabInstance:
   m_ObjectHideFlags: 0
