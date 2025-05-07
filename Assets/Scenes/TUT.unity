@@ -807,9 +807,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -11513,13 +11521,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (25)
       objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -24670,13 +24682,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (27)
       objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -26443,6 +26459,100 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &824890229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824890231}
+  - component: {fileID: 824890230}
+  m_Layer: 0
+  m_Name: Spot Light (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &824890230
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824890229}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.9560641, b: 0.1415093, a: 1}
+  m_Intensity: 1
+  m_Range: 258.956
+  m_SpotAngle: 17.619186
+  m_InnerSpotAngle: 17.619186
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &824890231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824890229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.58309615, y: -0, z: -0, w: 0.81240314}
+  m_LocalPosition: {x: -9.6, y: 227.2, z: -204.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 71.337, y: 0, z: 0}
 --- !u!1 &839400014
 GameObject:
   m_ObjectHideFlags: 0
@@ -31490,13 +31600,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (30)
       objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -31579,13 +31693,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (28)
       objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -31877,7 +31995,7 @@ GameObject:
   - component: {fileID: 943437665}
   - component: {fileID: 943437664}
   - component: {fileID: 943437663}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38204,9 +38322,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -38303,7 +38429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1030604871
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38602,7 +38728,7 @@ Transform:
   m_GameObject: {fileID: 1030604870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -561.1, y: 138.41, z: -124}
+  m_LocalPosition: {x: -544.97, y: 138.41, z: -124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38927,6 +39053,10 @@ PrefabInstance:
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -39891,7 +40021,7 @@ GameObject:
   - component: {fileID: 1217084251}
   - component: {fileID: 1217084250}
   - component: {fileID: 1217084249}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45553,7 +45683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1297284403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45634,7 +45764,7 @@ Transform:
   m_GameObject: {fileID: 1297284402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.94, y: 9.48, z: -120}
+  m_LocalPosition: {x: -8.49, y: 9.48, z: -120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45956,9 +46086,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -46016,7 +46154,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8cf269a666ab86d4c9099192ef349dbe, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6065599636368259613, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
     m_AddedGameObjects: []
@@ -48029,7 +48168,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Welcome to Our Tutorial, Use right click to use your grapple when the the
-    ! comes up, Hold W to run.
+    * comes up, Hold W to run. Yellow Means Safe Red Means Risky
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -60163,15 +60302,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 25.413038
+      value: 27.148748
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 17.883781
+      value: 14.309708
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.58
+      value: -7.5735
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -60179,7 +60318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -119.35
+      value: -128.21
       objectReference: {fileID: 0}
     - target: {fileID: 6186681134365106312, guid: 773878a3c7936af46b3252f1e89a5b7c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60222,9 +60361,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -61801,6 +61948,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 577163354}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (32)
@@ -61860,6 +62011,10 @@ PrefabInstance:
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -27.393
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -62420,13 +62575,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1118582462}
     m_Modifications:
+    - target: {fileID: 1138276641739049471, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Name
       value: Hula Hoop (24)
       objectReference: {fileID: 0}
     - target: {fileID: 4674002812951718271, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446739158046979013, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_LocalScale.x
@@ -62481,10 +62640,15 @@ PrefabInstance:
       value: 6.251007
       objectReference: {fileID: 0}
     - target: {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8cf269a666ab86d4c9099192ef349dbe, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6619614957699221674, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6065599636368259613, guid: 68dfd49b721fa73429d7fe1ad6715fa6, type: 3}
     m_AddedGameObjects:
@@ -62677,7 +62841,7 @@ GameObject:
   - component: {fileID: 2075672771}
   - component: {fileID: 2075672770}
   - component: {fileID: 2075672769}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Particle System (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68147,6 +68311,7 @@ SceneRoots:
   - {fileID: 1635770251}
   - {fileID: 1035925113}
   - {fileID: 398873205}
+  - {fileID: 824890231}
   - {fileID: 1543908930}
   - {fileID: 644430182}
   - {fileID: 284160545}
