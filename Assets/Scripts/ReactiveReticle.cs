@@ -15,6 +15,7 @@ public class ReactiveReticle : MonoBehaviour
     public Image reticleHandSprite;
     public Image reticleTalkSprite;
     public Image reticleGrappleSprite;
+    public Image reticleGrappleSprite2;
     public LayerMask whatIsGround;
 
     
@@ -36,7 +37,7 @@ public class ReactiveReticle : MonoBehaviour
     {
         RaycastHit hit;
 
-        // First raycast for general interactions
+        
         if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, raycastDistance))
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") ||
@@ -45,6 +46,7 @@ public class ReactiveReticle : MonoBehaviour
                 reticleTalkSprite.enabled = true;
                 reticleHandSprite.enabled = false;
                 reticleGrappleSprite.enabled = false;
+                reticleGrappleSprite2.enabled = false;
                 reticleDot.SetActive(false);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("JustShowHand") ||
@@ -54,6 +56,7 @@ public class ReactiveReticle : MonoBehaviour
                 reticleHandSprite.enabled = true;
                 reticleTalkSprite.enabled = false;
                 reticleGrappleSprite.enabled = false;
+                reticleGrappleSprite2.enabled = false;
                 reticleDot.SetActive(false);
             }
             else
@@ -61,28 +64,48 @@ public class ReactiveReticle : MonoBehaviour
                 reticleHandSprite.enabled = false;
                 reticleTalkSprite.enabled = false;
                 reticleGrappleSprite.enabled = false;
+                reticleGrappleSprite2.enabled = false;
                 reticleDot.SetActive(true);
             }
         }
-        // Second raycast for grapple points
+
         else if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, grappleRayDistance))
         {
-            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Inverse")) && pmScript.hasTrapezistPower)
+            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") ||
+                 hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple") ||
+                 hit.collider.gameObject.layer == LayerMask.NameToLayer("Inverse")) && pmScript.hasTrapezistPower)
             {
-                reticleHandSprite.enabled = false;
-                reticleTalkSprite.enabled = false;
-                reticleGrappleSprite.enabled = true;
-                reticleDot.SetActive(false);
+                
+                if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Inverse")) &&
+                    hit.collider.gameObject.transform.position.y > transform.position.y + 20)
+                {
+                    
+                    reticleHandSprite.enabled = false;
+                    reticleTalkSprite.enabled = false;
+                    reticleGrappleSprite.enabled = false;
+                    reticleGrappleSprite2.enabled = true;
+                    reticleDot.SetActive(false);
+                }
+                else
+                {
+                    
+                    reticleHandSprite.enabled = false;
+                    reticleTalkSprite.enabled = false;
+                    reticleGrappleSprite.enabled = true;
+                    reticleGrappleSprite2.enabled = false;
+                    reticleDot.SetActive(false);
+                }
             }
             else
             {
                 reticleHandSprite.enabled = false;
                 reticleTalkSprite.enabled = false;
                 reticleGrappleSprite.enabled = false;
-                reticleDot.SetActive(true); // Reset to dot if not hitting a grapple point
+                reticleGrappleSprite2.enabled = false;
+                reticleDot.SetActive(true);
             }
         }
-        // Third raycast for other cases
+        
         else if (Physics.Raycast(pcScript.transform.position, pcScript.transform.forward, out hit, anotherRayDistance))
         {
             if (hit.collider.gameObject.layer != LayerMask.NameToLayer("GrapplePoint"))
@@ -90,16 +113,18 @@ public class ReactiveReticle : MonoBehaviour
                 reticleTalkSprite.enabled = false;
                 reticleHandSprite.enabled = false;
                 reticleGrappleSprite.enabled = false;
+                reticleGrappleSprite2.enabled = false;
                 reticleDot.SetActive(true);
             }
         }
-        // Default case when no raycast hits anything
+        
         else
         {
             reticleTalkSprite.enabled = false;
             reticleHandSprite.enabled = false;
             reticleGrappleSprite.enabled = false;
-            reticleDot.SetActive(true); // Ensure the reticle resets to a dot
+            reticleGrappleSprite2.enabled = false;
+            reticleDot.SetActive(true);
         }
     }
 }
