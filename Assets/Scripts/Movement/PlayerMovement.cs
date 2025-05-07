@@ -357,7 +357,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private void Run()
     {
-        if (SceneManager.GetActiveScene().name == "Parkour 1" || SceneManager.GetActiveScene().name == "Parkour 2" || SceneManager.GetActiveScene().name == "TUT")
+        if (SceneManager.GetActiveScene().name == "Parkour 1" || SceneManager.GetActiveScene().name == "Parkour 2" || SceneManager.GetActiveScene().name == "TUT" || SceneManager.GetActiveScene().name == "PlayGround")
         {
             isRunning = true;
         }
