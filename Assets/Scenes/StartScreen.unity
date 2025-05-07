@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: timerScript
       value: 
-      objectReference: {fileID: 1438707811}
+      objectReference: {fileID: 0}
     - target: {fileID: 7643832879914673955, guid: a4bea03bc493f014ba774025d03f3f33, type: 3}
       propertyPath: maskCountText
       value: 
@@ -1177,17 +1177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1438707811 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5351486412587184757, guid: d7935fafad81a0e4a8241da417249422, type: 3}
-  m_PrefabInstance: {fileID: 1861384056}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409826513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d22a530b10a90b40b0831f0e238822f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1481185053 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3320620691265837041, guid: 553da350671931b42bebbf9ee7340290, type: 3}
@@ -1684,7 +1673,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewJonCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5351486412587184757, guid: d7935fafad81a0e4a8241da417249422, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2470,7 +2460,7 @@ PrefabInstance:
     - target: {fileID: 425926901295945732, guid: 6a6f43822d428a247bfbfc02b2b129c5, type: 3}
       propertyPath: timerScript
       value: 
-      objectReference: {fileID: 1438707811}
+      objectReference: {fileID: 0}
     - target: {fileID: 425926901295945732, guid: 6a6f43822d428a247bfbfc02b2b129c5, type: 3}
       propertyPath: itemNameText
       value: 
