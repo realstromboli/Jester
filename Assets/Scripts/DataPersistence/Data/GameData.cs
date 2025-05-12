@@ -55,7 +55,7 @@ public class GameData
     {
         this.maskCount = 0;
 
-        // Vector3(518, 12.2f, 212) for inside trailer
+        // Vector3(518, 12.2, 212) for inside trailer
         // Vector3(2090, 75, 1347) for spririt world
         // Vector3(4259, 734, -422)
         // Vector3(-14, 0, 114) inside funhouse spawn

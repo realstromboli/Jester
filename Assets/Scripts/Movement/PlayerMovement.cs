@@ -677,7 +677,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
-                if (hit.collider.CompareTag("JDoor") && dmScript.dialogueViewedSave >= 6)
+                if (hit.collider.CompareTag("JDoor") && dmScript.dialogueViewedSave >= 7)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
@@ -1018,6 +1018,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                 StartCoroutine(SetRespawnLocationAfterDelay());
             }
+        }
+
+        if (other.gameObject.CompareTag("Placeholder"))
+        {
+            dtScript = GameObject.Find("HiddenDialogueSpeaker1").GetComponent<DialogueTrigger>();
+            dtScript.startConvo();
+        }
+
+        if (other.gameObject.CompareTag("Placeholder2"))
+        {
+            dtScript = GameObject.Find("HiddenDialogueSpeaker2").GetComponent<DialogueTrigger>();
+            dtScript.startConvo();
         }
     }
 
