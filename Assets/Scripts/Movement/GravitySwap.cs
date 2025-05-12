@@ -34,13 +34,14 @@ public class GravitySwap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)/* && pmScript.hasMagicianPower == true*/)
+        if (Input.GetKeyDown(KeyCode.F) && pmScript.hasMagicianPower == true)
         {
             if (CheckForGround())
             {
                 gravityReversed = !gravityReversed;
                 UpdateTargetObjectRotation();
                 pmScript.playerAnimation.SetTrigger("Gravity Trigger");
+                pmScript.playerAudio.PlayOneShot(pmScript.gravitySound, 1.0f);
             }
         }
         

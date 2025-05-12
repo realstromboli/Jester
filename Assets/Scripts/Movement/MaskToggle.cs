@@ -19,6 +19,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI maskCountText;
     public Image timerFill;
     public Image vignetteImage;
+    public AudioSource maskAudio;
 
     // Add LayerMask fields to specify the layers
     public LayerMask ghostLayer;
@@ -65,6 +66,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             SetMaskIndicatorVisibility(true);
             SetLayerVisibility(true);
             SetParticleEffectsVisibility(false);
+
             timerFill.enabled = true;
         }
 
@@ -78,15 +80,25 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             maskStatus = true;
             SetLayerVisibility(true);
             playerAnimation.SetTrigger("Mask On Trigger");
+            pmScript.playerAudio.PlayOneShot(pmScript.maskSound, 1.0f);
+            if (!maskAudio.isPlaying)
+            {
+                maskAudio.loop = true;
+                maskAudio.Play();
+            }
             timerScript.Pause = false;
             timerScript.Begin(timerScript.Duration);
-            
         }
         else if (maskStatus == true)
         {
             maskStatus = false;
             SetLayerVisibility(false);
             playerAnimation.SetTrigger("Mask Off Trigger");
+            pmScript.playerAudio.PlayOneShot(pmScript.demaskSound, 1.0f);
+            if (maskAudio.isPlaying)
+            {
+                maskAudio.Stop();
+            }
             timerScript.Begin(timerScript.Duration);
             timerScript.Pause = true;
             timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
@@ -218,7 +230,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
-            if (obj.layer == LayerMask.NameToLayer("Inverse"))
+            if (obj.layer == LayerMask.NameToLayer("Inverse") || obj.layer == LayerMask.NameToLayer("InverseSwap"))
             {
                 // Toggle the Renderer component
                 Renderer renderer = obj.GetComponent<Renderer>();

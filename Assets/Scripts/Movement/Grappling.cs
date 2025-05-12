@@ -68,6 +68,7 @@ public class Grappling : MonoBehaviour
         }
 
         pmScript.playerAnimation.SetTrigger("Grapple Throw Trigger");
+        pmScript.playerAudio.PlayOneShot(pmScript.grappleSound, 1.0f);
 
         grappling = true;
 
