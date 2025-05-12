@@ -70,23 +70,25 @@ public class Timer : MonoBehaviour
     {
         while (remainingDuration >= 0)
         {
-            if (!Pause && mtScript.maskStatus)
+            // Wait until the game is not paused
+            while (Pause || !mtScript.maskStatus)
             {
-                uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
-
-                // Calculate the new alpha value based on the remaining duration
-                if (obscurity != null)
-                {
-                    float alpha = Mathf.Lerp(0, 200f / 255f, (Duration - remainingDuration) / (float)Duration);
-                    obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, alpha);
-                }
-
-                remainingDuration--;
-                yield return new WaitForSeconds(1f);
+                yield return null; // Wait for the next frame
             }
 
-            yield return null;
+            // Update the UI and decrement the timer
+            uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+
+            if (obscurity != null)
+            {
+                float alpha = Mathf.Lerp(0, 200f / 255f, (Duration - remainingDuration) / (float)Duration);
+                obscurity.color = new Color(obscurity.color.r, obscurity.color.g, obscurity.color.b, alpha);
+            }
+
+            remainingDuration--;
+            yield return new WaitForSeconds(1f);
         }
+
         OnEnd();
     }
 

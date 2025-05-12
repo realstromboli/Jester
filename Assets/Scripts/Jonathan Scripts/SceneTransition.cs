@@ -23,6 +23,7 @@ public class SceneTransition : MonoBehaviour
 
     public GameManager gmScript;
     public PlayerCamera pcScript;
+    public MaskToggle mtScript;
 
 
 
@@ -32,7 +33,7 @@ public class SceneTransition : MonoBehaviour
         playerObj = GameObject.Find("Player");
         playerCam = GameObject.Find("CameraHolder");
         fadeUI = GameObject.Find("FadeObject");
-
+        mtScript = GameObject.Find("Player").GetComponent<MaskToggle>();
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -109,6 +110,7 @@ public class SceneTransition : MonoBehaviour
             yield return null;
         }
         fadeObject.color = endColor; // Ensure the final color is set
+        mtScript.maskStatus = false;
         isFading = false;
         
         Destroy(gameObject);

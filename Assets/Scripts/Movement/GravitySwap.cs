@@ -70,7 +70,7 @@ public class GravitySwap : MonoBehaviour
     public GameObject childObject;
     public Transform childTransform;
 
-    private void UpdateTargetObjectRotation()
+    public void UpdateTargetObjectRotation()
     {
         if (cameraHolder != null)
         {
