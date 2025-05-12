@@ -728,7 +728,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     dtScript.startConvo();
                 }
 
-                if (hit.collider.CompareTag("JesterPoster") && (dmScript.dialogueViewedSave == 2 || dmScript.dialogueViewedSave == 3))
+                if (hit.collider.CompareTag("JesterPoster") && (dmScript.dialogueViewedSave == 3 || dmScript.dialogueViewedSave == 4))
                 {
 
 
@@ -765,7 +765,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if ((dmScript.dialogueViewedSave == 7 || dmScript.dialogueViewedSave == 8) && hit.collider.CompareTag("tPosterPiece"))
+                if ((dmScript.dialogueViewedSave == 8 || dmScript.dialogueViewedSave == 9) && hit.collider.CompareTag("tPosterPiece"))
                 {
 
 
@@ -813,7 +813,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         playerAnimation.SetTrigger("Pickup Trigger");
                         playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
 
-                        if (dmScript.dialogueViewedSave >= 6)
+                        if (dmScript.dialogueViewedSave >= 7)
                         {
 
                             //dmScript.dialogueViewedSave++;
@@ -821,7 +821,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         }
                     }
 
-                    if (dmScript.dialogueViewedSave == 8 && tPosterFixed/* && mtScript.maskStatus == true*/)
+                    if (dmScript.dialogueViewedSave == 9 && tPosterFixed/* && mtScript.maskStatus == true*/)
                     {
 
                         dtScript = GameObject.Find("HiddenDialogueSpeaker4").GetComponent<DialogueTrigger>();
@@ -849,7 +849,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     }
 
-                    if (dmScript.dialogueViewedSave == 11 && tPosterFixed && hasTrapezistPower && dmScript.dialogueActive == false)
+                    if (dmScript.dialogueViewedSave == 13 && tPosterFixed && hasTrapezistPower && dmScript.dialogueActive == false)
                     {
                         Destroy(dialogueTriggerRepeatable1);
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
