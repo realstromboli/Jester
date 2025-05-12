@@ -80,7 +80,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             maskStatus = true;
             SetLayerVisibility(true);
             playerAnimation.SetTrigger("Mask On Trigger");
-            pmScript.playerAudio.PlayOneShot(pmScript.maskSound, 1.0f);
+            pmScript.playerAudio.PlayOneShot(pmScript.maskSound, 0.5f);
             if (!maskAudio.isPlaying)
             {
                 maskAudio.loop = true;
@@ -94,7 +94,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
             maskStatus = false;
             SetLayerVisibility(false);
             playerAnimation.SetTrigger("Mask Off Trigger");
-            pmScript.playerAudio.PlayOneShot(pmScript.demaskSound, 1.0f);
+            pmScript.playerAudio.PlayOneShot(pmScript.demaskSound, 0.5f);
             if (maskAudio.isPlaying)
             {
                 maskAudio.Stop();
