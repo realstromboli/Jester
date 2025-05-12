@@ -86,6 +86,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool trapezistCureTrigger;
     public bool magicianCureTrigger;
 
+    [Header("Audio")]
+    public AudioSource playerAudio;
+    public AudioClip grappleSound;
+    public AudioClip maskSound;
+    public AudioClip demaskSound;
+    public AudioClip whisperSound;
+    public AudioClip pickupClothSound;
+    public AudioClip pickupPaperSound;
+    public AudioClip gravitySound;
+
     public MovementState state;
 
     public enum MovementState
@@ -655,6 +665,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupClothSound, 1.0f);
 
                     if (sceneTransition != null)
                     {
@@ -671,6 +682,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupClothSound, 1.0f);
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -692,6 +704,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                         Debug.Log("Door hit interactable");
                         playerAnimation.SetTrigger("Pickup Trigger");
+                        playerAudio.PlayOneShot(pickupClothSound, 1.0f);
                         if (sceneTransition != null)
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -720,6 +733,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
 
                     playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                     Destroy(hit.collider.gameObject);
 
                     jPosterPieceCount++;
@@ -759,6 +773,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     lottiePic2 = GameObject.Find("LottiePic2").GetComponent<Image>();
                     lottiePicFull = GameObject.Find("LottiePicFull").GetComponent<Image>();
                     playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                     Destroy(hit.collider.gameObject);
 
                     tPosterPieceCount++;
@@ -796,6 +811,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     if (dialogueTriggerRepeatable1 != null)
                     {
                         playerAnimation.SetTrigger("Pickup Trigger");
+                        playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
 
                         if (dmScript.dialogueViewedSave >= 6)
                         {
@@ -813,6 +829,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         gmScript.slot5Full = true;
                         lottiePicFull.enabled = true;
                         trapezistCureTrigger = true;
+                        playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
                         foreach (GameObject obj in allObjects)
@@ -837,6 +854,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         Destroy(dialogueTriggerRepeatable1);
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                         Debug.Log("Entering Ghost World");
+                        playerAnimation.SetTrigger("Pickup Trigger");
+                        playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                         if (sceneTransition != null)
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -853,7 +872,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     Destroy(hit.collider.gameObject);
 
                     playerAnimation.SetTrigger("Pickup Trigger");
-
+                    playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                     mCardsCount++;
 
                     cardCountText.text = "Magician Cards: " + mCardsCount + "/6";
@@ -875,6 +894,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
+                    playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
@@ -1094,4 +1115,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             }
         }
     }
+
+    
+
 }

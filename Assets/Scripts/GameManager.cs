@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public Timer timerScript;
     public DialogueManager dmScript;
     public SceneTransition stScript;
+    public GravitySwap gravityScript;
     public GameData gameData;
 
     public string currentSceneName;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         dmScript = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         HUD = GameObject.Find("HUD");
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
+        gravityScript = GameObject.Find("Player").GetComponent<GravitySwap>();
         HUD.SetActive(false); // Ensure HUD is hidden initially
         pauseScreen.SetActive(false); // Ensure pause screen is hidden initially
         inventoryScreen.SetActive(false);
@@ -137,6 +139,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         pauseScreen.SetActive(false);
         HUD.SetActive(false);
         Item0Text();
+        gravityScript.gravityReversed = false;
+        gravityScript.UpdateTargetObjectRotation();
         StartCoroutine(IDKDelay());
     }
 
@@ -224,7 +228,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //scene 1 is test scene
 
         stScript = GameObject.Find("SceneTransition").GetComponent<SceneTransition>();
-        stScript.sceneToGoTo = "Inside Trailer";
+        stScript.sceneToGoTo = "Parkour 2";
         if (stScript != null)
         {
             StartCoroutine(stScript.FadeOutToScene(stScript.fadeUI.GetComponent<UnityEngine.UI.Image>(), stScript.fadeUIColor));
