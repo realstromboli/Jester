@@ -77,7 +77,7 @@ public class ReactiveReticle : MonoBehaviour
             {
                 
                 if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("GrapplePoint") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost Grapple") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Inverse")) &&
-                    hit.collider.gameObject.transform.position.y > transform.position.y + 20)
+                    hit.collider.gameObject.transform.position.y > transform.position.y + 25)
                 {
                     
                     reticleHandSprite.enabled = false;
