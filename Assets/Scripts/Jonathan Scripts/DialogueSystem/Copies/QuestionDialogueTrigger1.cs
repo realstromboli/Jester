@@ -15,8 +15,10 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
     public GameManager gmScript;
     public Grappling grappleScript;
     public Material newMaterial;
+    public Material newMaterial2;
 
     public Renderer objectRenderer;
+    public Renderer objectRenderer2;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,10 @@ public class QuestionDialogueTrigger1 : MonoBehaviour
 
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 10)
+        if (dialogueManager.dialogueViewedSave >= 11)
         {
             objectRenderer.material = newMaterial;
+            objectRenderer2.material = newMaterial2;
             dtScript = GameObject.Find("HiddenDialogueSpeaker5").GetComponent<DialogueTrigger>();
             pmScript.hasTrapezistPower = true;
             grappleScript.StartGrapple();
