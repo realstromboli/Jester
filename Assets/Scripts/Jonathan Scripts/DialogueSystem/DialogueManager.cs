@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         // Check if dialogueViewedSave reaches 5
-        if (dialogueViewedSave >= 7)
+        if (dialogueViewedSave >= 8)
         {
             StartParticleEffects();
         }

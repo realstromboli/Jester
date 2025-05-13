@@ -5838,7 +5838,7 @@ MonoBehaviour:
   fadeSpeed: 2
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 1, g: 1, b: 1, a: 1}
-  sceneToGoTo: 3INDOORCIRC
+  sceneToGoTo: Inside Trailer
   playerTransferPosition: {x: -106, y: 26, z: -276}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
@@ -7965,11 +7965,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalScale.y
-      value: 29.776758
+      value: 94.367355
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalScale.z
-      value: 29.907423
+      value: 19.617126
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7977,11 +7977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1165.41
+      value: -1161.9
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1099.84
+      value: -1101.4
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56602,7 +56602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1377641466280062912, guid: 39bb1ebf87a3fe54db7b6c7dae7f59a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -236.8
+      value: -269.5
       objectReference: {fileID: 0}
     - target: {fileID: 1377641466280062912, guid: 39bb1ebf87a3fe54db7b6c7dae7f59a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62973,27 +62973,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalScale.x
-      value: 113.72503
+      value: 129.79138
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalScale.y
-      value: 58.423996
+      value: 179.29428
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalScale.z
-      value: 93.37055
+      value: 113.70298
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 251
+      value: 27.12
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -777.2
+      value: -644.4
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -429.8
+      value: -275.01
       objectReference: {fileID: 0}
     - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63026,6 +63026,22 @@ PrefabInstance:
     - target: {fileID: 5613810208608736704, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613810208608736704, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_TagString
+      value: Placeholder2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080696918269474701, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: convo
+      value: 
+      objectReference: {fileID: 11400000, guid: 50361a3279543c34898fb7a889e2da87, type: 2}
+    - target: {fileID: 7080696918269474701, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: viewNumber
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142020147495987939, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_Name
+      value: HiddenDialogueSpeaker2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75849,6 +75865,91 @@ Transform:
   m_Children: []
   m_Father: {fileID: 189647395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1107022409
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 130.32031
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 56.726765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 252.51956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -507.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -219.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1082.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421175591678652539, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613810208608736704, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613810208608736704, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_TagString
+      value: Placeholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080696918269474701, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: convo
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b7433e3f3d402543a0e22bce5149358, type: 2}
+    - target: {fileID: 7080696918269474701, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: viewNumber
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142020147495987939, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
+      propertyPath: m_Name
+      value: HiddenDialogueSpeaker1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b457346c0f0a0004b9d1f9917b21f052, type: 3}
 --- !u!1001 &1107834026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79096,7 +79197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1377641466280062912, guid: 39bb1ebf87a3fe54db7b6c7dae7f59a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -236.8
+      value: -272.7
       objectReference: {fileID: 0}
     - target: {fileID: 1377641466280062912, guid: 39bb1ebf87a3fe54db7b6c7dae7f59a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -130775,3 +130876,4 @@ SceneRoots:
   - {fileID: 1860369042}
   - {fileID: 168029454}
   - {fileID: 874488453}
+  - {fileID: 1107022409}
