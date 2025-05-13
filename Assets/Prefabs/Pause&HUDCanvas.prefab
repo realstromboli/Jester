@@ -1995,8 +1995,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OpenSettings
+        m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Save Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}
   m_sharedMaterial: {fileID: -4834616352554964953, guid: 87faa010968e0b845a2af2ac5f6a25e5, type: 2}

@@ -13,6 +13,7 @@ public class GravitySwap : MonoBehaviour
     public LayerMask whatIsGround; // LayerMask for the "whatIsGround" layer
     public float raycastDistance = 50f; // Distance for the raycast
     public PlayerMovement pmScript; // Reference to the PlayerMovement script
+    public DialogueTrigger dtScript; // Reference to the DialogueTrigger script
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class GravitySwap : MonoBehaviour
 
         cameraHolder = GameObject.Find("CameraHolder");
         playerObject = GameObject.Find("PlayerObjHolder");
-        
+
         pmScript = GetComponent<PlayerMovement>();
     }
 
@@ -38,10 +39,10 @@ public class GravitySwap : MonoBehaviour
         {
             if (CheckForGround())
             {
-                gravityReversed = !gravityReversed;
-                UpdateTargetObjectRotation();
                 pmScript.playerAnimation.SetTrigger("Gravity Trigger");
                 pmScript.playerAudio.PlayOneShot(pmScript.gravitySound, 1.0f);
+                gravityReversed = !gravityReversed;
+                UpdateTargetObjectRotation();
             }
         }
         
@@ -91,6 +92,8 @@ public class GravitySwap : MonoBehaviour
                 childObject.transform.rotation = Quaternion.Euler(gravityReversed ? 180f : 0f, 0f, zRotation);
             }
         }
+        dtScript = GameObject.Find("SpecialDialogueSpeaker").GetComponent<DialogueTrigger>();
+        dtScript.startConvo();
     }
 
     private void OnTriggerEnter(Collider other)

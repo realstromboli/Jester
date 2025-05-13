@@ -35,7 +35,7 @@ public class QuestionDialogueTrigger2 : MonoBehaviour
         dialogueManager = GameObject.Find("DialogueBox").GetComponent<DialogueManager>();
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (dialogueManager.dialogueViewedSave >= 14)
+        if (dialogueManager.dialogueViewedSave >= 21)
         {
             objectRenderer.material = newMaterial;
             objectRenderer2.material = newMaterial2;

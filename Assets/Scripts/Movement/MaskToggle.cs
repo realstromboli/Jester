@@ -245,6 +245,12 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 {
                     collider.enabled = !isVisible; // Opposite of ghost layer visibility
                 }
+
+                Canvas canvas = obj.GetComponent<Canvas>();
+                if (canvas != null)
+                {
+                    canvas.enabled = !isVisible;
+                }
             }
         }
     }

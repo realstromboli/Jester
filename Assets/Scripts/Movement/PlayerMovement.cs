@@ -192,6 +192,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 mask.SetActive(false);
             }
         }
+
+        if (mCardsCount == 6)
+        {
+            GameObject magicianHolder = GameObject.Find("MagicianCards");
+
+            if (magicianHolder != null)
+            {
+                magicianHolder.SetActive(false);
+            }
+        }
     }
 
     public void AnimationManager()
@@ -227,7 +237,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
 
         // Jumping
-        if (Input.GetKey(jumpKey) && readyToJump && grounded && (SceneManager.GetActiveScene().name != "Inside Trailer"))
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && ((SceneManager.GetActiveScene().name != "Inside Trailer") || (SceneManager.GetActiveScene().name != "2Inside Trailer") || (SceneManager.GetActiveScene().name != "2FINISHInside Trailer")))
         {
             readyToJump = false;
 
@@ -666,14 +676,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     Debug.Log("Door hit interactable");
                     playerAnimation.SetTrigger("Pickup Trigger");
                     playerAudio.PlayOneShot(pickupClothSound, 1.0f);
+                    
 
                     if (sceneTransition != null)
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                         StartCoroutine(SetRespawnLocationAfterDelay());
+                        StartCoroutine(TalkOnRespawn());
                     }
 
-                    
                     //hit.collider.gameObject.SetActive(false); // Deactivate the item
                 }
 
@@ -699,7 +710,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         StartCoroutine(WaitForSeconds2());
                     }
 
-                    if (dmScript.dialogueViewedSave == 17)
+                    if (dmScript.dialogueViewedSave == 29)
                     {
                         SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                         Debug.Log("Door hit interactable");
@@ -860,13 +871,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         {
                             StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                             StartCoroutine(SetRespawnLocationAfterDelay());
+                            
                         }
                         dmScript.correctAnswersCount = 0;
                         logText.alpha = 0f;
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 12)
+                if (hit.collider.CompareTag("MagicianCards") && dmScript.dialogueViewedSave >= 19)
                 {
 
                     Destroy(hit.collider.gameObject);
@@ -890,7 +902,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 15 && hasMagicianPower == true && dmScript.dialogueActive == false)
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 18 && mtScript.maskStatus == true && dmScript.dialogueActive == false)
+                {
+                    playerAnimation.SetTrigger("Pickup Trigger");
+                    playerAudio.PlayOneShot(pickupPaperSound, 1.0f);
+                    dtScript = GameObject.Find("HiddenDialogueSpeaker3").GetComponent<DialogueTrigger>();
+                    dtScript.startConvo();
+                }
+
+                if (hit.collider.CompareTag("MagicianPoster") && dmScript.dialogueViewedSave >= 22 && hasMagicianPower == true && dmScript.dialogueActive == false && mtScript.maskStatus == true)
                 {
                     SceneTransition sceneTransition = hit.collider.GetComponent<SceneTransition>();
                     Debug.Log("Entering Ghost World");
@@ -900,6 +920,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     {
                         StartCoroutine(sceneTransition.FadeOutToScene(sceneTransition.fadeUI.GetComponent<UnityEngine.UI.Image>(), sceneTransition.fadeUIColor));
                         StartCoroutine(SetRespawnLocationAfterDelay());
+                        StartCoroutine(TalkOnRespawn());
                     }
                 }
             }

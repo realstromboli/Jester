@@ -113,6 +113,22 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             skipText.SetActive(false);
             timerScript.Pause = false;
         }
+
+        if (dialogueViewedSave == 20)
+        {
+            GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+
+                if (obj.name == "Magician_Idle")
+                {
+                    // Change the layer to GhostInteractable
+                    obj.layer = LayerMask.NameToLayer("GhostInteractable");
+                    Debug.Log($"Layer of '{obj.name}' changed to GhostInteractable");
+                }
+            }
+        }
     }
 
     /*public static void StartConversation(DialogueConversation convo)
@@ -477,7 +493,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 objectiveText.text = "Get accustomed to your trailer, anything amiss?";
                 break;
             case 1:
-                objectiveText.text = "See what is on the vanity";
+                objectiveText.text = "Talk to the ghost";
                 break;
             case 2:
                 objectiveText.text = "Follow the ghost!";
@@ -485,41 +501,47 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             case 3:
                 objectiveText.text = "Explore the maze and collect mysterious poster scraps";
                 break;
-            case 4:
+            case 5:
                 objectiveText.text = "Any significance to the name Antonio Colombo?";
                 break;
-            case 6:
-                objectiveText.text = "Exit the maze to explore the Big Top for clues on the next Ghost";
-                break;
             case 7:
-                objectiveText.text = "Explore the Big Top for scraps of the Trapeze Artist's Picture";
+                objectiveText.text = "Exit the maze and explore the Big Top for clues on the next Ghost";
                 break;
             case 8:
-                objectiveText.text = "Examine the completed picture of the Trapeze Artist";
+                objectiveText.text = "Explore the Big Top for scraps of the Trapeze Artist's Picture";
                 break;
             case 9:
+                objectiveText.text = "Examine the completed picture of the Trapeze Artist";
+                break;
+            case 10:
                 objectiveText.text = "Any significance to the name Lottie Green?";
                 break;
-            case 11:
+            case 12:
                 objectiveText.text = "Enter the Spirit World through the picture to recover Lottie's memories";
                 break;
-            case 12:
+            case 14:
                 objectiveText.text = "Traverse the Spirit World to recover Lottie's memories";
                 break;
-            case 13:
-                objectiveText.text = "Explore the Big Top for the Magician's six cards";
-                break;
-            case 14:
-                objectiveText.text = "Figure out the Magician's name";
-                break;
-            case 16:
-                objectiveText.text = "Traverse the Spirit World again to recover Desire's memories";
-                break;
             case 17:
-                objectiveText.text = "Exit the spirit world and reconvene with the Spirits";
+                objectiveText.text = "Jump down into the net to recover Lottie's m";
                 break;
             case 18:
-                objectiveText.text = "You're done for now! There will be a more proper finish in a future build :)";
+                objectiveText.text = "Re-enter the Big Top for clues on the next ghost";
+                break;
+            case 19:
+                objectiveText.text = "Explore the Big Top for the Magician's six cards";
+                break;
+            case 20:
+                objectiveText.text = "Speak the Magician's name to him";
+                break;
+            case 22:
+                objectiveText.text = "Traverse the Spirit World again to recover Desire's memories";
+                break;
+            case 29:
+                objectiveText.text = "Exit the spirit world and reconvene with the Spirits";
+                break;
+            case 30:
+                objectiveText.text = "See who's at the door?";
                 break;
             default:
                 objectiveText.text = "Keep progressing!";

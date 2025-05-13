@@ -25183,6 +25183,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee052002be3da014dbe7774d02b92e2d, type: 3}
   m_PrefabInstance: {fileID: 529920778}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &532242247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 532242248}
+  - component: {fileID: 532242249}
+  m_Layer: 0
+  m_Name: HiddenDialogueSpeaker9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &532242248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532242247}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532242249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532242247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd961c2ad4fd343906c5a129d1cb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convo: {fileID: 11400000, guid: ce87c7e9a009630499aca090c2ad96a8, type: 2}
+  viewNumber: 22
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pcScript: {fileID: 0}
 --- !u!1001 &533644065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74212,11 +74262,11 @@ MonoBehaviour:
   fadeSpeed: 2
   fadeUI: {fileID: 0}
   fadeUIColor: {r: 0, g: 0, b: 0, a: 1}
-  sceneToGoTo: Parkour 2
-  playerTransferPosition: {x: -544, y: -243, z: -1123}
+  sceneToGoTo: Mirrored Maze
+  playerTransferPosition: {x: -29, y: 1, z: 140}
   playerTransferRotation: {x: 0, y: 0, z: 0}
   xRotation: 0
-  yRotation: 90
+  yRotation: -177
   playerObj: {fileID: 0}
   playerCam: {fileID: 0}
   gmScript: {fileID: 0}
@@ -96906,4 +96956,5 @@ SceneRoots:
   - {fileID: 2042737629}
   - {fileID: 740483821}
   - {fileID: 1410659474}
+  - {fileID: 532242248}
   - {fileID: 982339215}

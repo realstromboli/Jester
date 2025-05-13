@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         FreezePlayer();
         InventoryManager();
         UpdatePlayerPosition();
+        CreditsMode();
 
         // Update HUD visibility based on game state
         if (isGameActive || dmScript.dialogueActive)
@@ -501,7 +502,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item2Text()
     {
         itemNameText.text = "Antonio's Flyer";
-        itemDescriptionText.text = "This flyer advertizes a Jester with the stage name Oliver, but ghostly writing overwrites it to say Antonio Colombo..";
+        itemDescriptionText.text = "This poster advertizes a Jester by the name of Antonio Colombo.";
         inventoryItem.sprite = item2Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -525,7 +526,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item5Text()
     {
         itemNameText.text = "Lottie's Image";
-        itemDescriptionText.text = "This picture shows off a trapezist named Charlotte Green. But when masked, Charlotte is scribbled out with 'Lottie' written in it's place. Interesting..";
+        itemDescriptionText.text = "This picture shows off a trapezist and is signed by Lottie Green. I wonder why it's here.";
         inventoryItem.sprite = item5Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -533,7 +534,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item6Text()
     {
         itemNameText.text = "Trapeze Grapple Instructions";
-        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red reticle) will allow the player to throw a rope out to pull themselves toward and above an object! Keep in mind that grappling will only give a player momentum when they pull upwards towards an object.";
+        itemDescriptionText.text = "Hitting right click on a grappleable object (indicated by red/yellow reticle) will allow the player to pull themselves toward and above an object! Keep in mind that grappling will only give a player momentum when they pull upwards towards an object.";
         inventoryItem.sprite = item6Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -557,7 +558,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item9Text()
     {
         itemNameText.text = "Desire's Cards";
-        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Desire.";
+        itemDescriptionText.text = "These 6 cards belong to 'The Magnificent' Montague. With the cards arranged, the letters on them will spell out his name: Désiré.";
         inventoryItem.sprite = item9Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -565,7 +566,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Item10Text()
     {
         itemNameText.text = "Magician Flip Instructions";
-        itemDescriptionText.text = "Presing F while there are magic platforms above you will reverse gravity, this can be toggled on and off as long as you have proper land above you!";
+        itemDescriptionText.text = "Presing F while there are magic platforms above you will reverse gravity. This can be toggled on and off as long as you have a star above you!";
         inventoryItem.sprite = item10Image.sprite;
         SetImageAlpha(inventoryItem, 1f);
     }
@@ -653,5 +654,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
         yield return null;
 
         Debug.Log("Saved scene loaded: " + sceneName);
+    }
+
+    public void CreditsMode()
+    {
+        if (SceneManager.GetActiveScene().name == "CreditsScene")
+        {
+            isGameActive = false;
+        }
     }
 }

@@ -41,15 +41,15 @@ public class DataPersistenceManager : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-            SaveGame();
-        }
-        if (Input.GetKeyDown(KeyCode.PageDown))
-        {
-            LoadGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.PageUp))
+        //{
+        //    this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        //    SaveGame();
+        //}
+        //if (Input.GetKeyDown(KeyCode.PageDown))
+        //{
+        //    LoadGame();
+        //}
     }
 
     public void NewGame()
