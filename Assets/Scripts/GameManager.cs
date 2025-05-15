@@ -134,12 +134,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void BackToMainMenu()
     {
+        isGameActive = false;
         SceneManager.LoadScene(0);
         settingsScreen.SetActive(false);
         controlsScreen.SetActive(false);
         pauseScreen.SetActive(false);
         HUD.SetActive(false);
         startScreen.SetActive(true);
+        startScreenOpen = true;
         Item0Text();
         gravityScript.gravityReversed = false;
         gravityScript.UpdateTargetObjectRotation();
