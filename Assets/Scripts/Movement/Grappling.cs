@@ -100,6 +100,7 @@ public class Grappling : MonoBehaviour
     private void ExecuteGrapple()
     {
         //pmScript.freeze = false;
+        pmScript.playerAudio.Stop();
         pmScript.playerAudio.PlayOneShot(pmScript.grappleSound, 1.0f);
 
         lineRenderer.SetPosition(1, grapplePoint);
