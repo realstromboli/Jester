@@ -111,6 +111,7 @@ public class SceneTransition : MonoBehaviour
         }
         fadeObject.color = endColor; // Ensure the final color is set
         mtScript.maskStatus = false;
+        mtScript.maskAudio.Stop();
         isFading = false;
         
         Destroy(gameObject);

@@ -183,6 +183,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
 
+        if (currentConvo.GetLineByIndex(currentIndex).speaker.GetName() == "Knock")
+        {
+            anim.SetBool("isOpen", false);
+        }
+
         var speaker = currentConvo.GetLineByIndex(currentIndex).speaker;
         //speakerName.text = currentConvo.GetLineByIndex(currentIndex).speaker.GetName();
 
