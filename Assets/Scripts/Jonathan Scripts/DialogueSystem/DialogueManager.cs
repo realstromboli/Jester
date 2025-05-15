@@ -154,7 +154,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         yield return new WaitForSeconds(0.1f);
         instance.dialogueActive = true;
-        instance.anim.SetBool("isOpen", true);
+        if (instance.currentConvo.GetLineByIndex(currentIndex).speaker.GetName() != "Knock")
+        {
+            instance.anim.SetBool("isOpen", true);
+        }
         instance.currentIndex = 0;
         instance.currentConvo = convo;
         instance.speakerName.text = "";
