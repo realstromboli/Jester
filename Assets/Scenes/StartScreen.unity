@@ -1669,10 +1669,6 @@ PrefabInstance:
       propertyPath: objectiveText
       value: 
       objectReference: {fileID: 1620082213}
-    - target: {fileID: 5351486412587184757, guid: d7935fafad81a0e4a8241da417249422, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8239520233496626095, guid: d7935fafad81a0e4a8241da417249422, type: 3}
       propertyPath: m_Name
       value: NewJonCanvas
@@ -1742,7 +1738,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 83c484f950c66a2488f6ea4a81821b3f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
