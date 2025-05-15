@@ -102,17 +102,17 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         SetObjectiveText();
 
-        //if (dialogueActive)
-        //{
-            //skipText.SetActive(true);
-            //timerScript.Pause = true;
-            //timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
-        //}
-        //else
-        //{
-            //skipText.SetActive(false);
-            //timerScript.Pause = false;
-        //}
+        if (dialogueActive)
+        {
+            skipText.SetActive(true);
+            timerScript.Pause = true;
+            timerScript.obscurity.color = new Color(timerScript.obscurity.color.r, timerScript.obscurity.color.g, timerScript.obscurity.color.b, 0);
+        }
+        else
+        {
+            skipText.SetActive(false);
+            timerScript.Pause = false;
+        }
 
         if (dialogueViewedSave == 20)
         {

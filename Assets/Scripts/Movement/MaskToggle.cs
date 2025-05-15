@@ -230,7 +230,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
                 }
             }
 
-            if (obj.layer == LayerMask.NameToLayer("Inverse") || obj.layer == LayerMask.NameToLayer("InverseSwap"))
+            if (obj.layer == LayerMask.NameToLayer("Inverse") || obj.layer == LayerMask.NameToLayer("InverseSwap") || obj.layer == LayerMask.NameToLayer("InverseInteractable"))
             {
                 // Toggle the Renderer component
                 Renderer renderer = obj.GetComponent<Renderer>();
