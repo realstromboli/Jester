@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         controlsScreen.SetActive(false);
         pauseScreen.SetActive(false);
         HUD.SetActive(false);
+        startScreen.SetActive(true);
         Item0Text();
         gravityScript.gravityReversed = false;
         gravityScript.UpdateTargetObjectRotation();
