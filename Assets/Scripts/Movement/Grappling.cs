@@ -68,7 +68,6 @@ public class Grappling : MonoBehaviour
         }
 
         pmScript.playerAnimation.SetTrigger("Grapple Throw Trigger");
-        pmScript.playerAudio.PlayOneShot(pmScript.grappleSound, 1.0f);
 
         grappling = true;
 
@@ -101,8 +100,8 @@ public class Grappling : MonoBehaviour
     private void ExecuteGrapple()
     {
         //pmScript.freeze = false;
+        pmScript.playerAudio.PlayOneShot(pmScript.grappleSound, 1.0f);
 
-        
         lineRenderer.SetPosition(1, grapplePoint);
         lineRenderer.enabled = true;
         pmScript.playerAnimation.SetTrigger("Grapple Pull Trigger");

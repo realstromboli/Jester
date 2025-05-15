@@ -30,6 +30,7 @@ public class MaskToggle : MonoBehaviour, IDataPersistence
     void Start()
     {
         maskStatus = false;
+        maskAudio.Stop();
         SetMaskIndicatorVisibility(false);
         SetParticleEffectsVisibility(true);
         playerAnimation = GameObject.Find("PlayerObjHolder").GetComponent<Animator>();

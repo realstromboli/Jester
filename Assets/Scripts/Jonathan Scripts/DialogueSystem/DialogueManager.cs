@@ -153,15 +153,18 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private IEnumerator StartConversationWithDelay(DialogueConversation convo)
     {
         yield return new WaitForSeconds(0.1f);
+
         instance.dialogueActive = true;
-        if (instance.currentConvo.GetLineByIndex(currentIndex).speaker.GetName() != "Knock")
-        {
-            instance.anim.SetBool("isOpen", true);
-        }
         instance.currentIndex = 0;
         instance.currentConvo = convo;
         instance.speakerName.text = "";
         instance.dialogue.text = "";
+
+        if (currentConvo.GetLineByIndex(currentIndex).speaker != null &&
+      currentConvo.GetLineByIndex(currentIndex).speaker.GetName() != "Knock")
+        {
+            anim.SetBool("isOpen", true);
+        }
 
         instance.ReadNext();
     }

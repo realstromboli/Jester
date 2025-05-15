@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         Debug.Log("Starting Game");
         StartCoroutine(NewDelay());
         maskScript.maskStatus = false;
+        maskScript.maskAudio.Stop();
     }
 
     public void LoadGame()
@@ -247,6 +248,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         SceneManager.LoadScene(1);
         StartCoroutine(LoadDelay());
         maskScript.maskStatus = false;
+        maskScript.maskAudio.Stop();
     }
 
     public IEnumerator NewDelay()
