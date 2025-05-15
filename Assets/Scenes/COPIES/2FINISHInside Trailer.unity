@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e22dc33400cf8324987324a7651618fc, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: ed1c909cb4bf3d44693b989eb3641836, type: 2}
   m_LightingSettings: {fileID: 114648683}
 --- !u!196 &4
 NavMeshSettings:
@@ -13556,8 +13556,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7457693093759506831, guid: 4e583d9ff282f81499954f9917a66de9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 679830048}
   m_SourcePrefab: {fileID: 100100000, guid: 4e583d9ff282f81499954f9917a66de9, type: 3}
+--- !u!1 &679830047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7457693093759506831, guid: 4e583d9ff282f81499954f9917a66de9, type: 3}
+  m_PrefabInstance: {fileID: 679830046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &679830048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679830047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4324025, y: 2.812769, z: 2.4329536}
+  m_Center: {x: -0.46421224, y: 1.686543, z: -0.00062102}
 --- !u!1001 &707373959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23484,10 +23513,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1207214271}
     m_Modifications:
-    - target: {fileID: 3348790756979677017, guid: dc091e55c00013b40b9c3e076f037cd2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 34edc5e71d75d794d9cede9eb8d5162e, type: 2}
     - target: {fileID: 462797662221263369, guid: 5890b019a1bcf614e99eda80b6fe2fe3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.259
@@ -23532,16 +23557,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3348790756979677017, guid: dc091e55c00013b40b9c3e076f037cd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34edc5e71d75d794d9cede9eb8d5162e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 947973263192242355, guid: 5890b019a1bcf614e99eda80b6fe2fe3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810790172}
   m_SourcePrefab: {fileID: 100100000, guid: 5890b019a1bcf614e99eda80b6fe2fe3, type: 3}
 --- !u!4 &1810790170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 462797662221263369, guid: 5890b019a1bcf614e99eda80b6fe2fe3, type: 3}
   m_PrefabInstance: {fileID: 1810790169}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1810790171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 947973263192242355, guid: 5890b019a1bcf614e99eda80b6fe2fe3, type: 3}
+  m_PrefabInstance: {fileID: 1810790169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1810790172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810790171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2925746, y: 1.7106076, z: 1.2925745}
+  m_Center: {x: -0.018248023, y: 0.86098295, z: 4.67172}
 --- !u!1 &1822465165 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5726dbba66b0ced499e8c107962bd90d, type: 3}
