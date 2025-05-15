@@ -51,7 +51,8 @@ public class ReactiveReticle : MonoBehaviour
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("JustShowHand") ||
                      hit.collider.gameObject.layer == LayerMask.NameToLayer("Ghost") ||
-                     hit.collider.gameObject.layer == LayerMask.NameToLayer("tPoster"))
+                     hit.collider.gameObject.layer == LayerMask.NameToLayer("tPoster") ||
+                hit.collider.gameObject.layer == LayerMask.NameToLayer("InverseInteractable"))
             {
                 reticleHandSprite.enabled = true;
                 reticleTalkSprite.enabled = false;
