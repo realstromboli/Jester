@@ -183,10 +183,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        if (currentConvo.GetLineByIndex(currentIndex).speaker.GetName() == "Knock")
-        {
-            anim.SetBool("isOpen", false);
-        }
+        //if (currentConvo.GetLineByIndex(currentIndex).speaker.GetName() == "Knock")
+        //{
+            //anim.SetBool("isOpen", false);
+        //}
 
         var speaker = currentConvo.GetLineByIndex(currentIndex).speaker;
         //speakerName.text = currentConvo.GetLineByIndex(currentIndex).speaker.GetName();
@@ -274,6 +274,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+        }
+
+        if (currentConvo.GetLineByIndex(currentIndex + 1).speaker.GetName() == "Knock")
+        {
+            anim.SetBool("isOpen", false);
         }
 
         ReadNext();

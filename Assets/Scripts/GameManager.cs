@@ -246,9 +246,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void LoadGame()
     {
-        stScript.sceneToGoTo = gameData.currentSceneName;
-        StartCoroutine(LoadSceneAndData(stScript.sceneToGoTo, gameData));
-        SceneManager.LoadScene(1);
+        //stScript.sceneToGoTo = gameData.currentSceneName;
+        StartCoroutine(LoadSceneAndData(gameData.currentSceneName, gameData));
+        //SceneManager.LoadScene(1);
         StartCoroutine(LoadDelay());
         maskScript.maskStatus = false;
         maskScript.maskAudio.Stop();
