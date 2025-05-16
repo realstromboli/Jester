@@ -40,6 +40,7 @@ public class GravitySwap : MonoBehaviour
             if (CheckForGround())
             {
                 pmScript.playerAnimation.SetTrigger("Gravity Trigger");
+                pmScript.playerAudio.Stop();
                 pmScript.playerAudio.PlayOneShot(pmScript.gravitySound, 1.0f);
                 gravityReversed = !gravityReversed;
                 UpdateTargetObjectRotation();

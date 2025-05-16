@@ -80,14 +80,14 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         DialogueLine currentLine = currentConvo.GetLineByIndex(currentIndex - 1);
 
-        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing == null)
+        if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing == null && gameManager.isGameActive)
         {
             StopAllCoroutines();
             //StopCoroutine("WaitAndReadNext");
             audioSource.Stop();
             ReadNext();
         }
-        else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing != null)
+        else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E)) && dialogueActive && currentLine.dialogueOptions.Length <= 0 && typing != null && gameManager.isGameActive)
         {
             StopCoroutine(typing);
             typing = null;
@@ -147,6 +147,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public static void StartConversation(DialogueConversation convo)
     {
+        instance.StopAllCoroutines();
+        instance.audioSource.Stop();
         instance.StartCoroutine(instance.StartConversationWithDelay(convo));
     }
 
@@ -183,7 +185,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        if (currentConvo.GetLineByIndex(currentIndex).speaker.GetName() == "Knock")
+        if (currentConvo.GetLineByIndex(currentIndex).dialogue == "There's a knocking at the door.")
         {
             anim.SetBool("isOpen", false);
         }
